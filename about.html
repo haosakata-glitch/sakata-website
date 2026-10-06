@@ -43,7 +43,7 @@
     h2 {
       font-size: 18px;
       font-weight: normal;
-      margin: 0 0 20px;
+      margin: 0 0 25px;
     }
 
     p {
@@ -52,8 +52,38 @@
       margin: 0 0 20px;
     }
 
-    .profile {
-      max-width: 650px;
+    .name {
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    .name-en {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .career {
+      line-height: 2;
+    }
+
+    .career-item {
+      margin-bottom: 20px;
+    }
+
+    .career-year {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 3px;
+    }
+
+    .links a {
+      color: #111;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      opacity: 0.5;
     }
 
     .back {
@@ -77,23 +107,52 @@
 
     <h1>About</h1>
 
-    <section class="profile">
+    <section>
 
-      <h2>坂田雄志</h2>
+      <h2>Profile</h2>
+
+      <p class="name">
+        坂田雄志
+      </p>
+
+      <p class="name-en">
+        Sakata Katsuyuki
+      </p>
 
       <p>
-        建築とその周辺について考えています。
+        建築家
       </p>
 
     </section>
 
     <section>
 
-      <h2>Profile</h2>
+      <h2>Biography</h2>
 
-      <p>
-        ここにプロフィールを記載します。
-      </p>
+      <div class="career">
+
+        <div class="career-item">
+          <div class="career-year">2016–2020</div>
+          近畿大学 建築学部 建築学科<br>
+          松岡聡研究室
+        </div>
+
+        <div class="career-item">
+          <div class="career-year">2020–2023</div>
+          横浜国立大学大学院 Y-GSA 修了
+        </div>
+
+        <div class="career-item">
+          <div class="career-year">2023–2024</div>
+          平田明久建築設計事務所
+        </div>
+
+        <div class="career-item">
+          <div class="career-year">2024–2026</div>
+          Archipelago Architects Studio
+        </div>
+
+      </div>
 
     </section>
 
@@ -102,8 +161,36 @@
       <h2>Contact</h2>
 
       <p>
-        Email<br>
-        example@example.com
+        <a href="mailto:hao.sakata@gmail.com">
+          hao.sakata@gmail.com
+        </a>
+      </p>
+
+    </section>
+
+    <section>
+
+      <h2>SNS</h2>
+
+      <p class="links">
+        Instagram<br>
+        <a href="https://www.instagram.com/katsu_0708/" target="_blank">
+          @katsu_0708
+        </a>
+      </p>
+
+      <p class="links">
+        X / Twitter<br>
+        <a href="https://twitter.com/Katsuskt" target="_blank">
+          @Katsuskt
+        </a>
+      </p>
+
+      <p class="links">
+        note<br>
+        <a href="https://note.com/kind_nerine7" target="_blank">
+          note.com/kind_nerine7
+        </a>
       </p>
 
     </section>
