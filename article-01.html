@@ -30,9 +30,9 @@
     }
 
     .date {
-      font-size: 14px;
+      font-size: 13px;
       color: #666;
-      margin-bottom: 20px;
+      margin: 0 0 15px;
     }
 
     h1 {
@@ -43,7 +43,8 @@
     }
 
     article {
-      font-size: 17px;
+      max-width: 700px;
+      font-size: 16px;
       line-height: 2;
     }
 
@@ -66,6 +67,30 @@
       color: #111;
       text-decoration: none;
     }
+
+    .back a:hover {
+      opacity: 0.5;
+    }
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 20px;
+      }
+
+      main {
+        padding: 55px 20px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      article {
+        font-size: 16px;
+      }
+
+    }
   </style>
 </head>
 
@@ -77,9 +102,13 @@
 
   <main>
 
-    <p class="date">2026.10.06</p>
+    <p class="date">
+      2026.10.06
+    </p>
 
-    <h1>最初の記事のタイトル</h1>
+    <h1>
+      最初の記事のタイトル
+    </h1>
 
     <article>
 
