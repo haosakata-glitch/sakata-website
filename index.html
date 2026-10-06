@@ -9,28 +9,53 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #111111;
+      color: #111;
+      background: #fff;
     }
 
     header {
-      padding: 30px;
+      padding: 24px 30px;
       border-bottom: 1px solid #111;
     }
 
+    header a {
+      color: #111;
+      text-decoration: none;
+    }
+
     main {
-      padding: 60px 30px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 90px 30px;
     }
 
     h1 {
       font-size: 48px;
       font-weight: normal;
-      margin: 0 0 20px;
+      margin: 0 0 25px;
     }
 
-    p {
-      font-size: 18px;
+    .description {
+      font-size: 17px;
       line-height: 1.8;
+      margin-bottom: 60px;
+    }
+
+    nav a {
+      display: block;
+      color: #111;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 15px 0;
+      border-top: 1px solid #ccc;
+    }
+
+    nav a:last-child {
+      border-bottom: 1px solid #ccc;
+    }
+
+    nav a:hover {
+      opacity: 0.5;
     }
   </style>
 </head>
@@ -42,12 +67,17 @@
   </header>
 
   <main>
+
     <h1>Architecture / Design</h1>
 
-<p>
-  建築とその周辺について考えています。
-</p>
-<p><a href="journal.html">Journal</a></p>
+    <p class="description">
+      建築とその周辺について考えています。
+    </p>
+
+    <nav>
+      <a href="journal.html">Journal</a>
+    </nav>
+
   </main>
 
 </body>
