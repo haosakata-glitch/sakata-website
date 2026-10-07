@@ -1,4 +1,4 @@
-name: Generate Archive
+name: Generate Archive v2
 
 on:
   push:
