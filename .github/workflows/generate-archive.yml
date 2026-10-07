@@ -14,10 +14,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+
+      # ----------------------------------------
+      # 1. 画像の名前変更に合わせてHTMLも変更
+      # ----------------------------------------
 
       - name: Sync renamed images and HTML files
         shell: bash
@@ -59,14 +65,22 @@ jobs:
 
                   if [ ! -f "$NEW_HTML" ]; then
                     mv "$OLD_HTML" "$NEW_HTML"
+
                     echo "HTML renamed:"
                     echo "  $OLD_HTML"
                     echo "  $NEW_HTML"
                   fi
 
                   if [ -f "$NEW_HTML" ]; then
-                    sed -i "s|${OLD##*/}|${NEW##*/}|g" "$NEW_HTML"
-                    sed -i "s|${OLD}|${NEW}|g" "$NEW_HTML"
+
+                    sed -i \
+                      "s|${OLD##*/}|${NEW##*/}|g" \
+                      "$NEW_HTML"
+
+                    sed -i \
+                      "s|${OLD}|${NEW}|g" \
+                      "$NEW_HTML"
+
                   fi
 
                 fi
@@ -76,6 +90,11 @@ jobs:
             fi
 
           done < /tmp/changes.txt
+
+
+      # ----------------------------------------
+      # 2. 画像に対応するHTMLがなければ作成
+      # ----------------------------------------
 
       - name: Create missing detail pages
         shell: bash
@@ -94,30 +113,39 @@ jobs:
             fi
 
             case "$STEM" in
+
               work-*)
                 CATEGORY="ARCHITECTURE"
                 ;;
+
               object-*)
                 CATEGORY="OBJECT"
                 ;;
+
               food-*)
                 CATEGORY="FOOD"
                 ;;
+
               book-*)
                 CATEGORY="BOOK"
                 ;;
+
               text-*)
                 CATEGORY="TEXT"
                 ;;
+
               photo-*)
                 CATEGORY="PHOTO"
                 ;;
+
               place-*)
                 CATEGORY="PLACE"
                 ;;
+
               *)
                 CATEGORY="PHOTO"
                 ;;
+
             esac
 
             TITLE="$STEM"
@@ -125,20 +153,30 @@ jobs:
             cat > "$HTML" <<EOF
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>${TITLE}</title>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
       color: #111;
       background: #fff;
     }
@@ -201,39 +239,74 @@ jobs:
       color: #111;
       text-decoration: none;
     }
+
   </style>
+
 </head>
 
 <body>
 
   <header>
-    <a href="index.html" class="site-title">坂田雄志</a>
-    <a href="about.html" class="about">About</a>
+
+    <a
+      href="index.html"
+      class="site-title"
+    >
+      坂田雄志
+    </a>
+
+    <a
+      href="about.html"
+      class="about"
+    >
+      About
+    </a>
+
   </header>
+
 
   <main>
 
-    <div class="category">${CATEGORY}</div>
+    <div class="category">
+      ${CATEGORY}
+    </div>
 
-    <h1>${TITLE}</h1>
+    <h1>
+      ${TITLE}
+    </h1>
 
     <div class="image">
-      <img src="${IMAGE}" alt="${TITLE}">
+
+      <img
+        src="${IMAGE}"
+        alt="${TITLE}"
+      >
+
     </div>
 
     <div class="back">
-      <a href="index.html">← Archive</a>
+
+      <a href="index.html">
+        ← Archive
+      </a>
+
     </div>
 
   </main>
 
 </body>
+
 </html>
 EOF
 
             echo "Created: $HTML"
 
           done
+
+
+      # ----------------------------------------
+      # 3. HTML内の画像リンクを自動修正
+      # ----------------------------------------
 
       - name: Update HTML image references
         shell: bash
@@ -253,25 +326,36 @@ EOF
               if [ -f "$IMAGE" ]; then
 
                 python3 - "$HTML" "$IMAGE" <<'PY'
-          import sys
-          import re
 
-          html_file = sys.argv[1]
-          image_file = sys.argv[2]
+import sys
+import re
 
-          with open(html_file, "r", encoding="utf-8") as f:
-              html = f.read()
+html_file = sys.argv[1]
+image_file = sys.argv[2]
 
-          html = re.sub(
-              r'<img([^>]+)src="[^"]*"',
-              lambda m: f'<img{m.group(1)}src="{image_file}"',
-              html,
-              count=1
-          )
+with open(
+    html_file,
+    "r",
+    encoding="utf-8"
+) as f:
+    html = f.read()
 
-          with open(html_file, "w", encoding="utf-8") as f:
-              f.write(html)
-          PY
+html = re.sub(
+    r'<img([^>]+)src="[^"]*"',
+    lambda m:
+        f'<img{m.group(1)}src="{image_file}"',
+    html,
+    count=1
+)
+
+with open(
+    html_file,
+    "w",
+    encoding="utf-8"
+) as f:
+    f.write(html)
+
+PY
 
                 break
 
@@ -281,117 +365,182 @@ EOF
 
           done
 
+
+      # ----------------------------------------
+      # 4. archive-data.jsonを自動生成
+      # ----------------------------------------
+
       - name: Generate archive-data.json
         shell: bash
         run: |
+
           python3 <<'PY'
-          import json
-          import glob
-          import os
-          import re
 
-          CATEGORY_MAP = {
-              "work-": "ARCHITECTURE",
-              "object-": "OBJECT",
-              "food-": "FOOD",
-              "book-": "BOOK",
-              "text-": "TEXT",
-              "photo-": "PHOTO",
-              "place-": "PLACE",
-          }
+import json
+import glob
+import os
+import re
 
-          images = []
 
-          for pattern in [
-              "*.jpg",
-              "*.jpeg",
-              "*.png",
-              "*.webp"
-          ]:
-              images.extend(glob.glob(pattern))
+CATEGORY_MAP = {
 
-          images = sorted(set(images))
+    "work-": "ARCHITECTURE",
+    "object-": "OBJECT",
+    "food-": "FOOD",
+    "book-": "BOOK",
+    "text-": "TEXT",
+    "photo-": "PHOTO",
+    "place-": "PLACE",
 
-          archive = []
+}
 
-          for image in images:
 
-              filename = os.path.basename(image)
-              stem = os.path.splitext(filename)[0]
+images = []
 
-              detail_page = stem + ".html"
 
-              category = "PHOTO"
+for pattern in [
+    "*.jpg",
+    "*.jpeg",
+    "*.png",
+    "*.webp"
+]:
 
-              for prefix, value in CATEGORY_MAP.items():
+    images.extend(
+        glob.glob(pattern)
+    )
 
-                  if stem.startswith(prefix):
-                      category = value
-                      break
 
-              title = stem
+images = sorted(
+    set(images)
+)
 
-              if os.path.exists(detail_page):
 
-                  with open(
-                      detail_page,
-                      "r",
-                      encoding="utf-8"
-                  ) as f:
-                      html = f.read()
+archive = []
 
-                  match = re.search(
-                      r"<h1[^>]*>(.*?)</h1>",
-                      html,
-                      re.S | re.I
-                  )
 
-                  if match:
-                      title = re.sub(
-                          r"<[^>]+>",
-                          "",
-                          match.group(1)
-                      ).strip()
+for image in images:
 
-              archive.append({
-                  "image": filename,
-                  "detailPage": detail_page,
-                  "category": category,
-                  "title": title
-              })
+    filename = os.path.basename(image)
 
-          with open(
-              "archive-data.json",
-              "w",
-              encoding="utf-8"
-          ) as f:
+    stem = os.path.splitext(
+        filename
+    )[0]
 
-              json.dump(
-                  archive,
-                  f,
-                  ensure_ascii=False,
-                  indent=2
-              )
+    detail_page = (
+        stem + ".html"
+    )
 
-              f.write("\n")
+    category = "PHOTO"
 
-          print(
-              f"Generated archive-data.json with {len(archive)} items."
-          )
-          PY
+
+    for prefix, value in CATEGORY_MAP.items():
+
+        if stem.startswith(prefix):
+
+            category = value
+
+            break
+
+
+    title = stem
+
+
+    if os.path.exists(
+        detail_page
+    ):
+
+        with open(
+            detail_page,
+            "r",
+            encoding="utf-8"
+        ) as f:
+
+            html = f.read()
+
+
+        match = re.search(
+            r"<h1[^>]*>(.*?)</h1>",
+            html,
+            re.S | re.I
+        )
+
+
+        if match:
+
+            title = re.sub(
+                r"<[^>]+>",
+                "",
+                match.group(1)
+            ).strip()
+
+
+    archive.append({
+
+        "image": filename,
+
+        "detailPage": detail_page,
+
+        "category": category,
+
+        "title": title
+
+    })
+
+
+with open(
+    "archive-data.json",
+    "w",
+    encoding="utf-8"
+) as f:
+
+    json.dump(
+        archive,
+        f,
+        ensure_ascii=False,
+        indent=2
+    )
+
+    f.write("\n")
+
+
+print(
+    f"Generated archive-data.json with {len(archive)} items."
+)
+
+PY
+
+
+      # ----------------------------------------
+      # 5. 変更をGitHubに保存
+      # ----------------------------------------
 
       - name: Commit generated files
         shell: bash
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git config \
+            user.name \
+            "github-actions[bot]"
+
+          git config \
+            user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
 
           git add .
 
+
           if git diff --cached --quiet; then
+
             echo "No changes to commit."
+
             exit 0
+
           fi
 
-          git commit -m "Update archive"
+
+          git commit \
+            -m "Update archive"
+
+
           git push
