@@ -31,8 +31,9 @@ jobs:
           image_extensions = {".jpg", ".jpeg", ".png", ".webp"}
 
           category_map = {
-              "work-": "ARCHITECTURE",
+              "architecture-": "ARCHITECTURE",
               "object-": "OBJECT",
+              "work-": "OBJECT",
               "food-": "FOOD",
               "book-": "BOOK",
               "text-": "TEXT",
@@ -47,7 +48,7 @@ jobs:
                   if stem_lower.startswith(prefix):
                       return category
 
-              return "PHOTO"
+              return "OTHER"
 
           # --------------------------------------------------
           # 1. Detect renamed image files
@@ -98,6 +99,7 @@ jobs:
               print(" ", old_image)
               print(" ", new_image)
 
+              # Rename corresponding HTML page
               if old_html.exists() and not new_html.exists():
                   old_html.rename(new_html)
 
@@ -105,6 +107,7 @@ jobs:
                   print(" ", old_html)
                   print(" ", new_html)
 
+              # Update image reference
               if new_html.exists():
                   html = new_html.read_text(
                       encoding="utf-8"
