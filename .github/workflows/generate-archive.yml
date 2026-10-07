@@ -44,8 +44,9 @@ jobs:
 
           def category_for(stem):
               for prefix, category in category_map.items():
-                  if stem.startswith(prefix):
+                  if stem.lower().startswith(prefix):
                       return category
+
               return "PHOTO"
 
           # --------------------------------------------------
@@ -103,13 +104,16 @@ jobs:
               # Rename corresponding HTML page
               if old_html.exists() and not new_html.exists():
                   old_html.rename(new_html)
+
                   print("HTML renamed:")
                   print(" ", old_html)
                   print(" ", new_html)
 
               # Update image reference
               if new_html.exists():
-                  html = new_html.read_text(encoding="utf-8")
+                  html = new_html.read_text(
+                      encoding="utf-8"
+                  )
 
                   html = html.replace(
                       old_image,
