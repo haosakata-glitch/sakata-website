@@ -5,13 +5,186 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Photo｜坂田雄志</title>
+
+  <style>
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #111;
+      background: #fff;
+    }
+
+    header {
+      padding: 20px 30px;
+      border-bottom: 1px solid #111;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header a {
+      color: #111;
+      text-decoration: none;
+    }
+
+    .site-title {
+      font-size: 18px;
+    }
+
+    .about-link {
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 70px 30px;
+    }
+
+    .category {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: normal;
+      line-height: 1.4;
+      margin: 0 0 15px;
+    }
+
+    .date {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 45px;
+    }
+
+    .main-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 45px;
+    }
+
+    .description {
+      max-width: 700px;
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .description p {
+      margin: 0 0 25px;
+    }
+
+    .back {
+      margin-top: 70px;
+    }
+
+    .back a {
+      color: #111;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .back a:hover {
+      opacity: 0.5;
+    }
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 18px 20px;
+      }
+
+      main {
+        padding: 55px 20px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
-  <h1>Photo</h1>
 
-  <img src="photo-01.jpg" alt="">
+  <header>
+
+    <a
+      href="index.html"
+      class="site-title"
+    >
+      坂田雄志
+    </a>
+
+    <a
+      href="about.html"
+      class="about-link"
+    >
+      About
+    </a>
+
+  </header>
+
+
+  <main>
+
+
+    <div class="category">
+      PHOTO
+    </div>
+
+
+    <h1>
+      写真のタイトル
+    </h1>
+
+
+    <div class="date">
+      2026.10.07
+    </div>
+
+
+    <img
+      src="photo-01.jpg"
+      alt=""
+      class="main-image"
+    >
+
+
+    <div class="description">
+
+      <p>
+        写真についてのメモをここに書きます。
+      </p>
+
+      <p>
+        撮影場所：東京都
+      </p>
+
+    </div>
+
+
+    <p class="back">
+
+      <a href="photos.html">
+        ← Photos
+      </a>
+
+    </p>
+
+
+  </main>
+
 
 </body>
 </html>
