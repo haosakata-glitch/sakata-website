@@ -122,6 +122,18 @@
       padding: 7px 9px 6px;
       background: rgba(255, 255, 255, 0.92);
       text-align: right;
+
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    }
+
+    .archive-item:hover .archive-info,
+    .archive-item:focus .archive-info,
+    .archive-item.show-info .archive-info {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .archive-category {
@@ -135,15 +147,6 @@
     .archive-title {
       font-size: 13px;
       line-height: 1.3;
-    }
-
-    .archive-item:hover .archive-info {
-      background: rgba(255, 255, 255, 1);
-    }
-
-    .archive-item:hover .archive-title {
-      text-decoration: underline;
-      text-underline-offset: 3px;
     }
 
     .empty {
@@ -269,6 +272,23 @@
 
       link.className = "archive-item";
       link.href = item.detailPage;
+
+      link.addEventListener("click", (event) => {
+        if (window.matchMedia("(hover: none)").matches) {
+
+          if (!link.classList.contains("show-info")) {
+            event.preventDefault();
+
+            document
+              .querySelectorAll(".archive-item.show-info")
+              .forEach(item => {
+                item.classList.remove("show-info");
+              });
+
+            link.classList.add("show-info");
+          }
+        }
+      });
 
       link.innerHTML = `
         <img
