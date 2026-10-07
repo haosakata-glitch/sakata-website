@@ -14,13 +14,24 @@
     }
 
     header {
-      padding: 24px 30px;
+      padding: 20px 30px;
       border-bottom: 1px solid #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     header a {
       color: #111;
       text-decoration: none;
+    }
+
+    .site-title {
+      font-size: 18px;
+    }
+
+    .about-link {
+      font-size: 14px;
     }
 
     main {
@@ -29,33 +40,37 @@
       padding: 70px 30px;
     }
 
-    .date {
-      font-size: 14px;
+    .category {
+      font-size: 13px;
       color: #666;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     h1 {
       font-size: 42px;
       font-weight: normal;
       line-height: 1.4;
-      margin: 0 0 50px;
+      margin: 0 0 15px;
     }
 
-    article {
-      font-size: 17px;
-      line-height: 2;
+    .date {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 50px;
     }
 
-    article p {
-      margin: 0 0 30px;
-    }
-
-    article img {
-      width: 300px;
+    .main-image {
+      width: 100%;
+      max-width: 700px;
       height: auto;
       display: block;
-      margin: 40px 0;
+      margin-bottom: 50px;
+    }
+
+    .text {
+      max-width: 700px;
+      font-size: 17px;
+      line-height: 2;
     }
 
     .back {
@@ -66,33 +81,74 @@
       color: #111;
       text-decoration: none;
     }
+
+    .back a:hover {
+      opacity: 0.5;
+    }
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 18px 20px;
+      }
+
+      main {
+        padding: 55px 20px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+    }
   </style>
 </head>
 
 <body>
 
   <header>
-    <a href="index.html">坂田雄志</a>
+
+    <a href="index.html" class="site-title">
+      坂田雄志
+    </a>
+
+    <a href="about.html" class="about-link">
+      About
+    </a>
+
   </header>
+
 
   <main>
 
-    <p class="date">2026.10.06</p>
+    <div class="category">
+      FOOD
+    </div>
 
-    <h1>今朝のピクルス</h1>
+    <h1>
+      今朝のピクルス
+    </h1>
 
-    <article>
+    <div class="date">
+      2026.10.06
+    </div>
+
+    <img
+      src="IMG_6091.jpg"
+      alt=""
+      class="main-image"
+    >
+
+    <div class="text">
 
       <p>
         おいしかったにょーん
       </p>
 
-      <img src="IMG_6091.jpg" alt="">
-
-    </article>
+    </div>
 
     <p class="back">
-      <a href="journal.html">← Journalに戻る</a>
+      <a href="index.html">← 一覧に戻る</a>
     </p>
 
   </main>
