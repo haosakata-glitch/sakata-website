@@ -440,5 +440,19 @@
   filters.forEach(filter => {
     filter.addEventListener("click", () => {
 
-      filt
+      filters.forEach(button => {
+        button.classList.remove("active");
+      });
+
+      filter.classList.add("active");
+
+      render(filter.dataset.category);
+    });
+  });
+
+  loadArchive();
+</script>
+
+</body>
+</html>
 ```
