@@ -30,6 +30,12 @@
     "title": "food-05"
   },
   {
+    "image": "food-06.jpeg",
+    "detailPage": "food-06.html",
+    "category": "FOOD",
+    "title": "food-06"
+  },
+  {
     "image": "food-test-2.jpg",
     "detailPage": "food-test-2.html",
     "category": "FOOD",
