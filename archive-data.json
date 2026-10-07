@@ -1,11 +1,5 @@
 [
   {
-    "image": "IMG_5926.jpg",
-    "detailPage": "IMG_5926.html",
-    "category": "PHOTO",
-    "title": "IMG 5926"
-  },
-  {
     "image": "IMG_6091.jpg",
     "detailPage": "IMG_6091.html",
     "category": "PHOTO",
@@ -16,6 +10,12 @@
     "detailPage": "book-01.html",
     "category": "BOOK",
     "title": "本のタイトル"
+  },
+  {
+    "image": "food-02.jpg",
+    "detailPage": "food-02.html",
+    "category": "FOOD",
+    "title": "food-02"
   },
   {
     "image": "food-test-2.jpg",
