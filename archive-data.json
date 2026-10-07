@@ -1,11 +1,5 @@
 [
   {
-    "image": "IMG_6110.jpeg",
-    "detailPage": "IMG_6110.html",
-    "category": "PHOTO",
-    "title": "IMG_6110"
-  },
-  {
     "image": "book-01.jpg",
     "detailPage": "book-01.html",
     "category": "BOOK",
@@ -16,6 +10,12 @@
     "detailPage": "food-01.html",
     "category": "FOOD",
     "title": "food-01"
+  },
+  {
+    "image": "food-02.jpg",
+    "detailPage": "food-02.html",
+    "category": "FOOD",
+    "title": "food-02"
   },
   {
     "image": "food-03.jpg",
