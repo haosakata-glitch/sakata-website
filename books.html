@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Books｜坂田雄志</title>
+
+  <style>
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #111;
+      background: #fff;
+    }
+
+
+    /* Header */
+
+    header {
+      padding: 20px 30px;
+      border-bottom: 1px solid #111;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header a {
+      color: #111;
+      text-decoration: none;
+    }
+
+    .site-title {
+      font-size: 18px;
+    }
+
+    .about-link {
+      font-size: 14px;
+    }
+
+
+    /* Main */
+
+    main {
+      padding: 30px;
+    }
+
+
+    /* Page title */
+
+    .page-title {
+      margin-bottom: 50px;
+    }
+
+    .page-title-label {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: normal;
+      margin: 0;
+    }
+
+
+    /* Bookshelf */
+
+    .bookshelf {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(5, 1fr);
+
+      gap: 35px 20px;
+
+    }
+
+
+    /* Book */
+
+    .book {
+      display: block;
+
+      color: #111;
+
+      text-decoration: none;
+    }
+
+    .book-image {
+
+      width: 100%;
+
+      aspect-ratio: 2 / 3;
+
+      object-fit: cover;
+
+      display: block;
+
+      margin-bottom: 12px;
+
+    }
+
+    .book-title {
+
+      font-size: 14px;
+
+      line-height: 1.6;
+
+      margin-bottom: 4px;
+
+    }
+
+    .book-meta {
+
+      font-size: 12px;
+
+      color: #777;
+
+      line-height: 1.5;
+
+    }
+
+    .book:hover .book-image {
+
+      opacity: 0.7;
+
+    }
+
+
+    /* Back */
+
+    .back {
+
+      margin-top: 80px;
+
+    }
+
+    .back a {
+
+      color: #111;
+
+      text-decoration: none;
+
+      font-size: 13px;
+
+    }
+
+    .back a:hover {
+
+      opacity: 0.5;
+
+    }
+
+
+    /* Footer */
+
+    footer {
+
+      padding:
+        100px
+        30px
+        30px;
+
+      font-size: 12px;
+
+      color: #666;
+
+    }
+
+
+    /* Tablet */
+
+    @media (max-width: 900px) {
+
+      .bookshelf {
+
+        grid-template-columns:
+          repeat(4, 1fr);
+
+      }
+
+    }
+
+
+    /* Mobile */
+
+    @media (max-width: 600px) {
+
+      header {
+
+        padding:
+          18px
+          20px;
+
+      }
+
+      main {
+
+        padding:
+          20px;
+
+      }
+
+      .bookshelf {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+
+        gap: 30px 15px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <header>
+
+    <a
+      href="index.html"
+      class="site-title"
+    >
+      坂田雄志
+    </a>
+
+    <a
+      href="about.html"
+      class="about-link"
+    >
+      About
+    </a>
+
+  </header>
+
+
+
+  <main>
+
+
+    <section class="page-title">
+
+      <div class="page-title-label">
+        ARCHIVE / BOOK
+      </div>
+
+      <h1>
+        Bookshelf
+      </h1>
+
+    </section>
+
+
+
+    <section class="bookshelf">
+
+
+      <!-- 大杉栄伝 -->
+
+      <a
+        href="book-01.html"
+        class="book"
+      >
+
+        <img
+          src="book-01.jpg"
+          alt=""
+          class="book-image"
+        >
+
+        <div class="book-title">
+          大杉栄伝　永遠のアナキズム
+        </div>
+
+        <div class="book-meta">
+          栗原康 / 2021
+        </div>
+
+      </a>
+
+
+    </section>
+
+
+
+    <p class="back">
+
+      <a href="index.html">
+        ← Archive
+      </a>
+
+    </p>
+
+
+  </main>
+
+
+
+  <footer>
+
+    © 坂田雄志
+
+  </footer>
+
+
+</body>
+</html>
