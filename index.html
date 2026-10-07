@@ -16,9 +16,7 @@
     }
 
 
-    /* --------------------
-       Header
-    -------------------- */
+    /* Header */
 
     header {
       padding: 20px 30px;
@@ -43,18 +41,14 @@
     }
 
 
-    /* --------------------
-       Main
-    -------------------- */
+    /* Main */
 
     main {
       padding: 30px;
     }
 
 
-    /* --------------------
-       Introduction
-    -------------------- */
+    /* Introduction */
 
     .intro {
       margin-bottom: 55px;
@@ -74,9 +68,7 @@
     }
 
 
-    /* --------------------
-       Categories
-    -------------------- */
+    /* Categories */
 
     .categories {
       display: flex;
@@ -113,9 +105,7 @@
     }
 
 
-    /* --------------------
-       Archive
-    -------------------- */
+    /* Archive */
 
     .archive {
 
@@ -128,9 +118,7 @@
     }
 
 
-    /* --------------------
-       Archive Item
-    -------------------- */
+    /* Archive Item */
 
     .item {
 
@@ -178,9 +166,7 @@
     }
 
 
-    /* --------------------
-       Footer
-    -------------------- */
+    /* Footer */
 
     footer {
 
@@ -195,9 +181,7 @@
     }
 
 
-    /* --------------------
-       Tablet
-    -------------------- */
+    /* Tablet */
 
     @media (max-width: 800px) {
 
@@ -230,9 +214,7 @@
     }
 
 
-    /* --------------------
-       Mobile
-    -------------------- */
+    /* Mobile */
 
     @media (max-width: 500px) {
 
@@ -333,12 +315,12 @@
         FOOD
       </button>
 
-      <button
+      <a
+        href="books.html"
         class="category"
-        data-category="BOOK"
       >
         BOOK
-      </button>
+      </a>
 
       <button
         class="category"
@@ -370,10 +352,7 @@
     <section class="archive">
 
 
-      <!--
-        ARCHITECTURE
-        下仁田蒸留所
-      -->
+      <!-- ARCHITECTURE -->
 
       <a
         href="work-01.html"
@@ -399,10 +378,7 @@
 
 
 
-      <!--
-        FOOD
-        今朝のピクルス
-      -->
+      <!-- FOOD -->
 
       <a
         href="article-01.html"
@@ -428,10 +404,7 @@
 
 
 
-      <!--
-        BOOK
-        大杉栄伝
-      -->
+      <!-- BOOK -->
 
       <a
         href="book-01.html"
@@ -479,7 +452,7 @@
 
     const categoryButtons =
       document.querySelectorAll(
-        ".category"
+        ".category[data-category]"
       );
 
 
