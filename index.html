@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>坂田雄志｜Archive</title>
+  <title>坂田雄志</title>
 
   <style>
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -18,7 +17,6 @@
     header {
       padding: 20px 30px;
       border-bottom: 1px solid #111;
-
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -38,502 +36,329 @@
     }
 
     main {
-      padding: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 30px 100px;
     }
 
-    .intro {
-      margin-bottom: 55px;
-      max-width: 700px;
+    .archive-header {
+      margin-bottom: 40px;
     }
 
-    .intro-title {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 15px;
-    }
-
-    .intro-text {
-      font-size: 22px;
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    .categories {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-
-      margin-bottom: 35px;
-
-      border-top: 1px solid #111;
-      padding-top: 15px;
-    }
-
-    .category {
-      border: none;
-      padding: 0;
-
-      background: none;
-
-      color: #111;
-
-      font-family: inherit;
+    .archive-label {
       font-size: 13px;
-
-      cursor: pointer;
-
-      text-decoration: none;
-    }
-
-    .category:hover {
-      opacity: 0.5;
-    }
-
-    .category.active {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-
-    .archive {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 35px 20px;
-    }
-
-    .item {
-      display: block;
-
-      color: #111;
-
-      text-decoration: none;
-    }
-
-    .item-image {
-      width: 100%;
-
-      aspect-ratio: 4 / 3;
-
-      object-fit: cover;
-
-      display: block;
-
+      color: #666;
       margin-bottom: 12px;
     }
 
-    .item-title {
+    h1 {
+      font-size: 42px;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .filter {
+      border: none;
+      background: none;
+      padding: 0;
+      font-family: inherit;
+      font-size: 12px;
+      color: #777;
+      cursor: pointer;
+    }
+
+    .filter.active {
+      color: #111;
+    }
+
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 35px 20px;
+    }
+
+    .archive-item {
+      display: block;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .archive-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .archive-category {
+      font-size: 11px;
+      color: #777;
+      margin-bottom: 6px;
+    }
+
+    .archive-title {
       font-size: 15px;
-
-      line-height: 1.5;
-
-      margin-bottom: 5px;
-    }
-
-    .item-meta {
-      font-size: 12px;
-
-      color: #777;
-
       line-height: 1.5;
     }
 
-    .item:hover .item-image {
-      opacity: 0.7;
-    }
-
-    .loading {
-      font-size: 13px;
+    .empty {
+      font-size: 14px;
       color: #777;
-    }
-
-    footer {
-      padding:
-        100px
-        30px
-        30px;
-
-      font-size: 12px;
-
-      color: #666;
     }
 
     @media (max-width: 800px) {
+      .archive-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
+    @media (max-width: 600px) {
       header {
-        padding:
-          18px
-          20px;
+        padding: 18px 20px;
       }
 
       main {
-        padding:
-          20px;
+        padding: 50px 20px 80px;
       }
 
-      .archive {
-        grid-template-columns:
-          repeat(2, 1fr);
-
-        gap: 25px 15px;
+      h1 {
+        font-size: 32px;
       }
 
-      .intro-text {
-        font-size: 20px;
+      .archive-grid {
+        gap: 30px 15px;
       }
-
     }
-
-    @media (max-width: 500px) {
-
-      .archive {
-        grid-template-columns:
-          1fr;
-      }
-
-      .categories {
-        gap: 12px;
-      }
-
-    }
-
   </style>
-
 </head>
-
 
 <body>
 
+<header>
+  <a href="index.html" class="site-title">坂田雄志</a>
+  <a href="about.html" class="about-link">About</a>
+</header>
 
-  <header>
+<main>
 
-    <a
-      href="index.html"
-      class="site-title"
-    >
-      坂田雄志
-    </a>
+  <div class="archive-header">
+    <div class="archive-label">ARCHIVE</div>
+    <h1>All</h1>
+  </div>
 
-    <a
-      href="about.html"
-      class="about-link"
-    >
-      About
-    </a>
+  <div class="filters">
+    <button class="filter active" data-category="ALL">ALL</button>
+    <button class="filter" data-category="ARCHITECTURE">ARCHITECTURE</button>
+    <button class="filter" data-category="OBJECT">OBJECT</button>
+    <button class="filter" data-category="FOOD">FOOD</button>
+    <button class="filter" data-category="BOOK">BOOK</button>
+    <button class="filter" data-category="TEXT">TEXT</button>
+    <button class="filter" data-category="PHOTO">PHOTO</button>
+    <button class="filter" data-category="PLACE">PLACE</button>
+  </div>
 
-  </header>
+  <div id="archive-grid" class="archive-grid"></div>
 
+</main>
 
-  <main>
+<script>
 
+  const owner = "haosakata-glitch";
+  const repo = "sakata-website";
 
-    <section class="intro">
+  const apiUrl =
+    `https://api.github.com/repos/${owner}/${repo}/contents/`;
 
-      <div class="intro-title">
-        ARCHIVE
-      </div>
+  const grid = document.getElementById("archive-grid");
+  const filters = document.querySelectorAll(".filter");
 
-      <p class="intro-text">
-        建築、もの、食べもの、本、文章、写真、場所。
-        身の回りのものを記録しています。
-      </p>
+  let archiveItems = [];
 
-    </section>
+  function getCategory(filename) {
 
+    const lower = filename.toLowerCase();
 
-    <nav class="categories">
+    if (lower.startsWith("work-")) {
+      return "ARCHITECTURE";
+    }
 
-      <button
-        class="category active"
-        data-category="ALL"
-      >
-        ALL
-      </button>
+    if (lower.startsWith("book-")) {
+      return "BOOK";
+    }
 
-      <button
-        class="category"
-        data-category="ARCHITECTURE"
-      >
-        ARCHITECTURE
-      </button>
+    if (lower.startsWith("food-")) {
+      return "FOOD";
+    }
 
-      <button
-        class="category"
-        data-category="OBJECT"
-      >
-        OBJECT
-      </button>
+    if (lower.startsWith("object-")) {
+      return "OBJECT";
+    }
 
-      <button
-        class="category"
-        data-category="FOOD"
-      >
-        FOOD
-      </button>
+    if (lower.startsWith("place-")) {
+      return "PLACE";
+    }
 
-      <a
-        href="books.html"
-        class="category"
-      >
-        BOOK
-      </a>
+    if (lower.startsWith("text-")) {
+      return "TEXT";
+    }
 
-      <button
-        class="category"
-        data-category="TEXT"
-      >
-        TEXT
-      </button>
-
-      <a
-        href="photos.html"
-        class="category"
-      >
-        PHOTO
-      </a>
-
-      <button
-        class="category"
-        data-category="PLACE"
-      >
-        PLACE
-      </button>
-
-    </nav>
+    return "PHOTO";
+  }
 
 
-    <section
-      class="archive"
-      id="archive"
-    >
+  function getDetailPage(filename) {
 
-      <div class="loading">
-        Archiveを読み込んでいます。
-      </div>
+    const name = filename.substring(
+      0,
+      filename.lastIndexOf(".")
+    );
 
-    </section>
-
-
-  </main>
+    return name + ".html";
+  }
 
 
-  <footer>
+  function getTitle(filename) {
 
-    © 坂田雄志
+    const name = filename.substring(
+      0,
+      filename.lastIndexOf(".")
+    );
 
-  </footer>
-
-
-  <script>
-
-    const archive =
-      document.getElementById("archive");
-
-
-    const categoryButtons =
-      document.querySelectorAll(
-        ".category[data-category]"
-      );
+    return name
+      .replace(/[-_]/g, " ")
+      .replace(/\b\w/g, char => char.toUpperCase());
+  }
 
 
-    let archiveItems = [];
+  function render(category = "ALL") {
+
+    grid.innerHTML = "";
+
+    const items = archiveItems.filter(item => {
+      return category === "ALL" || item.category === category;
+    });
+
+    if (items.length === 0) {
+      grid.innerHTML =
+        '<div class="empty">まだ項目がありません。</div>';
+      return;
+    }
+
+    items.forEach(item => {
+
+      const link = document.createElement("a");
+      link.className = "archive-item";
+      link.href = item.detailPage;
+
+      link.innerHTML = `
+        <img
+          src="${item.image}"
+          alt=""
+          class="archive-image"
+        >
+
+        <div class="archive-category">
+          ${item.category}
+        </div>
+
+        <div class="archive-title">
+          ${item.title}
+        </div>
+      `;
+
+      grid.appendChild(link);
+
+    });
+
+  }
 
 
-    /*
-      GitHubのリポジトリから
-      画像ファイル一覧を取得
-    */
+  async function loadArchive() {
 
-    fetch(
-      "https://api.github.com/repos/haosakata-glitch/sakata-website/contents/"
-    )
+    try {
 
-      .then(response => response.json())
+      const response = await fetch(apiUrl);
 
-      .then(files => {
+      if (!response.ok) {
+        throw new Error("GitHub API error");
+      }
 
-        const images =
-          files.filter(
-            file =>
-              file.type === "file" &&
-              /\.(jpg|jpeg|png|webp)$/i.test(
-                file.name
-              )
+      const files = await response.json();
+
+      archiveItems = files
+        .filter(file => {
+
+          const name = file.name.toLowerCase();
+
+          return (
+            file.type === "file" &&
+            (
+              name.endsWith(".jpg") ||
+              name.endsWith(".jpeg") ||
+              name.endsWith(".png") ||
+              name.endsWith(".webp")
+            )
           );
 
+        })
+        .map(file => {
 
-        archiveItems =
-          images.map(file => {
+          return {
+            image: file.name,
+            category: getCategory(file.name),
+            title: getTitle(file.name),
+            detailPage: getDetailPage(file.name)
+          };
 
-            let category = "PHOTO";
+        });
 
+      render();
 
-            if (
-              file.name.startsWith("work-")
-            ) {
-              category = "ARCHITECTURE";
-            }
+    } catch (error) {
 
-            if (
-              file.name.startsWith("book-")
-            ) {
-              category = "BOOK";
-            }
+      console.error(error);
 
-            if (
-              file.name.startsWith("food-")
-            ) {
-              category = "FOOD";
-            }
-
-            if (
-              file.name.startsWith("object-")
-            ) {
-              category = "OBJECT";
-            }
-
-            if (
-              file.name.startsWith("place-")
-            ) {
-              category = "PLACE";
-            }
-
-            if (
-              file.name.startsWith("text-")
-            ) {
-              category = "TEXT";
-            }
-
-
-            return {
-
-              category:
-                category,
-
-              title:
-                file.name
-                  .replace(/\.[^/.]+$/, "")
-                  .replace(/[-_]/g, " "),
-
-              image:
-                file.name,
-
-              link:
-                "#"
-
-            };
-
-          });
-
-
-        displayItems("ALL");
-
-      })
-
-      .catch(error => {
-
-        archive.innerHTML =
-          "<div class='loading'>Archiveを読み込めませんでした。</div>";
-
-        console.error(error);
-
-      });
-
-
-    function displayItems(
-      selectedCategory
-    ) {
-
-      archive.innerHTML = "";
-
-
-      const filteredItems =
-        archiveItems.filter(
-          item =>
-            selectedCategory === "ALL" ||
-            item.category === selectedCategory
-        );
-
-
-      filteredItems.forEach(
-        item => {
-
-          const element =
-            document.createElement("div");
-
-          element.className =
-            "item";
-
-
-          element.innerHTML = `
-
-            <img
-              src="${item.image}"
-              alt=""
-              class="item-image"
-            >
-
-            <div class="item-title">
-              ${item.title}
-            </div>
-
-            <div class="item-meta">
-              ${item.category}
-            </div>
-
-          `;
-
-
-          archive.appendChild(
-            element
-          );
-
-        }
-      );
+      grid.innerHTML =
+        '<div class="empty">Archiveを読み込めませんでした。</div>';
 
     }
 
-
-    categoryButtons.forEach(
-      button => {
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            const selectedCategory =
-              button.dataset.category;
+  }
 
 
-            categoryButtons.forEach(
-              button => {
+  filters.forEach(filter => {
 
-                button.classList.remove(
-                  "active"
-                );
+    filter.addEventListener("click", () => {
 
-              }
-            );
+      filters.forEach(button => {
+        button.classList.remove("active");
+      });
+
+      filter.classList.add("active");
+
+      const category =
+        filter.dataset.category;
+
+      render(category);
+
+    });
+
+  });
 
 
-            button.classList.add(
-              "active"
-            );
+  loadArchive();
 
-
-            displayItems(
-              selectedCategory
-            );
-
-          }
-        );
-
-      }
-    );
-
-  </script>
-
+</script>
 
 </body>
 </html>
