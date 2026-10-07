@@ -70,5 +70,11 @@
     "detailPage": "work-02.html",
     "category": "ARCHITECTURE",
     "title": "work-02"
+  },
+  {
+    "image": "work-03.jpeg",
+    "detailPage": "work-03.html",
+    "category": "ARCHITECTURE",
+    "title": "work-03"
   }
 ]
