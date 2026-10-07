@@ -1,18 +1,10 @@
-name: Generate Archive v5
+name: Generate Archive v6
 
 on:
   push:
     branches:
       - main
-    paths:
-      - "*.jpg"
-      - "*.jpeg"
-      - "*.png"
-      - "*.webp"
-      - "*.html"
-      - "index.html"
-      - "archive-data.json"
-      - ".github/workflows/generate-archive.yml"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -25,9 +17,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
-      - name: Sync image and HTML names
+      - name: Sync renamed images and HTML files
         shell: bash
         run: |
           set -e
@@ -38,7 +30,10 @@ jobs:
             exit 0
           fi
 
-          git diff --name-status -M "$PREV" HEAD | while IFS=$'\t' read -r STATUS OLD NEW; do
+          git diff --name-status -M "$PREV" HEAD > /tmp/changes.txt
+
+          while IFS=$'\t' read -r STATUS OLD NEW; do
+
             if [[ "$STATUS" =~ ^R ]]; then
 
               OLD_EXT="${OLD##*.}"
@@ -56,29 +51,31 @@ jobs:
                 OLD_HTML="${OLD_STEM}.html"
                 NEW_HTML="${NEW_STEM}.html"
 
-                if [ -f "$OLD_HTML" ] && [ ! -f "$NEW_HTML" ]; then
-                  mv "$OLD_HTML" "$NEW_HTML"
+                echo "Image renamed:"
+                echo "  $OLD"
+                echo "  $NEW"
 
-                  sed -i "s|${OLD}|${NEW}|g" "$NEW_HTML"
-                  sed -i "s|${OLD##*/}|${NEW##*/}|g" "$NEW_HTML"
+                if [ -f "$OLD_HTML" ]; then
+
+                  if [ ! -f "$NEW_HTML" ]; then
+                    mv "$OLD_HTML" "$NEW_HTML"
+                    echo "HTML renamed:"
+                    echo "  $OLD_HTML"
+                    echo "  $NEW_HTML"
+                  fi
+
+                  if [ -f "$NEW_HTML" ]; then
+                    sed -i "s|${OLD##*/}|${NEW##*/}|g" "$NEW_HTML"
+                    sed -i "s|${OLD}|${NEW}|g" "$NEW_HTML"
+                  fi
+
                 fi
+
               fi
+
             fi
 
-            if [ "$STATUS" = "D" ]; then
-              EXT="${OLD##*.}"
-              EXT=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
-
-              if [[ "$EXT" =~ ^(jpg|jpeg|png|webp)$ ]]; then
-                STEM="${OLD%.*}"
-                HTML="${STEM}.html"
-
-                if [ -f "$HTML" ]; then
-                  rm "$HTML"
-                fi
-              fi
-            fi
-          done
+          done < /tmp/changes.txt
 
       - name: Create missing detail pages
         shell: bash
@@ -86,6 +83,7 @@ jobs:
           set -e
 
           for IMAGE in *.jpg *.jpeg *.png *.webp; do
+
             [ -f "$IMAGE" ] || continue
 
             STEM="${IMAGE%.*}"
@@ -130,7 +128,9 @@ jobs:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>${TITLE}</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -205,13 +205,16 @@ jobs:
 </head>
 
 <body>
+
   <header>
     <a href="index.html" class="site-title">坂田雄志</a>
     <a href="about.html" class="about">About</a>
   </header>
 
   <main>
+
     <div class="category">${CATEGORY}</div>
+
     <h1>${TITLE}</h1>
 
     <div class="image">
@@ -221,37 +224,61 @@ jobs:
     <div class="back">
       <a href="index.html">← Archive</a>
     </div>
+
   </main>
+
 </body>
 </html>
 EOF
+
+            echo "Created: $HTML"
+
           done
 
-      - name: Update image references
+      - name: Update HTML image references
         shell: bash
         run: |
           set -e
 
           for HTML in *.html; do
+
             [ -f "$HTML" ] || continue
 
             STEM="${HTML%.html}"
 
             for EXT in jpg jpeg png webp; do
+
               IMAGE="${STEM}.${EXT}"
 
               if [ -f "$IMAGE" ]; then
-                CURRENT_IMAGE=$(grep -oE 'src="[^"]+"' "$HTML" | head -1 | sed 's/src="//;s/"//' || true)
 
-                if [ "$CURRENT_IMAGE" != "$IMAGE" ]; then
-                  if [ -n "$CURRENT_IMAGE" ]; then
-                    sed -i "0|src=\"[^\"]*\"|s|src=\"[^\"]*\"|src=\"${IMAGE}\"|" "$HTML"
-                  fi
-                fi
+                python3 - "$HTML" "$IMAGE" <<'PY'
+          import sys
+          import re
+
+          html_file = sys.argv[1]
+          image_file = sys.argv[2]
+
+          with open(html_file, "r", encoding="utf-8") as f:
+              html = f.read()
+
+          html = re.sub(
+              r'<img([^>]+)src="[^"]*"',
+              lambda m: f'<img{m.group(1)}src="{image_file}"',
+              html,
+              count=1
+          )
+
+          with open(html_file, "w", encoding="utf-8") as f:
+              f.write(html)
+          PY
 
                 break
+
               fi
+
             done
+
           done
 
       - name: Generate archive-data.json
@@ -273,23 +300,31 @@ EOF
               "place-": "PLACE",
           }
 
-          extensions = ("*.jpg", "*.jpeg", "*.png", "*.webp")
           images = []
 
-          for ext in extensions:
-              images.extend(glob.glob(ext))
+          for pattern in [
+              "*.jpg",
+              "*.jpeg",
+              "*.png",
+              "*.webp"
+          ]:
+              images.extend(glob.glob(pattern))
 
           images = sorted(set(images))
 
           archive = []
 
           for image in images:
-              stem = os.path.splitext(os.path.basename(image))[0]
+
+              filename = os.path.basename(image)
+              stem = os.path.splitext(filename)[0]
+
               detail_page = stem + ".html"
 
               category = "PHOTO"
 
               for prefix, value in CATEGORY_MAP.items():
+
                   if stem.startswith(prefix):
                       category = value
                       break
@@ -297,29 +332,52 @@ EOF
               title = stem
 
               if os.path.exists(detail_page):
-                  with open(detail_page, "r", encoding="utf-8") as f:
+
+                  with open(
+                      detail_page,
+                      "r",
+                      encoding="utf-8"
+                  ) as f:
                       html = f.read()
 
-                  match = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.S | re.I)
+                  match = re.search(
+                      r"<h1[^>]*>(.*?)</h1>",
+                      html,
+                      re.S | re.I
+                  )
 
                   if match:
-                      title = re.sub(r"<[^>]+>", "", match.group(1)).strip()
+                      title = re.sub(
+                          r"<[^>]+>",
+                          "",
+                          match.group(1)
+                      ).strip()
 
               archive.append({
-                  "image": image,
+                  "image": filename,
                   "detailPage": detail_page,
                   "category": category,
                   "title": title
               })
 
-          with open("archive-data.json", "w", encoding="utf-8") as f:
+          with open(
+              "archive-data.json",
+              "w",
+              encoding="utf-8"
+          ) as f:
+
               json.dump(
                   archive,
                   f,
                   ensure_ascii=False,
                   indent=2
               )
+
               f.write("\n")
+
+          print(
+              f"Generated archive-data.json with {len(archive)} items."
+          )
           PY
 
       - name: Commit generated files
