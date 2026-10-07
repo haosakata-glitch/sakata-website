@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>坂田雄志</title>
+  <title>Sakata Katsuyuki</title>
 
   <style>
     * {
@@ -13,17 +13,29 @@
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 300;
       color: #111;
       background: #fff;
     }
 
     header {
-      padding: 24px 30px;
-      border-bottom: 1px solid #111;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 52px;
+      padding: 0 24px;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+
+      z-index: 100;
     }
 
     header a {
@@ -32,56 +44,68 @@
     }
 
     .site-title {
-      font-size: 18px;
-      letter-spacing: 0.02em;
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.01em;
     }
 
     .about-link {
-      font-size: 13px;
+      display: flex;
+      align-items: center;
+      height: 18px;
+      padding-left: 14px;
+      border-left: 1px solid #aaa;
+
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.02em;
     }
 
     main {
       max-width: 1500px;
       margin: 0 auto;
-      padding: 70px 30px 120px;
+      padding: 78px 24px 100px;
     }
 
     .archive-header {
-      margin-bottom: 50px;
+      margin-bottom: 20px;
     }
 
     .archive-label {
-      font-size: 11px;
+      font-size: 9px;
       letter-spacing: 0.08em;
       color: #777;
-      margin-bottom: 14px;
+      margin-bottom: 5px;
     }
 
     h1 {
-      font-size: 42px;
-      font-weight: normal;
+      font-size: 14px;
+      font-weight: 300;
       line-height: 1.2;
       margin: 0;
-      letter-spacing: -0.02em;
+      letter-spacing: 0;
     }
 
     .filters {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 35px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid #d5d5d5;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #ddd;
     }
 
     .filter {
       border: none;
       background: none;
       padding: 0;
+
       font-family: inherit;
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      color: #888;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      color: #999;
+
       cursor: pointer;
     }
 
@@ -96,7 +120,7 @@
     .archive-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      gap: 5px;
     }
 
     .archive-item {
@@ -117,15 +141,21 @@
 
     .archive-info {
       position: absolute;
-      right: 10px;
-      bottom: 10px;
-      padding: 7px 9px 6px;
-      background: rgba(255, 255, 255, 0.92);
+      right: 7px;
+      bottom: 7px;
+
+      padding: 5px 6px 4px;
+
+      background: rgba(255, 255, 255, 0.88);
       text-align: right;
 
       opacity: 0;
-      transform: translateY(5px);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      transform: translateY(4px);
+
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+
       pointer-events: none;
     }
 
@@ -137,81 +167,94 @@
     }
 
     .archive-category {
-      font-size: 9px;
+      font-size: 8px;
       line-height: 1.2;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       color: #777;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
 
     .archive-title {
-      font-size: 13px;
+      font-size: 11px;
       line-height: 1.3;
+      font-weight: 300;
     }
 
     .empty {
-      font-size: 13px;
+      font-size: 12px;
       color: #777;
     }
 
     @media (max-width: 900px) {
       main {
-        padding: 60px 20px 100px;
+        padding-left: 15px;
+        padding-right: 15px;
       }
 
       .archive-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
+        gap: 4px;
       }
     }
 
     @media (max-width: 600px) {
       header {
-        padding: 20px;
+        height: 48px;
+        padding: 0 15px;
       }
 
       .site-title {
-        font-size: 17px;
+        font-size: 11px;
       }
 
       .about-link {
-        font-size: 12px;
+        padding-left: 11px;
+        font-size: 9px;
       }
 
       main {
-        padding: 50px 12px 80px;
+        padding: 68px 8px 70px;
       }
 
       .archive-header {
-        margin-bottom: 40px;
+        margin-bottom: 16px;
+      }
+
+      .archive-label {
+        font-size: 8px;
       }
 
       h1 {
-        font-size: 32px;
+        font-size: 12px;
       }
 
       .filters {
-        gap: 15px;
-        margin-bottom: 25px;
+        gap: 13px;
+        margin-bottom: 16px;
+        padding-bottom: 10px;
       }
 
       .filter {
-        font-size: 10px;
+        font-size: 8px;
       }
 
       .archive-grid {
         grid-template-columns: 1fr;
-        gap: 6px;
+        gap: 4px;
       }
 
       .archive-info {
-        right: 8px;
-        bottom: 8px;
-        padding: 6px 8px 5px;
+        right: 6px;
+        bottom: 6px;
+        padding: 5px 6px 4px;
+      }
+
+      .archive-category {
+        font-size: 7px;
       }
 
       .archive-title {
-        font-size: 12px;
+        font-size: 10px;
       }
     }
   </style>
@@ -220,7 +263,7 @@
 <body>
 
 <header>
-  <a href="index.html" class="site-title">坂田雄志</a>
+  <a href="index.html" class="site-title">Sakata Katsuyuki</a>
   <a href="about.html" class="about-link">About</a>
 </header>
 
