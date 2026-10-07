@@ -1,38 +1,38 @@
 [
   {
+    "image": "IMG_6091.jpg",
+    "detailPage": "IMG_6091.html",
+    "category": "PHOTO",
+    "title": "IMG 6091"
+  },
+  {
     "image": "book-01.jpg",
+    "detailPage": "book-01.html",
     "category": "BOOK",
-    "title": "本のタイトル",
-    "detailPage": "book-01.html"
+    "title": "本のタイトル"
+  },
+  {
+    "image": "food-02.jpg",
+    "detailPage": "food-02.html",
+    "category": "FOOD",
+    "title": "food 2"
   },
   {
     "image": "food-test-2.jpg",
+    "detailPage": "food-test-2.html",
     "category": "FOOD",
-    "title": "キッシュ（サーモン・アボカド・チーズ）",
-    "detailPage": "food-test-2.html"
-  },
-  {
-    "image": "food_2.jpg",
-    "category": "PHOTO",
-    "title": "food 2",
-    "detailPage": "food_2.html"
-  },
-  {
-    "image": "IMG_6091.jpg",
-    "category": "PHOTO",
-    "title": "IMG 6091",
-    "detailPage": "IMG_6091.html"
+    "title": "キッシュ（サーモン・アボカド・チーズ）"
   },
   {
     "image": "photo-01.jpg",
+    "detailPage": "photo-01.html",
     "category": "PHOTO",
-    "title": "写真のタイトル",
-    "detailPage": "photo-01.html"
+    "title": "写真のタイトル"
   },
   {
     "image": "work-01.jpg",
+    "detailPage": "work-01.html",
     "category": "ARCHITECTURE",
-    "title": "(仮)下仁田蒸留所",
-    "detailPage": "work-01.html"
+    "title": "(仮)下仁田蒸留所"
   }
 ]
