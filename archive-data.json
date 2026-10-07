@@ -74,19 +74,19 @@
   {
     "image": "work-01.jpg",
     "detailPage": "work-01.html",
-    "category": "ARCHITECTURE",
+    "category": "OBJECT",
     "title": "(仮)下仁田蒸留所"
   },
   {
     "image": "work-02.jpeg",
     "detailPage": "work-02.html",
-    "category": "ARCHITECTURE",
+    "category": "OBJECT",
     "title": "work-02"
   },
   {
     "image": "work-03.jpeg",
     "detailPage": "work-03.html",
-    "category": "ARCHITECTURE",
+    "category": "OBJECT",
     "title": "work-03"
   }
 ]
