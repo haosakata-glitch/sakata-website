@@ -1,4 +1,4 @@
-name: Generate Archive v2
+name: Generate Archive v3
 
 on:
   push:
@@ -18,10 +18,112 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rename detail pages when image names change
+        run: |
+          python3 <<'PY'
+          import subprocess
+          from pathlib import Path
+
+          extensions = {".jpg", ".jpeg", ".png", ".webp"}
+
+          try:
+              previous = subprocess.check_output(
+                  ["git", "rev-parse", "HEAD^"],
+                  text=True
+              ).strip()
+          except subprocess.CalledProcessError:
+              previous = None
+
+          if previous:
+              result = subprocess.run(
+                  [
+                      "git",
+                      "diff",
+                      "--name-status",
+                      "-M",
+                      previous,
+                      "HEAD"
+                  ],
+                  capture_output=True,
+                  text=True
+              )
+
+              lines = result.stdout.splitlines()
+
+              for line in lines:
+                  parts = line.split("\t")
+
+                  if not parts:
+                      continue
+
+                  status = parts[0]
+
+                  # 画像ファイルの名前変更
+                  if status.startswith("R") and len(parts) >= 3:
+                      old_name = parts[1]
+                      new_name = parts[2]
+
+                      old_path = Path(old_name)
+                      new_path = Path(new_name)
+
+                      if (
+                          old_path.suffix.lower() in extensions
+                          and new_path.suffix.lower() in extensions
+                      ):
+                          old_stem = old_path.stem
+                          new_stem = new_path.stem
+
+                          old_html = Path(f"{old_stem}.html")
+                          new_html = Path(f"{new_stem}.html")
+
+                          if old_html.exists():
+                              old_html.rename(new_html)
+
+                              # HTML内の画像ファイル名も変更
+                              content = new_html.read_text(
+                                  encoding="utf-8"
+                              )
+
+                              content = content.replace(
+                                  old_name,
+                                  new_name
+                              )
+
+                              new_html.write_text(
+                                  content,
+                                  encoding="utf-8"
+                              )
+
+                              print(
+                                  f"Renamed: {old_html} -> {new_html}"
+                              )
+
+                  # 画像が削除された場合、
+                  # 対応するHTMLも削除
+                  elif status == "D" and len(parts) >= 2:
+                      old_name = parts[1]
+                      old_path = Path(old_name)
+
+                      if old_path.suffix.lower() in extensions:
+                          old_html = Path(
+                              f"{old_path.stem}.html"
+                          )
+
+                          if old_html.exists():
+                              old_html.unlink()
+
+                              print(
+                                  f"Deleted: {old_html}"
+                              )
+
+          PY
 
       - name: Generate detail pages
         run: |
@@ -71,6 +173,8 @@ jobs:
 
               output = Path(f"{stem}.html")
 
+              # 既存ページは上書きしない
+              # → 手動で設定したタイトルや文章を維持
               if output.exists():
                   continue
 
@@ -192,7 +296,10 @@ jobs:
           </html>
           """
 
-              output.write_text(page_html, encoding="utf-8")
+              output.write_text(
+                  page_html,
+                  encoding="utf-8"
+              )
 
           PY
 
@@ -240,7 +347,9 @@ jobs:
               detail_page = Path(f"{stem}.html")
 
               if detail_page.exists():
-                  page = detail_page.read_text(encoding="utf-8")
+                  page = detail_page.read_text(
+                      encoding="utf-8"
+                  )
 
                   match = re.search(
                       r"<h1[^>]*>(.*?)</h1>",
@@ -262,22 +371,28 @@ jobs:
                   "detailPage": f"{stem}.html"
               })
 
-          items.sort(key=lambda item: item["image"].lower())
+          items.sort(
+              key=lambda item: item["image"].lower()
+          )
 
           Path("archive-data.json").write_text(
-              json.dumps(items, ensure_ascii=False, indent=2),
+              json.dumps(
+                  items,
+                  ensure_ascii=False,
+                  indent=2
+              ),
               encoding="utf-8"
           )
 
           PY
 
-      - name: Commit generated pages
+      - name: Commit generated files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add .
 
-          git diff --cached --quiet || git commit -m "Generate archive pages"
+          git diff --cached --quiet || git commit -m "Update archive"
 
           git push
