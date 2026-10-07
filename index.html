@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>坂田雄志｜Architecture / Design</title>
+  <title>坂田雄志</title>
 
   <style>
     body {
@@ -14,8 +14,11 @@
     }
 
     header {
-      padding: 24px 30px;
+      padding: 20px 30px;
       border-bottom: 1px solid #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     header a {
@@ -23,49 +26,103 @@
       text-decoration: none;
     }
 
+    .site-title {
+      font-size: 18px;
+    }
+
+    .about-link {
+      font-size: 14px;
+    }
+
     main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 100px 30px;
+      padding: 30px;
     }
 
-    h1 {
-      font-size: 48px;
-      font-weight: normal;
-      line-height: 1.3;
-      margin: 0 0 25px;
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-bottom: 35px;
     }
 
-    .description {
-      font-size: 17px;
-      line-height: 1.9;
-      margin: 0 0 70px;
-      max-width: 600px;
-    }
-
-    nav {
-      border-top: 1px solid #111;
-    }
-
-    nav a {
-      display: block;
+    .categories a {
       color: #111;
       text-decoration: none;
-      font-size: 22px;
-      padding: 22px 0;
-      border-bottom: 1px solid #ccc;
+      font-size: 14px;
     }
 
-    nav a:hover {
+    .categories a:hover {
       opacity: 0.5;
     }
 
-    footer {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 30px;
-      font-size: 13px;
+    .archive {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .item {
+      display: block;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .item-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .item-title {
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    .item-meta {
+      font-size: 12px;
       color: #666;
+    }
+
+    .item:hover .item-image {
+      opacity: 0.75;
+    }
+
+    footer {
+      padding: 70px 30px 30px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    @media (max-width: 800px) {
+
+      header {
+        padding: 18px 20px;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      .archive {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+    }
+
+    @media (max-width: 500px) {
+
+      .archive {
+        grid-template-columns: 1fr;
+      }
+
+      .categories {
+        gap: 12px;
+      }
+
     }
   </style>
 </head>
@@ -73,22 +130,70 @@
 <body>
 
   <header>
-    <a href="index.html">坂田雄志</a>
+
+    <a href="index.html" class="site-title">
+      坂田雄志
+    </a>
+
+    <a href="about.html" class="about-link">
+      About
+    </a>
+
   </header>
 
   <main>
 
-    <h1>Architecture / Design</h1>
-
-    <p class="description">
-      建築とその周辺について考えています。
-    </p>
-
-    <nav>
-      <a href="works.html">Works</a>
-      <a href="journal.html">Journal</a>
-      <a href="about.html">About</a>
+    <nav class="categories">
+      <a href="index.html">ALL</a>
+      <a href="#">ARCHITECTURE</a>
+      <a href="#">OBJECT</a>
+      <a href="#">FOOD</a>
+      <a href="#">BOOK</a>
+      <a href="#">TEXT</a>
+      <a href="#">PHOTO</a>
+      <a href="#">PLACE</a>
     </nav>
+
+    <section class="archive">
+
+      <a href="work-01.html" class="item">
+
+        <img
+          src="work-01.jpg"
+          alt=""
+          class="item-image"
+        >
+
+        <div class="item-title">
+          (仮)下仁田蒸留所
+        </div>
+
+        <div class="item-meta">
+          ARCHITECTURE / 2026
+        </div>
+
+      </a>
+
+
+      <a href="article-01.html" class="item">
+
+        <img
+          src="IMG_6091.jpg"
+          alt=""
+          class="item-image"
+        >
+
+        <div class="item-title">
+          今朝のピクルス
+        </div>
+
+        <div class="item-meta">
+          FOOD / 2026.10.06
+        </div>
+
+      </a>
+
+    </section>
 
   </main>
 
