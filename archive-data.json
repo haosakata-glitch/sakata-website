@@ -36,6 +36,12 @@
     "title": "food-06"
   },
   {
+    "image": "food-08.jpeg",
+    "detailPage": "food-08.html",
+    "category": "FOOD",
+    "title": "food-08"
+  },
+  {
     "image": "food-test-2.jpg",
     "detailPage": "food-test-2.html",
     "category": "FOOD",
