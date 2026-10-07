@@ -24,6 +24,12 @@
     "title": "food-04"
   },
   {
+    "image": "food-05.jpg",
+    "detailPage": "food-05.html",
+    "category": "FOOD",
+    "title": "food-05"
+  },
+  {
     "image": "food-06.jpeg",
     "detailPage": "food-06.html",
     "category": "FOOD",
