@@ -9,6 +9,7 @@ on:
       - '**.jpeg'
       - '**.png'
       - '**.webp'
+      - '**.html'
       - 'index.html'
 
 permissions:
@@ -26,6 +27,7 @@ jobs:
         run: |
           python3 <<'PY'
           from pathlib import Path
+          import html
 
           extensions = {".jpg", ".jpeg", ".png", ".webp"}
 
@@ -65,13 +67,14 @@ jobs:
                       break
 
               title = title.replace("-", " ").replace("_", " ")
+              title = html.escape(title)
 
               output = Path(f"{stem}.html")
 
               if output.exists():
                   continue
 
-              html = f"""<!DOCTYPE html>
+              page_html = f"""<!DOCTYPE html>
           <html lang="ja">
           <head>
             <meta charset="UTF-8">
@@ -189,7 +192,82 @@ jobs:
           </html>
           """
 
-              output.write_text(html, encoding="utf-8")
+              output.write_text(page_html, encoding="utf-8")
+
+          PY
+
+      - name: Generate archive data
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import re
+          import json
+
+          extensions = {".jpg", ".jpeg", ".png", ".webp"}
+
+          categories = {
+              "work-": "ARCHITECTURE",
+              "book-": "BOOK",
+              "food-": "FOOD",
+              "object-": "OBJECT",
+              "place-": "PLACE",
+              "text-": "TEXT",
+              "photo-": "PHOTO",
+          }
+
+          items = []
+
+          for image in Path(".").iterdir():
+
+              if not image.is_file():
+                  continue
+
+              if image.suffix.lower() not in extensions:
+                  continue
+
+              filename = image.name
+              stem = image.stem
+
+              category = "PHOTO"
+
+              for prefix, value in categories.items():
+                  if stem.lower().startswith(prefix):
+                      category = value
+                      break
+
+              title = stem
+
+              detail_page = Path(f"{stem}.html")
+
+              if detail_page.exists():
+                  page = detail_page.read_text(encoding="utf-8")
+
+                  match = re.search(
+                      r"<h1[^>]*>(.*?)</h1>",
+                      page,
+                      re.IGNORECASE | re.DOTALL
+                  )
+
+                  if match:
+                      title = re.sub(
+                          r"<[^>]+>",
+                          "",
+                          match.group(1)
+                      ).strip()
+
+              items.append({
+                  "image": filename,
+                  "category": category,
+                  "title": title,
+                  "detailPage": f"{stem}.html"
+              })
+
+          items.sort(key=lambda item: item["image"].lower())
+
+          Path("archive-data.json").write_text(
+              json.dumps(items, ensure_ascii=False, indent=2),
+              encoding="utf-8"
+          )
 
           PY
 
