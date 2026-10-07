@@ -33,7 +33,6 @@ jobs:
           git diff --name-status -M "$PREV" HEAD > /tmp/changes.txt
 
           while IFS=$'\t' read -r STATUS OLD NEW; do
-
             if [[ "$STATUS" =~ ^R ]]; then
 
               OLD_EXT="${OLD##*.}"
@@ -73,9 +72,7 @@ jobs:
                 fi
 
               fi
-
             fi
-
           done < /tmp/changes.txt
 
       - name: Create missing detail pages
@@ -126,9 +123,14 @@ jobs:
             cat > "$HTML" <<EOF
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>${TITLE}</title>
 
@@ -229,6 +231,7 @@ jobs:
   </main>
 
 </body>
+
 </html>
 EOF
 
@@ -275,7 +278,6 @@ with open(html_file, "w", encoding="utf-8") as f:
 PY
 
                 break
-
               fi
 
             done
