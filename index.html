@@ -15,9 +15,6 @@
       background: #fff;
     }
 
-
-    /* Header */
-
     header {
       padding: 20px 30px;
       border-bottom: 1px solid #111;
@@ -40,15 +37,9 @@
       font-size: 14px;
     }
 
-
-    /* Main */
-
     main {
       padding: 30px;
     }
-
-
-    /* Introduction */
 
     .intro {
       margin-bottom: 55px;
@@ -66,9 +57,6 @@
       line-height: 1.7;
       margin: 0;
     }
-
-
-    /* Categories */
 
     .categories {
       display: flex;
@@ -106,11 +94,7 @@
       text-underline-offset: 4px;
     }
 
-
-    /* Archive */
-
     .archive {
-
       display: grid;
 
       grid-template-columns:
@@ -119,11 +103,7 @@
       gap: 35px 20px;
     }
 
-
-    /* Archive Item */
-
     .item {
-
       display: block;
 
       color: #111;
@@ -132,7 +112,6 @@
     }
 
     .item-image {
-
       width: 100%;
 
       aspect-ratio: 4 / 3;
@@ -145,7 +124,6 @@
     }
 
     .item-title {
-
       font-size: 15px;
 
       line-height: 1.5;
@@ -154,7 +132,6 @@
     }
 
     .item-meta {
-
       font-size: 12px;
 
       color: #777;
@@ -163,15 +140,15 @@
     }
 
     .item:hover .item-image {
-
       opacity: 0.7;
     }
 
-
-    /* Footer */
+    .loading {
+      font-size: 13px;
+      color: #777;
+    }
 
     footer {
-
       padding:
         100px
         30px
@@ -182,26 +159,20 @@
       color: #666;
     }
 
-
-    /* Tablet */
-
     @media (max-width: 800px) {
 
       header {
-
         padding:
           18px
           20px;
       }
 
       main {
-
         padding:
           20px;
       }
 
       .archive {
-
         grid-template-columns:
           repeat(2, 1fr);
 
@@ -209,25 +180,19 @@
       }
 
       .intro-text {
-
         font-size: 20px;
       }
 
     }
 
-
-    /* Mobile */
-
     @media (max-width: 500px) {
 
       .archive {
-
         grid-template-columns:
           1fr;
       }
 
       .categories {
-
         gap: 12px;
       }
 
@@ -240,8 +205,6 @@
 
 <body>
 
-
-  <!-- Header -->
 
   <header>
 
@@ -262,13 +225,8 @@
   </header>
 
 
-
-  <!-- Main -->
-
   <main>
 
-
-    <!-- Introduction -->
 
     <section class="intro">
 
@@ -283,9 +241,6 @@
 
     </section>
 
-
-
-    <!-- Categories -->
 
     <nav class="categories">
 
@@ -348,123 +303,20 @@
     </nav>
 
 
+    <section
+      class="archive"
+      id="archive"
+    >
 
-    <!-- Archive -->
-
-    <section class="archive">
-
-
-      <!-- ARCHITECTURE -->
-
-      <a
-        href="work-01.html"
-        class="item"
-        data-category="ARCHITECTURE"
-      >
-
-        <img
-          src="work-01.jpg"
-          alt=""
-          class="item-image"
-        >
-
-        <div class="item-title">
-          (仮)下仁田蒸留所
-        </div>
-
-        <div class="item-meta">
-          ARCHITECTURE / 2026
-        </div>
-
-      </a>
-
-
-
-      <!-- FOOD -->
-
-      <a
-        href="article-01.html"
-        class="item"
-        data-category="FOOD"
-      >
-
-        <img
-          src="IMG_6091.jpg"
-          alt=""
-          class="item-image"
-        >
-
-        <div class="item-title">
-          今朝のピクルス
-        </div>
-
-        <div class="item-meta">
-          FOOD / 2026.10.06
-        </div>
-
-      </a>
-
-
-
-      <!-- BOOK -->
-
-      <a
-        href="book-01.html"
-        class="item"
-        data-category="BOOK"
-      >
-
-        <img
-          src="book-01.jpg"
-          alt=""
-          class="item-image"
-        >
-
-        <div class="item-title">
-          大杉栄伝　永遠のアナキズム
-        </div>
-
-        <div class="item-meta">
-          BOOK / 栗原康 / 2021
-        </div>
-
-      </a>
-
-
-
-      <!-- PHOTO -->
-
-      <a
-        href="photo-01.html"
-        class="item"
-        data-category="PHOTO"
-      >
-
-        <img
-          src="photo-01.jpg"
-          alt=""
-          class="item-image"
-        >
-
-        <div class="item-title">
-          写真のタイトル
-        </div>
-
-        <div class="item-meta">
-          PHOTO / 2026.10.07
-        </div>
-
-      </a>
-
+      <div class="loading">
+        Archiveを読み込んでいます。
+      </div>
 
     </section>
 
 
   </main>
 
-
-
-  <!-- Footer -->
 
   <footer>
 
@@ -473,10 +325,11 @@
   </footer>
 
 
-
-  <!-- Category Filter -->
-
   <script>
+
+    const archive =
+      document.getElementById("archive");
+
 
     const categoryButtons =
       document.querySelectorAll(
@@ -484,10 +337,162 @@
       );
 
 
-    const items =
-      document.querySelectorAll(
-        ".item"
+    let archiveItems = [];
+
+
+    /*
+      GitHubのリポジトリから
+      画像ファイル一覧を取得
+    */
+
+    fetch(
+      "https://api.github.com/repos/haosakata-glitch/sakata-website/contents/"
+    )
+
+      .then(response => response.json())
+
+      .then(files => {
+
+        const images =
+          files.filter(
+            file =>
+              file.type === "file" &&
+              /\.(jpg|jpeg|png|webp)$/i.test(
+                file.name
+              )
+          );
+
+
+        archiveItems =
+          images.map(file => {
+
+            let category = "PHOTO";
+
+
+            if (
+              file.name.startsWith("work-")
+            ) {
+              category = "ARCHITECTURE";
+            }
+
+            if (
+              file.name.startsWith("book-")
+            ) {
+              category = "BOOK";
+            }
+
+            if (
+              file.name.startsWith("food-")
+            ) {
+              category = "FOOD";
+            }
+
+            if (
+              file.name.startsWith("object-")
+            ) {
+              category = "OBJECT";
+            }
+
+            if (
+              file.name.startsWith("place-")
+            ) {
+              category = "PLACE";
+            }
+
+            if (
+              file.name.startsWith("text-")
+            ) {
+              category = "TEXT";
+            }
+
+
+            return {
+
+              category:
+                category,
+
+              title:
+                file.name
+                  .replace(/\.[^/.]+$/, "")
+                  .replace(/[-_]/g, " "),
+
+              image:
+                file.name,
+
+              link:
+                "#"
+
+            };
+
+          });
+
+
+        displayItems("ALL");
+
+      })
+
+      .catch(error => {
+
+        archive.innerHTML =
+          "<div class='loading'>Archiveを読み込めませんでした。</div>";
+
+        console.error(error);
+
+      });
+
+
+    function displayItems(
+      selectedCategory
+    ) {
+
+      archive.innerHTML = "";
+
+
+      const filteredItems =
+        archiveItems.filter(
+          item =>
+            selectedCategory === "ALL" ||
+            item.category === selectedCategory
+        );
+
+
+      filteredItems.forEach(
+        item => {
+
+          const element =
+            document.createElement("div");
+
+          element.className =
+            "item";
+
+
+          element.innerHTML = `
+
+            <img
+              src="${item.image}"
+              alt=""
+              class="item-image"
+            >
+
+            <div class="item-title">
+              ${item.title}
+            </div>
+
+            <div class="item-meta">
+              ${item.category}
+            </div>
+
+          `;
+
+
+          archive.appendChild(
+            element
+          );
+
+        }
       );
+
+    }
 
 
     categoryButtons.forEach(
@@ -517,27 +522,8 @@
             );
 
 
-            items.forEach(
-              item => {
-
-                const itemCategory =
-                  item.dataset.category;
-
-
-                if (
-                  selectedCategory === "ALL" ||
-                  selectedCategory === itemCategory
-                ) {
-
-                  item.style.display = "";
-
-                } else {
-
-                  item.style.display = "none";
-
-                }
-
-              }
+            displayItems(
+              selectedCategory
             );
 
           }
