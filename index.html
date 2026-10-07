@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,10 @@
       background: #fff;
     }
 
+    /* =========================
+       Header
+    ========================= */
+
     header {
       position: fixed;
       top: 0;
@@ -28,14 +33,21 @@
       padding: 0 24px;
 
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
 
-      background: rgba(255, 255, 255, 0.82);
+      background: rgba(255, 255, 255, 0.78);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
 
       z-index: 100;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      min-width: 0;
     }
 
     header a {
@@ -45,57 +57,25 @@
 
     .site-title {
       font-size: 12px;
-      font-weight: 300;
+      font-weight: 500;
       letter-spacing: 0.01em;
+      white-space: nowrap;
     }
 
-    .about-link {
+    .category-nav {
       display: flex;
       align-items: center;
-      height: 18px;
-      padding-left: 14px;
-      border-left: 1px solid #aaa;
+      gap: 14px;
 
-      font-size: 10px;
-      font-weight: 300;
-      letter-spacing: 0.02em;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
 
-    main {
-      max-width: 1500px;
-      margin: 0 auto;
-      padding: 78px 24px 100px;
+    .category-nav::-webkit-scrollbar {
+      display: none;
     }
 
-    .archive-header {
-      margin-bottom: 20px;
-    }
-
-    .archive-label {
-      font-size: 9px;
-      letter-spacing: 0.08em;
-      color: #777;
-      margin-bottom: 5px;
-    }
-
-    h1 {
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 1.2;
-      margin: 0;
-      letter-spacing: 0;
-    }
-
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .filter {
+    .header-category {
       border: none;
       background: none;
       padding: 0;
@@ -104,18 +84,45 @@
       font-size: 9px;
       font-weight: 300;
       letter-spacing: 0.03em;
-      color: #999;
+      color: #888;
 
       cursor: pointer;
+      white-space: nowrap;
     }
 
-    .filter:hover {
+    .header-category:hover,
+    .header-category.active {
       color: #111;
     }
 
-    .filter.active {
-      color: #111;
+    .about-link {
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      height: 18px;
+      padding-left: 14px;
+
+      border-left: 1px solid #aaa;
+
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.02em;
     }
+
+    /* =========================
+       Main
+    ========================= */
+
+    main {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 68px 24px 100px;
+    }
+
+    /* =========================
+       Archive Grid
+    ========================= */
 
     .archive-grid {
       display: grid;
@@ -126,8 +133,10 @@
     .archive-item {
       position: relative;
       display: block;
+
       color: #111;
       text-decoration: none;
+
       overflow: hidden;
     }
 
@@ -135,9 +144,15 @@
       width: 100%;
       aspect-ratio: 4 / 3;
       object-fit: cover;
+
       display: block;
+
       background: #f2f2f2;
     }
+
+    /* =========================
+       Image Information
+    ========================= */
 
     .archive-info {
       position: absolute;
@@ -147,6 +162,7 @@
       padding: 5px 6px 4px;
 
       background: rgba(255, 255, 255, 0.88);
+
       text-align: right;
 
       opacity: 0;
@@ -170,7 +186,9 @@
       font-size: 8px;
       line-height: 1.2;
       letter-spacing: 0.05em;
+
       color: #777;
+
       margin-bottom: 2px;
     }
 
@@ -185,7 +203,12 @@
       color: #777;
     }
 
+    /* =========================
+       Tablet
+    ========================= */
+
     @media (max-width: 900px) {
+
       main {
         padding-left: 15px;
         padding-right: 15px;
@@ -197,45 +220,41 @@
       }
     }
 
+    /* =========================
+       Mobile
+    ========================= */
+
     @media (max-width: 600px) {
+
       header {
         height: 48px;
-        padding: 0 15px;
+        padding: 0 12px;
+      }
+
+      .header-left {
+        gap: 15px;
+        min-width: 0;
       }
 
       .site-title {
-        font-size: 11px;
+        font-size: 10px;
+      }
+
+      .category-nav {
+        gap: 11px;
+      }
+
+      .header-category {
+        font-size: 8px;
       }
 
       .about-link {
-        padding-left: 11px;
-        font-size: 9px;
+        padding-left: 10px;
+        font-size: 8px;
       }
 
       main {
-        padding: 68px 8px 70px;
-      }
-
-      .archive-header {
-        margin-bottom: 16px;
-      }
-
-      .archive-label {
-        font-size: 8px;
-      }
-
-      h1 {
-        font-size: 12px;
-      }
-
-      .filters {
-        gap: 13px;
-        margin-bottom: 16px;
-        padding-bottom: 10px;
-      }
-
-      .filter {
-        font-size: 8px;
+        padding: 56px 8px 70px;
       }
 
       .archive-grid {
@@ -246,6 +265,7 @@
       .archive-info {
         right: 6px;
         bottom: 6px;
+
         padding: 5px 6px 4px;
       }
 
@@ -262,134 +282,324 @@
 
 <body>
 
-<header>
-  <a href="index.html" class="site-title">Sakata Katsuyuki</a>
-  <a href="about.html" class="about-link">About</a>
-</header>
+  <!-- =========================
+       Header
+  ========================= -->
 
-<main>
+  <header>
 
-  <div class="archive-header">
-    <div class="archive-label">ARCHIVE</div>
-    <h1>All</h1>
-  </div>
+    <div class="header-left">
 
-  <div class="filters">
-    <button class="filter active" data-category="ALL">ALL</button>
-    <button class="filter" data-category="ARCHITECTURE">ARCHITECTURE</button>
-    <button class="filter" data-category="OBJECT">OBJECT</button>
-    <button class="filter" data-category="FOOD">FOOD</button>
-    <button class="filter" data-category="BOOK">BOOK</button>
-    <button class="filter" data-category="TEXT">TEXT</button>
-    <button class="filter" data-category="PHOTO">PHOTO</button>
-    <button class="filter" data-category="PLACE">PLACE</button>
-    <button class="filter" data-category="OTHER">OTHER</button>
-  </div>
+      <a href="index.html" class="site-title">
+        SAKATA KATSUYUKI
+      </a>
 
-  <div id="archive-grid" class="archive-grid"></div>
+      <nav class="category-nav">
 
-</main>
-
-<script>
-  const grid = document.getElementById("archive-grid");
-  const filters = document.querySelectorAll(".filter");
-
-  let archiveItems = [];
-
-  function render(category = "ALL") {
-    grid.innerHTML = "";
-
-    const items = archiveItems.filter(item => {
-      return category === "ALL" ||
-             item.category === category;
-    });
-
-    if (items.length === 0) {
-      grid.innerHTML =
-        '<div class="empty">まだ項目がありません。</div>';
-      return;
-    }
-
-    items.forEach(item => {
-      const link = document.createElement("a");
-
-      link.className = "archive-item";
-      link.href = item.detailPage;
-
-      link.addEventListener("click", (event) => {
-        if (window.matchMedia("(hover: none)").matches) {
-
-          if (!link.classList.contains("show-info")) {
-            event.preventDefault();
-
-            document
-              .querySelectorAll(".archive-item.show-info")
-              .forEach(item => {
-                item.classList.remove("show-info");
-              });
-
-            link.classList.add("show-info");
-          }
-        }
-      });
-
-      link.innerHTML = `
-        <img
-          src="${item.image}"
-          alt=""
-          class="archive-image"
+        <button
+          class="header-category active"
+          data-category="ALL"
         >
+          ALL
+        </button>
 
-        <div class="archive-info">
-          <div class="archive-category">
-            ${item.category}
-          </div>
+        <button
+          class="header-category"
+          data-category="ARCHITECTURE"
+        >
+          ARCHITECTURE
+        </button>
 
-          <div class="archive-title">
-            ${item.title}
-          </div>
-        </div>
-      `;
+        <button
+          class="header-category"
+          data-category="OBJECT"
+        >
+          OBJECT
+        </button>
 
-      grid.appendChild(link);
-    });
-  }
+        <button
+          class="header-category"
+          data-category="FOOD"
+        >
+          FOOD
+        </button>
 
-  async function loadArchive() {
-    try {
-      const response = await fetch("archive-data.json");
+        <button
+          class="header-category"
+          data-category="BOOK"
+        >
+          BOOK
+        </button>
 
-      if (!response.ok) {
-        throw new Error("Archive data not found");
+        <button
+          class="header-category"
+          data-category="TEXT"
+        >
+          TEXT
+        </button>
+
+        <button
+          class="header-category"
+          data-category="PHOTO"
+        >
+          PHOTO
+        </button>
+
+        <button
+          class="header-category"
+          data-category="PLACE"
+        >
+          PLACE
+        </button>
+
+        <button
+          class="header-category"
+          data-category="OTHER"
+        >
+          OTHER
+        </button>
+
+      </nav>
+
+    </div>
+
+    <a href="about.html" class="about-link">
+      About
+    </a>
+
+  </header>
+
+
+  <!-- =========================
+       Main
+  ========================= -->
+
+  <main>
+
+    <div
+      id="archive-grid"
+      class="archive-grid"
+    ></div>
+
+  </main>
+
+
+  <!-- =========================
+       JavaScript
+  ========================= -->
+
+  <script>
+
+    const grid =
+      document.getElementById("archive-grid");
+
+    const filters =
+      document.querySelectorAll(".header-category");
+
+    let archiveItems = [];
+
+
+    /* =========================
+       Render
+    ========================= */
+
+    function render(category = "ALL") {
+
+      grid.innerHTML = "";
+
+      const items =
+        archiveItems.filter(item => {
+
+          return category === "ALL" ||
+                 item.category === category;
+
+        });
+
+
+      if (items.length === 0) {
+
+        grid.innerHTML =
+          '<div class="empty">まだ項目がありません。</div>';
+
+        return;
       }
 
-      archiveItems = await response.json();
 
-      render();
+      items.forEach(item => {
 
-    } catch (error) {
-      console.error(error);
+        const link =
+          document.createElement("a");
 
-      grid.innerHTML =
-        '<div class="empty">Archiveを読み込めませんでした。</div>';
-    }
-  }
+        link.className =
+          "archive-item";
 
-  filters.forEach(filter => {
-    filter.addEventListener("click", () => {
+        link.href =
+          item.detailPage;
 
-      filters.forEach(button => {
-        button.classList.remove("active");
+
+        /* -------------------------
+           Mobile interaction
+        ------------------------- */
+
+        link.addEventListener(
+          "click",
+          (event) => {
+
+            if (
+              window.matchMedia(
+                "(hover: none)"
+              ).matches
+            ) {
+
+              if (
+                !link.classList.contains(
+                  "show-info"
+                )
+              ) {
+
+                event.preventDefault();
+
+
+                document
+                  .querySelectorAll(
+                    ".archive-item.show-info"
+                  )
+                  .forEach(item => {
+
+                    item.classList.remove(
+                      "show-info"
+                    );
+
+                  });
+
+
+                link.classList.add(
+                  "show-info"
+                );
+              }
+            }
+          }
+        );
+
+
+        /* -------------------------
+           Image + Information
+        ------------------------- */
+
+        link.innerHTML = `
+
+          <img
+            src="${item.image}"
+            alt=""
+            class="archive-image"
+          >
+
+          <div class="archive-info">
+
+            <div class="archive-category">
+              ${item.category}
+            </div>
+
+            <div class="archive-title">
+              ${item.title}
+            </div>
+
+          </div>
+
+        `;
+
+
+        grid.appendChild(link);
+
       });
 
-      filter.classList.add("active");
+    }
 
-      render(filter.dataset.category);
+
+    /* =========================
+       Load archive-data.json
+    ========================= */
+
+    async function loadArchive() {
+
+      try {
+
+        const response =
+          await fetch(
+            "archive-data.json"
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "Archive data not found"
+          );
+
+        }
+
+
+        archiveItems =
+          await response.json();
+
+
+        render();
+
+
+      } catch (error) {
+
+        console.error(error);
+
+
+        grid.innerHTML =
+          '<div class="empty">Archiveを読み込めませんでした。</div>';
+
+      }
+
+    }
+
+
+    /* =========================
+       Category buttons
+    ========================= */
+
+    filters.forEach(filter => {
+
+      filter.addEventListener(
+        "click",
+        () => {
+
+          filters.forEach(button => {
+
+            button.classList.remove(
+              "active"
+            );
+
+          });
+
+
+          filter.classList.add(
+            "active"
+          );
+
+
+          render(
+            filter.dataset.category
+          );
+
+        }
+      );
+
     });
-  });
 
-  loadArchive();
-</script>
+
+    /* =========================
+       Start
+    ========================= */
+
+    loadArchive();
+
+  </script>
 
 </body>
 </html>
