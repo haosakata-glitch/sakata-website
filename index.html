@@ -250,27 +250,9 @@
     if (lower.startsWith("object-")) return "OBJECT";
     if (lower.startsWith("place-")) return "PLACE";
     if (lower.startsWith("text-")) return "TEXT";
+    if (lower.startsWith("photo-")) return "PHOTO";
 
     return "PHOTO";
-  }
-
-  function getTitle(filename) {
-    const titles = {
-      "food-01.jpg": "キッシュ（サーモン・アボカド・チーズ）"
-    };
-
-    if (titles[filename]) {
-      return titles[filename];
-    }
-
-    const name = filename.substring(
-      0,
-      filename.lastIndexOf(".")
-    );
-
-    return name
-      .replace(/[-_]/g, " ")
-      .replace(/\b\w/g, char => char.toUpperCase());
   }
 
   function getDetailPage(filename) {
@@ -282,12 +264,83 @@
     return name + ".html";
   }
 
+  function getFallbackTitle(filename) {
+    const name = filename.substring(
+      0,
+      filename.lastIndexOf(".")
+    );
+
+    return name
+      .replace(/[-_]/g, " ")
+      .replace(/\b\w/g, char => char.toUpperCase());
+  }
+
+  async function getDetailTitle(filename) {
+    const detailPage = getDetailPage(filename);
+
+    try {
+      const response = await fetch(
+        `https://api.github.com/repos/${owner}/${repo}/contents/${detailPage}`
+      );
+
+      if (!response.ok) {
+        return getFallbackTitle(filename);
+      }
+
+      const data = await response.json();
+
+      if (!data.content) {
+        return getFallbackTitle(filename);
+      }
+
+      const binary = atob(
+        data.content.replace(/\n/g, "")
+      );
+
+      const bytes = Uint8Array.from(
+        binary,
+        char => char.charCodeAt(0)
+      );
+
+      const html = new TextDecoder("utf-8").decode(bytes);
+
+      const parser = new DOMParser();
+      const document = parser.parseFromString(
+        html,
+        "text/html"
+      );
+
+      const h1 = document.querySelector("main h1");
+
+      if (h1) {
+        const title = h1.textContent.trim();
+
+        if (title) {
+          return title;
+        }
+      }
+
+      return getFallbackTitle(filename);
+
+    } catch (error) {
+      console.error(
+        "タイトル取得エラー:",
+        filename,
+        error
+      );
+
+      return getFallbackTitle(filename);
+    }
+  }
+
   function render(category = "ALL") {
     grid.innerHTML = "";
 
     const items = archiveItems.filter(item => {
-      return category === "ALL" ||
-             item.category === category;
+      return (
+        category === "ALL" ||
+        item.category === category
+      );
     });
 
     if (items.length === 0) {
@@ -302,19 +355,34 @@
       link.className = "archive-item";
       link.href = item.detailPage;
 
-      link.innerHTML = `
-        <img
-          src="${item.image}"
-          alt=""
-          class="archive-image"
-        >
-        <div class="archive-category">
-          ${item.category}
-        </div>
-        <div class="archive-title">
-          ${item.title}
-        </div>
-      `;
+      const image =
+        document.createElement("img");
+
+      image.src = item.image;
+      image.alt = item.title;
+      image.className = "archive-image";
+
+      const categoryElement =
+        document.createElement("div");
+
+      categoryElement.className =
+        "archive-category";
+
+      categoryElement.textContent =
+        item.category;
+
+      const titleElement =
+        document.createElement("div");
+
+      titleElement.className =
+        "archive-title";
+
+      titleElement.textContent =
+        item.title;
+
+      link.appendChild(image);
+      link.appendChild(categoryElement);
+      link.appendChild(titleElement);
 
       grid.appendChild(link);
     });
@@ -344,14 +412,20 @@
         );
       });
 
-      archiveItems = imageFiles.map(file => {
-        return {
-          image: file.name,
-          category: getCategory(file.name),
-          title: getTitle(file.name),
-          detailPage: getDetailPage(file.name)
-        };
-      });
+      archiveItems = await Promise.all(
+        imageFiles.map(async file => {
+
+          const title =
+            await getDetailTitle(file.name);
+
+          return {
+            image: file.name,
+            category: getCategory(file.name),
+            title: title,
+            detailPage: getDetailPage(file.name)
+          };
+        })
+      );
 
       render();
 
@@ -366,19 +440,5 @@
   filters.forEach(filter => {
     filter.addEventListener("click", () => {
 
-      filters.forEach(button => {
-        button.classList.remove("active");
-      });
-
-      filter.classList.add("active");
-
-      render(filter.dataset.category);
-    });
-  });
-
-  loadArchive();
-</script>
-
-</body>
-</html>
+      filt
 ```
