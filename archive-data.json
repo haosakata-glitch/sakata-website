@@ -1,0 +1,32 @@
+[
+  {
+    "image": "book-01.jpg",
+    "category": "BOOK",
+    "title": "本のタイトル",
+    "detailPage": "book-01.html"
+  },
+  {
+    "image": "food-01.jpg",
+    "category": "FOOD",
+    "title": "キッシュ（サーモン・アボカド・チーズ）",
+    "detailPage": "food-01.html"
+  },
+  {
+    "image": "IMG_6091.jpg",
+    "category": "PHOTO",
+    "title": "IMG 6091",
+    "detailPage": "IMG_6091.html"
+  },
+  {
+    "image": "photo-01.jpg",
+    "category": "PHOTO",
+    "title": "写真のタイトル",
+    "detailPage": "photo-01.html"
+  },
+  {
+    "image": "work-01.jpg",
+    "category": "ARCHITECTURE",
+    "title": "(仮)下仁田蒸留所",
+    "detailPage": "work-01.html"
+  }
+]
