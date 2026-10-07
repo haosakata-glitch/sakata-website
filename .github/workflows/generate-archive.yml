@@ -1,4 +1,4 @@
-name: Generate Archive v3
+name: Generate Archive v4
 
 on:
   push:
@@ -25,14 +25,31 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Rename detail pages when image names change
+      - name: Sync image and HTML names
         run: |
           python3 <<'PY'
-          import subprocess
           from pathlib import Path
+          import subprocess
 
           extensions = {".jpg", ".jpeg", ".png", ".webp"}
 
+          # 現在存在する画像
+          images = {
+              p.stem: p.name
+              for p in Path(".").iterdir()
+              if p.is_file() and p.suffix.lower() in extensions
+          }
+
+          # 現在存在するHTML
+          html_files = {
+              p.stem: p
+              for p in Path(".").iterdir()
+              if p.is_file()
+              and p.suffix.lower() == ".html"
+              and p.name != "index.html"
+          }
+
+          # Gitの変更履歴から、画像の名前変更を確認
           try:
               previous = subprocess.check_output(
                   ["git", "rev-parse", "HEAD^"],
@@ -55,9 +72,8 @@ jobs:
                   text=True
               )
 
-              lines = result.stdout.splitlines()
+              for line in result.stdout.splitlines():
 
-              for line in lines:
                   parts = line.split("\t")
 
                   if not parts:
@@ -65,8 +81,8 @@ jobs:
 
                   status = parts[0]
 
-                  # 画像ファイルの名前変更
                   if status.startswith("R") and len(parts) >= 3:
+
                       old_name = parts[1]
                       new_name = parts[2]
 
@@ -77,16 +93,22 @@ jobs:
                           old_path.suffix.lower() in extensions
                           and new_path.suffix.lower() in extensions
                       ):
-                          old_stem = old_path.stem
-                          new_stem = new_path.stem
 
-                          old_html = Path(f"{old_stem}.html")
-                          new_html = Path(f"{new_stem}.html")
+                          old_html = Path(
+                              f"{old_path.stem}.html"
+                          )
 
-                          if old_html.exists():
+                          new_html = Path(
+                              f"{new_path.stem}.html"
+                          )
+
+                          # HTMLが存在していて、新しい名前のHTMLがない場合
+                          if (
+                              old_html.exists()
+                              and not new_html.exists()
+                          ):
                               old_html.rename(new_html)
 
-                              # HTML内の画像ファイル名も変更
                               content = new_html.read_text(
                                   encoding="utf-8"
                               )
@@ -102,30 +124,13 @@ jobs:
                               )
 
                               print(
-                                  f"Renamed: {old_html} -> {new_html}"
-                              )
-
-                  # 画像が削除された場合、
-                  # 対応するHTMLも削除
-                  elif status == "D" and len(parts) >= 2:
-                      old_name = parts[1]
-                      old_path = Path(old_name)
-
-                      if old_path.suffix.lower() in extensions:
-                          old_html = Path(
-                              f"{old_path.stem}.html"
-                          )
-
-                          if old_html.exists():
-                              old_html.unlink()
-
-                              print(
-                                  f"Deleted: {old_html}"
+                                  f"HTML renamed: "
+                                  f"{old_html} -> {new_html}"
                               )
 
           PY
 
-      - name: Generate detail pages
+      - name: Create missing detail pages
         run: |
           python3 <<'PY'
           from pathlib import Path
@@ -154,6 +159,11 @@ jobs:
               filename = image.name
               stem = image.stem
 
+              output = Path(f"{stem}.html")
+
+              if output.exists():
+                  continue
+
               category = "PHOTO"
 
               for prefix, value in categories.items():
@@ -168,15 +178,9 @@ jobs:
                       title = stem[len(prefix):]
                       break
 
-              title = title.replace("-", " ").replace("_", " ")
+              title = title.replace("-", " ")
+              title = title.replace("_", " ")
               title = html.escape(title)
-
-              output = Path(f"{stem}.html")
-
-              # 既存ページは上書きしない
-              # → 手動で設定したタイトルや文章を維持
-              if output.exists():
-                  continue
 
               page_html = f"""<!DOCTYPE html>
           <html lang="ja">
@@ -301,6 +305,57 @@ jobs:
                   encoding="utf-8"
               )
 
+              print(f"Created: {output}")
+
+          PY
+
+      - name: Update image references
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          extensions = {".jpg", ".jpeg", ".png", ".webp"}
+
+          images = [
+              p.name
+              for p in Path(".").iterdir()
+              if p.is_file() and p.suffix.lower() in extensions
+          ]
+
+          for html_file in Path(".").glob("*.html"):
+
+              if html_file.name == "index.html":
+                  continue
+
+              content = html_file.read_text(
+                  encoding="utf-8"
+              )
+
+              for image in images:
+
+                  stem = Path(image).stem
+
+                  if f'src="{image}"' in content:
+                      continue
+
+                  # 同じHTML名の画像を参照
+                  if html_file.stem == stem:
+
+                      import re
+
+                      content = re.sub(
+                          r'src="[^"]+\.(jpg|jpeg|png|webp)"',
+                          f'src="{image}"',
+                          content,
+                          count=1,
+                          flags=re.IGNORECASE
+                      )
+
+                      html_file.write_text(
+                          content,
+                          encoding="utf-8"
+                      )
+
           PY
 
       - name: Generate archive data
@@ -347,6 +402,7 @@ jobs:
               detail_page = Path(f"{stem}.html")
 
               if detail_page.exists():
+
                   page = detail_page.read_text(
                       encoding="utf-8"
                   )
@@ -358,6 +414,7 @@ jobs:
                   )
 
                   if match:
+
                       title = re.sub(
                           r"<[^>]+>",
                           "",
@@ -393,6 +450,6 @@ jobs:
 
           git add .
 
-          git diff --cached --quiet || git commit -m "Update archive"
+          git diff --cached --quiet || git commit -m "Sync archive"
 
           git push
