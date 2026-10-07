@@ -191,7 +191,6 @@
 
     <section class="archive">
 
-
       <!-- 下仁田蒸留所 -->
 
       <a
@@ -242,6 +241,30 @@
       </a>
 
 
+      <!-- 本 -->
+
+      <a
+        href="book-01.html"
+        class="item"
+        data-category="BOOK"
+      >
+
+        <img
+          src="book-01.jpg"
+          alt=""
+          class="item-image"
+        >
+
+        <div class="item-title">
+          本のタイトル
+        </div>
+
+        <div class="item-meta">
+          BOOK / 2026.10.07
+        </div>
+
+      </a>
+
     </section>
 
   </main>
@@ -260,7 +283,6 @@
     const items =
       document.querySelectorAll(".item");
 
-
     categoryButtons.forEach(button => {
 
       button.addEventListener("click", () => {
@@ -268,19 +290,16 @@
         const selectedCategory =
           button.dataset.category;
 
-
         categoryButtons.forEach(button => {
           button.classList.remove("active");
         });
 
         button.classList.add("active");
 
-
         items.forEach(item => {
 
           const itemCategory =
             item.dataset.category;
-
 
           if (
             selectedCategory === "ALL" ||
