@@ -1,16 +1,18 @@
-name: Generate Archive v4
+name: Generate Archive v5
 
 on:
   push:
     branches:
       - main
     paths:
-      - '**.jpg'
-      - '**.jpeg'
-      - '**.png'
-      - '**.webp'
-      - '**.html'
-      - 'index.html'
+      - "*.jpg"
+      - "*.jpeg"
+      - "*.png"
+      - "*.webp"
+      - "*.html"
+      - "index.html"
+      - "archive-data.json"
+      - ".github/workflows/generate-archive.yml"
 
 permissions:
   contents: write
@@ -23,433 +25,315 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 2
 
       - name: Sync image and HTML names
+        shell: bash
         run: |
-          python3 <<'PY'
-          from pathlib import Path
-          import subprocess
+          set -e
 
-          extensions = {".jpg", ".jpeg", ".png", ".webp"}
+          PREV=$(git rev-parse HEAD^ 2>/dev/null || true)
 
-          # 現在存在する画像
-          images = {
-              p.stem: p.name
-              for p in Path(".").iterdir()
-              if p.is_file() and p.suffix.lower() in extensions
-          }
+          if [ -z "$PREV" ]; then
+            exit 0
+          fi
 
-          # 現在存在するHTML
-          html_files = {
-              p.stem: p
-              for p in Path(".").iterdir()
-              if p.is_file()
-              and p.suffix.lower() == ".html"
-              and p.name != "index.html"
-          }
+          git diff --name-status -M "$PREV" HEAD | while IFS=$'\t' read -r STATUS OLD NEW; do
+            if [[ "$STATUS" =~ ^R ]]; then
 
-          # Gitの変更履歴から、画像の名前変更を確認
-          try:
-              previous = subprocess.check_output(
-                  ["git", "rev-parse", "HEAD^"],
-                  text=True
-              ).strip()
-          except subprocess.CalledProcessError:
-              previous = None
+              OLD_EXT="${OLD##*.}"
+              NEW_EXT="${NEW##*.}"
 
-          if previous:
-              result = subprocess.run(
-                  [
-                      "git",
-                      "diff",
-                      "--name-status",
-                      "-M",
-                      previous,
-                      "HEAD"
-                  ],
-                  capture_output=True,
-                  text=True
-              )
+              OLD_EXT=$(echo "$OLD_EXT" | tr '[:upper:]' '[:lower:]')
+              NEW_EXT=$(echo "$NEW_EXT" | tr '[:upper:]' '[:lower:]')
 
-              for line in result.stdout.splitlines():
+              if [[ "$OLD_EXT" =~ ^(jpg|jpeg|png|webp)$ ]] &&
+                 [[ "$NEW_EXT" =~ ^(jpg|jpeg|png|webp)$ ]]; then
 
-                  parts = line.split("\t")
+                OLD_STEM="${OLD%.*}"
+                NEW_STEM="${NEW%.*}"
 
-                  if not parts:
-                      continue
+                OLD_HTML="${OLD_STEM}.html"
+                NEW_HTML="${NEW_STEM}.html"
 
-                  status = parts[0]
+                if [ -f "$OLD_HTML" ] && [ ! -f "$NEW_HTML" ]; then
+                  mv "$OLD_HTML" "$NEW_HTML"
 
-                  if status.startswith("R") and len(parts) >= 3:
+                  sed -i "s|${OLD}|${NEW}|g" "$NEW_HTML"
+                  sed -i "s|${OLD##*/}|${NEW##*/}|g" "$NEW_HTML"
+                fi
+              fi
+            fi
 
-                      old_name = parts[1]
-                      new_name = parts[2]
+            if [ "$STATUS" = "D" ]; then
+              EXT="${OLD##*.}"
+              EXT=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
 
-                      old_path = Path(old_name)
-                      new_path = Path(new_name)
+              if [[ "$EXT" =~ ^(jpg|jpeg|png|webp)$ ]]; then
+                STEM="${OLD%.*}"
+                HTML="${STEM}.html"
 
-                      if (
-                          old_path.suffix.lower() in extensions
-                          and new_path.suffix.lower() in extensions
-                      ):
-
-                          old_html = Path(
-                              f"{old_path.stem}.html"
-                          )
-
-                          new_html = Path(
-                              f"{new_path.stem}.html"
-                          )
-
-                          # HTMLが存在していて、新しい名前のHTMLがない場合
-                          if (
-                              old_html.exists()
-                              and not new_html.exists()
-                          ):
-                              old_html.rename(new_html)
-
-                              content = new_html.read_text(
-                                  encoding="utf-8"
-                              )
-
-                              content = content.replace(
-                                  old_name,
-                                  new_name
-                              )
-
-                              new_html.write_text(
-                                  content,
-                                  encoding="utf-8"
-                              )
-
-                              print(
-                                  f"HTML renamed: "
-                                  f"{old_html} -> {new_html}"
-                              )
-
-          PY
+                if [ -f "$HTML" ]; then
+                  rm "$HTML"
+                fi
+              fi
+            fi
+          done
 
       - name: Create missing detail pages
+        shell: bash
         run: |
-          python3 <<'PY'
-          from pathlib import Path
-          import html
+          set -e
 
-          extensions = {".jpg", ".jpeg", ".png", ".webp"}
+          for IMAGE in *.jpg *.jpeg *.png *.webp; do
+            [ -f "$IMAGE" ] || continue
 
-          categories = {
-              "work-": "ARCHITECTURE",
-              "book-": "BOOK",
-              "food-": "FOOD",
-              "object-": "OBJECT",
-              "place-": "PLACE",
-              "text-": "TEXT",
-              "photo-": "PHOTO",
-          }
+            STEM="${IMAGE%.*}"
+            HTML="${STEM}.html"
 
-          for image in Path(".").iterdir():
+            if [ -f "$HTML" ]; then
+              continue
+            fi
 
-              if not image.is_file():
-                  continue
+            case "$STEM" in
+              work-*)
+                CATEGORY="ARCHITECTURE"
+                ;;
+              object-*)
+                CATEGORY="OBJECT"
+                ;;
+              food-*)
+                CATEGORY="FOOD"
+                ;;
+              book-*)
+                CATEGORY="BOOK"
+                ;;
+              text-*)
+                CATEGORY="TEXT"
+                ;;
+              photo-*)
+                CATEGORY="PHOTO"
+                ;;
+              place-*)
+                CATEGORY="PLACE"
+                ;;
+              *)
+                CATEGORY="PHOTO"
+                ;;
+            esac
 
-              if image.suffix.lower() not in extensions:
-                  continue
+            TITLE="$STEM"
 
-              filename = image.name
-              stem = image.stem
+            cat > "$HTML" <<EOF
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${TITLE}</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-              output = Path(f"{stem}.html")
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111;
+      background: #fff;
+    }
 
-              if output.exists():
-                  continue
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 30px;
+    }
 
-              category = "PHOTO"
+    header a {
+      color: #111;
+      text-decoration: none;
+    }
 
-              for prefix, value in categories.items():
-                  if stem.lower().startswith(prefix):
-                      category = value
-                      break
+    .site-title {
+      font-size: 16px;
+    }
 
-              title = stem
+    .about {
+      font-size: 14px;
+    }
 
-              for prefix in categories:
-                  if stem.lower().startswith(prefix):
-                      title = stem[len(prefix):]
-                      break
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 70px 30px 120px;
+    }
 
-              title = title.replace("-", " ")
-              title = title.replace("_", " ")
-              title = html.escape(title)
+    .category {
+      font-size: 12px;
+      margin-bottom: 14px;
+      letter-spacing: 0.05em;
+    }
 
-              page_html = f"""<!DOCTYPE html>
-          <html lang="ja">
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    h1 {
+      font-size: 32px;
+      font-weight: 400;
+      margin: 0 0 40px;
+    }
 
-            <title>{title}｜坂田雄志</title>
+    .image {
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 40px;
+    }
 
-            <style>
-              body {{
-                margin: 0;
-                font-family: Arial, sans-serif;
-                color: #111;
-                background: #fff;
-              }}
+    .image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
-              header {{
-                padding: 20px 30px;
-                border-bottom: 1px solid #111;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-              }}
+    .back {
+      font-size: 14px;
+    }
 
-              header a {{
-                color: #111;
-                text-decoration: none;
-              }}
+    .back a {
+      color: #111;
+      text-decoration: none;
+    }
+  </style>
+</head>
 
-              .site-title {{
-                font-size: 18px;
-              }}
+<body>
+  <header>
+    <a href="index.html" class="site-title">坂田雄志</a>
+    <a href="about.html" class="about">About</a>
+  </header>
 
-              .about-link {{
-                font-size: 14px;
-              }}
+  <main>
+    <div class="category">${CATEGORY}</div>
+    <h1>${TITLE}</h1>
 
-              main {{
-                max-width: 1000px;
-                margin: 0 auto;
-                padding: 70px 30px 100px;
-              }}
+    <div class="image">
+      <img src="${IMAGE}" alt="${TITLE}">
+    </div>
 
-              .category {{
-                font-size: 13px;
-                color: #666;
-                margin-bottom: 15px;
-              }}
-
-              h1 {{
-                font-size: 36px;
-                font-weight: normal;
-                line-height: 1.4;
-                margin: 0 0 15px;
-              }}
-
-              .main-image {{
-                width: 100%;
-                height: auto;
-                display: block;
-                margin-top: 40px;
-              }}
-
-              .back {{
-                margin-top: 70px;
-              }}
-
-              .back a {{
-                color: #111;
-                text-decoration: none;
-                font-size: 13px;
-              }}
-
-              @media (max-width: 600px) {{
-                header {{
-                  padding: 18px 20px;
-                }}
-
-                main {{
-                  padding: 55px 20px 80px;
-                }}
-
-                h1 {{
-                  font-size: 30px;
-                }}
-              }}
-            </style>
-          </head>
-
-          <body>
-
-          <header>
-            <a href="index.html" class="site-title">坂田雄志</a>
-            <a href="about.html" class="about-link">About</a>
-          </header>
-
-          <main>
-
-            <div class="category">{category}</div>
-
-            <h1>{title}</h1>
-
-            <img
-              src="{filename}"
-              alt=""
-              class="main-image"
-            >
-
-            <p class="back">
-              <a href="index.html">← Archive</a>
-            </p>
-
-          </main>
-
-          </body>
-          </html>
-          """
-
-              output.write_text(
-                  page_html,
-                  encoding="utf-8"
-              )
-
-              print(f"Created: {output}")
-
-          PY
+    <div class="back">
+      <a href="index.html">← Archive</a>
+    </div>
+  </main>
+</body>
+</html>
+EOF
+          done
 
       - name: Update image references
+        shell: bash
+        run: |
+          set -e
+
+          for HTML in *.html; do
+            [ -f "$HTML" ] || continue
+
+            STEM="${HTML%.html}"
+
+            for EXT in jpg jpeg png webp; do
+              IMAGE="${STEM}.${EXT}"
+
+              if [ -f "$IMAGE" ]; then
+                CURRENT_IMAGE=$(grep -oE 'src="[^"]+"' "$HTML" | head -1 | sed 's/src="//;s/"//' || true)
+
+                if [ "$CURRENT_IMAGE" != "$IMAGE" ]; then
+                  if [ -n "$CURRENT_IMAGE" ]; then
+                    sed -i "0|src=\"[^\"]*\"|s|src=\"[^\"]*\"|src=\"${IMAGE}\"|" "$HTML"
+                  fi
+                fi
+
+                break
+              fi
+            done
+          done
+
+      - name: Generate archive-data.json
+        shell: bash
         run: |
           python3 <<'PY'
-          from pathlib import Path
-
-          extensions = {".jpg", ".jpeg", ".png", ".webp"}
-
-          images = [
-              p.name
-              for p in Path(".").iterdir()
-              if p.is_file() and p.suffix.lower() in extensions
-          ]
-
-          for html_file in Path(".").glob("*.html"):
-
-              if html_file.name == "index.html":
-                  continue
-
-              content = html_file.read_text(
-                  encoding="utf-8"
-              )
-
-              for image in images:
-
-                  stem = Path(image).stem
-
-                  if f'src="{image}"' in content:
-                      continue
-
-                  # 同じHTML名の画像を参照
-                  if html_file.stem == stem:
-
-                      import re
-
-                      content = re.sub(
-                          r'src="[^"]+\.(jpg|jpeg|png|webp)"',
-                          f'src="{image}"',
-                          content,
-                          count=1,
-                          flags=re.IGNORECASE
-                      )
-
-                      html_file.write_text(
-                          content,
-                          encoding="utf-8"
-                      )
-
-          PY
-
-      - name: Generate archive data
-        run: |
-          python3 <<'PY'
-          from pathlib import Path
-          import re
           import json
+          import glob
+          import os
+          import re
 
-          extensions = {".jpg", ".jpeg", ".png", ".webp"}
-
-          categories = {
+          CATEGORY_MAP = {
               "work-": "ARCHITECTURE",
-              "book-": "BOOK",
-              "food-": "FOOD",
               "object-": "OBJECT",
-              "place-": "PLACE",
+              "food-": "FOOD",
+              "book-": "BOOK",
               "text-": "TEXT",
               "photo-": "PHOTO",
+              "place-": "PLACE",
           }
 
-          items = []
+          extensions = ("*.jpg", "*.jpeg", "*.png", "*.webp")
+          images = []
 
-          for image in Path(".").iterdir():
+          for ext in extensions:
+              images.extend(glob.glob(ext))
 
-              if not image.is_file():
-                  continue
+          images = sorted(set(images))
 
-              if image.suffix.lower() not in extensions:
-                  continue
+          archive = []
 
-              filename = image.name
-              stem = image.stem
+          for image in images:
+              stem = os.path.splitext(os.path.basename(image))[0]
+              detail_page = stem + ".html"
 
               category = "PHOTO"
 
-              for prefix, value in categories.items():
-                  if stem.lower().startswith(prefix):
+              for prefix, value in CATEGORY_MAP.items():
+                  if stem.startswith(prefix):
                       category = value
                       break
 
               title = stem
 
-              detail_page = Path(f"{stem}.html")
+              if os.path.exists(detail_page):
+                  with open(detail_page, "r", encoding="utf-8") as f:
+                      html = f.read()
 
-              if detail_page.exists():
-
-                  page = detail_page.read_text(
-                      encoding="utf-8"
-                  )
-
-                  match = re.search(
-                      r"<h1[^>]*>(.*?)</h1>",
-                      page,
-                      re.IGNORECASE | re.DOTALL
-                  )
+                  match = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.S | re.I)
 
                   if match:
+                      title = re.sub(r"<[^>]+>", "", match.group(1)).strip()
 
-                      title = re.sub(
-                          r"<[^>]+>",
-                          "",
-                          match.group(1)
-                      ).strip()
-
-              items.append({
-                  "image": filename,
+              archive.append({
+                  "image": image,
+                  "detailPage": detail_page,
                   "category": category,
-                  "title": title,
-                  "detailPage": f"{stem}.html"
+                  "title": title
               })
 
-          items.sort(
-              key=lambda item: item["image"].lower()
-          )
-
-          Path("archive-data.json").write_text(
-              json.dumps(
-                  items,
+          with open("archive-data.json", "w", encoding="utf-8") as f:
+              json.dump(
+                  archive,
+                  f,
                   ensure_ascii=False,
                   indent=2
-              ),
-              encoding="utf-8"
-          )
-
+              )
+              f.write("\n")
           PY
 
       - name: Commit generated files
+        shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add .
 
-          git diff --cached --quiet || git commit -m "Sync archive"
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
 
+          git commit -m "Update archive"
           git push
