@@ -1,13 +1,15 @@
-
 name: Generate Archive
 
 on:
   push:
+    branches:
+      - main
     paths:
-      - "*.jpg"
-      - "*.jpeg"
-      - "*.png"
-      - "*.webp"
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.png'
+      - '**.webp'
+      - 'index.html'
 
 permissions:
   contents: write
@@ -20,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate archive pages
+      - name: Generate detail pages
         run: |
           python3 <<'PY'
           from pathlib import Path
@@ -63,6 +65,11 @@ jobs:
                       break
 
               title = title.replace("-", " ").replace("_", " ")
+
+              output = Path(f"{stem}.html")
+
+              if output.exists():
+                  continue
 
               html = f"""<!DOCTYPE html>
           <html lang="ja">
@@ -135,20 +142,6 @@ jobs:
                 text-decoration: none;
                 font-size: 13px;
               }}
-
-              @media (max-width: 600px) {{
-                header {{
-                  padding: 18px 20px;
-                }}
-
-                main {{
-                  padding: 55px 20px 80px;
-                }}
-
-                h1 {{
-                  font-size: 30px;
-                }}
-              }}
             </style>
           </head>
 
@@ -181,11 +174,7 @@ jobs:
           </html>
           """
 
-              output = Path(f"{stem}.html")
-
-              # 既存の詳細ページは上書きしない
-              if not output.exists():
-                  output.write_text(html, encoding="utf-8")
+              output.write_text(html, encoding="utf-8")
 
           PY
 
