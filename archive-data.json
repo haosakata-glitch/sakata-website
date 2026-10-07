@@ -1,15 +1,15 @@
 [
   {
-    "image": "IMG_6091.jpeg",
-    "detailPage": "IMG_6091.html",
-    "category": "PHOTO",
-    "title": "IMG_6091"
-  },
-  {
     "image": "book-01.jpg",
     "detailPage": "book-01.html",
     "category": "BOOK",
     "title": "本のタイトル"
+  },
+  {
+    "image": "food-01.jpg",
+    "detailPage": "food-01.html",
+    "category": "FOOD",
+    "title": "food-01"
   },
   {
     "image": "food-03.jpg",
