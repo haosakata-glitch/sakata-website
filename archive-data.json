@@ -6,6 +6,12 @@
     "title": "本のタイトル"
   },
   {
+    "image": "food-01.jpg.jpeg",
+    "detailPage": "food-01.jpg.html",
+    "category": "FOOD",
+    "title": "food-01.jpg"
+  },
+  {
     "image": "food-03.jpg",
     "detailPage": "food-03.html",
     "category": "FOOD",
