@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>坂田雄志</title>
+
+  <title>坂田雄志｜Archive</title>
 
   <style>
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -13,9 +15,15 @@
       background: #fff;
     }
 
+
+    /* --------------------
+       Header
+    -------------------- */
+
     header {
       padding: 20px 30px;
       border-bottom: 1px solid #111;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -34,24 +42,64 @@
       font-size: 14px;
     }
 
+
+    /* --------------------
+       Main
+    -------------------- */
+
     main {
       padding: 30px;
     }
+
+
+    /* --------------------
+       Introduction
+    -------------------- */
+
+    .intro {
+      margin-bottom: 55px;
+      max-width: 700px;
+    }
+
+    .intro-title {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .intro-text {
+      font-size: 22px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+
+    /* --------------------
+       Categories
+    -------------------- */
 
     .categories {
       display: flex;
       flex-wrap: wrap;
       gap: 18px;
+
       margin-bottom: 35px;
+
+      border-top: 1px solid #111;
+      padding-top: 15px;
     }
 
     .category {
       border: none;
       padding: 0;
+
       background: none;
+
       color: #111;
+
       font-family: inherit;
-      font-size: 14px;
+      font-size: 13px;
+
       cursor: pointer;
     }
 
@@ -64,134 +112,268 @@
       text-underline-offset: 4px;
     }
 
+
+    /* --------------------
+       Archive
+    -------------------- */
+
     .archive {
+
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 35px 20px;
     }
 
+
+    /* --------------------
+       Archive Item
+    -------------------- */
+
     .item {
+
       display: block;
+
       color: #111;
+
       text-decoration: none;
     }
 
     .item-image {
+
       width: 100%;
+
       aspect-ratio: 4 / 3;
+
       object-fit: cover;
+
       display: block;
+
       margin-bottom: 12px;
     }
 
     .item-title {
+
       font-size: 15px;
+
       line-height: 1.5;
-      margin-bottom: 4px;
+
+      margin-bottom: 5px;
     }
 
     .item-meta {
+
       font-size: 12px;
-      color: #666;
+
+      color: #777;
+
+      line-height: 1.5;
     }
 
     .item:hover .item-image {
-      opacity: 0.75;
+
+      opacity: 0.7;
     }
 
+
+    /* --------------------
+       Footer
+    -------------------- */
+
     footer {
-      padding: 70px 30px 30px;
+
+      padding:
+        100px
+        30px
+        30px;
+
       font-size: 12px;
+
       color: #666;
     }
+
+
+    /* --------------------
+       Tablet
+    -------------------- */
 
     @media (max-width: 800px) {
 
       header {
-        padding: 18px 20px;
+
+        padding:
+          18px
+          20px;
       }
 
       main {
-        padding: 20px;
+
+        padding:
+          20px;
       }
 
       .archive {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+
+        grid-template-columns:
+          repeat(2, 1fr);
+
+        gap: 25px 15px;
+      }
+
+      .intro-text {
+
+        font-size: 20px;
       }
 
     }
+
+
+    /* --------------------
+       Mobile
+    -------------------- */
 
     @media (max-width: 500px) {
 
       .archive {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
       }
 
       .categories {
+
         gap: 12px;
       }
 
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
+  <!-- Header -->
+
   <header>
 
-    <a href="index.html" class="site-title">
+    <a
+      href="index.html"
+      class="site-title"
+    >
       坂田雄志
     </a>
 
-    <a href="about.html" class="about-link">
+    <a
+      href="about.html"
+      class="about-link"
+    >
       About
     </a>
 
   </header>
 
+
+
+  <!-- Main -->
+
   <main>
+
+
+    <!-- Introduction -->
+
+    <section class="intro">
+
+      <div class="intro-title">
+        ARCHIVE
+      </div>
+
+      <p class="intro-text">
+        建築、もの、食べもの、本、文章、写真、場所。
+        身の回りのものを記録しています。
+      </p>
+
+    </section>
+
+
+
+    <!-- Categories -->
 
     <nav class="categories">
 
-      <button class="category active" data-category="ALL">
+      <button
+        class="category active"
+        data-category="ALL"
+      >
         ALL
       </button>
 
-      <button class="category" data-category="ARCHITECTURE">
+      <button
+        class="category"
+        data-category="ARCHITECTURE"
+      >
         ARCHITECTURE
       </button>
 
-      <button class="category" data-category="OBJECT">
+      <button
+        class="category"
+        data-category="OBJECT"
+      >
         OBJECT
       </button>
 
-      <button class="category" data-category="FOOD">
+      <button
+        class="category"
+        data-category="FOOD"
+      >
         FOOD
       </button>
 
-      <button class="category" data-category="BOOK">
+      <button
+        class="category"
+        data-category="BOOK"
+      >
         BOOK
       </button>
 
-      <button class="category" data-category="TEXT">
+      <button
+        class="category"
+        data-category="TEXT"
+      >
         TEXT
       </button>
 
-      <button class="category" data-category="PHOTO">
+      <button
+        class="category"
+        data-category="PHOTO"
+      >
         PHOTO
       </button>
 
-      <button class="category" data-category="PLACE">
+      <button
+        class="category"
+        data-category="PLACE"
+      >
         PLACE
       </button>
 
     </nav>
 
 
+
+    <!-- Archive -->
+
     <section class="archive">
 
-      <!-- 下仁田蒸留所 -->
+
+      <!--
+        ARCHITECTURE
+        下仁田蒸留所
+      -->
 
       <a
         href="work-01.html"
@@ -216,7 +398,11 @@
       </a>
 
 
-      <!-- 今朝のピクルス -->
+
+      <!--
+        FOOD
+        今朝のピクルス
+      -->
 
       <a
         href="article-01.html"
@@ -241,7 +427,11 @@
       </a>
 
 
-      <!-- 本 -->
+
+      <!--
+        BOOK
+        大杉栄伝
+      -->
 
       <a
         href="book-01.html"
@@ -256,71 +446,107 @@
         >
 
         <div class="item-title">
-          本のタイトル
+          大杉栄伝　永遠のアナキズム
         </div>
 
         <div class="item-meta">
-          BOOK / 2026.10.07
+          BOOK / 栗原康 / 2021
         </div>
 
       </a>
 
+
     </section>
+
 
   </main>
 
 
+
+  <!-- Footer -->
+
   <footer>
+
     © 坂田雄志
+
   </footer>
 
+
+
+  <!-- Category Filter -->
 
   <script>
 
     const categoryButtons =
-      document.querySelectorAll(".category");
+      document.querySelectorAll(
+        ".category"
+      );
+
 
     const items =
-      document.querySelectorAll(".item");
+      document.querySelectorAll(
+        ".item"
+      );
 
-    categoryButtons.forEach(button => {
 
-      button.addEventListener("click", () => {
+    categoryButtons.forEach(
+      button => {
 
-        const selectedCategory =
-          button.dataset.category;
+        button.addEventListener(
+          "click",
+          () => {
 
-        categoryButtons.forEach(button => {
-          button.classList.remove("active");
-        });
+            const selectedCategory =
+              button.dataset.category;
 
-        button.classList.add("active");
 
-        items.forEach(item => {
+            categoryButtons.forEach(
+              button => {
 
-          const itemCategory =
-            item.dataset.category;
+                button.classList.remove(
+                  "active"
+                );
 
-          if (
-            selectedCategory === "ALL" ||
-            selectedCategory === itemCategory
-          ) {
+              }
+            );
 
-            item.style.display = "";
 
-          } else {
+            button.classList.add(
+              "active"
+            );
 
-            item.style.display = "none";
+
+            items.forEach(
+              item => {
+
+                const itemCategory =
+                  item.dataset.category;
+
+
+                if (
+                  selectedCategory === "ALL" ||
+                  selectedCategory === itemCategory
+                ) {
+
+                  item.style.display = "";
+
+                } else {
+
+                  item.style.display = "none";
+
+                }
+
+              }
+            );
 
           }
+        );
 
-        });
-
-      });
-
-    });
+      }
+    );
 
   </script>
+
 
 </body>
 </html>
