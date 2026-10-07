@@ -76,6 +76,7 @@ jobs:
           <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
             <title>{title}｜坂田雄志</title>
 
             <style>
@@ -142,6 +143,20 @@ jobs:
                 text-decoration: none;
                 font-size: 13px;
               }}
+
+              @media (max-width: 600px) {{
+                header {{
+                  padding: 18px 20px;
+                }}
+
+                main {{
+                  padding: 55px 20px 80px;
+                }}
+
+                h1 {{
+                  font-size: 30px;
+                }}
+              }}
             </style>
           </head>
 
@@ -182,6 +197,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add .
+
           git diff --cached --quiet || git commit -m "Generate archive pages"
+
           git push
