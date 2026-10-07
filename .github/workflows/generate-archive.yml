@@ -1,1 +1,198 @@
 
+name: Generate Archive
+
+on:
+  push:
+    paths:
+      - "*.jpg"
+      - "*.jpeg"
+      - "*.png"
+      - "*.webp"
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate archive pages
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          extensions = {".jpg", ".jpeg", ".png", ".webp"}
+
+          categories = {
+              "work-": "ARCHITECTURE",
+              "book-": "BOOK",
+              "food-": "FOOD",
+              "object-": "OBJECT",
+              "place-": "PLACE",
+              "text-": "TEXT",
+              "photo-": "PHOTO",
+          }
+
+          for image in Path(".").iterdir():
+
+              if not image.is_file():
+                  continue
+
+              if image.suffix.lower() not in extensions:
+                  continue
+
+              filename = image.name
+              stem = image.stem
+
+              category = "PHOTO"
+
+              for prefix, value in categories.items():
+                  if stem.lower().startswith(prefix):
+                      category = value
+                      break
+
+              title = stem
+
+              for prefix in categories:
+                  if stem.lower().startswith(prefix):
+                      title = stem[len(prefix):]
+                      break
+
+              title = title.replace("-", " ").replace("_", " ")
+
+              html = f"""<!DOCTYPE html>
+          <html lang="ja">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>{title}｜坂田雄志</title>
+
+            <style>
+              body {{
+                margin: 0;
+                font-family: Arial, sans-serif;
+                color: #111;
+                background: #fff;
+              }}
+
+              header {{
+                padding: 20px 30px;
+                border-bottom: 1px solid #111;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              }}
+
+              header a {{
+                color: #111;
+                text-decoration: none;
+              }}
+
+              .site-title {{
+                font-size: 18px;
+              }}
+
+              .about-link {{
+                font-size: 14px;
+              }}
+
+              main {{
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 70px 30px 100px;
+              }}
+
+              .category {{
+                font-size: 13px;
+                color: #666;
+                margin-bottom: 15px;
+              }}
+
+              h1 {{
+                font-size: 36px;
+                font-weight: normal;
+                line-height: 1.4;
+                margin: 0 0 15px;
+              }}
+
+              .main-image {{
+                width: 100%;
+                height: auto;
+                display: block;
+                margin-top: 40px;
+              }}
+
+              .back {{
+                margin-top: 70px;
+              }}
+
+              .back a {{
+                color: #111;
+                text-decoration: none;
+                font-size: 13px;
+              }}
+
+              @media (max-width: 600px) {{
+                header {{
+                  padding: 18px 20px;
+                }}
+
+                main {{
+                  padding: 55px 20px 80px;
+                }}
+
+                h1 {{
+                  font-size: 30px;
+                }}
+              }}
+            </style>
+          </head>
+
+          <body>
+
+          <header>
+            <a href="index.html" class="site-title">坂田雄志</a>
+            <a href="about.html" class="about-link">About</a>
+          </header>
+
+          <main>
+
+            <div class="category">{category}</div>
+
+            <h1>{title}</h1>
+
+            <img
+              src="{filename}"
+              alt=""
+              class="main-image"
+            >
+
+            <p class="back">
+              <a href="index.html">← Archive</a>
+            </p>
+
+          </main>
+
+          </body>
+          </html>
+          """
+
+              output = Path(f"{stem}.html")
+
+              # 既存の詳細ページは上書きしない
+              if not output.exists():
+                  output.write_text(html, encoding="utf-8")
+
+          PY
+
+      - name: Commit generated pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --quiet || git commit -m "Generate archive pages"
+          git push
