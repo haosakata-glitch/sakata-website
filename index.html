@@ -45,14 +45,23 @@
       margin-bottom: 35px;
     }
 
-    .categories a {
+    .category {
+      border: none;
+      padding: 0;
+      background: none;
       color: #111;
-      text-decoration: none;
+      font-family: inherit;
       font-size: 14px;
+      cursor: pointer;
     }
 
-    .categories a:hover {
+    .category:hover {
       opacity: 0.5;
+    }
+
+    .category.active {
+      text-decoration: underline;
+      text-underline-offset: 4px;
     }
 
     .archive {
@@ -144,19 +153,52 @@
   <main>
 
     <nav class="categories">
-      <a href="index.html">ALL</a>
-      <a href="#">ARCHITECTURE</a>
-      <a href="#">OBJECT</a>
-      <a href="#">FOOD</a>
-      <a href="#">BOOK</a>
-      <a href="#">TEXT</a>
-      <a href="#">PHOTO</a>
-      <a href="#">PLACE</a>
+
+      <button class="category active" data-category="ALL">
+        ALL
+      </button>
+
+      <button class="category" data-category="ARCHITECTURE">
+        ARCHITECTURE
+      </button>
+
+      <button class="category" data-category="OBJECT">
+        OBJECT
+      </button>
+
+      <button class="category" data-category="FOOD">
+        FOOD
+      </button>
+
+      <button class="category" data-category="BOOK">
+        BOOK
+      </button>
+
+      <button class="category" data-category="TEXT">
+        TEXT
+      </button>
+
+      <button class="category" data-category="PHOTO">
+        PHOTO
+      </button>
+
+      <button class="category" data-category="PLACE">
+        PLACE
+      </button>
+
     </nav>
+
 
     <section class="archive">
 
-      <a href="work-01.html" class="item">
+
+      <!-- 下仁田蒸留所 -->
+
+      <a
+        href="work-01.html"
+        class="item"
+        data-category="ARCHITECTURE"
+      >
 
         <img
           src="work-01.jpg"
@@ -175,7 +217,13 @@
       </a>
 
 
-      <a href="article-01.html" class="item">
+      <!-- 今朝のピクルス -->
+
+      <a
+        href="article-01.html"
+        class="item"
+        data-category="FOOD"
+      >
 
         <img
           src="IMG_6091.jpg"
@@ -193,13 +241,67 @@
 
       </a>
 
+
     </section>
 
   </main>
 
+
   <footer>
     © 坂田雄志
   </footer>
+
+
+  <script>
+
+    const categoryButtons =
+      document.querySelectorAll(".category");
+
+    const items =
+      document.querySelectorAll(".item");
+
+
+    categoryButtons.forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const selectedCategory =
+          button.dataset.category;
+
+
+        categoryButtons.forEach(button => {
+          button.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+
+        items.forEach(item => {
+
+          const itemCategory =
+            item.dataset.category;
+
+
+          if (
+            selectedCategory === "ALL" ||
+            selectedCategory === itemCategory
+          ) {
+
+            item.style.display = "";
+
+          } else {
+
+            item.style.display = "none";
+
+          }
+
+        });
+
+      });
+
+    });
+
+  </script>
 
 </body>
 </html>
