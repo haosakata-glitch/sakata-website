@@ -2,16 +2,24 @@
 <html lang="ja">
 
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>BOOK | 坂田雄志</title>
+
   <meta
     name="description"
     content="坂田雄志の読書アーカイブ。"
   >
 
+
   <style>
+
     :root {
       --background: #E9E5DE;
       --text: #24231F;
@@ -19,457 +27,577 @@
       --line: #CBC5BB;
     }
 
+
     * {
       box-sizing: border-box;
     }
+
 
     html {
       scroll-behavior: smooth;
     }
 
+
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
       font-weight: 300;
+
       color: var(--text);
-      background: var(--background);
+
+      background:
+        var(--background);
     }
+
 
     a {
       color: inherit;
       text-decoration: none;
     }
 
+
     /* ------------------------------
        HEADER
     ------------------------------ */
 
     header {
+
       position: fixed;
+
       top: 0;
       left: 0;
+
       z-index: 100;
+
       width: 100%;
       height: 54px;
-      padding: 0 24px;
+
+      padding:
+        0 24px;
 
       display: flex;
+
       align-items: center;
-      justify-content: space-between;
 
-      background: rgba(233, 229, 222, 0.88);
+      justify-content:
+        space-between;
 
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background:
+        rgba(
+          233,
+          229,
+          222,
+          0.88
+        );
+
+      backdrop-filter:
+        blur(10px);
+
+      -webkit-backdrop-filter:
+        blur(10px);
     }
+
 
     .site-title {
+
       font-size: 11px;
+
       font-weight: 600;
-      letter-spacing: 0.035em;
+
+      letter-spacing:
+        0.035em;
     }
 
+
     .header-right {
+
       display: flex;
+
       align-items: center;
+
       gap: 18px;
     }
 
+
     .archive-link {
+
       font-size: 10px;
-      color: var(--secondary);
+
+      color:
+        var(--secondary);
     }
+
 
     .about-link {
+
       padding-left: 14px;
-      border-left: 1px solid var(--line);
+
+      border-left:
+        1px solid var(--line);
 
       font-size: 10px;
     }
+
 
     /* ------------------------------
        MAIN
     ------------------------------ */
 
     main {
+
       max-width: 1500px;
-      margin: 0 auto;
-      padding: 100px 24px 100px;
+
+      margin:
+        0 auto;
+
+      padding:
+        100px 24px 100px;
     }
+
 
     .page-header {
+
       display: flex;
-      align-items: baseline;
-      justify-content: space-between;
 
-      margin-bottom: 40px;
-      padding-bottom: 12px;
+      align-items:
+        baseline;
 
-      border-bottom: 1px solid var(--line);
+      justify-content:
+        space-between;
+
+      margin-bottom:
+        50px;
+
+      padding-bottom:
+        12px;
+
+      border-bottom:
+        1px solid var(--line);
     }
 
+
     .page-title {
+
       margin: 0;
 
       font-size: 12px;
+
       font-weight: 500;
-      letter-spacing: 0.08em;
+
+      letter-spacing:
+        0.08em;
     }
+
 
     .book-count {
+
       font-size: 9px;
-      color: var(--secondary);
-      letter-spacing: 0.05em;
+
+      color:
+        var(--secondary);
+
+      letter-spacing:
+        0.05em;
     }
 
+
     /* ------------------------------
-       BOOKSHELF
+       SHELVES
     ------------------------------ */
 
-    .bookshelf {
+    .library {
+
+      display: flex;
+
+      flex-direction:
+        column;
+
+      gap: 65px;
+    }
+
+
+    .shelf {
+
+      position: relative;
+
       display: grid;
 
       grid-template-columns:
-        repeat(7, minmax(0, 1fr));
+        repeat(
+          8,
+          minmax(
+            0,
+            1fr
+          )
+        );
 
-      column-gap: 22px;
-      row-gap: 46px;
+      column-gap: 18px;
+
+      align-items:
+        end;
+
+      padding:
+        0 10px 16px;
+
+      border-bottom:
+        1px solid
+        var(--text);
     }
+
+
+    .shelf::after {
+
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      right: 0;
+
+      bottom: -5px;
+
+      height: 4px;
+
+      border-top:
+        1px solid
+        var(--line);
+
+      border-bottom:
+        1px solid
+        var(--line);
+    }
+
+
+    /* ------------------------------
+       BOOK
+    ------------------------------ */
 
     .book {
-      display: block;
+
       min-width: 0;
+
+      display: flex;
+
+      flex-direction:
+        column;
+
+      align-items:
+        center;
+
+      justify-content:
+        flex-end;
     }
 
-    .book-cover {
-      display: block;
+
+    .book-cover-wrap {
 
       width: 100%;
-      aspect-ratio: 0.68;
 
-      object-fit: cover;
+      height: 250px;
 
-      background: #DCD6CC;
+      display: flex;
+
+      align-items:
+        flex-end;
+
+      justify-content:
+        center;
+    }
+
+
+    .book-cover {
+
+      display: block;
+
+      max-width: 100%;
+
+      max-height: 250px;
+
+      width: auto;
+
+      height: auto;
+
+      object-fit:
+        contain;
+
+      box-shadow:
+        0 3px 7px
+        rgba(
+          36,
+          35,
+          31,
+          0.15
+        );
 
       transition:
         transform 0.2s ease,
-        opacity 0.2s ease;
+        box-shadow 0.2s ease;
     }
 
-    .book:hover .book-cover {
-      transform: translateY(-4px);
-      opacity: 0.88;
+
+    .book:hover
+    .book-cover {
+
+      transform:
+        translateY(-7px);
+
+      box-shadow:
+        0 8px 15px
+        rgba(
+          36,
+          35,
+          31,
+          0.20
+        );
     }
+
 
     .book-info {
-      padding-top: 9px;
+
+      width: 100%;
+
+      padding-top:
+        10px;
     }
 
+
     .book-title {
-      font-size: 9px;
-      line-height: 1.45;
+
+      font-size: 8px;
+
+      line-height:
+        1.45;
+
       font-weight: 400;
     }
 
-    .book-category {
-      margin-top: 3px;
+
+    .book-author {
+
+      margin-top:
+        3px;
 
       font-size: 7px;
-      line-height: 1.4;
 
-      color: var(--secondary);
-      letter-spacing: 0.05em;
+      line-height:
+        1.4;
+
+      color:
+        var(--secondary);
     }
+
 
     /* ------------------------------
        EMPTY
     ------------------------------ */
 
     .empty {
-      grid-column: 1 / -1;
 
-      padding: 50px 0;
+      padding:
+        50px 0;
 
       font-size: 10px;
-      color: var(--secondary);
+
+      color:
+        var(--secondary);
     }
+
 
     /* ------------------------------
        MOBILE
     ------------------------------ */
 
-    @media (max-width: 1100px) {
+    @media (
+      max-width: 1100px
+    ) {
 
-      .bookshelf {
+      .shelf {
+
         grid-template-columns:
-          repeat(5, minmax(0, 1fr));
+          repeat(
+            6,
+            minmax(
+              0,
+              1fr
+            )
+          );
 
-        column-gap: 18px;
+        column-gap: 15px;
       }
+
     }
 
-    @media (max-width: 700px) {
+
+    @media (
+      max-width: 700px
+    ) {
 
       header {
+
         height: 48px;
-        padding: 0 12px;
+
+        padding:
+          0 12px;
       }
 
+
       .site-title {
+
         font-size: 10px;
       }
 
+
       .header-right {
+
         gap: 12px;
       }
 
+
       .archive-link,
       .about-link {
+
         font-size: 9px;
       }
 
+
       .about-link {
-        padding-left: 10px;
+
+        padding-left:
+          10px;
       }
+
 
       main {
-        padding: 76px 12px 70px;
+
+        padding:
+          76px 10px 70px;
       }
+
 
       .page-header {
-        margin-bottom: 28px;
+
+        margin-bottom:
+          35px;
       }
 
-      .bookshelf {
+
+      .library {
+
+        gap: 50px;
+      }
+
+
+      .shelf {
+
         grid-template-columns:
-          repeat(3, minmax(0, 1fr));
+          repeat(
+            4,
+            minmax(
+              0,
+              1fr
+            )
+          );
 
-        column-gap: 12px;
-        row-gap: 34px;
+        column-gap: 10px;
+
+        padding:
+          0 5px 12px;
       }
+
+
+      .book-cover-wrap {
+
+        height: 180px;
+      }
+
+
+      .book-cover {
+
+        max-height:
+          180px;
+      }
+
 
       .book-info {
-        padding-top: 7px;
+
+        padding-top:
+          7px;
       }
+
 
       .book-title {
-        font-size: 8px;
+
+        font-size: 7px;
       }
 
-      .book-category {
+
+      .book-author {
+
         font-size: 6px;
       }
+
     }
+
   </style>
-
-
-
-
-<style id="site-design">
-  :root {
-    --background: #E9E5DE;
-    --text: #24231F;
-    --secondary: #77736B;
-    --line: #CBC5BB;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 300;
-    color: var(--text);
-    background: var(--background);
-  }
-
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    width: 100%;
-    min-height: 54px;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    background: rgba(233, 229, 222, 0.88);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-
-  header a {
-    color: var(--text);
-    text-decoration: none;
-  }
-
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    min-width: 0;
-    flex: 1;
-  }
-
-  .site-title {
-    flex-shrink: 0;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .035em;
-    white-space: nowrap;
-  }
-
-  .category-nav {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    min-width: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .category-nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  .header-category {
-    flex-shrink: 0;
-    font-size: 9px;
-    font-weight: 300;
-    letter-spacing: .035em;
-    color: var(--secondary);
-    white-space: nowrap;
-  }
-
-  .about-link {
-    flex-shrink: 0;
-    padding-left: 14px;
-    border-left: 1px solid var(--line);
-    font-size: 10px;
-    white-space: nowrap;
-  }
-
-  main {
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 90px 24px 80px;
-  }
-
-  .category,
-  .project-category {
-    margin-bottom: 7px;
-    color: var(--secondary);
-    font-size: 8px;
-    letter-spacing: .075em;
-  }
-
-  h1 {
-    margin: 0 0 24px;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.5;
-  }
-
-  .image,
-  .project-image {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 0 35px;
-  }
-
-  .image img,
-  .project-image img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  .back {
-    margin-top: 30px;
-    font-size: 10px;
-  }
-
-  .back a {
-    color: var(--secondary);
-  }
-
-  @media (max-width: 600px) {
-    header {
-      min-height: 48px;
-      padding: 0 12px;
-      gap: 10px;
-    }
-
-    .header-left {
-      gap: 15px;
-    }
-
-    .site-title {
-      font-size: 10px;
-    }
-
-    .category-nav {
-      gap: 12px;
-    }
-
-    .header-category {
-      font-size: 8px;
-    }
-
-    .about-link {
-      padding-left: 10px;
-      font-size: 9px;
-    }
-
-    main {
-      padding: 76px 12px 60px;
-    }
-
-    h1 {
-      font-size: 16px;
-    }
-  }
-</style>
 
 </head>
 
 
 <body>
 
-  
 
-<header>
-  <div class="header-left">
-    <a href="index.html" class="site-title">SAKATA KATSUYUKI</a>
-    <nav class="category-nav" aria-label="Archive categories">
-<a class="header-category" href="index.html">ALL</a>
-<a class="header-category" href="index.html">ARCHITECTURE</a>
-<a class="header-category" href="index.html">OBJECT</a>
-<a class="header-category" href="index.html">FOOD</a>
-<a class="header-category" href="index.html">BOOK</a>
-<a class="header-category" href="index.html">TEXT</a>
-<a class="header-category" href="index.html">PHOTO</a>
-<a class="header-category" href="index.html">PLACE</a>
-<a class="header-category" href="index.html">OTHER</a>
-    </nav>
-  </div>
-  <a href="about.html" class="about-link">About</a>
-</header>
+  <header>
+
+    <a
+      href="index.html"
+      class="site-title"
+    >
+      SAKATA KATSUYUKI
+    </a>
 
 
+    <div
+      class="header-right"
+    >
+
+      <a
+        href="index.html"
+        class="archive-link"
+      >
+        Archive
+      </a>
+
+
+      <a
+        href="about.html"
+        class="about-link"
+      >
+        About
+      </a>
+
+    </div>
+
+  </header>
 
 
   <main>
 
-    <div class="page-header">
 
-      <h1 class="page-title">
+    <div
+      class="page-header"
+    >
+
+      <h1
+        class="page-title"
+      >
         BOOK
       </h1>
+
 
       <div
         id="book-count"
@@ -482,42 +610,57 @@
 
 
     <div
-      id="bookshelf"
-      class="bookshelf"
+      id="library"
+      class="library"
     ></div>
+
 
   </main>
 
 
   <script>
 
-    const bookshelf =
-      document.getElementById("bookshelf");
+    const library =
+      document.getElementById(
+        "library"
+      );
+
 
     const bookCount =
-      document.getElementById("book-count");
+      document.getElementById(
+        "book-count"
+      );
 
 
     async function loadBooks() {
 
       try {
 
-        const response =
-          await fetch("archive-data.json");
+        const archiveResponse =
+          await fetch(
+            "archive-data.json"
+          );
 
-        if (!response.ok) {
+
+        if (
+          !archiveResponse.ok
+        ) {
+
           throw new Error(
             "Archive data not found"
           );
+
         }
 
+
         const archive =
-          await response.json();
+          await archiveResponse.json();
 
 
         const books =
           archive.filter(
-            item => item.category === "BOOK"
+            item =>
+              item.category === "BOOK"
           );
 
 
@@ -525,86 +668,233 @@
           `${books.length} BOOKS`;
 
 
-        if (books.length === 0) {
+        if (
+          books.length === 0
+        ) {
 
-          bookshelf.innerHTML =
+          library.innerHTML =
             '<div class="empty">まだ本がありません。</div>';
 
           return;
         }
 
 
-        books.forEach(book => {
+        /*
+          1棚あたり8冊
+        */
 
-          const link =
-            document.createElement("a");
-
-          link.className = "book";
-
-          link.href =
-            book.detailPage;
+        const shelfSize = 8;
 
 
-          const image =
-            document.createElement("img");
-
-          image.className =
-            "book-cover";
-
-          image.src =
-            book.image;
-
-          image.alt =
-            book.title || "";
-
-          image.loading =
-            "lazy";
+        for (
+          let i = 0;
+          i < books.length;
+          i += shelfSize
+        ) {
 
 
-          const info =
-            document.createElement("div");
-
-          info.className =
-            "book-info";
-
-
-          const title =
-            document.createElement("div");
-
-          title.className =
-            "book-title";
-
-          title.textContent =
-            book.title;
+          const shelf =
+            document.createElement(
+              "div"
+            );
 
 
-          const category =
-            document.createElement("div");
-
-          category.className =
-            "book-category";
-
-          category.textContent =
-            "BOOK";
+          shelf.className =
+            "shelf";
 
 
-          info.appendChild(title);
-          info.appendChild(category);
+          const shelfBooks =
+            books.slice(
+              i,
+              i + shelfSize
+            );
 
-          link.appendChild(image);
-          link.appendChild(info);
 
-          bookshelf.appendChild(link);
+          shelfBooks.forEach(
+            book => {
 
-        });
+
+              const link =
+                document.createElement(
+                  "a"
+                );
+
+
+              link.className =
+                "book";
+
+
+              link.href =
+                book.detailPage;
+
+
+              const coverWrap =
+                document.createElement(
+                  "div"
+                );
+
+
+              coverWrap.className =
+                "book-cover-wrap";
+
+
+              const image =
+                document.createElement(
+                  "img"
+                );
+
+
+              image.className =
+                "book-cover";
+
+
+              /*
+                Google Booksで
+                書影が見つかった場合は
+                coverImageを使用。
+
+                見つからない場合は
+                元の写真を使用。
+              */
+
+              image.src =
+                book.coverImage ||
+                book.image;
+
+
+              image.alt =
+                book.bookTitle ||
+                book.title ||
+                "";
+
+
+              image.loading =
+                "lazy";
+
+
+              /*
+                書影が存在しない場合は
+                元画像へフォールバック
+              */
+
+              image.onerror =
+                () => {
+
+                  if (
+                    image.src.indexOf(
+                      book.image
+                    ) === -1
+                  ) {
+
+                    image.src =
+                      book.image;
+
+                  }
+
+                };
+
+
+              coverWrap.appendChild(
+                image
+              );
+
+
+              const info =
+                document.createElement(
+                  "div"
+                );
+
+
+              info.className =
+                "book-info";
+
+
+              const title =
+                document.createElement(
+                  "div"
+                );
+
+
+              title.className =
+                "book-title";
+
+
+              title.textContent =
+                book.bookTitle ||
+                book.title ||
+                "";
+
+
+              info.appendChild(
+                title
+              );
+
+
+              if (
+                book.authors &&
+                book.authors.length
+              ) {
+
+                const author =
+                  document.createElement(
+                    "div"
+                  );
+
+
+                author.className =
+                  "book-author";
+
+
+                author.textContent =
+                  book.authors.join(
+                    " / "
+                  );
+
+
+                info.appendChild(
+                  author
+                );
+
+              }
+
+
+              link.appendChild(
+                coverWrap
+              );
+
+
+              link.appendChild(
+                info
+              );
+
+
+              shelf.appendChild(
+                link
+              );
+
+            }
+          );
+
+
+          library.appendChild(
+            shelf
+          );
+
+        }
 
       }
 
-      catch (error) {
 
-        console.error(error);
+      catch (
+        error
+      ) {
 
-        bookshelf.innerHTML =
+        console.error(
+          error
+        );
+
+
+        library.innerHTML =
           '<div class="empty">BOOKを読み込めませんでした。</div>';
 
       }
@@ -615,6 +905,7 @@
     loadBooks();
 
   </script>
+
 
 </body>
 
