@@ -1,622 +1,545 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAKATA KATSUYUKI</title>
 
-  <title>坂田雄志｜Sakata Katsuyuki</title>
-  <meta name="description" content="坂田雄志の建築、デザイン、日常の記録をまとめたアーカイブ。">
+<style>
+  * {
+    box-sizing: border-box;
+  }
 
-  <style>
-    :root {
-      --background: #E9E5DE;
-      --text: #24231F;
-      --secondary: #77736B;
-      --line: #CBC5BB;
-      --gap: 22px;
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: #E9E5DE;
+    color: #222;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* =========================
+     HEADER
+  ========================= */
+
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(233,229,222,0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(34,34,34,0.12);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    min-height: 58px;
+    padding: 0 22px;
+  }
+
+  .site-title {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .main-nav a,
+  .main-nav button {
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  .main-nav a:hover,
+  .main-nav button:hover {
+    opacity: 0.55;
+  }
+
+  .main-nav .active {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .about-link {
+    margin-left: 10px;
+    padding-left: 18px !important;
+    border-left: 1px solid rgba(34,34,34,0.3) !important;
+  }
+
+  /* =========================
+     MAIN
+  ========================= */
+
+  main {
+    padding-top: 88px;
+  }
+
+  .archive {
+    padding: 0 22px 70px;
+  }
+
+  /* =========================
+     ARCHIVE GRID
+  ========================= */
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 18px;
+    row-gap: 18px;
+    align-items: start;
+  }
+
+  .archive-item {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .archive-image-wrap {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #ddd8d0;
+  }
+
+  .archive-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* =========================
+     HOVER OVERLAY
+  ========================= */
+
+  .archive-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: rgba(233,229,222,0.82);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    pointer-events: none;
+  }
+
+  .archive-item:hover .archive-overlay,
+  .archive-item:focus-visible .archive-overlay {
+    opacity: 1;
+  }
+
+  .archive-overlay-inner {
+    text-align: center;
+  }
+
+  .archive-title {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .archive-category {
+    margin-top: 5px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    opacity: 0.65;
+  }
+
+  /* =========================
+     ABOUT
+  ========================= */
+
+  .about {
+    margin-top: 90px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(34,34,34,0.25);
+  }
+
+  .about-inner {
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 30px;
+  }
+
+  .about-label {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  .about-text {
+    max-width: 650px;
+  }
+
+  .about-name {
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+  .about-profile {
+    margin: 0 0 25px;
+  }
+
+  .about-contact {
+    margin: 0;
+  }
+
+  .about-contact a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* =========================
+     RESPONSIVE
+  ========================= */
+
+  @media (max-width: 900px) {
+    .header-inner {
+      padding: 0 18px;
     }
 
-    * {
-      box-sizing: border-box;
+    .main-nav {
+      gap: 14px;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 300;
-      color: var(--text);
-      background: var(--background);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 100;
-      width: 100%;
-      height: 54px;
-      padding: 0 24px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-
-      background: rgba(233, 229, 222, 0.88);
-
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-      min-width: 0;
-      flex: 1;
-    }
-
-    .site-title {
-      flex-shrink: 0;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.035em;
-      white-space: nowrap;
-    }
-
-    .category-nav {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      min-width: 0;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .category-nav::-webkit-scrollbar {
-      display: none;
-    }
-
-    .header-category {
-      flex-shrink: 0;
-
-      border: 0;
-      padding: 4px 0;
-
-      background: transparent;
-
-      font: inherit;
-      font-size: 9px;
-      font-weight: 300;
-      letter-spacing: 0.035em;
-
-      color: var(--secondary);
-
-      white-space: nowrap;
-      cursor: pointer;
-    }
-
-    .header-category:hover,
-    .header-category.active {
-      color: var(--text);
-    }
-
-    .header-category.active {
-      font-weight: 500;
-    }
-
-    /*
-      BOOKだけはフィルターではなく
-      book.htmlへ移動するリンク
-    */
-    .book-link {
-      cursor: pointer;
-    }
-
-    .about-link {
-      flex-shrink: 0;
-
-      padding-left: 14px;
-
-      border-left: 1px solid var(--line);
-
-      font-size: 10px;
-      font-weight: 300;
-
-      white-space: nowrap;
-    }
-
-    main {
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 76px 24px 90px;
+    .archive {
+      padding-left: 18px;
+      padding-right: 18px;
     }
 
     .archive-grid {
-      display: grid;
+      column-gap: 14px;
+      row-gap: 14px;
+    }
+  }
 
-      grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-      column-gap: var(--gap);
-      row-gap: 42px;
+  @media (max-width: 650px) {
+    .header-inner {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 8px;
+      padding-top: 13px;
+      padding-bottom: 13px;
     }
 
-    .archive-item {
-      display: block;
-      min-width: 0;
+    .main-nav {
+      justify-content: flex-start;
+      gap: 9px 13px;
     }
 
-    .archive-image {
-      display: block;
-
-      width: 100%;
-
-      aspect-ratio: 4 / 3;
-
-      object-fit: cover;
-
-      background: #DDD7CE;
+    .about-link {
+      margin-left: 4px;
+      padding-left: 13px !important;
     }
 
-    .archive-caption {
-      padding-top: 10px;
+    main {
+      padding-top: 125px;
     }
 
-    .archive-category {
-      margin-bottom: 4px;
-
-      color: var(--secondary);
-
-      font-size: 8px;
-      line-height: 1.4;
-
-      letter-spacing: 0.075em;
-      font-weight: 300;
+    .archive {
+      padding-left: 10px;
+      padding-right: 10px;
     }
 
-    .archive-title {
-      font-size: 11px;
-      line-height: 1.5;
-      font-weight: 400;
-
-      overflow-wrap: anywhere;
+    .archive-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 10px;
+      row-gap: 10px;
     }
 
-    .archive-item:hover .archive-title {
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
+    .about {
+      margin-top: 60px;
     }
 
-    .empty {
-      grid-column: 1 / -1;
-
-      padding: 30px 0;
-
-      color: var(--secondary);
-      font-size: 11px;
+    .about-inner {
+      grid-template-columns: 1fr;
+      gap: 18px;
     }
+  }
 
-    @media (max-width: 1000px) {
-
-      header {
-        padding: 0 18px;
-        gap: 14px;
-      }
-
-      .header-left {
-        gap: 20px;
-      }
-
-      .category-nav {
-        gap: 12px;
-      }
-
-      main {
-        padding-right: 18px;
-        padding-left: 18px;
-      }
-
-      .archive-grid {
-        grid-template-columns:
-          repeat(2, minmax(0, 1fr));
-
-        column-gap: 16px;
-        row-gap: 34px;
-      }
+  @media (hover: none) {
+    .archive-overlay {
+      display: none;
     }
-
-    @media (max-width: 600px) {
-
-      header {
-        height: 48px;
-        padding: 0 12px;
-        gap: 10px;
-      }
-
-      .header-left {
-        gap: 15px;
-        flex: 1;
-        overflow: hidden;
-      }
-
-      .site-title {
-        font-size: 10px;
-      }
-
-      .category-nav {
-        gap: 12px;
-      }
-
-      .header-category {
-        font-size: 8px;
-      }
-
-      .about-link {
-        padding-left: 10px;
-        font-size: 9px;
-      }
-
-      main {
-        padding: 64px 10px 60px;
-      }
-
-      .archive-grid {
-        grid-template-columns:
-          repeat(2, minmax(0, 1fr));
-
-        column-gap: 10px;
-        row-gap: 27px;
-      }
-
-      .archive-caption {
-        padding-top: 7px;
-      }
-
-      .archive-category {
-        font-size: 7px;
-        margin-bottom: 3px;
-      }
-
-      .archive-title {
-        font-size: 10px;
-        line-height: 1.45;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
-
 
 <body>
 
-  <header>
+<header class="site-header">
+  <div class="header-inner">
 
-    <div class="header-left">
-
-      <a
-        href="index.html"
-        class="site-title"
-      >
-        SAKATA KATSUYUKI
-      </a>
-
-
-      <nav
-        class="category-nav"
-        aria-label="Archive categories"
-      >
-
-        <button
-          class="header-category active"
-          data-category="ALL"
-        >
-          ALL
-        </button>
-
-
-        <button
-          class="header-category"
-          data-category="ARCHITECTURE"
-        >
-          ARCHITECTURE
-        </button>
-
-
-        <button
-          class="header-category"
-          data-category="OBJECT"
-        >
-          OBJECT
-        </button>
-
-
-        <button
-          class="header-category"
-          data-category="FOOD"
-        >
-          FOOD
-        </button>
-
-
-        <!-- BOOKだけ独立ページへ -->
-        <a
-          class="header-category book-link"
-          href="book.html"
-        >
-          BOOK
-        </a>
-
-
-        <button
-          class="header-category"
-          data-category="TEXT"
-        >
-          TEXT
-        </button>
-
-
-        <button
-          class="header-category"
-          data-category="PHOTO"
-        >
-          PHOTO
-        </button>
-
-
-        <button
-          class="header-category"
-          data-category="PLACE"
-        >
-          PLACE
-        </button>
-
-
-        <button
-          class="header-category"
-          data-category="OTHER"
-        >
-          OTHER
-        </button>
-
-      </nav>
-
-    </div>
-
-
-    <a
-      href="about.html"
-      class="about-link"
-    >
-      About
+    <a href="index.html" class="site-title">
+      SAKATA KATSUYUKI
     </a>
 
-  </header>
+    <nav class="main-nav">
+
+      <button type="button" data-category="ALL" class="active">
+        ALL
+      </button>
+
+      <button type="button" data-category="ARCHITECTURE">
+        ARCHITECTURE
+      </button>
+
+      <button type="button" data-category="OBJECT">
+        OBJECT
+      </button>
+
+      <button type="button" data-category="FOOD">
+        FOOD
+      </button>
+
+      <a href="book.html">
+        BOOK
+      </a>
+
+      <button type="button" data-category="TEXT">
+        TEXT
+      </button>
+
+      <button type="button" data-category="PHOTO">
+        PHOTO
+      </button>
+
+      <button type="button" data-category="PLACE">
+        PLACE
+      </button>
+
+      <button type="button" data-category="OTHER">
+        OTHER
+      </button>
+
+      <a href="#about" class="about-link">
+        ABOUT
+      </a>
+
+    </nav>
+
+  </div>
+</header>
 
 
-  <main>
+<main>
 
-    <div
-      id="archive-grid"
-      class="archive-grid"
-    ></div>
+  <section class="archive">
+    <div id="archive-grid" class="archive-grid"></div>
 
-  </main>
+    <section id="about" class="about">
+
+      <div class="about-inner">
+
+        <div class="about-label">
+          ABOUT
+        </div>
+
+        <div class="about-text">
+
+          <div class="about-name">
+            坂田雄志 / Sakata Katsuyuki
+          </div>
+
+          <p class="about-profile">
+            建築家。<br>
+            2016–2020 近畿大学建築学部建築学科 松岡聡研究室<br>
+            2020–2023 横浜国立大学大学院 Y-GSA<br>
+            2023–2024 平田明久建築設計事務所<br>
+            2024–2026 Archipelago Architects Studio
+          </p>
+
+          <p class="about-contact">
+            <a href="mailto:hao.sakata@gmail.com">
+              hao.sakata@gmail.com
+            </a><br>
+            <a href="https://www.instagram.com/katsu_0708/" target="_blank" rel="noopener">
+              Instagram
+            </a><br>
+            <a href="https://x.com/Katsuskt" target="_blank" rel="noopener">
+              X
+            </a><br>
+            <a href="https://note.com/kind_nerine7" target="_blank" rel="noopener">
+              note
+            </a>
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+  </section>
+
+</main>
 
 
-  <script>
+<script>
+  const archiveGrid = document.getElementById("archive-grid");
+  const categoryButtons = document.querySelectorAll("[data-category]");
 
-    const grid =
-      document.getElementById("archive-grid");
+  let archiveData = [];
 
+  function getCategoryFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("category");
+  }
 
-    /*
-      BOOKは<a>なので、
-      フィルター対象から除外する。
-      それ以外のカテゴリーだけ
-      ボタンとして機能させる。
-    */
-    const filters =
-      document.querySelectorAll(
-        ".header-category[data-category]"
+  function setActiveCategory(category) {
+    categoryButtons.forEach(button => {
+      button.classList.toggle(
+        "active",
+        button.dataset.category === category
       );
+    });
+  }
 
+  function renderArchive(category = "ALL") {
 
-    let archiveItems = [];
+    archiveGrid.innerHTML = "";
 
-
-    function render(category = "ALL") {
-
-      grid.innerHTML = "";
-
-
-      const items =
-        archiveItems.filter(item => {
-
-          return (
-            category === "ALL" ||
-            item.category === category
-          );
-
-        });
-
-
-      if (items.length === 0) {
-
-        grid.innerHTML =
-          '<div class="empty">まだ項目がありません。</div>';
-
-        return;
-      }
-
-
-      items.forEach(item => {
-
-        const link =
-          document.createElement("a");
-
-        link.className =
-          "archive-item";
-
-        link.href =
-          item.detailPage;
-
-
-        const image =
-          document.createElement("img");
-
-        image.className =
-          "archive-image";
-
-        image.src =
-          item.image;
-
-        image.alt =
-          item.title || "";
-
-        image.loading =
-          "lazy";
-
-
-        const caption =
-          document.createElement("div");
-
-        caption.className =
-          "archive-caption";
-
-
-        const categoryLabel =
-          document.createElement("div");
-
-        categoryLabel.className =
-          "archive-category";
-
-        categoryLabel.textContent =
-          item.category;
-
-
-        const title =
-          document.createElement("div");
-
-        title.className =
-          "archive-title";
-
-        title.textContent =
-          item.title;
-
-
-        caption.appendChild(
-          categoryLabel
-        );
-
-        caption.appendChild(
-          title
-        );
-
-
-        link.appendChild(
-          image
-        );
-
-        link.appendChild(
-          caption
-        );
-
-
-        grid.appendChild(
-          link
-        );
-
-      });
-
-    }
-
-
-    async function loadArchive() {
-
-      try {
-
-        const response =
-          await fetch(
-            "archive-data.json"
-          );
-
-
-        if (!response.ok) {
-          throw new Error(
-            "Archive data not found"
-          );
-        }
-
-
-        archiveItems =
-          await response.json();
-
-
-        render();
-
-      }
-
-      catch (error) {
-
-        console.error(error);
-
-
-        grid.innerHTML =
-          '<div class="empty">Archiveを読み込めませんでした。</div>';
-
-      }
-
-    }
-
-
-    /*
-      BOOK以外のカテゴリーだけ
-      フィルターとして動作
-    */
-    filters.forEach(filter => {
-
-      filter.addEventListener(
-        "click",
-        () => {
-
-          filters.forEach(button => {
-
-            button.classList.remove(
-              "active"
-            );
-
+    const filtered =
+      category === "ALL"
+        ? archiveData
+        : archiveData.filter(item => {
+            return item.category === category;
           });
 
+    filtered.forEach(item => {
 
-          filter.classList.add(
-            "active"
-          );
+      const link = document.createElement("a");
 
+      link.className = "archive-item";
+      link.href = item.detailPage || "#";
 
-          render(
-            filter.dataset.category
-          );
+      const imageWrap = document.createElement("div");
+      imageWrap.className = "archive-image-wrap";
 
-        }
-      );
+      const image = document.createElement("img");
+      image.className = "archive-image";
+      image.src = item.coverImage || item.image;
+      image.alt = item.title || "";
 
+      image.loading = "lazy";
+
+      const overlay = document.createElement("div");
+      overlay.className = "archive-overlay";
+
+      const overlayInner = document.createElement("div");
+      overlayInner.className = "archive-overlay-inner";
+
+      const title = document.createElement("div");
+      title.className = "archive-title";
+      title.textContent = item.title || "";
+
+      const categoryText = document.createElement("div");
+      categoryText.className = "archive-category";
+      categoryText.textContent = item.category || "";
+
+      overlayInner.appendChild(title);
+      overlayInner.appendChild(categoryText);
+      overlay.appendChild(overlayInner);
+
+      imageWrap.appendChild(image);
+      imageWrap.appendChild(overlay);
+      link.appendChild(imageWrap);
+
+      archiveGrid.appendChild(link);
+    });
+  }
+
+  categoryButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const category = button.dataset.category;
+
+      setActiveCategory(category);
+
+      const url =
+        category === "ALL"
+          ? "index.html"
+          : "index.html?category=" +
+            encodeURIComponent(category);
+
+      history.replaceState({}, "", url);
+
+      renderArchive(category);
     });
 
+  });
 
-    loadArchive();
 
-  </script>
+  fetch("archive-data.json")
+    .then(response => {
+
+      if (!response.ok) {
+        throw new Error("archive-data.json could not be loaded.");
+      }
+
+      return response.json();
+
+    })
+    .then(data => {
+
+      archiveData = Array.isArray(data)
+        ? data
+        : [];
+
+      const initialCategory =
+        getCategoryFromUrl() || "ALL";
+
+      setActiveCategory(initialCategory);
+
+      renderArchive(initialCategory);
+
+    })
+    .catch(error => {
+
+      console.error(error);
+
+      archiveGrid.innerHTML =
+        "<p>Archive could not be loaded.</p>";
+
+    });
+</script>
 
 </body>
-
 </html>
