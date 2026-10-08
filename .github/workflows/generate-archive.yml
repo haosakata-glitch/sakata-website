@@ -1,4 +1,4 @@
-name: Generate Archive v11
+name: Generate Archive v12
 
 on:
   push:
@@ -178,196 +178,6 @@ jobs:
               left: 0;
               z-index: 100;
               width: 100%;
-              min-height: 54px;
-              padding: 0 24px;
-
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              gap: 18px;
-
-              background: rgba(233, 229, 222, 0.88);
-
-              backdrop-filter: blur(10px);
-              -webkit-backdrop-filter: blur(10px);
-            }
-
-            header a {
-              color: var(--text);
-              text-decoration: none;
-            }
-
-            .header-left {
-              display: flex;
-              align-items: center;
-              gap: 25px;
-              min-width: 0;
-              flex: 1;
-            }
-
-            .site-title {
-              flex-shrink: 0;
-              font-size: 11px;
-              font-weight: 600;
-              letter-spacing: .035em;
-              white-space: nowrap;
-            }
-
-            .category-nav {
-              display: flex;
-              align-items: center;
-              gap: 15px;
-              min-width: 0;
-              overflow-x: auto;
-              scrollbar-width: none;
-            }
-
-            .category-nav::-webkit-scrollbar {
-              display: none;
-            }
-
-            .header-category {
-              flex-shrink: 0;
-              font-size: 9px;
-              font-weight: 300;
-              letter-spacing: .035em;
-              color: var(--secondary);
-              white-space: nowrap;
-            }
-
-            .about-link {
-              flex-shrink: 0;
-              padding-left: 14px;
-              border-left: 1px solid var(--line);
-              font-size: 10px;
-              white-space: nowrap;
-            }
-
-            main {
-              max-width: 1500px;
-              margin: 0 auto;
-              padding: 90px 24px 80px;
-            }
-
-            .category {
-              margin-bottom: 7px;
-              color: var(--secondary);
-              font-size: 8px;
-              letter-spacing: .075em;
-            }
-
-            h1 {
-              margin: 0 0 24px;
-              font-size: 18px;
-              font-weight: 400;
-              line-height: 1.5;
-            }
-
-            .image {
-              width: 100%;
-              max-width: 900px;
-              margin: 0 0 35px;
-            }
-
-            .image img {
-              display: block;
-              width: 100%;
-              height: auto;
-            }
-
-            .back {
-              margin-top: 30px;
-              font-size: 10px;
-            }
-
-            .back a {
-              color: var(--secondary);
-            }
-
-            @media (max-width: 600px) {
-
-              header {
-                min-height: 48px;
-                padding: 0 12px;
-                gap: 10px;
-              }
-
-              .header-left {
-                gap: 15px;
-              }
-
-              .site-title {
-                font-size: 10px;
-              }
-
-              .category-nav {
-                gap: 12px;
-              }
-
-              .header-category {
-                font-size: 8px;
-              }
-
-              .about-link {
-                padding-left: 10px;
-                font-size: 9px;
-              }
-
-              main {
-                padding: 76px 12px 60px;
-              }
-
-              h1 {
-                font-size: 16px;
-              }
-
-            }
-
-          </style>
-          """
-
-
-          categories = [
-              "ALL",
-              "ARCHITECTURE",
-              "OBJECT",
-              "FOOD",
-              "BOOK",
-              "TEXT",
-              "PHOTO",
-              "PLACE",
-              "OTHER"
-          ]
-
-
-          shared_css = """
-          <style id="site-design">
-
-            :root {
-              --background: #E9E5DE;
-              --text: #24231F;
-              --secondary: #77736B;
-              --line: #CBC5BB;
-            }
-
-            * {
-              box-sizing: border-box;
-            }
-
-            body {
-              margin: 0;
-              font-family: Arial, Helvetica, sans-serif;
-              font-weight: 300;
-              color: var(--text);
-              background: var(--background);
-            }
-
-            header {
-              position: fixed;
-              top: 0;
-              left: 0;
-              z-index: 100;
-              width: 100%;
               min-height: 58px;
               padding: 0 22px;
 
@@ -396,7 +206,7 @@ jobs:
             }
 
             .site-title {
-              flex-shrink: 0;
+              flex: 0 0 auto;
               font-size: 11px;
               font-weight: 600;
               letter-spacing: .035em;
@@ -424,8 +234,8 @@ jobs:
               height: 20px;
               padding: 0;
               font-size: 10px;
-              font-weight: 300;
               line-height: 1;
+              font-weight: 300;
               letter-spacing: .04em;
               color: rgba(34, 34, 34, 0.48);
               white-space: nowrap;
@@ -442,12 +252,11 @@ jobs:
               display: inline-flex;
               align-items: center;
               height: 20px;
-              padding: 0 0 0 14px;
-              margin: 0;
+              padding-left: 14px;
               border-left: 1px solid var(--line);
               font-size: 10px;
-              font-weight: 300;
               line-height: 1;
+              font-weight: 300;
               letter-spacing: .04em;
               color: rgba(34, 34, 34, 0.48);
               white-space: nowrap;
@@ -499,7 +308,7 @@ jobs:
               header {
                 min-height: 52px;
                 padding: 0 14px;
-                gap: 10px;
+                gap: 20px;
               }
 
               .header-left {
@@ -522,7 +331,6 @@ jobs:
               .about-link {
                 height: 18px;
                 padding-left: 10px;
-                margin-left: 4px;
                 font-size: 9px;
               }
 
@@ -539,6 +347,59 @@ jobs:
           </style>
           """
 
+
+          categories = [
+              "ALL",
+              "ARCHITECTURE",
+              "OBJECT",
+              "FOOD",
+              "BOOK",
+              "TEXT",
+              "PHOTO",
+              "PLACE",
+              "OTHER"
+          ]
+
+
+          # ========================================
+          # Header
+          # ========================================
+
+          header_html = """
+          <header>
+
+            <div class="header-left">
+
+              <a
+                href="index.html"
+                class="site-title"
+              >
+                SAKATA KATSUYUKI
+              </a>
+
+              <nav
+                class="category-nav"
+                aria-label="Archive categories"
+              >
+
+          """ + "\n".join(
+              f'<a class="header-category category-{category}" href="index.html">{category}</a>'
+              for category in categories
+          ) + """
+
+              </nav>
+
+            </div>
+
+            <a
+              href="about.html"
+              class="about-link"
+            >
+              About
+            </a>
+
+          </header>
+          """
 
 
           # ========================================
@@ -661,21 +522,7 @@ jobs:
               )
 
               stem = html_file.stem
-
-              # 現在のカテゴリだけ黒＋アンダーバーにする
               category = category_for(stem)
-
-              html = re.sub(
-                  r'(<a class="header-category category-[^"]+) active(")',
-                  r'\1\2',
-                  html
-              )
-
-              html = re.sub(
-                  r'(<a class="header-category category-' + re.escape(category) + r')(")',
-                  r'\1 active\2',
-                  html
-              )
 
               for ext in image_extensions:
 
@@ -695,6 +542,10 @@ jobs:
                       )
 
                       break
+
+              # ----------------------------------------
+              # Header
+              # ----------------------------------------
 
               if re.search(
                   r"<header\b[^>]*>.*?</header>",
@@ -722,6 +573,31 @@ jobs:
                       count=1,
                       flags=re.I
                   )
+
+              # ----------------------------------------
+              # Active category
+              # ----------------------------------------
+
+              html = re.sub(
+                  r'(<a\b[^>]*class="[^"]*header-category[^"]*)\s+active',
+                  r'\1',
+                  html,
+                  flags=re.I
+              )
+
+              active_class = "category-" + category
+
+              html = re.sub(
+                  rf'(<a\b[^>]*class="[^"]*\b{re.escape(active_class)}\b[^"]*)"',
+                  r'\1 active"',
+                  html,
+                  count=1,
+                  flags=re.I
+              )
+
+              # ----------------------------------------
+              # Shared CSS
+              # ----------------------------------------
 
               html = re.sub(
                   r'<style id="site-design">.*?</style>',
@@ -1111,6 +987,7 @@ jobs:
               )
 
               if filename_query:
+
                   candidates.append(
                       filename_query
                   )
@@ -1459,39 +1336,4 @@ jobs:
           git commit \
             -m "Update archive and book covers"
 
-          git push          header_html = """
-          <header>
-
-            <div class="header-left">
-
-              <a
-                href="index.html"
-                class="site-title"
-              >
-                SAKATA KATSUYUKI
-              </a>
-
-              <nav
-                class="category-nav"
-                aria-label="Archive categories"
-              >
-
-          """ + "\n".join(
-              f'<a class="header-category category-{category}" href="index.html">{category}</a>'
-              for category in categories
-          ) + """
-
-              </nav>
-
-            </div>
-
-            <a
-              href="about.html"
-              class="about-link"
-            >
-              About
-            </a>
-
-          </header>
-          """
-
+          git push
