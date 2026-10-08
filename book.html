@@ -10,13 +10,7 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>BOOK | 坂田雄志</title>
-
-  <meta
-    name="description"
-    content="坂田雄志の読書アーカイブ。"
-  >
-
+  <title>BOOK | SAKATA KATSUYUKI</title>
 
   <style>
 
@@ -24,7 +18,14 @@
       --background: #E9E5DE;
       --text: #24231F;
       --secondary: #77736B;
-      --line: #CBC5BB;
+
+      --cabinet: #B7B1A8;
+      --cabinet-dark: #8B857C;
+      --cabinet-light: #CEC9C1;
+      --back: #D5D0C8;
+
+      --shelf-line: #777169;
+      --paper: #F1EEE8;
     }
 
 
@@ -33,13 +34,16 @@
     }
 
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-
+    html,
     body {
       margin: 0;
+      min-height: 100%;
+
+      background:
+        var(--background);
+
+      color:
+        var(--text);
 
       font-family:
         Arial,
@@ -47,23 +51,12 @@
         sans-serif;
 
       font-weight: 300;
-
-      color: var(--text);
-
-      background:
-        var(--background);
     }
 
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-
-    /* ------------------------------
+    /* ========================================
        HEADER
-    ------------------------------ */
+       ======================================== */
 
     header {
 
@@ -75,7 +68,7 @@
       z-index: 100;
 
       width: 100%;
-      height: 54px;
+      min-height: 54px;
 
       padding:
         0 24px;
@@ -83,17 +76,12 @@
       display: flex;
 
       align-items: center;
+      justify-content: space-between;
 
-      justify-content:
-        space-between;
+      gap: 18px;
 
       background:
-        rgba(
-          233,
-          229,
-          222,
-          0.88
-        );
+        rgba(233, 229, 222, .88);
 
       backdrop-filter:
         blur(10px);
@@ -103,123 +91,269 @@
     }
 
 
-    .site-title {
+    header a {
+      color:
+        var(--text);
 
-      font-size: 11px;
-
-      font-weight: 600;
-
-      letter-spacing:
-        0.035em;
+      text-decoration:
+        none;
     }
 
 
-    .header-right {
+    .header-left {
 
       display: flex;
 
       align-items: center;
 
-      gap: 18px;
+      gap: 25px;
+
+      min-width: 0;
+
+      flex: 1;
     }
 
 
-    .archive-link {
+    .site-title {
 
-      font-size: 10px;
+      flex-shrink: 0;
+
+      font-size: 11px;
+
+      font-weight: 600;
+
+      letter-spacing: .035em;
+
+      white-space: nowrap;
+    }
+
+
+    .category-nav {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 15px;
+
+      min-width: 0;
+
+      overflow-x: auto;
+
+      scrollbar-width: none;
+    }
+
+
+    .category-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+
+    .header-category {
+
+      flex-shrink: 0;
 
       color:
         var(--secondary);
+
+      font-size: 9px;
+
+      font-weight: 300;
+
+      letter-spacing: .035em;
+
+      white-space: nowrap;
+    }
+
+
+    .header-category.book {
+      color:
+        var(--text);
     }
 
 
     .about-link {
 
+      flex-shrink: 0;
+
       padding-left: 14px;
 
       border-left:
-        1px solid var(--line);
+        1px solid #CBC5BB;
 
       font-size: 10px;
+
+      white-space: nowrap;
     }
 
 
-    /* ------------------------------
-       MAIN
-    ------------------------------ */
+    /* ========================================
+       PAGE
+       ======================================== */
 
     main {
 
-      max-width: 1500px;
-
-      margin:
-        0 auto;
+      min-height: 100vh;
 
       padding:
-        100px 24px 100px;
+        92px 24px 80px;
     }
 
 
-    .page-header {
+    .page-head {
 
-      display: flex;
+      max-width: 1300px;
 
-      align-items:
-        baseline;
-
-      justify-content:
-        space-between;
-
-      margin-bottom:
-        50px;
-
-      padding-bottom:
-        12px;
-
-      border-bottom:
-        1px solid var(--line);
+      margin:
+        0 auto 34px;
     }
 
 
-    .page-title {
+    .page-label {
+
+      margin-bottom: 7px;
+
+      color:
+        var(--secondary);
+
+      font-size: 8px;
+
+      letter-spacing: .12em;
+    }
+
+
+    h1 {
 
       margin: 0;
 
-      font-size: 12px;
+      font-size: 22px;
 
-      font-weight: 500;
+      font-weight: 400;
 
-      letter-spacing:
-        0.08em;
+      letter-spacing: .01em;
     }
 
 
     .book-count {
 
-      font-size: 9px;
+      margin-top: 8px;
 
       color:
         var(--secondary);
 
-      letter-spacing:
-        0.05em;
+      font-size: 9px;
+
+      letter-spacing: .04em;
     }
 
 
-    /* ------------------------------
-       SHELVES
-    ------------------------------ */
+    /* ========================================
+       BOOKCASE
+       ======================================== */
 
-    .library {
+    .bookcase-wrap {
+
+      width: 100%;
 
       display: flex;
 
-      flex-direction:
-        column;
-
-      gap: 65px;
+      justify-content: center;
     }
 
+
+    .bookcase {
+
+      position: relative;
+
+      width: min(
+        1180px,
+        calc(100vw - 70px)
+      );
+
+      /*
+        本棚全体の高さを固定。
+        これによって家具としての全形が
+        一画面に収まりやすくなる。
+      */
+
+      height: min(
+        720px,
+        calc(100vh - 190px)
+      );
+
+      min-height: 560px;
+
+      background:
+        var(--back);
+
+      /*
+        外周のフレーム
+      */
+
+      border:
+        16px solid var(--cabinet-dark);
+
+      box-shadow:
+        0 18px 30px
+        rgba(55, 50, 44, .14),
+
+        inset 0 0 0 1px
+        rgba(255,255,255,.25);
+    }
+
+
+    /*
+      背板
+    */
+
+    .bookcase-back {
+
+      position: absolute;
+
+      inset: 16px;
+
+      background:
+        linear-gradient(
+          to right,
+          rgba(255,255,255,.12),
+          transparent 4%,
+          transparent 96%,
+          rgba(0,0,0,.05)
+        );
+
+      border:
+        1px solid
+        rgba(100,95,88,.12);
+
+      z-index: 1;
+    }
+
+
+    /*
+      本棚内部
+    */
+
+    .shelves {
+
+      position: absolute;
+
+      inset:
+        16px;
+
+      z-index: 2;
+
+      display: grid;
+
+      grid-template-rows:
+        repeat(3, 1fr);
+
+      gap: 0;
+    }
+
+
+    /* ========================================
+       SHELF
+       ======================================== */
 
     .shelf {
 
@@ -228,85 +362,94 @@
       display: grid;
 
       grid-template-columns:
-        repeat(
-          8,
-          minmax(
-            0,
-            1fr
-          )
-        );
+        repeat(8, minmax(0, 1fr));
 
-      column-gap: 18px;
+      align-items: end;
 
-      align-items:
-        end;
+      gap: 16px;
 
       padding:
-        0 10px 16px;
+        24px 26px 20px;
+
+      /*
+        棚板そのもの
+      */
 
       border-bottom:
-        1px solid
-        var(--text);
+        18px solid
+        var(--cabinet);
+
+      box-shadow:
+        inset 0 -3px 0
+        var(--cabinet-light),
+
+        0 4px 0
+        var(--cabinet-dark);
     }
 
 
-    .shelf::after {
+    /*
+      一番上の空間だけ少し余白を取る
+    */
 
-      content: "";
-
-      position: absolute;
-
-      left: 0;
-      right: 0;
-
-      bottom: -5px;
-
-      height: 4px;
-
-      border-top:
-        1px solid
-        var(--line);
-
-      border-bottom:
-        1px solid
-        var(--line);
+    .shelf:first-child {
+      padding-top: 28px;
     }
 
 
-    /* ------------------------------
+    /*
+      最下段の床
+    */
+
+    .shelf:last-child {
+      border-bottom:
+        22px solid
+        var(--cabinet);
+
+      box-shadow:
+        inset 0 -3px 0
+        var(--cabinet-light),
+
+        0 5px 0
+        var(--cabinet-dark);
+    }
+
+
+    /* ========================================
        BOOK
-    ------------------------------ */
+       ======================================== */
 
     .book {
+
+      position: relative;
+
+      height: 100%;
 
       min-width: 0;
 
       display: flex;
 
-      flex-direction:
-        column;
+      align-items: flex-end;
 
-      align-items:
-        center;
-
-      justify-content:
-        flex-end;
+      justify-content: center;
     }
 
 
-    .book-cover-wrap {
+    .book-link {
+
+      position: relative;
 
       width: 100%;
-
-      height: 250px;
+      height: 100%;
 
       display: flex;
 
-      align-items:
-        flex-end;
+      align-items: flex-end;
 
-      justify-content:
-        center;
+      justify-content: center;
+
+      text-decoration:
+        none;
     }
 
 
@@ -314,154 +457,266 @@
 
       display: block;
 
-      max-width: 100%;
-
-      max-height: 250px;
-
       width: auto;
 
-      height: auto;
+      max-width: 100%;
+
+      height: min(
+        190px,
+        78%
+      );
 
       object-fit:
         contain;
 
+      object-position:
+        bottom center;
+
+      background:
+        var(--paper);
+
       box-shadow:
-        0 3px 7px
-        rgba(
-          36,
-          35,
-          31,
-          0.15
-        );
+        2px 3px 5px
+        rgba(40,36,31,.18);
 
       transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform .16s ease,
+        box-shadow .16s ease;
     }
 
 
-    .book:hover
+    .book-link:hover
     .book-cover {
 
       transform:
-        translateY(-7px);
+        translateY(-6px);
 
       box-shadow:
-        0 8px 15px
-        rgba(
-          36,
-          35,
-          31,
-          0.20
-        );
+        4px 9px 12px
+        rgba(40,36,31,.20);
     }
 
 
+    /*
+      書影がない場合の元写真
+    */
+
+    .book-cover.fallback {
+
+      width: 105px;
+
+      height: 175px;
+
+      object-fit:
+        cover;
+    }
+
+
+    /* ========================================
+       BOOK INFORMATION
+       ======================================== */
+
     .book-info {
 
-      width: 100%;
+      position: absolute;
 
-      padding-top:
-        10px;
+      left: 0;
+      right: 0;
+
+      bottom: -17px;
+
+      padding:
+        0 2px;
+
+      text-align:
+        center;
+
+      pointer-events:
+        none;
     }
 
 
     .book-title {
 
-      font-size: 8px;
+      overflow:
+        hidden;
 
-      line-height:
-        1.45;
+      color:
+        var(--text);
 
-      font-weight: 400;
+      font-size: 7px;
+
+      line-height: 1.35;
+
+      white-space:
+        nowrap;
+
+      text-overflow:
+        ellipsis;
     }
 
 
     .book-author {
 
-      margin-top:
-        3px;
+      margin-top: 2px;
 
-      font-size: 7px;
-
-      line-height:
-        1.4;
+      overflow:
+        hidden;
 
       color:
         var(--secondary);
+
+      font-size: 6px;
+
+      line-height: 1.3;
+
+      white-space:
+        nowrap;
+
+      text-overflow:
+        ellipsis;
     }
 
 
-    /* ------------------------------
+    /* ========================================
        EMPTY
-    ------------------------------ */
+       ======================================== */
 
     .empty {
 
-      padding:
-        50px 0;
+      position: absolute;
 
-      font-size: 10px;
+      inset: 0;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
 
       color:
         var(--secondary);
+
+      font-size: 10px;
     }
 
 
-    /* ------------------------------
+    /* ========================================
        MOBILE
-    ------------------------------ */
+       ======================================== */
 
-    @media (
-      max-width: 1100px
-    ) {
+    @media (max-width: 900px) {
+
+      main {
+
+        padding:
+          78px 14px 60px;
+      }
+
+
+      .page-head {
+
+        margin-bottom: 25px;
+      }
+
+
+      .bookcase {
+
+        width:
+          calc(100vw - 32px);
+
+        height:
+          650px;
+
+        min-height:
+          0;
+
+        border-width:
+          11px;
+      }
+
+
+      .bookcase-back {
+
+        inset:
+          11px;
+      }
+
+
+      .shelves {
+
+        inset:
+          11px;
+      }
+
 
       .shelf {
 
         grid-template-columns:
-          repeat(
-            6,
-            minmax(
-              0,
-              1fr
-            )
-          );
+          repeat(4, minmax(0, 1fr));
 
-        column-gap: 15px;
+        gap:
+          9px;
+
+        padding:
+          14px 12px 15px;
+
+        border-bottom-width:
+          13px;
+      }
+
+
+      .book-cover {
+
+        height:
+          155px;
+      }
+
+
+      .book-info {
+        bottom:
+          -13px;
       }
 
     }
 
 
-    @media (
-      max-width: 700px
-    ) {
+    @media (max-width: 600px) {
 
       header {
 
-        height: 48px;
+        min-height:
+          48px;
 
         padding:
           0 12px;
+
+        gap:
+          10px;
+      }
+
+
+      .header-left {
+
+        gap:
+          15px;
       }
 
 
       .site-title {
-
-        font-size: 10px;
+        font-size:
+          10px;
       }
 
 
-      .header-right {
-
-        gap: 12px;
+      .category-nav {
+        gap:
+          12px;
       }
 
 
-      .archive-link,
-      .about-link {
-
-        font-size: 9px;
+      .header-category {
+        font-size:
+          8px;
       }
 
 
@@ -469,76 +724,95 @@
 
         padding-left:
           10px;
+
+        font-size:
+          9px;
       }
 
 
       main {
 
         padding:
-          76px 10px 70px;
+          72px 8px 45px;
       }
 
 
-      .page-header {
+      .page-head {
 
-        margin-bottom:
-          35px;
+        padding:
+          0 4px;
       }
 
 
-      .library {
+      h1 {
+        font-size:
+          20px;
+      }
 
-        gap: 50px;
+
+      .bookcase {
+
+        width:
+          calc(100vw - 18px);
+
+        height:
+          560px;
+
+        border-width:
+          8px;
+      }
+
+
+      .bookcase-back {
+
+        inset:
+          8px;
+      }
+
+
+      .shelves {
+
+        inset:
+          8px;
       }
 
 
       .shelf {
 
         grid-template-columns:
-          repeat(
-            4,
-            minmax(
-              0,
-              1fr
-            )
-          );
+          repeat(4, minmax(0, 1fr));
 
-        column-gap: 10px;
+        gap:
+          5px;
 
         padding:
-          0 5px 12px;
-      }
+          10px 6px 11px;
 
-
-      .book-cover-wrap {
-
-        height: 180px;
+        border-bottom-width:
+          10px;
       }
 
 
       .book-cover {
 
-        max-height:
-          180px;
-      }
+        height:
+          125px;
 
-
-      .book-info {
-
-        padding-top:
-          7px;
+        box-shadow:
+          1px 2px 4px
+          rgba(40,36,31,.18);
       }
 
 
       .book-title {
-
-        font-size: 7px;
+        font-size:
+          6px;
       }
 
 
       .book-author {
-
-        font-size: 6px;
+        font-size:
+          5px;
       }
 
     }
@@ -551,68 +825,147 @@
 <body>
 
 
+  <!-- ========================================
+       HEADER
+       ======================================== -->
+
   <header>
 
-    <a
-      href="index.html"
-      class="site-title"
-    >
-      SAKATA KATSUYUKI
-    </a>
-
-
-    <div
-      class="header-right"
-    >
+    <div class="header-left">
 
       <a
         href="index.html"
-        class="archive-link"
+        class="site-title"
       >
-        Archive
+        SAKATA KATSUYUKI
       </a>
 
 
-      <a
-        href="about.html"
-        class="about-link"
+      <nav
+        class="category-nav"
+        aria-label="Archive categories"
       >
-        About
-      </a>
+
+        <a
+          class="header-category"
+          href="index.html"
+        >
+          ALL
+        </a>
+
+        <a
+          class="header-category"
+          href="index.html"
+        >
+          ARCHITECTURE
+        </a>
+
+        <a
+          class="header-category"
+          href="index.html"
+        >
+          OBJECT
+        </a>
+
+        <a
+          class="header-category"
+          href="index.html"
+        >
+          FOOD
+        </a>
+
+        <a
+          class="header-category book"
+          href="book.html"
+        >
+          BOOK
+        </a>
+
+        <a
+          class="header-category"
+          href="index.html"
+        >
+          TEXT
+        </a>
+
+        <a
+          class="header-category"
+          href="index.html"
+        >
+          PHOTO
+        </a>
+
+        <a
+          class="header-category"
+          href="index.html"
+        >
+          PLACE
+        </a>
+
+        <a
+          class="header-category"
+          href="index.html"
+        >
+          OTHER
+        </a>
+
+      </nav>
 
     </div>
+
+
+    <a
+      href="about.html"
+      class="about-link"
+    >
+      About
+    </a>
 
   </header>
 
 
+  <!-- ========================================
+       CONTENT
+       ======================================== -->
+
   <main>
 
 
-    <div
-      class="page-header"
-    >
+    <div class="page-head">
 
-      <h1
-        class="page-title"
-      >
+      <div class="page-label">
+        ARCHIVE
+      </div>
+
+      <h1>
         BOOK
       </h1>
 
-
       <div
-        id="book-count"
         class="book-count"
-      >
-        0 BOOKS
-      </div>
+        id="book-count"
+      ></div>
 
     </div>
 
 
-    <div
-      id="library"
-      class="library"
-    ></div>
+    <div class="bookcase-wrap">
+
+      <section
+        class="bookcase"
+        id="bookcase"
+      >
+
+        <div class="bookcase-back"></div>
+
+        <div
+          class="shelves"
+          id="shelves"
+        ></div>
+
+      </section>
+
+    </div>
 
 
   </main>
@@ -620,41 +973,44 @@
 
   <script>
 
-    const library =
-      document.getElementById(
-        "library"
-      );
-
-
-    const bookCount =
-      document.getElementById(
-        "book-count"
-      );
-
+    /* ========================================
+       Load books
+       ======================================== */
 
     async function loadBooks() {
 
+      const shelves =
+        document.getElementById(
+          "shelves"
+        );
+
+
+      const count =
+        document.getElementById(
+          "book-count"
+        );
+
+
       try {
 
-        const archiveResponse =
+        const response =
           await fetch(
-            "archive-data.json"
+            "archive-data.json?v="
+            + Date.now()
           );
 
 
-        if (
-          !archiveResponse.ok
-        ) {
+        if (!response.ok) {
 
           throw new Error(
-            "Archive data not found"
+            "archive-data.json could not be loaded."
           );
 
         }
 
 
         const archive =
-          await archiveResponse.json();
+          await response.json();
 
 
         const books =
@@ -664,245 +1020,319 @@
           );
 
 
-        bookCount.textContent =
-          `${books.length} BOOKS`;
-
-
-        if (
-          books.length === 0
-        ) {
-
-          library.innerHTML =
-            '<div class="empty">まだ本がありません。</div>';
-
-          return;
-        }
-
-
-        /*
-          1棚あたり8冊
-        */
-
-        const shelfSize = 8;
-
-
-        for (
-          let i = 0;
-          i < books.length;
-          i += shelfSize
-        ) {
-
-
-          const shelf =
-            document.createElement(
-              "div"
-            );
-
-
-          shelf.className =
-            "shelf";
-
-
-          const shelfBooks =
-            books.slice(
-              i,
-              i + shelfSize
-            );
-
-
-          shelfBooks.forEach(
-            book => {
-
-
-              const link =
-                document.createElement(
-                  "a"
-                );
-
-
-              link.className =
-                "book";
-
-
-              link.href =
-                book.detailPage;
-
-
-              const coverWrap =
-                document.createElement(
-                  "div"
-                );
-
-
-              coverWrap.className =
-                "book-cover-wrap";
-
-
-              const image =
-                document.createElement(
-                  "img"
-                );
-
-
-              image.className =
-                "book-cover";
-
-
-              /*
-                Google Booksで
-                書影が見つかった場合は
-                coverImageを使用。
-
-                見つからない場合は
-                元の写真を使用。
-              */
-
-              image.src =
-                book.coverImage ||
-                book.image;
-
-
-              image.alt =
-                book.bookTitle ||
-                book.title ||
-                "";
-
-
-              image.loading =
-                "lazy";
-
-
-              /*
-                書影が存在しない場合は
-                元画像へフォールバック
-              */
-
-              image.onerror =
-                () => {
-
-                  if (
-                    image.src.indexOf(
-                      book.image
-                    ) === -1
-                  ) {
-
-                    image.src =
-                      book.image;
-
-                  }
-
-                };
-
-
-              coverWrap.appendChild(
-                image
-              );
-
-
-              const info =
-                document.createElement(
-                  "div"
-                );
-
-
-              info.className =
-                "book-info";
-
-
-              const title =
-                document.createElement(
-                  "div"
-                );
-
-
-              title.className =
-                "book-title";
-
-
-              title.textContent =
-                book.bookTitle ||
-                book.title ||
-                "";
-
-
-              info.appendChild(
-                title
-              );
-
-
-              if (
-                book.authors &&
-                book.authors.length
-              ) {
-
-                const author =
-                  document.createElement(
-                    "div"
-                  );
-
-
-                author.className =
-                  "book-author";
-
-
-                author.textContent =
-                  book.authors.join(
-                    " / "
-                  );
-
-
-                info.appendChild(
-                  author
-                );
-
-              }
-
-
-              link.appendChild(
-                coverWrap
-              );
-
-
-              link.appendChild(
-                info
-              );
-
-
-              shelf.appendChild(
-                link
-              );
-
-            }
+        count.textContent =
+          books.length
+          + (
+            books.length === 1
+              ? " BOOK"
+              : " BOOKS"
           );
 
 
-          library.appendChild(
-            shelf
-          );
-
-        }
-
-      }
-
-
-      catch (
-        error
-      ) {
-
-        console.error(
-          error
+        renderBooks(
+          books,
+          shelves
         );
 
 
-        library.innerHTML =
-          '<div class="empty">BOOKを読み込めませんでした。</div>';
+      } catch (error) {
+
+        console.error(error);
+
+
+        shelves.innerHTML =
+          `
+            <div class="empty">
+              Failed to load books.
+            </div>
+          `;
+      }
+
+    }
+
+
+    /* ========================================
+       Render
+       ======================================== */
+
+    function renderBooks(
+      books,
+      shelves
+    ) {
+
+      shelves.innerHTML =
+        "";
+
+
+      const booksPerShelf =
+        window.innerWidth <= 900
+          ? 4
+          : 8;
+
+
+      /*
+        3段の本棚を常に作る。
+
+        本が少なくても、
+        「本棚そのもの」は3段の家具として
+        表示される。
+      */
+
+      const shelfCount =
+        Math.max(
+          3,
+          Math.ceil(
+            books.length
+            / booksPerShelf
+          )
+        );
+
+
+      /*
+        最大3段にする。
+      */
+
+      const visibleShelves =
+        Math.min(
+          3,
+          shelfCount
+        );
+
+
+      for (
+        let shelfIndex = 0;
+        shelfIndex < visibleShelves;
+        shelfIndex++
+      ) {
+
+        const shelf =
+          document.createElement(
+            "div"
+          );
+
+
+        shelf.className =
+          "shelf";
+
+
+        const start =
+          shelfIndex
+          * booksPerShelf;
+
+
+        const shelfBooks =
+          books.slice(
+            start,
+            start + booksPerShelf
+          );
+
+
+        shelfBooks.forEach(
+          book => {
+
+            const item =
+              document.createElement(
+                "div"
+              );
+
+
+            item.className =
+              "book";
+
+
+            const link =
+              document.createElement(
+                "a"
+              );
+
+
+            link.className =
+              "book-link";
+
+
+            link.href =
+              book.detailPage;
+
+
+            const image =
+              document.createElement(
+                "img"
+              );
+
+
+            image.className =
+              "book-cover";
+
+
+            const cover =
+              book.coverImage
+              || book.image;
+
+
+            image.src =
+              cover;
+
+
+            image.alt =
+              book.bookTitle
+              || book.title
+              || "BOOK";
+
+
+            /*
+              書影がない場合は
+              元画像に戻す。
+            */
+
+            image.onerror =
+              function() {
+
+                if (
+                  this.src.endsWith(
+                    book.image
+                  )
+                ) {
+
+                  return;
+                }
+
+
+                this.src =
+                  book.image;
+
+
+                this.classList.add(
+                  "fallback"
+                );
+
+              };
+
+
+            link.appendChild(
+              image
+            );
+
+
+            /*
+              情報
+            */
+
+            const info =
+              document.createElement(
+                "div"
+              );
+
+
+            info.className =
+              "book-info";
+
+
+            const title =
+              document.createElement(
+                "div"
+              );
+
+
+            title.className =
+              "book-title";
+
+
+            title.textContent =
+              book.bookTitle
+              || book.title
+              || "";
+
+
+            info.appendChild(
+              title
+            );
+
+
+            if (
+              Array.isArray(
+                book.authors
+              )
+              &&
+              book.authors.length
+            ) {
+
+              const author =
+                document.createElement(
+                  "div"
+                );
+
+
+              author.className =
+                "book-author";
+
+
+              author.textContent =
+                book.authors.join(
+                  " / "
+                );
+
+
+              info.appendChild(
+                author
+              );
+
+            }
+
+
+            link.appendChild(
+              info
+            );
+
+
+            item.appendChild(
+              link
+            );
+
+
+            shelf.appendChild(
+              item
+            );
+
+          }
+        );
+
+
+        shelves.appendChild(
+          shelf
+        );
 
       }
 
     }
 
 
+    /* ========================================
+       Start
+       ======================================== */
+
     loadBooks();
+
+
+    let resizeTimer;
+
+
+    window.addEventListener(
+      "resize",
+      function() {
+
+        clearTimeout(
+          resizeTimer
+        );
+
+
+        resizeTimer =
+          setTimeout(
+            loadBooks,
+            200
+          );
+
+      }
+    );
 
   </script>
 
