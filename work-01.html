@@ -122,6 +122,9 @@
 
 
 
+
+
+
 <style id="site-design">
 
   :root {
@@ -149,13 +152,13 @@
     left: 0;
     z-index: 100;
     width: 100%;
-    min-height: 54px;
-    padding: 0 24px;
+    min-height: 58px;
+    padding: 0 22px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 18px;
+    gap: 30px;
 
     background: rgba(233, 229, 222, 0.88);
 
@@ -171,13 +174,13 @@
   .header-left {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 30px;
     min-width: 0;
     flex: 1;
   }
 
   .site-title {
-    flex-shrink: 0;
+    flex: 0 0 auto;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: .035em;
@@ -187,7 +190,7 @@
   .category-nav {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 18px;
     min-width: 0;
     overflow-x: auto;
     scrollbar-width: none;
@@ -198,19 +201,38 @@
   }
 
   .header-category {
-    flex-shrink: 0;
-    font-size: 9px;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    padding: 0;
+    font-size: 10px;
+    line-height: 1;
     font-weight: 300;
-    letter-spacing: .035em;
-    color: var(--secondary);
+    letter-spacing: .04em;
+    color: rgba(34, 34, 34, 0.48);
     white-space: nowrap;
+    border-bottom: 1px solid transparent;
+  }
+
+  .header-category.active {
+    color: #222;
+    border-bottom-color: #222;
   }
 
   .about-link {
-    flex-shrink: 0;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
     padding-left: 14px;
     border-left: 1px solid var(--line);
     font-size: 10px;
+    line-height: 1;
+    font-weight: 300;
+    letter-spacing: .04em;
+    color: rgba(34, 34, 34, 0.48);
     white-space: nowrap;
   }
 
@@ -258,13 +280,13 @@
   @media (max-width: 600px) {
 
     header {
-      min-height: 48px;
-      padding: 0 12px;
-      gap: 10px;
+      min-height: 52px;
+      padding: 0 14px;
+      gap: 20px;
     }
 
     .header-left {
-      gap: 15px;
+      gap: 20px;
     }
 
     .site-title {
@@ -272,14 +294,16 @@
     }
 
     .category-nav {
-      gap: 12px;
+      gap: 10px;
     }
 
     .header-category {
-      font-size: 8px;
+      height: 18px;
+      font-size: 9px;
     }
 
     .about-link {
+      height: 18px;
       padding-left: 10px;
       font-size: 9px;
     }
@@ -312,6 +336,7 @@
 
 
 
+
 <header>
 
   <div class="header-left">
@@ -328,15 +353,15 @@
       aria-label="Archive categories"
     >
 
-<a class="header-category" href="index.html">ALL</a>
-<a class="header-category" href="index.html">ARCHITECTURE</a>
-<a class="header-category" href="index.html">OBJECT</a>
-<a class="header-category" href="index.html">FOOD</a>
-<a class="header-category" href="index.html">BOOK</a>
-<a class="header-category" href="index.html">TEXT</a>
-<a class="header-category" href="index.html">PHOTO</a>
-<a class="header-category" href="index.html">PLACE</a>
-<a class="header-category" href="index.html">OTHER</a>
+<a class="header-category category-ALL" href="index.html">ALL</a>
+<a class="header-category category-ARCHITECTURE" href="index.html">ARCHITECTURE</a>
+<a class="header-category category-OBJECT active" href="index.html">OBJECT</a>
+<a class="header-category category-FOOD" href="index.html">FOOD</a>
+<a class="header-category category-BOOK" href="index.html">BOOK</a>
+<a class="header-category category-TEXT" href="index.html">TEXT</a>
+<a class="header-category category-PHOTO" href="index.html">PHOTO</a>
+<a class="header-category category-PLACE" href="index.html">PLACE</a>
+<a class="header-category category-OTHER" href="index.html">OTHER</a>
 
     </nav>
 
@@ -350,6 +375,7 @@
   </a>
 
 </header>
+
 
 
 
