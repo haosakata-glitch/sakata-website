@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -38,8 +37,6 @@
       text-decoration: none;
     }
 
-    /* Header */
-
     header {
       position: fixed;
       top: 0;
@@ -55,6 +52,7 @@
       gap: 18px;
 
       background: rgba(233, 229, 222, 0.88);
+
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
@@ -90,15 +88,19 @@
 
     .header-category {
       flex-shrink: 0;
+
       border: 0;
       padding: 4px 0;
+
       background: transparent;
 
       font: inherit;
       font-size: 9px;
       font-weight: 300;
       letter-spacing: 0.035em;
+
       color: var(--secondary);
+
       white-space: nowrap;
       cursor: pointer;
     }
@@ -112,17 +114,26 @@
       font-weight: 500;
     }
 
+    /*
+      BOOKだけはフィルターではなく
+      book.htmlへ移動するリンク
+    */
+    .book-link {
+      cursor: pointer;
+    }
+
     .about-link {
       flex-shrink: 0;
+
       padding-left: 14px;
+
       border-left: 1px solid var(--line);
 
       font-size: 10px;
       font-weight: 300;
+
       white-space: nowrap;
     }
-
-    /* Archive */
 
     main {
       max-width: 1600px;
@@ -132,7 +143,10 @@
 
     .archive-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
       column-gap: var(--gap);
       row-gap: 42px;
     }
@@ -144,9 +158,13 @@
 
     .archive-image {
       display: block;
+
       width: 100%;
+
       aspect-ratio: 4 / 3;
+
       object-fit: cover;
+
       background: #DDD7CE;
     }
 
@@ -156,9 +174,12 @@
 
     .archive-category {
       margin-bottom: 4px;
+
       color: var(--secondary);
+
       font-size: 8px;
       line-height: 1.4;
+
       letter-spacing: 0.075em;
       font-weight: 300;
     }
@@ -167,6 +188,7 @@
       font-size: 11px;
       line-height: 1.5;
       font-weight: 400;
+
       overflow-wrap: anywhere;
     }
 
@@ -178,14 +200,15 @@
 
     .empty {
       grid-column: 1 / -1;
+
       padding: 30px 0;
+
       color: var(--secondary);
       font-size: 11px;
     }
 
-    /* Tablet */
-
     @media (max-width: 1000px) {
+
       header {
         padding: 0 18px;
         gap: 14px;
@@ -205,15 +228,16 @@
       }
 
       .archive-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
         column-gap: 16px;
         row-gap: 34px;
       }
     }
 
-    /* Mobile */
-
     @media (max-width: 600px) {
+
       header {
         height: 48px;
         padding: 0 12px;
@@ -248,7 +272,9 @@
       }
 
       .archive-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
         column-gap: 10px;
         row-gap: 27px;
       }
@@ -270,111 +296,327 @@
   </style>
 </head>
 
+
 <body>
 
   <header>
-    <div class="header-left">
-      <a href="index.html" class="site-title">SAKATA KATSUYUKI</a>
 
-      <nav class="category-nav" aria-label="Archive categories">
-        <button class="header-category active" data-category="ALL">ALL</button>
-        <button class="header-category" data-category="ARCHITECTURE">ARCHITECTURE</button>
-        <button class="header-category" data-category="OBJECT">OBJECT</button>
-        <button class="header-category" data-category="FOOD">FOOD</button>
-        <button class="header-category" data-category="BOOK">BOOK</button>
-        <button class="header-category" data-category="TEXT">TEXT</button>
-        <button class="header-category" data-category="PHOTO">PHOTO</button>
-        <button class="header-category" data-category="PLACE">PLACE</button>
-        <button class="header-category" data-category="OTHER">OTHER</button>
+    <div class="header-left">
+
+      <a
+        href="index.html"
+        class="site-title"
+      >
+        SAKATA KATSUYUKI
+      </a>
+
+
+      <nav
+        class="category-nav"
+        aria-label="Archive categories"
+      >
+
+        <button
+          class="header-category active"
+          data-category="ALL"
+        >
+          ALL
+        </button>
+
+
+        <button
+          class="header-category"
+          data-category="ARCHITECTURE"
+        >
+          ARCHITECTURE
+        </button>
+
+
+        <button
+          class="header-category"
+          data-category="OBJECT"
+        >
+          OBJECT
+        </button>
+
+
+        <button
+          class="header-category"
+          data-category="FOOD"
+        >
+          FOOD
+        </button>
+
+
+        <!-- BOOKだけ独立ページへ -->
+        <a
+          class="header-category book-link"
+          href="book.html"
+        >
+          BOOK
+        </a>
+
+
+        <button
+          class="header-category"
+          data-category="TEXT"
+        >
+          TEXT
+        </button>
+
+
+        <button
+          class="header-category"
+          data-category="PHOTO"
+        >
+          PHOTO
+        </button>
+
+
+        <button
+          class="header-category"
+          data-category="PLACE"
+        >
+          PLACE
+        </button>
+
+
+        <button
+          class="header-category"
+          data-category="OTHER"
+        >
+          OTHER
+        </button>
+
       </nav>
+
     </div>
 
-    <a href="about.html" class="about-link">About</a>
+
+    <a
+      href="about.html"
+      class="about-link"
+    >
+      About
+    </a>
+
   </header>
 
+
   <main>
-    <div id="archive-grid" class="archive-grid"></div>
+
+    <div
+      id="archive-grid"
+      class="archive-grid"
+    ></div>
+
   </main>
 
+
   <script>
-    const grid = document.getElementById("archive-grid");
-    const filters = document.querySelectorAll(".header-category");
+
+    const grid =
+      document.getElementById("archive-grid");
+
+
+    /*
+      BOOKは<a>なので、
+      フィルター対象から除外する。
+      それ以外のカテゴリーだけ
+      ボタンとして機能させる。
+    */
+    const filters =
+      document.querySelectorAll(
+        ".header-category[data-category]"
+      );
+
 
     let archiveItems = [];
 
+
     function render(category = "ALL") {
+
       grid.innerHTML = "";
 
-      const items = archiveItems.filter(item => {
-        return category === "ALL" || item.category === category;
-      });
+
+      const items =
+        archiveItems.filter(item => {
+
+          return (
+            category === "ALL" ||
+            item.category === category
+          );
+
+        });
+
 
       if (items.length === 0) {
+
         grid.innerHTML =
           '<div class="empty">まだ項目がありません。</div>';
+
         return;
       }
 
+
       items.forEach(item => {
-        const link = document.createElement("a");
-        link.className = "archive-item";
-        link.href = item.detailPage;
 
-        const image = document.createElement("img");
-        image.className = "archive-image";
-        image.src = item.image;
-        image.alt = item.title || "";
-        image.loading = "lazy";
+        const link =
+          document.createElement("a");
 
-        const caption = document.createElement("div");
-        caption.className = "archive-caption";
+        link.className =
+          "archive-item";
 
-        const categoryLabel = document.createElement("div");
-        categoryLabel.className = "archive-category";
-        categoryLabel.textContent = item.category;
+        link.href =
+          item.detailPage;
 
-        const title = document.createElement("div");
-        title.className = "archive-title";
-        title.textContent = item.title;
 
-        caption.appendChild(categoryLabel);
-        caption.appendChild(title);
+        const image =
+          document.createElement("img");
 
-        link.appendChild(image);
-        link.appendChild(caption);
+        image.className =
+          "archive-image";
 
-        grid.appendChild(link);
+        image.src =
+          item.image;
+
+        image.alt =
+          item.title || "";
+
+        image.loading =
+          "lazy";
+
+
+        const caption =
+          document.createElement("div");
+
+        caption.className =
+          "archive-caption";
+
+
+        const categoryLabel =
+          document.createElement("div");
+
+        categoryLabel.className =
+          "archive-category";
+
+        categoryLabel.textContent =
+          item.category;
+
+
+        const title =
+          document.createElement("div");
+
+        title.className =
+          "archive-title";
+
+        title.textContent =
+          item.title;
+
+
+        caption.appendChild(
+          categoryLabel
+        );
+
+        caption.appendChild(
+          title
+        );
+
+
+        link.appendChild(
+          image
+        );
+
+        link.appendChild(
+          caption
+        );
+
+
+        grid.appendChild(
+          link
+        );
+
       });
+
     }
+
 
     async function loadArchive() {
+
       try {
-        const response = await fetch("archive-data.json");
+
+        const response =
+          await fetch(
+            "archive-data.json"
+          );
+
 
         if (!response.ok) {
-          throw new Error("Archive data not found");
+          throw new Error(
+            "Archive data not found"
+          );
         }
 
-        archiveItems = await response.json();
+
+        archiveItems =
+          await response.json();
+
+
         render();
 
-      } catch (error) {
+      }
+
+      catch (error) {
+
         console.error(error);
+
+
         grid.innerHTML =
           '<div class="empty">Archiveを読み込めませんでした。</div>';
+
       }
+
     }
 
+
+    /*
+      BOOK以外のカテゴリーだけ
+      フィルターとして動作
+    */
     filters.forEach(filter => {
-      filter.addEventListener("click", () => {
-        filters.forEach(button => button.classList.remove("active"));
-        filter.classList.add("active");
-        render(filter.dataset.category);
-      });
+
+      filter.addEventListener(
+        "click",
+        () => {
+
+          filters.forEach(button => {
+
+            button.classList.remove(
+              "active"
+            );
+
+          });
+
+
+          filter.classList.add(
+            "active"
+          );
+
+
+          render(
+            filter.dataset.category
+          );
+
+        }
+      );
+
     });
 
+
     loadArchive();
+
   </script>
 
 </body>
+
 </html>
