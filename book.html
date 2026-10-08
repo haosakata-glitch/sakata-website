@@ -1,1342 +1,555 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>BOOK | SAKATA KATSUYUKI</title>
 
   <style>
-
     :root {
       --background: #E9E5DE;
       --text: #24231F;
       --secondary: #77736B;
-
-      --cabinet: #B7B1A8;
-      --cabinet-dark: #8B857C;
-      --cabinet-light: #CEC9C1;
-      --back: #D5D0C8;
-
-      --shelf-line: #777169;
-      --paper: #F1EEE8;
+      --line: #CBC5BB;
     }
-
 
     * {
       box-sizing: border-box;
     }
 
-
-    html,
-    body {
+    html {
       margin: 0;
-      min-height: 100%;
-
-      background:
-        var(--background);
-
-      color:
-        var(--text);
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-      font-weight: 300;
+      padding: 0;
+      background: var(--background);
     }
 
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    /* ========================================
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
        HEADER
-       ======================================== */
+    ========================= */
 
-    header {
-
+    .site-header {
       position: fixed;
-
       top: 0;
       left: 0;
-
-      z-index: 100;
-
-      width: 100%;
-      min-height: 54px;
-
-      padding:
-        0 24px;
+      right: 0;
+      z-index: 1000;
 
       display: flex;
-
       align-items: center;
       justify-content: space-between;
 
-      gap: 18px;
+      height: 58px;
+      padding: 0 28px;
 
-      background:
-        rgba(233, 229, 222, .88);
-
-      backdrop-filter:
-        blur(10px);
-
-      -webkit-backdrop-filter:
-        blur(10px);
+      background: rgba(233, 229, 222, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
-
-
-    header a {
-      color:
-        var(--text);
-
-      text-decoration:
-        none;
-    }
-
-
-    .header-left {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 25px;
-
-      min-width: 0;
-
-      flex: 1;
-    }
-
 
     .site-title {
-
-      flex-shrink: 0;
-
-      font-size: 11px;
-
-      font-weight: 600;
-
-      letter-spacing: .035em;
-
+      font-size: 13px;
+      line-height: 1;
+      letter-spacing: 0.08em;
       white-space: nowrap;
     }
 
-
-    .category-nav {
-
+    .header-right {
       display: flex;
-
       align-items: center;
-
-      gap: 15px;
-
-      min-width: 0;
-
-      overflow-x: auto;
-
-      scrollbar-width: none;
+      gap: 22px;
     }
-
-
-    .category-nav::-webkit-scrollbar {
-      display: none;
-    }
-
 
     .header-category {
+      border: 0;
+      padding: 0;
 
-      flex-shrink: 0;
+      background: none;
+      color: var(--secondary);
 
-      color:
-        var(--secondary);
+      font-family: inherit;
+      font-size: 11px;
+      line-height: 1;
+      letter-spacing: 0.08em;
 
-      font-size: 9px;
-
-      font-weight: 300;
-
-      letter-spacing: .035em;
-
+      cursor: pointer;
       white-space: nowrap;
     }
 
-
-    .header-category.book {
-      color:
-        var(--text);
+    .header-category.active {
+      color: var(--text);
     }
-
 
     .about-link {
-
-      flex-shrink: 0;
-
-      padding-left: 14px;
-
-      border-left:
-        1px solid #CBC5BB;
-
-      font-size: 10px;
-
-      white-space: nowrap;
+      margin-left: 8px;
+      padding-left: 22px;
+      border-left: 1px solid var(--line);
     }
 
-
-    /* ========================================
+    /* =========================
        PAGE
-       ======================================== */
+    ========================= */
 
     main {
-
-      min-height: 100vh;
-
-      padding:
-        92px 24px 80px;
+      padding: 94px 28px 70px;
     }
 
+    .page-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
 
-    .page-head {
-
-      max-width: 1300px;
-
-      margin:
-        0 auto 34px;
+      margin-bottom: 32px;
     }
 
-
-    .page-label {
-
-      margin-bottom: 7px;
-
-      color:
-        var(--secondary);
-
-      font-size: 8px;
-
-      letter-spacing: .12em;
-    }
-
-
-    h1 {
-
+    .page-title {
       margin: 0;
 
-      font-size: 22px;
-
+      font-size: 13px;
       font-weight: 400;
-
-      letter-spacing: .01em;
+      letter-spacing: 0.08em;
     }
-
 
     .book-count {
-
-      margin-top: 8px;
-
-      color:
-        var(--secondary);
-
-      font-size: 9px;
-
-      letter-spacing: .04em;
-    }
-
-
-    /* ========================================
-       BOOKCASE
-       ======================================== */
-
-    .bookcase-wrap {
-
-      width: 100%;
-
-      display: flex;
-
-      justify-content: center;
-    }
-
-
-    .bookcase {
-
-      position: relative;
-
-      width: min(
-        1180px,
-        calc(100vw - 70px)
-      );
-
-      /*
-        本棚全体の高さを固定。
-        これによって家具としての全形が
-        一画面に収まりやすくなる。
-      */
-
-      height: min(
-        720px,
-        calc(100vh - 190px)
-      );
-
-      min-height: 560px;
-
-      background:
-        var(--back);
-
-      /*
-        外周のフレーム
-      */
-
-      border:
-        16px solid var(--cabinet-dark);
-
-      box-shadow:
-        0 18px 30px
-        rgba(55, 50, 44, .14),
-
-        inset 0 0 0 1px
-        rgba(255,255,255,.25);
-    }
-
-
-    /*
-      背板
-    */
-
-    .bookcase-back {
-
-      position: absolute;
-
-      inset: 16px;
-
-      background:
-        linear-gradient(
-          to right,
-          rgba(255,255,255,.12),
-          transparent 4%,
-          transparent 96%,
-          rgba(0,0,0,.05)
-        );
-
-      border:
-        1px solid
-        rgba(100,95,88,.12);
-
-      z-index: 1;
-    }
-
-
-    /*
-      本棚内部
-    */
-
-    .shelves {
-
-      position: absolute;
-
-      inset:
-        16px;
-
-      z-index: 2;
-
-      display: grid;
-
-      grid-template-rows:
-        repeat(3, 1fr);
-
-      gap: 0;
-    }
-
-
-    /* ========================================
-       SHELF
-       ======================================== */
-
-    .shelf {
-
-      position: relative;
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(8, minmax(0, 1fr));
-
-      align-items: end;
-
-      gap: 16px;
-
-      padding:
-        24px 26px 20px;
-
-      /*
-        棚板そのもの
-      */
-
-      border-bottom:
-        18px solid
-        var(--cabinet);
-
-      box-shadow:
-        inset 0 -3px 0
-        var(--cabinet-light),
-
-        0 4px 0
-        var(--cabinet-dark);
-    }
-
-
-    /*
-      一番上の空間だけ少し余白を取る
-    */
-
-    .shelf:first-child {
-      padding-top: 28px;
-    }
-
-
-    /*
-      最下段の床
-    */
-
-    .shelf:last-child {
-      border-bottom:
-        22px solid
-        var(--cabinet);
-
-      box-shadow:
-        inset 0 -3px 0
-        var(--cabinet-light),
-
-        0 5px 0
-        var(--cabinet-dark);
-    }
-
-
-    /* ========================================
-       BOOK
-       ======================================== */
-
-    .book {
-
-      position: relative;
-
-      height: 100%;
-
-      min-width: 0;
-
-      display: flex;
-
-      align-items: flex-end;
-
-      justify-content: center;
-    }
-
-
-    .book-link {
-
-      position: relative;
-
-      width: 100%;
-      height: 100%;
-
-      display: flex;
-
-      align-items: flex-end;
-
-      justify-content: center;
-
-      text-decoration:
-        none;
-    }
-
-
-    .book-cover {
-
-      display: block;
-
-      width: auto;
-
-      max-width: 100%;
-
-      height: min(
-        190px,
-        78%
-      );
-
-      object-fit:
-        contain;
-
-      object-position:
-        bottom center;
-
-      background:
-        var(--paper);
-
-      box-shadow:
-        2px 3px 5px
-        rgba(40,36,31,.18);
-
-      transition:
-        transform .16s ease,
-        box-shadow .16s ease;
-    }
-
-
-    .book-link:hover
-    .book-cover {
-
-      transform:
-        translateY(-6px);
-
-      box-shadow:
-        4px 9px 12px
-        rgba(40,36,31,.20);
-    }
-
-
-    /*
-      書影がない場合の元写真
-    */
-
-    .book-cover.fallback {
-
-      width: 105px;
-
-      height: 175px;
-
-      object-fit:
-        cover;
-    }
-
-
-    /* ========================================
-       BOOK INFORMATION
-       ======================================== */
-
-    .book-info {
-
-      position: absolute;
-
-      left: 0;
-      right: 0;
-
-      bottom: -17px;
-
-      padding:
-        0 2px;
-
-      text-align:
-        center;
-
-      pointer-events:
-        none;
-    }
-
-
-    .book-title {
-
-      overflow:
-        hidden;
-
-      color:
-        var(--text);
-
-      font-size: 7px;
-
-      line-height: 1.35;
-
-      white-space:
-        nowrap;
-
-      text-overflow:
-        ellipsis;
-    }
-
-
-    .book-author {
-
-      margin-top: 2px;
-
-      overflow:
-        hidden;
-
-      color:
-        var(--secondary);
-
-      font-size: 6px;
-
-      line-height: 1.3;
-
-      white-space:
-        nowrap;
-
-      text-overflow:
-        ellipsis;
-    }
-
-
-    /* ========================================
-       EMPTY
-       ======================================== */
-
-    .empty {
-
-      position: absolute;
-
-      inset: 0;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      color:
-        var(--secondary);
+      color: var(--secondary);
 
       font-size: 10px;
+      letter-spacing: 0.08em;
     }
 
+    /* =========================
+       BOOK GRID
+    ========================= */
 
-    /* ========================================
-       MOBILE
-       ======================================== */
-
-    @media (max-width: 900px) {
-
-      main {
-
-        padding:
-          78px 14px 60px;
-      }
-
-
-      .page-head {
-
-        margin-bottom: 25px;
-      }
-
-
-      .bookcase {
-
-        width:
-          calc(100vw - 32px);
-
-        height:
-          650px;
-
-        min-height:
-          0;
-
-        border-width:
-          11px;
-      }
-
-
-      .bookcase-back {
-
-        inset:
-          11px;
-      }
-
-
-      .shelves {
-
-        inset:
-          11px;
-      }
-
-
-      .shelf {
-
-        grid-template-columns:
-          repeat(4, minmax(0, 1fr));
-
-        gap:
-          9px;
-
-        padding:
-          14px 12px 15px;
-
-        border-bottom-width:
-          13px;
-      }
-
-
-      .book-cover {
-
-        height:
-          155px;
-      }
-
-
-      .book-info {
-        bottom:
-          -13px;
-      }
-
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      column-gap: 18px;
+      row-gap: 42px;
+      align-items: start;
     }
 
+    .book-item {
+      display: block;
+      min-width: 0;
+    }
 
-    @media (max-width: 600px) {
+    .book-cover-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
 
-      header {
+      background: #DED9D1;
+    }
 
-        min-height:
-          48px;
+    .book-cover {
+      display: block;
 
-        padding:
-          0 12px;
+      width: 100%;
+      height: auto;
 
-        gap:
-          10px;
+      object-fit: contain;
+
+      transition:
+        opacity 0.18s ease;
+    }
+
+    .book-item:hover .book-cover {
+      opacity: 0.72;
+    }
+
+    .book-info {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+
+      padding: 7px 8px;
+
+      background: rgba(233, 229, 222, 0.92);
+
+      opacity: 0;
+      pointer-events: none;
+
+      transition: opacity 0.18s ease;
+    }
+
+    .book-item:hover .book-info {
+      opacity: 1;
+    }
+
+    .book-title {
+      margin: 0;
+
+      color: var(--text);
+
+      font-size: 10px;
+      line-height: 1.35;
+      letter-spacing: 0.02em;
+    }
+
+    .book-authors {
+      margin-top: 3px;
+
+      color: var(--secondary);
+
+      font-size: 9px;
+      line-height: 1.35;
+    }
+
+    /* =========================
+       LOADING / EMPTY
+    ========================= */
+
+    .status {
+      color: var(--secondary);
+
+      font-size: 10px;
+      letter-spacing: 0.04em;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 1000px) {
+      .book-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        column-gap: 16px;
       }
+    }
 
-
-      .header-left {
-
-        gap:
-          15px;
+    @media (max-width: 760px) {
+      .site-header {
+        height: 54px;
+        padding: 0 18px;
       }
-
 
       .site-title {
-        font-size:
-          10px;
+        font-size: 12px;
       }
 
-
-      .category-nav {
-        gap:
-          12px;
+      .header-right {
+        gap: 13px;
       }
-
 
       .header-category {
-        font-size:
-          8px;
+        font-size: 9px;
       }
-
 
       .about-link {
-
-        padding-left:
-          10px;
-
-        font-size:
-          9px;
+        margin-left: 2px;
+        padding-left: 13px;
       }
-
 
       main {
-
-        padding:
-          72px 8px 45px;
+        padding: 82px 18px 50px;
       }
 
-
-      .page-head {
-
-        padding:
-          0 4px;
+      .page-heading {
+        margin-bottom: 24px;
       }
 
-
-      h1 {
-        font-size:
-          20px;
+      .book-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        column-gap: 12px;
+        row-gap: 28px;
       }
 
-
-      .bookcase {
-
-        width:
-          calc(100vw - 18px);
-
-        height:
-          560px;
-
-        border-width:
-          8px;
+      .book-info {
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        padding: 5px 6px;
       }
-
-
-      .bookcase-back {
-
-        inset:
-          8px;
-      }
-
-
-      .shelves {
-
-        inset:
-          8px;
-      }
-
-
-      .shelf {
-
-        grid-template-columns:
-          repeat(4, minmax(0, 1fr));
-
-        gap:
-          5px;
-
-        padding:
-          10px 6px 11px;
-
-        border-bottom-width:
-          10px;
-      }
-
-
-      .book-cover {
-
-        height:
-          125px;
-
-        box-shadow:
-          1px 2px 4px
-          rgba(40,36,31,.18);
-      }
-
 
       .book-title {
-        font-size:
-          6px;
+        font-size: 8px;
       }
 
-
-      .book-author {
-        font-size:
-          5px;
+      .book-authors {
+        font-size: 7px;
       }
-
     }
 
+    @media (max-width: 480px) {
+      .header-right {
+        gap: 9px;
+      }
+
+      .header-category {
+        font-size: 8px;
+      }
+
+      .about-link {
+        padding-left: 9px;
+      }
+
+      main {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .book-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        column-gap: 9px;
+        row-gap: 24px;
+      }
+
+      .book-info {
+        display: none;
+      }
+    }
   </style>
-
 </head>
-
 
 <body>
 
+  <header class="site-header">
 
-  <!-- ========================================
-       HEADER
-       ======================================== -->
+    <a href="index.html" class="site-title">
+      SAKATA KATSUYUKI
+    </a>
 
-  <header>
+    <nav class="header-right">
 
-    <div class="header-left">
-
-      <a
-        href="index.html"
-        class="site-title"
-      >
-        SAKATA KATSUYUKI
+      <a href="index.html" class="header-category">
+        ALL
       </a>
 
+      <a href="index.html?category=ARCHITECTURE" class="header-category">
+        ARCHITECTURE
+      </a>
 
-      <nav
-        class="category-nav"
-        aria-label="Archive categories"
-      >
+      <a href="index.html?category=OBJECT" class="header-category">
+        OBJECT
+      </a>
 
-        <a
-          class="header-category"
-          href="index.html"
-        >
-          ALL
-        </a>
+      <a href="index.html?category=FOOD" class="header-category">
+        FOOD
+      </a>
 
-        <a
-          class="header-category"
-          href="index.html"
-        >
-          ARCHITECTURE
-        </a>
+      <a href="book.html" class="header-category active">
+        BOOK
+      </a>
 
-        <a
-          class="header-category"
-          href="index.html"
-        >
-          OBJECT
-        </a>
+      <a href="index.html?category=TEXT" class="header-category">
+        TEXT
+      </a>
 
-        <a
-          class="header-category"
-          href="index.html"
-        >
-          FOOD
-        </a>
+      <a href="index.html?category=PHOTO" class="header-category">
+        PHOTO
+      </a>
 
-        <a
-          class="header-category book"
-          href="book.html"
-        >
-          BOOK
-        </a>
+      <a href="index.html?category=PLACE" class="header-category">
+        PLACE
+      </a>
 
-        <a
-          class="header-category"
-          href="index.html"
-        >
-          TEXT
-        </a>
+      <a href="index.html?category=OTHER" class="header-category">
+        OTHER
+      </a>
 
-        <a
-          class="header-category"
-          href="index.html"
-        >
-          PHOTO
-        </a>
+      <a href="index.html#about" class="header-category about-link">
+        ABOUT
+      </a>
 
-        <a
-          class="header-category"
-          href="index.html"
-        >
-          PLACE
-        </a>
-
-        <a
-          class="header-category"
-          href="index.html"
-        >
-          OTHER
-        </a>
-
-      </nav>
-
-    </div>
-
-
-    <a
-      href="about.html"
-      class="about-link"
-    >
-      About
-    </a>
+    </nav>
 
   </header>
 
 
-  <!-- ========================================
-       CONTENT
-       ======================================== -->
-
   <main>
 
-
-    <div class="page-head">
-
-      <div class="page-label">
-        ARCHIVE
-      </div>
-
-      <h1>
-        BOOK
-      </h1>
-
-      <div
-        class="book-count"
-        id="book-count"
-      ></div>
-
+    <div class="page-heading">
+      <h1 class="page-title">BOOK</h1>
+      <div class="book-count" id="bookCount"></div>
     </div>
 
-
-    <div class="bookcase-wrap">
-
-      <section
-        class="bookcase"
-        id="bookcase"
-      >
-
-        <div class="bookcase-back"></div>
-
-        <div
-          class="shelves"
-          id="shelves"
-        ></div>
-
-      </section>
-
+    <div class="book-grid" id="bookGrid">
+      <div class="status">Loading...</div>
     </div>
-
 
   </main>
 
 
   <script>
 
-    /* ========================================
-       Load books
-       ======================================== */
-
-    async function loadBooks() {
-
-      const shelves =
-        document.getElementById(
-          "shelves"
-        );
+    const bookGrid = document.getElementById("bookGrid");
+    const bookCount = document.getElementById("bookCount");
 
 
-      const count =
-        document.getElementById(
-          "book-count"
-        );
+    function escapeHtml(value) {
+      if (value === undefined || value === null) {
+        return "";
+      }
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
 
 
-      try {
+    function renderBooks(items) {
 
-        const response =
-          await fetch(
-            "archive-data.json?v="
-            + Date.now()
-          );
+      const books = items.filter(item => {
+        return item.category === "BOOK";
+      });
 
+      bookCount.textContent = `${books.length} BOOKS`;
+
+      if (!books.length) {
+        bookGrid.innerHTML = `
+          <div class="status">
+            No books yet.
+          </div>
+        `;
+        return;
+      }
+
+
+      bookGrid.innerHTML = books.map(book => {
+
+        const image =
+          book.coverImage ||
+          book.image ||
+          "";
+
+        const fallback =
+          book.image ||
+          "";
+
+        const title =
+          book.bookTitle ||
+          book.title ||
+          "";
+
+        const authors =
+          Array.isArray(book.authors)
+            ? book.authors.join(", ")
+            : (book.authors || "");
+
+
+        return `
+          <a
+            class="book-item"
+            href="${escapeHtml(book.detailPage || "#")}"
+          >
+
+            <div class="book-cover-wrap">
+
+              <img
+                class="book-cover"
+                src="${escapeHtml(image)}"
+                data-fallback="${escapeHtml(fallback)}"
+                alt="${escapeHtml(title)}"
+                loading="lazy"
+              >
+
+              <div class="book-info">
+
+                <p class="book-title">
+                  ${escapeHtml(title)}
+                </p>
+
+                ${
+                  authors
+                    ? `<div class="book-authors">
+                        ${escapeHtml(authors)}
+                       </div>`
+                    : ""
+                }
+
+              </div>
+
+            </div>
+
+          </a>
+        `;
+
+      }).join("");
+
+
+      document
+        .querySelectorAll(".book-cover")
+        .forEach(img => {
+
+          img.addEventListener("error", () => {
+
+            const fallback =
+              img.dataset.fallback;
+
+            if (
+              fallback &&
+              img.src !== new URL(
+                fallback,
+                window.location.href
+              ).href
+            ) {
+              img.src = fallback;
+            }
+
+          });
+
+        });
+
+    }
+
+
+    fetch(
+      "archive-data.json?v=" +
+      Date.now()
+    )
+      .then(response => {
 
         if (!response.ok) {
-
           throw new Error(
             "archive-data.json could not be loaded."
           );
-
         }
 
+        return response.json();
 
-        const archive =
-          await response.json();
+      })
+      .then(data => {
 
+        renderBooks(data);
 
-        const books =
-          archive.filter(
-            item =>
-              item.category === "BOOK"
-          );
-
-
-        count.textContent =
-          books.length
-          + (
-            books.length === 1
-              ? " BOOK"
-              : " BOOKS"
-          );
-
-
-        renderBooks(
-          books,
-          shelves
-        );
-
-
-      } catch (error) {
+      })
+      .catch(error => {
 
         console.error(error);
 
-
-        shelves.innerHTML =
-          `
-            <div class="empty">
-              Failed to load books.
-            </div>
-          `;
-      }
-
-    }
-
-
-    /* ========================================
-       Render
-       ======================================== */
-
-    function renderBooks(
-      books,
-      shelves
-    ) {
-
-      shelves.innerHTML =
-        "";
-
-
-      const booksPerShelf =
-        window.innerWidth <= 900
-          ? 4
-          : 8;
-
-
-      /*
-        3段の本棚を常に作る。
-
-        本が少なくても、
-        「本棚そのもの」は3段の家具として
-        表示される。
-      */
-
-      const shelfCount =
-        Math.max(
-          3,
-          Math.ceil(
-            books.length
-            / booksPerShelf
-          )
-        );
-
-
-      /*
-        最大3段にする。
-      */
-
-      const visibleShelves =
-        Math.min(
-          3,
-          shelfCount
-        );
-
-
-      for (
-        let shelfIndex = 0;
-        shelfIndex < visibleShelves;
-        shelfIndex++
-      ) {
-
-        const shelf =
-          document.createElement(
-            "div"
-          );
-
-
-        shelf.className =
-          "shelf";
-
-
-        const start =
-          shelfIndex
-          * booksPerShelf;
-
-
-        const shelfBooks =
-          books.slice(
-            start,
-            start + booksPerShelf
-          );
-
-
-        shelfBooks.forEach(
-          book => {
-
-            const item =
-              document.createElement(
-                "div"
-              );
-
-
-            item.className =
-              "book";
-
-
-            const link =
-              document.createElement(
-                "a"
-              );
-
-
-            link.className =
-              "book-link";
-
-
-            link.href =
-              book.detailPage;
-
-
-            const image =
-              document.createElement(
-                "img"
-              );
-
-
-            image.className =
-              "book-cover";
-
-
-            const cover =
-              book.coverImage
-              || book.image;
-
-
-            image.src =
-              cover;
-
-
-            image.alt =
-              book.bookTitle
-              || book.title
-              || "BOOK";
-
-
-            /*
-              書影がない場合は
-              元画像に戻す。
-            */
-
-            image.onerror =
-              function() {
-
-                if (
-                  this.src.endsWith(
-                    book.image
-                  )
-                ) {
-
-                  return;
-                }
-
-
-                this.src =
-                  book.image;
-
-
-                this.classList.add(
-                  "fallback"
-                );
-
-              };
-
-
-            link.appendChild(
-              image
-            );
-
-
-            /*
-              情報
-            */
-
-            const info =
-              document.createElement(
-                "div"
-              );
-
-
-            info.className =
-              "book-info";
-
-
-            const title =
-              document.createElement(
-                "div"
-              );
-
-
-            title.className =
-              "book-title";
-
-
-            title.textContent =
-              book.bookTitle
-              || book.title
-              || "";
-
-
-            info.appendChild(
-              title
-            );
-
-
-            if (
-              Array.isArray(
-                book.authors
-              )
-              &&
-              book.authors.length
-            ) {
-
-              const author =
-                document.createElement(
-                  "div"
-                );
-
-
-              author.className =
-                "book-author";
-
-
-              author.textContent =
-                book.authors.join(
-                  " / "
-                );
-
-
-              info.appendChild(
-                author
-              );
-
-            }
-
-
-            link.appendChild(
-              info
-            );
-
-
-            item.appendChild(
-              link
-            );
-
-
-            shelf.appendChild(
-              item
-            );
-
-          }
-        );
-
-
-        shelves.appendChild(
-          shelf
-        );
-
-      }
-
-    }
-
-
-    /* ========================================
-       Start
-       ======================================== */
-
-    loadBooks();
-
-
-    let resizeTimer;
-
-
-    window.addEventListener(
-      "resize",
-      function() {
-
-        clearTimeout(
-          resizeTimer
-        );
-
-
-        resizeTimer =
-          setTimeout(
-            loadBooks,
-            200
-          );
-
-      }
-    );
+        bookGrid.innerHTML = `
+          <div class="status">
+            Could not load books.
+          </div>
+        `;
+
+      });
 
   </script>
 
-
 </body>
-
 </html>
