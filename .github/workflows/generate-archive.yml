@@ -1,4 +1,5 @@
-name: Generate Archive v8
+
+name: Generate Archive v9
 
 on:
   push:
@@ -43,27 +44,15 @@ jobs:
 
           def category_for(stem):
               stem_lower = stem.lower()
-
               for prefix, category in category_map.items():
                   if stem_lower.startswith(prefix):
                       return category
-
               return "OTHER"
 
-          # --------------------------------------------------
-          # 1. Detect renamed image files
-          # --------------------------------------------------
-
+          # 1. Detect renamed images
           try:
               diff = subprocess.check_output(
-                  [
-                      "git",
-                      "diff",
-                      "--name-status",
-                      "-M",
-                      "HEAD^",
-                      "HEAD"
-                  ],
+                  ["git", "diff", "--name-status", "-M", "HEAD^", "HEAD"],
                   text=True
               )
           except subprocess.CalledProcessError:
@@ -71,67 +60,196 @@ jobs:
 
           for line in diff.splitlines():
               parts = line.split("\t")
-
-              if len(parts) < 3:
+              if len(parts) < 3 or not parts[0].startswith("R"):
                   continue
 
-              status = parts[0]
-
-              if not status.startswith("R"):
-                  continue
-
-              old_image = parts[1]
-              new_image = parts[2]
-
-              old_path = Path(old_image)
-              new_path = Path(new_image)
+              old_path = Path(parts[1])
+              new_path = Path(parts[2])
 
               if old_path.suffix.lower() not in image_extensions:
                   continue
-
               if new_path.suffix.lower() not in image_extensions:
                   continue
 
               old_html = old_path.with_suffix(".html")
               new_html = new_path.with_suffix(".html")
 
-              print("Image renamed:")
-              print(" ", old_image)
-              print(" ", new_image)
-
-              # Rename corresponding HTML page
               if old_html.exists() and not new_html.exists():
                   old_html.rename(new_html)
 
-                  print("HTML renamed:")
-                  print(" ", old_html)
-                  print(" ", new_html)
-
-              # Update image reference
               if new_html.exists():
-                  html = new_html.read_text(
-                      encoding="utf-8"
-                  )
+                  html = new_html.read_text(encoding="utf-8")
+                  html = html.replace(old_path.name, new_path.name)
+                  new_html.write_text(html, encoding="utf-8")
 
-                  html = html.replace(
-                      old_path.name,
-                      new_path.name
-                  )
+          # 2. Shared page styles and header
+          shared_css = """
+          <style id="site-design">
+            :root {
+              --background: #E9E5DE;
+              --text: #24231F;
+              --secondary: #77736B;
+              --line: #CBC5BB;
+            }
 
-                  new_html.write_text(
-                      html,
-                      encoding="utf-8"
-                  )
+            * { box-sizing: border-box; }
 
-          # --------------------------------------------------
-          # 2. Create missing detail pages
-          # --------------------------------------------------
+            body {
+              margin: 0;
+              font-family: Arial, Helvetica, sans-serif;
+              font-weight: 300;
+              color: var(--text);
+              background: var(--background);
+            }
 
+            header {
+              position: fixed;
+              top: 0;
+              left: 0;
+              z-index: 100;
+              width: 100%;
+              min-height: 54px;
+              padding: 0 24px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 18px;
+              background: rgba(233, 229, 222, 0.88);
+              backdrop-filter: blur(10px);
+              -webkit-backdrop-filter: blur(10px);
+            }
+
+            header a {
+              color: var(--text);
+              text-decoration: none;
+            }
+
+            .header-left {
+              display: flex;
+              align-items: center;
+              gap: 25px;
+              min-width: 0;
+              flex: 1;
+            }
+
+            .site-title {
+              flex-shrink: 0;
+              font-size: 11px;
+              font-weight: 600;
+              letter-spacing: .035em;
+              white-space: nowrap;
+            }
+
+            .category-nav {
+              display: flex;
+              align-items: center;
+              gap: 15px;
+              min-width: 0;
+              overflow-x: auto;
+              scrollbar-width: none;
+            }
+
+            .category-nav::-webkit-scrollbar { display: none; }
+
+            .header-category {
+              flex-shrink: 0;
+              font-size: 9px;
+              font-weight: 300;
+              letter-spacing: .035em;
+              color: var(--secondary);
+              white-space: nowrap;
+            }
+
+            .about-link {
+              flex-shrink: 0;
+              padding-left: 14px;
+              border-left: 1px solid var(--line);
+              font-size: 10px;
+              white-space: nowrap;
+            }
+
+            main {
+              max-width: 1500px;
+              margin: 0 auto;
+              padding: 90px 24px 80px;
+            }
+
+            .category, .project-category {
+              margin-bottom: 7px;
+              color: var(--secondary);
+              font-size: 8px;
+              letter-spacing: .075em;
+            }
+
+            h1 {
+              margin: 0 0 24px;
+              font-size: 18px;
+              font-weight: 400;
+              line-height: 1.5;
+            }
+
+            .image, .project-image {
+              width: 100%;
+              max-width: 1200px;
+              margin: 0 0 35px;
+            }
+
+            .image img, .project-image img {
+              display: block;
+              width: 100%;
+              height: auto;
+            }
+
+            .back {
+              margin-top: 30px;
+              font-size: 10px;
+            }
+
+            .back a { color: var(--secondary); }
+
+            @media (max-width: 600px) {
+              header {
+                min-height: 48px;
+                padding: 0 12px;
+                gap: 10px;
+              }
+
+              .header-left { gap: 15px; }
+              .site-title { font-size: 10px; }
+              .category-nav { gap: 12px; }
+              .header-category { font-size: 8px; }
+              .about-link { padding-left: 10px; font-size: 9px; }
+
+              main { padding: 76px 12px 60px; }
+              h1 { font-size: 16px; }
+            }
+          </style>
+          """
+
+          categories = [
+              "ALL", "ARCHITECTURE", "OBJECT", "FOOD",
+              "BOOK", "TEXT", "PHOTO", "PLACE", "OTHER"
+          ]
+
+          header_html = """
+          <header>
+            <div class="header-left">
+              <a href="index.html" class="site-title">SAKATA KATSUYUKI</a>
+              <nav class="category-nav" aria-label="Archive categories">
+          """ + "\n".join(
+              f'<a class="header-category" href="index.html">{category}</a>'
+              for category in categories
+          ) + """
+              </nav>
+            </div>
+            <a href="about.html" class="about-link">About</a>
+          </header>
+          """
+
+          # 3. Create missing detail pages
           for image in sorted(root.iterdir()):
-
               if not image.is_file():
                   continue
-
               if image.suffix.lower() not in image_extensions:
                   continue
 
@@ -142,236 +260,127 @@ jobs:
                   continue
 
               category = category_for(stem)
-              title = stem
 
               html = """<!DOCTYPE html>
           <html lang="ja">
-
           <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>__TITLE__</title>
-
-            <style>
-              * {
-                box-sizing: border-box;
-              }
-
-              body {
-                margin: 0;
-                font-family: Arial, Helvetica, sans-serif;
-                color: #111;
-                background: #fff;
-              }
-
-              header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 28px 30px;
-              }
-
-              header a {
-                color: #111;
-                text-decoration: none;
-              }
-
-              .site-title {
-                font-size: 16px;
-              }
-
-              .about {
-                font-size: 14px;
-              }
-
-              main {
-                max-width: 1280px;
-                margin: 0 auto;
-                padding: 70px 30px 120px;
-              }
-
-              .category {
-                font-size: 12px;
-                margin-bottom: 14px;
-                letter-spacing: 0.05em;
-              }
-
-              h1 {
-                font-size: 32px;
-                font-weight: 400;
-                margin: 0 0 40px;
-              }
-
-              .image {
-                width: 100%;
-                max-width: 900px;
-                margin-bottom: 40px;
-              }
-
-              .image img {
-                display: block;
-                width: 100%;
-                height: auto;
-              }
-
-              .back {
-                font-size: 14px;
-              }
-
-              .back a {
-                color: #111;
-                text-decoration: none;
-              }
-            </style>
+            <title>__TITLE__ | 坂田雄志</title>
           </head>
-
           <body>
-
-            <header>
-              <a href="index.html" class="site-title">坂田雄志</a>
-              <a href="about.html" class="about">About</a>
-            </header>
-
             <main>
-
               <div class="category">__CATEGORY__</div>
-
               <h1>__TITLE__</h1>
-
               <div class="image">
                 <img src="__IMAGE__" alt="__TITLE__">
               </div>
-
-              <div class="back">
-                <a href="index.html">← Archive</a>
-              </div>
-
+              <div class="back"><a href="index.html">← Archive</a></div>
             </main>
-
           </body>
-
           </html>
           """
 
-              html = html.replace(
-                  "__TITLE__",
-                  title
-              )
-
-              html = html.replace(
-                  "__CATEGORY__",
-                  category
-              )
-
-              html = html.replace(
-                  "__IMAGE__",
-                  image.name
-              )
-
-              html_file.write_text(
-                  html,
-                  encoding="utf-8"
-              )
-
+              html = html.replace("__TITLE__", stem)
+              html = html.replace("__CATEGORY__", category)
+              html = html.replace("__IMAGE__", image.name)
+              html_file.write_text(html, encoding="utf-8")
               print("Created:", html_file)
 
-          # --------------------------------------------------
-          # 3. Update image references in all detail pages
-          # --------------------------------------------------
-
+          # 4. Update image references and unify existing detail-page design
           for html_file in root.glob("*.html"):
-
               if html_file.name == "index.html":
                   continue
 
+              html = html_file.read_text(encoding="utf-8")
               stem = html_file.stem
 
               for ext in image_extensions:
-
                   image = root / f"{stem}{ext}"
+                  if image.exists():
+                      html = re.sub(
+                          r'(<img\b[^>]*\bsrc=")[^"]*(")',
+                          lambda m: m.group(1) + image.name + m.group(2),
+                          html,
+                          count=1,
+                          flags=re.I
+                      )
+                      break
 
-                  if not image.exists():
-                      continue
-
-                  html = html_file.read_text(
-                      encoding="utf-8"
-                  )
-
+              # Replace the old header while preserving page content
+              if re.search(r"<header\b[^>]*>.*?</header>", html, re.I | re.S):
                   html = re.sub(
-                      r'(<img[^>]*src=")[^"]*(")',
-                      rf'\g<1>{image.name}\g<2>',
+                      r"<header\b[^>]*>.*?</header>",
+                      lambda _: header_html,
                       html,
-                      count=1
+                      count=1,
+                      flags=re.I | re.S
+                  )
+              else:
+                  html = re.sub(
+                      r"<body\b[^>]*>",
+                      lambda m: m.group(0) + "\n" + header_html,
+                      html,
+                      count=1,
+                      flags=re.I
                   )
 
-                  html_file.write_text(
-                      html,
-                      encoding="utf-8"
-                  )
+              # Replace the shared design CSS on repeat runs
+              html = re.sub(
+                  r'<style id="site-design">.*?</style>',
+                  "",
+                  html,
+                  flags=re.I | re.S
+              )
 
-                  break
+              html = re.sub(
+                  r"</head>",
+                  lambda _: shared_css + "\n</head>",
+                  html,
+                  count=1,
+                  flags=re.I
+              )
 
-          # --------------------------------------------------
-          # 4. Generate archive-data.json
-          # --------------------------------------------------
+              html_file.write_text(html, encoding="utf-8")
 
+          # 5. Generate archive-data.json
           archive = []
 
           for image in sorted(root.iterdir()):
-
               if not image.is_file():
                   continue
-
               if image.suffix.lower() not in image_extensions:
                   continue
 
-              filename = image.name
               stem = image.stem
-              detail_page = f"{stem}.html"
-
-              category = category_for(stem)
+              html_file = root / f"{stem}.html"
               title = stem
 
-              html_file = root / detail_page
-
               if html_file.exists():
-
-                  html = html_file.read_text(
-                      encoding="utf-8"
-                  )
-
+                  html = html_file.read_text(encoding="utf-8")
                   match = re.search(
                       r"<h1[^>]*>(.*?)</h1>",
                       html,
-                      re.S | re.I
+                      re.I | re.S
                   )
-
                   if match:
                       title = re.sub(
-                          r"<[^>]+>",
-                          "",
-                          match.group(1)
+                          r"<[^>]+>", "", match.group(1)
                       ).strip()
 
               archive.append({
-                  "image": filename,
-                  "detailPage": detail_page,
-                  "category": category,
+                  "image": image.name,
+                  "detailPage": f"{stem}.html",
+                  "category": category_for(stem),
                   "title": title
               })
 
           Path("archive-data.json").write_text(
-              json.dumps(
-                  archive,
-                  ensure_ascii=False,
-                  indent=2
-              ) + "\n",
+              json.dumps(archive, ensure_ascii=False, indent=2) + "\n",
               encoding="utf-8"
           )
 
-          print(
-              f"Generated archive-data.json with {len(archive)} items."
-          )
+          print(f"Generated archive-data.json with {len(archive)} items.")
 
       - name: Commit generated files
         shell: bash
