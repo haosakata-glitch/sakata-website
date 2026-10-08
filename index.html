@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -71,37 +70,62 @@
       align-items: center;
       justify-content: flex-end;
       gap: 18px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      white-space: nowrap;
     }
 
     .main-nav a,
     .main-nav button {
+      appearance: none;
+      -webkit-appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
+      flex: 0 0 auto;
+      height: 20px;
+      margin: 0;
       padding: 0;
       border: 0;
+      border-radius: 0;
       background: none;
       cursor: pointer;
+      font-family: inherit;
       font-size: 10px;
       font-weight: 400;
+      line-height: 1;
       letter-spacing: 0.04em;
       white-space: nowrap;
-      color: rgba(34, 34, 34, 0.62);
+      color: rgba(34, 34, 34, 0.48);
+      text-decoration: none;
+      text-underline-offset: 3px;
     }
 
     .main-nav a:hover,
     .main-nav button:hover {
-      opacity: 0.8;
+      color: rgba(34, 34, 34, 0.72);
     }
 
     .main-nav .active {
+      color: #222222;
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
     .about-link {
-      margin-left: 10px;
+      margin-left: 10px !important;
       padding-left: 18px !important;
       border-left: 1px solid rgba(34, 34, 34, 0.14) !important;
+    }
+
+    /* ABOUTはABOUTを選択したときだけ表示 */
+
+    .about {
+      display: none;
+    }
+
+    .about.is-visible {
+      display: block;
     }
 
     /* MAIN */
@@ -163,15 +187,11 @@
       transition: opacity 0.2s ease;
     }
 
-    /* PC：カーソルを合わせたときに表示 */
-
     @media (hover: hover) and (pointer: fine) {
       .archive-item:hover .archive-caption {
         opacity: 1;
       }
     }
-
-    /* キーボード操作時にも表示 */
 
     .archive-item:focus-visible .archive-caption {
       opacity: 1;
@@ -249,15 +269,17 @@
 
       .main-nav {
         gap: 10px;
+        flex-wrap: nowrap;
       }
 
       .main-nav a,
       .main-nav button {
         font-size: 9px;
+        height: 18px;
       }
 
       .about-link {
-        margin-left: 4px;
+        margin-left: 4px !important;
         padding-left: 10px !important;
       }
 
@@ -277,8 +299,6 @@
         gap: 5px;
         font-size: 8px;
       }
-
-      /* スマホ：タップした画像だけタイトルを表示 */
 
       .archive-item.is-caption-visible .archive-caption {
         opacity: 1;
@@ -363,8 +383,6 @@
       aria-live="polite"
     ></section>
 
-    <!-- ABOUT -->
-
     <section id="about" class="about">
       <div class="about-inner">
         <div class="about-label">ABOUT</div>
@@ -413,13 +431,17 @@
     </section>
   </main>
 
-  <!-- JAVASCRIPT -->
-
   <script>
     const archive = document.getElementById("archive");
 
     const categoryButtons = document.querySelectorAll(
       ".main-nav button[data-category]"
+    );
+
+    const aboutSection = document.getElementById("about");
+    const aboutLink = document.querySelector(".about-link");
+    const navItems = document.querySelectorAll(
+      ".main-nav a, .main-nav button"
     );
 
     let archiveData = [];
@@ -429,10 +451,6 @@
     );
 
     const initialCategory = params.get("category") || "ALL";
-
-    /*
-      日付を整形
-    */
 
     function formatDate(value) {
       if (!value) {
@@ -446,21 +464,11 @@
       }
 
       const year = date.getFullYear();
-
-      const month = String(
-        date.getMonth() + 1
-      ).padStart(2, "0");
-
-      const day = String(
-        date.getDate()
-      ).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
 
       return `${year}.${month}.${day}`;
     }
-
-    /*
-      Archiveを表示
-    */
 
     function renderArchive(category) {
       archive.innerHTML = "";
@@ -479,10 +487,6 @@
         link.className = "archive-item";
         link.href = item.detailPage || "#";
 
-        /*
-          画像
-        */
-
         const imageWrap = document.createElement("div");
         imageWrap.className = "archive-image-wrap";
 
@@ -490,10 +494,6 @@
         image.className = "archive-image";
         image.src = item.coverImage || item.image;
         image.alt = item.title || "";
-
-        /*
-          タイトル・日付
-        */
 
         const caption = document.createElement("div");
         caption.className = "archive-caption";
@@ -522,12 +522,6 @@
         imageWrap.appendChild(caption);
         link.appendChild(imageWrap);
 
-        /*
-          スマホ：
-          1回目のタップでタイトルを表示。
-          2回目のタップで詳細ページへ移動。
-        */
-
         link.addEventListener("click", event => {
           const isTouchLayout = window.matchMedia(
             "(max-width: 650px) and (hover: none)"
@@ -554,19 +548,20 @@
       });
     }
 
-    /*
-      カテゴリーボタン
-    */
+    /* カテゴリー切り替え */
 
     categoryButtons.forEach(button => {
       button.addEventListener("click", () => {
         const category = button.dataset.category;
 
-        categoryButtons.forEach(item => {
+        navItems.forEach(item => {
           item.classList.remove("active");
         });
 
         button.classList.add("active");
+
+        /* OTHERを含むカテゴリー表示時はABOUTを閉じる */
+        aboutSection.classList.remove("is-visible");
 
         const url = new URL(window.location.href);
 
@@ -582,9 +577,25 @@
       });
     });
 
-    /*
-      戻る・進む操作でカテゴリーを復元
-    */
+    /* ABOUTを押したときだけ自己紹介を表示 */
+
+    aboutLink.addEventListener("click", event => {
+      event.preventDefault();
+
+      navItems.forEach(item => {
+        item.classList.remove("active");
+      });
+
+      aboutLink.classList.add("active");
+      aboutSection.classList.add("is-visible");
+
+      aboutSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+
+    /* ブラウザの戻る・進む */
 
     window.addEventListener("popstate", () => {
       const urlParams = new URLSearchParams(
@@ -593,19 +604,24 @@
 
       const category = urlParams.get("category") || "ALL";
 
-      categoryButtons.forEach(button => {
-        button.classList.toggle(
-          "active",
-          button.dataset.category === category
-        );
+      navItems.forEach(item => {
+        item.classList.remove("active");
       });
+
+      const activeButton = document.querySelector(
+        `.main-nav button[data-category="${category}"]`
+      );
+
+      if (activeButton) {
+        activeButton.classList.add("active");
+      }
+
+      aboutSection.classList.remove("is-visible");
 
       renderArchive(category);
     });
 
-    /*
-      archive-data.jsonを読み込み
-    */
+    /* archive-data.jsonを読み込み */
 
     fetch("archive-data.json")
       .then(response => {
@@ -622,12 +638,17 @@
           ? data
           : data.items || [];
 
-        categoryButtons.forEach(button => {
-          button.classList.toggle(
-            "active",
-            button.dataset.category === initialCategory
-          );
+        navItems.forEach(item => {
+          item.classList.remove("active");
         });
+
+        const initialButton = document.querySelector(
+          `.main-nav button[data-category="${initialCategory}"]`
+        );
+
+        if (initialButton) {
+          initialButton.classList.add("active");
+        }
 
         renderArchive(initialCategory);
       })
