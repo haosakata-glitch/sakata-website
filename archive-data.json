@@ -3,7 +3,8 @@
     "image": "book-01.jpg",
     "detailPage": "book-01.html",
     "category": "BOOK",
-    "title": "本のタイトル"
+    "title": "本のタイトル",
+    "bookTitle": "book-01"
   },
   {
     "image": "food-01.jpeg",
