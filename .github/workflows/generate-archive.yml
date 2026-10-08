@@ -1,5 +1,4 @@
-
-name: Generate Archive v9
+name: Generate Archive v10
 
 on:
   push:
@@ -15,21 +14,56 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      # ----------------------------------------
+      # Checkout
+      # ----------------------------------------
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
+
+      # ----------------------------------------
+      # OCR / Image tools
+      # ----------------------------------------
+
+      - name: Install OCR tools
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            tesseract-ocr \
+            tesseract-ocr-jpn \
+            tesseract-ocr-jpn-vert
+
+
+      # ----------------------------------------
+      # Generate archive
+      # ----------------------------------------
+
       - name: Generate archive
         shell: python
         run: |
+
           import json
           import re
           import subprocess
+          import urllib.parse
+          import urllib.request
           from pathlib import Path
 
+
           root = Path(".")
-          image_extensions = {".jpg", ".jpeg", ".png", ".webp"}
+
+          image_extensions = {
+              ".jpg",
+              ".jpeg",
+              ".png",
+              ".webp"
+          }
+
 
           category_map = {
               "architecture-": "ARCHITECTURE",
@@ -42,49 +76,97 @@ jobs:
               "place-": "PLACE",
           }
 
+
           def category_for(stem):
+
               stem_lower = stem.lower()
+
               for prefix, category in category_map.items():
+
                   if stem_lower.startswith(prefix):
                       return category
+
               return "OTHER"
 
+
+          # ----------------------------------------
           # 1. Detect renamed images
+          # ----------------------------------------
+
           try:
+
               diff = subprocess.check_output(
-                  ["git", "diff", "--name-status", "-M", "HEAD^", "HEAD"],
+                  [
+                      "git",
+                      "diff",
+                      "--name-status",
+                      "-M",
+                      "HEAD^",
+                      "HEAD"
+                  ],
                   text=True
               )
+
           except subprocess.CalledProcessError:
+
               diff = ""
 
+
           for line in diff.splitlines():
+
               parts = line.split("\t")
-              if len(parts) < 3 or not parts[0].startswith("R"):
+
+              if len(parts) < 3:
                   continue
+
+              if not parts[0].startswith("R"):
+                  continue
+
 
               old_path = Path(parts[1])
               new_path = Path(parts[2])
 
+
               if old_path.suffix.lower() not in image_extensions:
                   continue
+
               if new_path.suffix.lower() not in image_extensions:
                   continue
+
 
               old_html = old_path.with_suffix(".html")
               new_html = new_path.with_suffix(".html")
 
+
               if old_html.exists() and not new_html.exists():
+
                   old_html.rename(new_html)
 
-              if new_html.exists():
-                  html = new_html.read_text(encoding="utf-8")
-                  html = html.replace(old_path.name, new_path.name)
-                  new_html.write_text(html, encoding="utf-8")
 
+              if new_html.exists():
+
+                  html = new_html.read_text(
+                      encoding="utf-8"
+                  )
+
+                  html = html.replace(
+                      old_path.name,
+                      new_path.name
+                  )
+
+                  new_html.write_text(
+                      html,
+                      encoding="utf-8"
+                  )
+
+
+          # ----------------------------------------
           # 2. Shared design
+          # ----------------------------------------
+
           shared_css = """
           <style id="site-design">
+
             :root {
               --background: #E9E5DE;
               --text: #24231F;
@@ -112,11 +194,14 @@ jobs:
               width: 100%;
               min-height: 54px;
               padding: 0 24px;
+
               display: flex;
               align-items: center;
               justify-content: space-between;
               gap: 18px;
+
               background: rgba(233, 229, 222, 0.88);
+
               backdrop-filter: blur(10px);
               -webkit-backdrop-filter: blur(10px);
             }
@@ -217,6 +302,7 @@ jobs:
             }
 
             @media (max-width: 600px) {
+
               header {
                 min-height: 48px;
                 padding: 0 12px;
@@ -251,99 +337,223 @@ jobs:
               h1 {
                 font-size: 16px;
               }
+
             }
+
           </style>
           """
 
+
           categories = [
-              "ALL", "ARCHITECTURE", "OBJECT", "FOOD",
-              "BOOK", "TEXT", "PHOTO", "PLACE", "OTHER"
+              "ALL",
+              "ARCHITECTURE",
+              "OBJECT",
+              "FOOD",
+              "BOOK",
+              "TEXT",
+              "PHOTO",
+              "PLACE",
+              "OTHER"
           ]
+
 
           header_html = """
           <header>
+
             <div class="header-left">
-              <a href="index.html" class="site-title">SAKATA KATSUYUKI</a>
-              <nav class="category-nav" aria-label="Archive categories">
+
+              <a
+                href="index.html"
+                class="site-title"
+              >
+                SAKATA KATSUYUKI
+              </a>
+
+              <nav
+                class="category-nav"
+                aria-label="Archive categories"
+              >
           """ + "\n".join(
+
               f'<a class="header-category" href="index.html">{category}</a>'
+
               for category in categories
+
           ) + """
+
               </nav>
+
             </div>
-            <a href="about.html" class="about-link">About</a>
+
+            <a
+              href="about.html"
+              class="about-link"
+            >
+              About
+            </a>
+
           </header>
           """
 
+
+          # ----------------------------------------
           # 3. Create missing detail pages
+          # ----------------------------------------
+
           for image in sorted(root.iterdir()):
+
               if not image.is_file():
                   continue
+
               if image.suffix.lower() not in image_extensions:
                   continue
 
+
               stem = image.stem
-              html_file = root / f"{stem}.html"
+
+              html_file =
+                  root / f"{stem}.html"
+
 
               if html_file.exists():
                   continue
 
+
               category = category_for(stem)
 
+
               html = """<!DOCTYPE html>
+
           <html lang="ja">
+
           <head>
+
             <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            >
+
             <title>__TITLE__ | 坂田雄志</title>
+
           </head>
+
           <body>
+
             <main>
-              <div class="category">__CATEGORY__</div>
-              <h1>__TITLE__</h1>
+
+              <div class="category">
+                __CATEGORY__
+              </div>
+
+              <h1>
+                __TITLE__
+              </h1>
+
               <div class="image">
-                <img src="__IMAGE__" alt="__TITLE__">
+
+                <img
+                  src="__IMAGE__"
+                  alt="__TITLE__"
+                >
+
               </div>
+
               <div class="back">
-                <a href="index.html">← Archive</a>
+
+                <a href="index.html">
+                  ← Archive
+                </a>
+
               </div>
+
             </main>
+
           </body>
+
           </html>
           """
 
-              html = html.replace("__TITLE__", stem)
-              html = html.replace("__CATEGORY__", category)
-              html = html.replace("__IMAGE__", image.name)
-              html_file.write_text(html, encoding="utf-8")
-              print("Created:", html_file)
 
-          # 4. Update image references and detail-page design
+              html = html.replace(
+                  "__TITLE__",
+                  stem
+              )
+
+              html = html.replace(
+                  "__CATEGORY__",
+                  category
+              )
+
+              html = html.replace(
+                  "__IMAGE__",
+                  image.name
+              )
+
+
+              html_file.write_text(
+                  html,
+                  encoding="utf-8"
+              )
+
+
+              print(
+                  "Created:",
+                  html_file
+              )
+
+
+          # ----------------------------------------
+          # 4. Update image references
+          #    and detail-page design
+          # ----------------------------------------
+
           for html_file in root.glob("*.html"):
+
               if html_file.name == "index.html":
                   continue
 
-              html = html_file.read_text(encoding="utf-8")
+              if html_file.name == "book.html":
+                  continue
+
+
+              html = html_file.read_text(
+                  encoding="utf-8"
+              )
+
+
               stem = html_file.stem
 
+
               for ext in image_extensions:
-                  image = root / f"{stem}{ext}"
+
+                  image =
+                      root / f"{stem}{ext}"
+
+
                   if image.exists():
+
                       html = re.sub(
                           r'(<img\b[^>]*\bsrc=")[^"]*(")',
-                          lambda m: m.group(1) + image.name + m.group(2),
+                          lambda m:
+                              m.group(1)
+                              + image.name
+                              + m.group(2),
                           html,
                           count=1,
                           flags=re.I
                       )
+
                       break
 
-              # Replace existing header
+
               if re.search(
                   r"<header\b[^>]*>.*?</header>",
                   html,
                   re.I | re.S
               ):
+
                   html = re.sub(
                       r"<header\b[^>]*>.*?</header>",
                       lambda _: header_html,
@@ -351,16 +561,21 @@ jobs:
                       count=1,
                       flags=re.I | re.S
                   )
+
               else:
+
                   html = re.sub(
                       r"<body\b[^>]*>",
-                      lambda m: m.group(0) + "\n" + header_html,
+                      lambda m:
+                          m.group(0)
+                          + "\n"
+                          + header_html,
                       html,
                       count=1,
                       flags=re.I
                   )
 
-              # Replace CSS generated by this workflow on previous runs
+
               html = re.sub(
                   r'<style id="site-design">.*?</style>',
                   "",
@@ -368,68 +583,772 @@ jobs:
                   flags=re.I | re.S
               )
 
+
               html = re.sub(
                   r"</head>",
-                  lambda _: shared_css + "\n</head>",
+                  lambda _:
+                      shared_css
+                      + "\n</head>",
                   html,
                   count=1,
                   flags=re.I
               )
 
-              html_file.write_text(html, encoding="utf-8")
 
-          # 5. Generate archive-data.json
-          archive = []
+              html_file.write_text(
+                  html,
+                  encoding="utf-8"
+              )
 
-          for image in sorted(root.iterdir()):
+
+          # ----------------------------------------
+          # 5. BOOK OCR + Google Books
+          # ----------------------------------------
+
+          metadata_path =
+              root / "book-metadata.json"
+
+
+          if metadata_path.exists():
+
+              book_metadata =
+                  json.loads(
+                      metadata_path.read_text(
+                          encoding="utf-8"
+                      )
+                  )
+
+          else:
+
+              book_metadata = {}
+
+
+          def clean_ocr(text):
+
+              text = text.replace(
+                  "\x0c",
+                  " "
+              )
+
+              text = re.sub(
+                  r"\s+",
+                  " ",
+                  text
+              )
+
+              text = text.strip()
+
+              return text
+
+
+          def useful_query(text):
+
+              text = clean_ocr(text)
+
+              if not text:
+                  return ""
+
+
+              lines = [
+                  x.strip()
+                  for x in text.splitlines()
+                  if x.strip()
+              ]
+
+
+              candidates = []
+
+
+              for line in lines:
+
+                  line = re.sub(
+                      r"[|¦_~＝=]+",
+                      " ",
+                      line
+                  )
+
+                  line = re.sub(
+                      r"\s+",
+                      " ",
+                      line
+                  )
+
+                  if len(line) < 2:
+                      continue
+
+                  candidates.append(line)
+
+
+              if not candidates:
+                  return text[:80]
+
+
+              candidates.sort(
+                  key=lambda x: len(x),
+                  reverse=True
+              )
+
+
+              return candidates[0][:100]
+
+
+          def google_books(query):
+
+              if not query:
+                  return None
+
+
+              params = urllib.parse.urlencode({
+
+                  "q": query,
+
+                  "maxResults": 10,
+
+                  "printType": "books",
+
+                  "langRestrict": "ja"
+
+              })
+
+
+              url =
+                  "https://www.googleapis.com/books/v1/volumes?"
+                  + params
+
+
+              try:
+
+                  request =
+                      urllib.request.Request(
+                          url,
+                          headers={
+                              "User-Agent":
+                              "Mozilla/5.0"
+                          }
+                      )
+
+
+                  with urllib.request.urlopen(
+                      request,
+                      timeout=20
+                  ) as response:
+
+                      data =
+                          json.loads(
+                              response.read()
+                              .decode("utf-8")
+                          )
+
+
+              except Exception as error:
+
+                  print(
+                      "Google Books error:",
+                      error
+                  )
+
+                  return None
+
+
+              items =
+                  data.get(
+                      "items",
+                      []
+                  )
+
+
+              for item in items:
+
+                  info =
+                      item.get(
+                          "volumeInfo",
+                          {}
+                      )
+
+
+                  title =
+                      info.get(
+                          "title",
+                          ""
+                      )
+
+
+                  images =
+                      info.get(
+                          "imageLinks",
+                          {}
+                      )
+
+
+                  cover =
+                      (
+                          images.get("extraLarge")
+                          or images.get("large")
+                          or images.get("medium")
+                          or images.get("small")
+                          or images.get("thumbnail")
+                          or images.get("smallThumbnail")
+                      )
+
+
+                  if not cover:
+                      continue
+
+
+                  return {
+
+                      "volumeId":
+                          item.get(
+                              "id",
+                              ""
+                          ),
+
+                      "title":
+                          title,
+
+                      "authors":
+                          info.get(
+                              "authors",
+                              []
+                          ),
+
+                      "publisher":
+                          info.get(
+                              "publisher",
+                              ""
+                          ),
+
+                      "publishedDate":
+                          info.get(
+                              "publishedDate",
+                              ""
+                          ),
+
+                      "cover":
+                          cover,
+
+                      "infoLink":
+                          info.get(
+                              "infoLink",
+                              ""
+                          )
+
+                  }
+
+
+              return None
+
+
+          def download_cover(
+              cover_url,
+              output_path
+          ):
+
+              if not cover_url:
+                  return False
+
+
+              cover_url =
+                  cover_url.replace(
+                      "http://",
+                      "https://"
+                  )
+
+
+              try:
+
+                  request =
+                      urllib.request.Request(
+                          cover_url,
+                          headers={
+                              "User-Agent":
+                              "Mozilla/5.0"
+                          }
+                      )
+
+
+                  with urllib.request.urlopen(
+                      request,
+                      timeout=30
+                  ) as response:
+
+                      data =
+                          response.read()
+
+
+                  output_path.write_bytes(
+                      data
+                  )
+
+
+                  return True
+
+
+              except Exception as error:
+
+                  print(
+                      "Cover download error:",
+                      error
+                  )
+
+                  return False
+
+
+          # Find BOOK images
+
+          book_images = []
+
+          for image in sorted(
+              root.iterdir()
+          ):
+
               if not image.is_file():
                   continue
+
               if image.suffix.lower() not in image_extensions:
                   continue
 
-              stem = image.stem
-              html_file = root / f"{stem}.html"
-              title = stem
+              if category_for(
+                  image.stem
+              ) != "BOOK":
+                  continue
 
-              if html_file.exists():
-                  html = html_file.read_text(encoding="utf-8")
-                  match = re.search(
-                      r"<h1[^>]*>(.*?)</h1>",
-                      html,
-                      re.I | re.S
+              book_images.append(
+                  image
+              )
+
+
+          for image in book_images:
+
+              key = image.name
+
+
+              existing =
+                  book_metadata.get(
+                      key,
+                      {}
                   )
 
-                  if match:
-                      title = re.sub(
-                          r"<[^>]+>", "", match.group(1)
-                      ).strip()
 
-              archive.append({
-                  "image": image.name,
-                  "detailPage": f"{stem}.html",
-                  "category": category_for(stem),
-                  "title": title
-              })
+              cover_filename =
+                  "book-cover-"
+                  + image.stem
+                  + ".jpg"
 
-          Path("archive-data.json").write_text(
-              json.dumps(archive, ensure_ascii=False, indent=2) + "\n",
+
+              cover_path =
+                  root / cover_filename
+
+
+              # --------------------------------
+              # OCR
+              # --------------------------------
+
+              ocr_file =
+                  root / (
+                      ".book-ocr-"
+                      + image.stem
+                      + ".txt"
+                  )
+
+
+              try:
+
+                  subprocess.run(
+                      [
+                          "tesseract",
+                          str(image),
+                          str(ocr_file.with_suffix("")),
+                          "-l",
+                          "jpn+jpn_vert",
+                          "--psm",
+                          "11"
+                      ],
+                      check=False,
+                      stdout=subprocess.DEVNULL,
+                      stderr=subprocess.DEVNULL
+                  )
+
+
+                  if ocr_file.exists():
+
+                      ocr_text =
+                          ocr_file.read_text(
+                              encoding="utf-8",
+                              errors="ignore"
+                          )
+
+                  else:
+
+                      ocr_text = ""
+
+              except Exception:
+
+                  ocr_text = ""
+
+
+              query =
+                  useful_query(
+                      ocr_text
+                  )
+
+
+              # If OCR failed,
+              # use the filename as fallback.
+
+              if not query:
+
+                  query =
+                      image.stem
+
+                  query =
+                      re.sub(
+                          r"^book[-_]",
+                          "",
+                          query,
+                          flags=re.I
+                      )
+
+
+              print(
+                  "BOOK:",
+                  image.name
+              )
+
+              print(
+                  "OCR:",
+                  query
+              )
+
+
+              # --------------------------------
+              # Search Google Books
+              # --------------------------------
+
+              result =
+                  google_books(
+                      query
+                  )
+
+
+              # Try filename if OCR search failed.
+
+              if result is None:
+
+                  fallback_query =
+                      re.sub(
+                          r"^book[-_]",
+                          "",
+                          image.stem,
+                          flags=re.I
+                      )
+
+
+                  if fallback_query != query:
+
+                      result =
+                          google_books(
+                              fallback_query
+                          )
+
+
+              # --------------------------------
+              # Download cover
+              # --------------------------------
+
+              cover_image = ""
+
+
+              if result:
+
+                  if download_cover(
+                      result["cover"],
+                      cover_path
+                  ):
+
+                      cover_image =
+                          cover_filename
+
+
+              # --------------------------------
+              # Save metadata
+              # --------------------------------
+
+              if result:
+
+                  book_metadata[key] = {
+
+                      "sourceImage":
+                          image.name,
+
+                      "coverImage":
+                          cover_image,
+
+                      "title":
+                          result.get(
+                              "title",
+                              ""
+                          ),
+
+                      "authors":
+                          result.get(
+                              "authors",
+                              []
+                          ),
+
+                      "publisher":
+                          result.get(
+                              "publisher",
+                              ""
+                          ),
+
+                      "publishedDate":
+                          result.get(
+                              "publishedDate",
+                              ""
+                          ),
+
+                      "infoLink":
+                          result.get(
+                              "infoLink",
+                              ""
+                          ),
+
+                      "ocr":
+                          query
+
+                  }
+
+              else:
+
+                  book_metadata[key] = {
+
+                      "sourceImage":
+                          image.name,
+
+                      "coverImage":
+                          "",
+
+                      "title":
+                          existing.get(
+                              "title",
+                              image.stem
+                          ),
+
+                      "authors":
+                          existing.get(
+                              "authors",
+                              []
+                          ),
+
+                      "publisher":
+                          existing.get(
+                              "publisher",
+                              ""
+                          ),
+
+                      "publishedDate":
+                          existing.get(
+                              "publishedDate",
+                              ""
+                          ),
+
+                      "infoLink":
+                          "",
+
+                      "ocr":
+                          query
+
+                  }
+
+
+              if ocr_file.exists():
+
+                  ocr_file.unlink()
+
+
+          metadata_path.write_text(
+
+              json.dumps(
+                  book_metadata,
+                  ensure_ascii=False,
+                  indent=2
+              )
+              + "\n",
+
               encoding="utf-8"
+
           )
 
-          print(f"Generated archive-data.json with {len(archive)} items.")
+
+          # ----------------------------------------
+          # 6. Generate archive-data.json
+          # ----------------------------------------
+
+          archive = []
+
+
+          for image in sorted(
+              root.iterdir()
+          ):
+
+              if not image.is_file():
+                  continue
+
+              if image.suffix.lower() not in image_extensions:
+                  continue
+
+
+              stem =
+                  image.stem
+
+
+              html_file =
+                  root / f"{stem}.html"
+
+
+              title = stem
+
+
+              if html_file.exists():
+
+                  html =
+                      html_file.read_text(
+                          encoding="utf-8"
+                      )
+
+
+                  match =
+                      re.search(
+                          r"<h1[^>]*>(.*?)</h1>",
+                          html,
+                          re.I | re.S
+                      )
+
+
+                  if match:
+
+                      title =
+                          re.sub(
+                              r"<[^>]+>",
+                              "",
+                              match.group(1)
+                          ).strip()
+
+
+              item = {
+
+                  "image":
+                      image.name,
+
+                  "detailPage":
+                      f"{stem}.html",
+
+                  "category":
+                      category_for(stem),
+
+                  "title":
+                      title
+
+              }
+
+
+              # Add book metadata
+
+              if category_for(stem) == "BOOK":
+
+                  metadata =
+                      book_metadata.get(
+                          image.name,
+                          {}
+                      )
+
+
+                  if metadata.get(
+                      "coverImage"
+                  ):
+
+                      item["coverImage"] =
+                          metadata[
+                              "coverImage"
+                          ]
+
+
+                  if metadata.get(
+                      "title"
+                  ):
+
+                      item["bookTitle"] =
+                          metadata[
+                              "title"
+                          ]
+
+
+                  if metadata.get(
+                      "authors"
+                  ):
+
+                      item["authors"] =
+                          metadata[
+                              "authors"
+                          ]
+
+
+              archive.append(
+                  item
+              )
+
+
+          Path(
+              "archive-data.json"
+          ).write_text(
+
+              json.dumps(
+                  archive,
+                  ensure_ascii=False,
+                  indent=2
+              )
+              + "\n",
+
+              encoding="utf-8"
+
+          )
+
+
+          print(
+              f"Generated archive-data.json with {len(archive)} items."
+          )
+
+
+      # ----------------------------------------
+      # 7. Commit
+      # ----------------------------------------
 
       - name: Commit generated files
         shell: bash
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git config user.name \
+            "github-actions[bot]"
+
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
 
           git add .
 
+
           if git diff --cached --quiet; then
+
             echo "No changes to commit."
+
             exit 0
+
           fi
 
-          git commit -m "Update archive"
+
+          git commit \
+            -m "Update archive and book covers"
+
+
           git push
