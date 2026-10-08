@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -34,10 +35,7 @@
       font-family: inherit;
     }
 
-
-    /* =========================
-       HEADER
-    ========================= */
+    /* HEADER */
 
     .site-header {
       position: fixed;
@@ -45,12 +43,9 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-
       background: rgba(233, 229, 222, 0.68);
-
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-
       border-bottom: 1px solid rgba(34, 34, 34, 0.06);
     }
 
@@ -58,9 +53,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 30px;
-
       min-height: 58px;
       padding: 0 22px;
     }
@@ -77,7 +70,6 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-
       gap: 18px;
       flex-wrap: wrap;
     }
@@ -85,20 +77,14 @@
     .main-nav a,
     .main-nav button {
       position: relative;
-
       padding: 0;
-
       border: 0;
       background: none;
-
       cursor: pointer;
-
       font-size: 10px;
       font-weight: 400;
       letter-spacing: 0.04em;
-
       white-space: nowrap;
-
       color: rgba(34, 34, 34, 0.62);
     }
 
@@ -118,122 +104,102 @@
       border-left: 1px solid rgba(34, 34, 34, 0.14) !important;
     }
 
-
-    /* =========================
-       MAIN
-    ========================= */
+    /* MAIN */
 
     main {
       padding: 86px 22px 100px;
     }
 
-
-    /* =========================
-       ARCHIVE GRID
-    ========================= */
+    /* ARCHIVE GRID */
 
     .archive-grid {
       display: grid;
-
       grid-template-columns: repeat(3, minmax(0, 1fr));
-
       column-gap: 18px;
       row-gap: 18px;
-
       align-items: start;
     }
 
     .archive-item {
       display: block;
       position: relative;
-
       min-width: 0;
     }
 
     .archive-image-wrap {
       position: relative;
-
       width: 100%;
       aspect-ratio: 4 / 3;
-
       overflow: hidden;
     }
 
     .archive-image {
       display: block;
-
       width: 100%;
       height: 100%;
-
       object-fit: cover;
       object-position: center center;
     }
 
-
-    /* =========================
-       TITLE / DATE
-    ========================= */
+    /* TITLE / DATE */
 
     .archive-caption {
       position: absolute;
-
       right: 10px;
       bottom: 8px;
-
       display: flex;
       align-items: baseline;
       gap: 8px;
-
       max-width: calc(100% - 20px);
-
       font-size: 9px;
       font-weight: 400;
       line-height: 1.4;
       letter-spacing: 0.03em;
-
       color: rgba(255, 255, 255, 0.82);
-
       text-align: right;
-
-      text-shadow:
-        0 1px 4px rgba(0, 0, 0, 0.18);
-
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
       pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    /* PC：カーソルを合わせたときに表示 */
+
+    @media (hover: hover) and (pointer: fine) {
+      .archive-item:hover .archive-caption {
+        opacity: 1;
+      }
+    }
+
+    /* キーボード操作時にも表示 */
+
+    .archive-item:focus-visible .archive-caption {
+      opacity: 1;
     }
 
     .archive-caption-title {
       overflow: hidden;
-
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
     .archive-caption-date {
       flex-shrink: 0;
-
       color: rgba(255, 255, 255, 0.62);
     }
 
-
-    /* =========================
-       ABOUT
-    ========================= */
+    /* ABOUT */
 
     .about {
       margin-top: 140px;
-
       border-top: 1px solid rgba(34, 34, 34, 0.07);
-
       padding-top: 35px;
     }
 
     .about-inner {
       display: grid;
-
       grid-template-columns: 120px 1fr;
-
       column-gap: 30px;
-
       max-width: 900px;
     }
 
@@ -245,16 +211,13 @@
 
     .about-text {
       max-width: 600px;
-
       font-size: 10px;
       line-height: 1.7;
-
       color: rgba(34, 34, 34, 0.62);
     }
 
     .about-name {
       margin-bottom: 16px;
-
       font-size: 11px;
       color: rgba(34, 34, 34, 0.70);
     }
@@ -271,13 +234,9 @@
       opacity: 0.65;
     }
 
-
-    /* =========================
-       MOBILE
-    ========================= */
+    /* MOBILE */
 
     @media (max-width: 650px) {
-
       .header-inner {
         min-height: 52px;
         padding: 0 14px;
@@ -308,7 +267,6 @@
 
       .archive-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-
         column-gap: 10px;
         row-gap: 10px;
       }
@@ -316,10 +274,14 @@
       .archive-caption {
         right: 7px;
         bottom: 6px;
-
         gap: 5px;
-
         font-size: 8px;
+      }
+
+      /* スマホ：タップした画像だけタイトルを表示 */
+
+      .archive-item.is-caption-visible .archive-caption {
+        opacity: 1;
       }
 
       .about {
@@ -343,129 +305,71 @@
   </style>
 </head>
 
-
 <body>
-
-  <!-- =========================
-       HEADER
-  ========================= -->
+  <!-- HEADER -->
 
   <header class="site-header">
-
     <div class="header-inner">
-
       <a href="index.html" class="site-title">
         SAKATA KATSUYUKI
       </a>
 
       <nav class="main-nav">
-
-        <button
-          type="button"
-          data-category="ALL"
-          class="active"
-        >
+        <button type="button" data-category="ALL" class="active">
           ALL
         </button>
 
-        <button
-          type="button"
-          data-category="ARCHITECTURE"
-        >
+        <button type="button" data-category="ARCHITECTURE">
           ARCHITECTURE
         </button>
 
-        <button
-          type="button"
-          data-category="OBJECT"
-        >
+        <button type="button" data-category="OBJECT">
           OBJECT
         </button>
 
-        <button
-          type="button"
-          data-category="FOOD"
-        >
+        <button type="button" data-category="FOOD">
           FOOD
         </button>
 
-        <a href="book.html">
-          BOOK
-        </a>
+        <a href="book.html">BOOK</a>
 
-        <button
-          type="button"
-          data-category="TEXT"
-        >
+        <button type="button" data-category="TEXT">
           TEXT
         </button>
 
-        <button
-          type="button"
-          data-category="PHOTO"
-        >
+        <button type="button" data-category="PHOTO">
           PHOTO
         </button>
 
-        <button
-          type="button"
-          data-category="PLACE"
-        >
+        <button type="button" data-category="PLACE">
           PLACE
         </button>
 
-        <button
-          type="button"
-          data-category="OTHER"
-        >
+        <button type="button" data-category="OTHER">
           OTHER
         </button>
 
-        <a
-          href="#about"
-          class="about-link"
-        >
-          ABOUT
-        </a>
-
+        <a href="#about" class="about-link">ABOUT</a>
       </nav>
-
     </div>
-
   </header>
 
-
-  <!-- =========================
-       MAIN
-  ========================= -->
+  <!-- MAIN -->
 
   <main>
-
     <section
       id="archive"
       class="archive-grid"
       aria-live="polite"
-    >
-    </section>
+    ></section>
 
+    <!-- ABOUT -->
 
-    <!-- =========================
-         ABOUT
-    ========================= -->
-
-    <section
-      id="about"
-      class="about"
-    >
-
+    <section id="about" class="about">
       <div class="about-inner">
-
-        <div class="about-label">
-          ABOUT
-        </div>
+        <div class="about-label">ABOUT</div>
 
         <div class="about-text">
-
           <div class="about-name">
             坂田雄志 / Sakata Katsuyuki
           </div>
@@ -479,7 +383,6 @@
           </p>
 
           <p class="about-contact">
-
             <a href="mailto:hao.sakata@gmail.com">
               hao.sakata@gmail.com
             </a>
@@ -489,187 +392,115 @@
               href="https://www.instagram.com/katsu_0708/"
               target="_blank"
               rel="noopener"
-            >
-              Instagram
-            </a>
+            >Instagram</a>
             <br>
 
             <a
               href="https://x.com/Katsuskt"
               target="_blank"
               rel="noopener"
-            >
-              X
-            </a>
+            >X</a>
             <br>
 
             <a
               href="https://note.com/kind_nerine7"
               target="_blank"
               rel="noopener"
-            >
-              note
-            </a>
-
+            >note</a>
           </p>
-
         </div>
-
       </div>
-
     </section>
-
   </main>
 
-
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
+  <!-- JAVASCRIPT -->
 
   <script>
+    const archive = document.getElementById("archive");
 
-    const archive =
-      document.getElementById("archive");
-
-    const categoryButtons =
-      document.querySelectorAll(
-        ".main-nav button[data-category]"
-      );
+    const categoryButtons = document.querySelectorAll(
+      ".main-nav button[data-category]"
+    );
 
     let archiveData = [];
 
+    const params = new URLSearchParams(
+      window.location.search
+    );
 
-    /*
-      URLからカテゴリーを取得
-    */
-
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
-
-    const initialCategory =
-      params.get("category") || "ALL";
-
+    const initialCategory = params.get("category") || "ALL";
 
     /*
       日付を整形
     */
 
     function formatDate(value) {
-
       if (!value) {
         return "";
       }
 
-      const date =
-        new Date(value);
+      const date = new Date(value);
 
       if (Number.isNaN(date.getTime())) {
         return String(value);
       }
 
-      const year =
-        date.getFullYear();
+      const year = date.getFullYear();
 
-      const month =
-        String(
-          date.getMonth() + 1
-        ).padStart(2, "0");
+      const month = String(
+        date.getMonth() + 1
+      ).padStart(2, "0");
 
-      const day =
-        String(
-          date.getDate()
-        ).padStart(2, "0");
+      const day = String(
+        date.getDate()
+      ).padStart(2, "0");
 
       return `${year}.${month}.${day}`;
     }
-
 
     /*
       Archiveを表示
     */
 
     function renderArchive(category) {
-
       archive.innerHTML = "";
 
-      let filteredData =
-        archiveData;
+      let filteredData = archiveData;
 
       if (category !== "ALL") {
-
-        filteredData =
-          archiveData.filter(
-            item =>
-              item.category === category
-          );
+        filteredData = archiveData.filter(
+          item => item.category === category
+        );
       }
 
-
       filteredData.forEach(item => {
+        const link = document.createElement("a");
 
-        const link =
-          document.createElement("a");
-
-        link.className =
-          "archive-item";
-
-        link.href =
-          item.detailPage || "#";
-
+        link.className = "archive-item";
+        link.href = item.detailPage || "#";
 
         /*
           画像
         */
 
-        const imageWrap =
-          document.createElement("div");
+        const imageWrap = document.createElement("div");
+        imageWrap.className = "archive-image-wrap";
 
-        imageWrap.className =
-          "archive-image-wrap";
-
-
-        const image =
-          document.createElement("img");
-
-        image.className =
-          "archive-image";
-
-        image.src =
-          item.coverImage ||
-          item.image;
-
-        image.alt =
-          item.title || "";
-
+        const image = document.createElement("img");
+        image.className = "archive-image";
+        image.src = item.coverImage || item.image;
+        image.alt = item.title || "";
 
         /*
-          右下のタイトル・日付
+          タイトル・日付
         */
 
-        const caption =
-          document.createElement("div");
+        const caption = document.createElement("div");
+        caption.className = "archive-caption";
 
-        caption.className =
-          "archive-caption";
-
-
-        const title =
-          document.createElement("span");
-
-        title.className =
-          "archive-caption-title";
-
-        title.textContent =
-          item.title || "";
-
-
-        /*
-          archive-data.json内に
-          date / createdAt / publishedAt
-          のどれかがあれば表示
-        */
+        const title = document.createElement("span");
+        title.className = "archive-caption-title";
+        title.textContent = item.title || "";
 
         const dateValue =
           item.date ||
@@ -677,101 +508,100 @@
           item.publishedAt ||
           "";
 
-
-        const date =
-          document.createElement("span");
-
-        date.className =
-          "archive-caption-date";
-
-        date.textContent =
-          formatDate(dateValue);
-
+        const date = document.createElement("span");
+        date.className = "archive-caption-date";
+        date.textContent = formatDate(dateValue);
 
         caption.appendChild(title);
-
 
         if (date.textContent) {
           caption.appendChild(date);
         }
 
-
         imageWrap.appendChild(image);
         imageWrap.appendChild(caption);
-
         link.appendChild(imageWrap);
 
+        /*
+          スマホ：
+          1回目のタップでタイトルを表示。
+          2回目のタップで詳細ページへ移動。
+        */
+
+        link.addEventListener("click", event => {
+          const isTouchLayout = window.matchMedia(
+            "(max-width: 650px) and (hover: none)"
+          ).matches;
+
+          if (!isTouchLayout) {
+            return;
+          }
+
+          if (!link.classList.contains("is-caption-visible")) {
+            event.preventDefault();
+
+            document
+              .querySelectorAll(".archive-item.is-caption-visible")
+              .forEach(openItem => {
+                openItem.classList.remove("is-caption-visible");
+              });
+
+            link.classList.add("is-caption-visible");
+          }
+        });
+
         archive.appendChild(link);
-
       });
-
     }
-
 
     /*
       カテゴリーボタン
     */
 
     categoryButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const category = button.dataset.category;
 
-      button.addEventListener(
-        "click",
-        () => {
+        categoryButtons.forEach(item => {
+          item.classList.remove("active");
+        });
 
-          const category =
-            button.dataset.category;
+        button.classList.add("active");
 
+        const url = new URL(window.location.href);
 
-          categoryButtons.forEach(
-            item => {
-              item.classList.remove(
-                "active"
-              );
-            }
-          );
-
-
-          button.classList.add(
-            "active"
-          );
-
-
-          const url =
-            new URL(
-              window.location.href
-            );
-
-
-          if (category === "ALL") {
-
-            url.searchParams.delete(
-              "category"
-            );
-
-          } else {
-
-            url.searchParams.set(
-              "category",
-              category
-            );
-
-          }
-
-
-          window.history.pushState(
-            {},
-            "",
-            url
-          );
-
-
-          renderArchive(category);
-
+        if (category === "ALL") {
+          url.searchParams.delete("category");
+        } else {
+          url.searchParams.set("category", category);
         }
-      );
 
+        window.history.pushState({}, "", url);
+
+        renderArchive(category);
+      });
     });
 
+    /*
+      戻る・進む操作でカテゴリーを復元
+    */
+
+    window.addEventListener("popstate", () => {
+      const urlParams = new URLSearchParams(
+        window.location.search
+      );
+
+      const category = urlParams.get("category") || "ALL";
+
+      categoryButtons.forEach(button => {
+        button.classList.toggle(
+          "active",
+          button.dataset.category === category
+        );
+      });
+
+      renderArchive(category);
+    });
 
     /*
       archive-data.jsonを読み込み
@@ -779,7 +609,6 @@
 
     fetch("archive-data.json")
       .then(response => {
-
         if (!response.ok) {
           throw new Error(
             "archive-data.json の読み込みに失敗しました。"
@@ -787,49 +616,27 @@
         }
 
         return response.json();
-
       })
-
       .then(data => {
-
         archiveData = Array.isArray(data)
           ? data
           : data.items || [];
 
+        categoryButtons.forEach(button => {
+          button.classList.toggle(
+            "active",
+            button.dataset.category === initialCategory
+          );
+        });
 
-        /*
-          初期カテゴリー
-        */
-
-        categoryButtons.forEach(
-          button => {
-
-            button.classList.toggle(
-              "active",
-              button.dataset.category ===
-              initialCategory
-            );
-
-          }
-        );
-
-
-        renderArchive(
-          initialCategory
-        );
-
+        renderArchive(initialCategory);
       })
-
       .catch(error => {
-
         console.error(error);
 
         archive.innerHTML =
           "<p>Archive data could not be loaded.</p>";
-
       });
-
   </script>
-
 </body>
 </html>
