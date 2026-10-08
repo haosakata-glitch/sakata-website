@@ -1,72 +1,85 @@
+
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sakata Katsuyuki</title>
+  <title>坂田雄志｜Sakata Katsuyuki</title>
+  <meta name="description" content="坂田雄志の建築、デザイン、日常の記録をまとめたアーカイブ。">
 
   <style>
+    :root {
+      --background: #E9E5DE;
+      --text: #24231F;
+      --secondary: #77736B;
+      --line: #CBC5BB;
+      --gap: 22px;
+    }
+
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       font-weight: 300;
-      color: #111;
-      background: #fff;
+      color: var(--text);
+      background: var(--background);
     }
 
-    /* =========================
-       Header
-    ========================= */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Header */
 
     header {
       position: fixed;
       top: 0;
       left: 0;
+      z-index: 100;
       width: 100%;
-      height: 52px;
+      height: 54px;
       padding: 0 24px;
 
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 18px;
 
-      background: rgba(255, 255, 255, 0.78);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-
-      z-index: 100;
+      background: rgba(233, 229, 222, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .header-left {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 25px;
       min-width: 0;
-    }
-
-    header a {
-      color: #111;
-      text-decoration: none;
+      flex: 1;
     }
 
     .site-title {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.035em;
       white-space: nowrap;
     }
 
     .category-nav {
       display: flex;
       align-items: center;
-      gap: 14px;
-
+      gap: 15px;
+      min-width: 0;
       overflow-x: auto;
       scrollbar-width: none;
     }
@@ -76,164 +89,141 @@
     }
 
     .header-category {
-      border: none;
-      background: none;
-      padding: 0;
+      flex-shrink: 0;
+      border: 0;
+      padding: 4px 0;
+      background: transparent;
 
-      font-family: inherit;
+      font: inherit;
       font-size: 9px;
       font-weight: 300;
-      letter-spacing: 0.03em;
-      color: #888;
-
-      cursor: pointer;
+      letter-spacing: 0.035em;
+      color: var(--secondary);
       white-space: nowrap;
+      cursor: pointer;
     }
 
     .header-category:hover,
     .header-category.active {
-      color: #111;
+      color: var(--text);
+    }
+
+    .header-category.active {
+      font-weight: 500;
     }
 
     .about-link {
       flex-shrink: 0;
-
-      display: flex;
-      align-items: center;
-      height: 18px;
       padding-left: 14px;
-
-      border-left: 1px solid #aaa;
+      border-left: 1px solid var(--line);
 
       font-size: 10px;
       font-weight: 300;
-      letter-spacing: 0.02em;
+      white-space: nowrap;
     }
 
-    /* =========================
-       Main
-    ========================= */
+    /* Archive */
 
     main {
-      max-width: 1500px;
+      max-width: 1600px;
       margin: 0 auto;
-      padding: 68px 24px 100px;
+      padding: 76px 24px 90px;
     }
-
-    /* =========================
-       Archive Grid
-    ========================= */
 
     .archive-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 5px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: var(--gap);
+      row-gap: 42px;
     }
 
     .archive-item {
-      position: relative;
       display: block;
-
-      color: #111;
-      text-decoration: none;
-
-      overflow: hidden;
+      min-width: 0;
     }
 
     .archive-image {
+      display: block;
       width: 100%;
       aspect-ratio: 4 / 3;
       object-fit: cover;
-
-      display: block;
-
-      background: #f2f2f2;
+      background: #DDD7CE;
     }
 
-    /* =========================
-       Image Information
-    ========================= */
-
-    .archive-info {
-      position: absolute;
-      right: 7px;
-      bottom: 7px;
-
-      padding: 5px 6px 4px;
-
-      background: rgba(255, 255, 255, 0.88);
-
-      text-align: right;
-
-      opacity: 0;
-      transform: translateY(4px);
-
-      transition:
-        opacity 0.2s ease,
-        transform 0.2s ease;
-
-      pointer-events: none;
-    }
-
-    .archive-item:hover .archive-info,
-    .archive-item:focus .archive-info,
-    .archive-item.show-info .archive-info {
-      opacity: 1;
-      transform: translateY(0);
+    .archive-caption {
+      padding-top: 10px;
     }
 
     .archive-category {
+      margin-bottom: 4px;
+      color: var(--secondary);
       font-size: 8px;
-      line-height: 1.2;
-      letter-spacing: 0.05em;
-
-      color: #777;
-
-      margin-bottom: 2px;
+      line-height: 1.4;
+      letter-spacing: 0.075em;
+      font-weight: 300;
     }
 
     .archive-title {
       font-size: 11px;
-      line-height: 1.3;
-      font-weight: 300;
+      line-height: 1.5;
+      font-weight: 400;
+      overflow-wrap: anywhere;
+    }
+
+    .archive-item:hover .archive-title {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
     }
 
     .empty {
-      font-size: 12px;
-      color: #777;
+      grid-column: 1 / -1;
+      padding: 30px 0;
+      color: var(--secondary);
+      font-size: 11px;
     }
 
-    /* =========================
-       Tablet
-    ========================= */
+    /* Tablet */
 
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
+      header {
+        padding: 0 18px;
+        gap: 14px;
+      }
+
+      .header-left {
+        gap: 20px;
+      }
+
+      .category-nav {
+        gap: 12px;
+      }
 
       main {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-right: 18px;
+        padding-left: 18px;
       }
 
       .archive-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 4px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 16px;
+        row-gap: 34px;
       }
     }
 
-    /* =========================
-       Mobile
-    ========================= */
+    /* Mobile */
 
     @media (max-width: 600px) {
-
       header {
         height: 48px;
         padding: 0 12px;
+        gap: 10px;
       }
 
       .header-left {
         gap: 15px;
-        min-width: 0;
+        flex: 1;
+        overflow: hidden;
       }
 
       .site-title {
@@ -241,7 +231,7 @@
       }
 
       .category-nav {
-        gap: 11px;
+        gap: 12px;
       }
 
       .header-category {
@@ -250,31 +240,31 @@
 
       .about-link {
         padding-left: 10px;
-        font-size: 8px;
+        font-size: 9px;
       }
 
       main {
-        padding: 56px 8px 70px;
+        padding: 64px 10px 60px;
       }
 
       .archive-grid {
-        grid-template-columns: 1fr;
-        gap: 4px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 10px;
+        row-gap: 27px;
       }
 
-      .archive-info {
-        right: 6px;
-        bottom: 6px;
-
-        padding: 5px 6px 4px;
+      .archive-caption {
+        padding-top: 7px;
       }
 
       .archive-category {
         font-size: 7px;
+        margin-bottom: 3px;
       }
 
       .archive-title {
         font-size: 10px;
+        line-height: 1.45;
       }
     }
   </style>
@@ -282,323 +272,108 @@
 
 <body>
 
-  <!-- =========================
-       Header
-  ========================= -->
-
   <header>
-
     <div class="header-left">
+      <a href="index.html" class="site-title">SAKATA KATSUYUKI</a>
 
-      <a href="index.html" class="site-title">
-        SAKATA KATSUYUKI
-      </a>
-
-      <nav class="category-nav">
-
-        <button
-          class="header-category active"
-          data-category="ALL"
-        >
-          ALL
-        </button>
-
-        <button
-          class="header-category"
-          data-category="ARCHITECTURE"
-        >
-          ARCHITECTURE
-        </button>
-
-        <button
-          class="header-category"
-          data-category="OBJECT"
-        >
-          OBJECT
-        </button>
-
-        <button
-          class="header-category"
-          data-category="FOOD"
-        >
-          FOOD
-        </button>
-
-        <button
-          class="header-category"
-          data-category="BOOK"
-        >
-          BOOK
-        </button>
-
-        <button
-          class="header-category"
-          data-category="TEXT"
-        >
-          TEXT
-        </button>
-
-        <button
-          class="header-category"
-          data-category="PHOTO"
-        >
-          PHOTO
-        </button>
-
-        <button
-          class="header-category"
-          data-category="PLACE"
-        >
-          PLACE
-        </button>
-
-        <button
-          class="header-category"
-          data-category="OTHER"
-        >
-          OTHER
-        </button>
-
+      <nav class="category-nav" aria-label="Archive categories">
+        <button class="header-category active" data-category="ALL">ALL</button>
+        <button class="header-category" data-category="ARCHITECTURE">ARCHITECTURE</button>
+        <button class="header-category" data-category="OBJECT">OBJECT</button>
+        <button class="header-category" data-category="FOOD">FOOD</button>
+        <button class="header-category" data-category="BOOK">BOOK</button>
+        <button class="header-category" data-category="TEXT">TEXT</button>
+        <button class="header-category" data-category="PHOTO">PHOTO</button>
+        <button class="header-category" data-category="PLACE">PLACE</button>
+        <button class="header-category" data-category="OTHER">OTHER</button>
       </nav>
-
     </div>
 
-    <a href="about.html" class="about-link">
-      About
-    </a>
-
+    <a href="about.html" class="about-link">About</a>
   </header>
 
-
-  <!-- =========================
-       Main
-  ========================= -->
-
   <main>
-
-    <div
-      id="archive-grid"
-      class="archive-grid"
-    ></div>
-
+    <div id="archive-grid" class="archive-grid"></div>
   </main>
 
-
-  <!-- =========================
-       JavaScript
-  ========================= -->
-
   <script>
-
-    const grid =
-      document.getElementById("archive-grid");
-
-    const filters =
-      document.querySelectorAll(".header-category");
+    const grid = document.getElementById("archive-grid");
+    const filters = document.querySelectorAll(".header-category");
 
     let archiveItems = [];
 
-
-    /* =========================
-       Render
-    ========================= */
-
     function render(category = "ALL") {
-
       grid.innerHTML = "";
 
-      const items =
-        archiveItems.filter(item => {
-
-          return category === "ALL" ||
-                 item.category === category;
-
-        });
-
+      const items = archiveItems.filter(item => {
+        return category === "ALL" || item.category === category;
+      });
 
       if (items.length === 0) {
-
         grid.innerHTML =
           '<div class="empty">まだ項目がありません。</div>';
-
         return;
       }
 
-
       items.forEach(item => {
+        const link = document.createElement("a");
+        link.className = "archive-item";
+        link.href = item.detailPage;
 
-        const link =
-          document.createElement("a");
+        const image = document.createElement("img");
+        image.className = "archive-image";
+        image.src = item.image;
+        image.alt = item.title || "";
+        image.loading = "lazy";
 
-        link.className =
-          "archive-item";
+        const caption = document.createElement("div");
+        caption.className = "archive-caption";
 
-        link.href =
-          item.detailPage;
+        const categoryLabel = document.createElement("div");
+        categoryLabel.className = "archive-category";
+        categoryLabel.textContent = item.category;
 
+        const title = document.createElement("div");
+        title.className = "archive-title";
+        title.textContent = item.title;
 
-        /* -------------------------
-           Mobile interaction
-        ------------------------- */
+        caption.appendChild(categoryLabel);
+        caption.appendChild(title);
 
-        link.addEventListener(
-          "click",
-          (event) => {
-
-            if (
-              window.matchMedia(
-                "(hover: none)"
-              ).matches
-            ) {
-
-              if (
-                !link.classList.contains(
-                  "show-info"
-                )
-              ) {
-
-                event.preventDefault();
-
-
-                document
-                  .querySelectorAll(
-                    ".archive-item.show-info"
-                  )
-                  .forEach(item => {
-
-                    item.classList.remove(
-                      "show-info"
-                    );
-
-                  });
-
-
-                link.classList.add(
-                  "show-info"
-                );
-              }
-            }
-          }
-        );
-
-
-        /* -------------------------
-           Image + Information
-        ------------------------- */
-
-        link.innerHTML = `
-
-          <img
-            src="${item.image}"
-            alt=""
-            class="archive-image"
-          >
-
-          <div class="archive-info">
-
-            <div class="archive-category">
-              ${item.category}
-            </div>
-
-            <div class="archive-title">
-              ${item.title}
-            </div>
-
-          </div>
-
-        `;
-
+        link.appendChild(image);
+        link.appendChild(caption);
 
         grid.appendChild(link);
-
       });
-
     }
-
-
-    /* =========================
-       Load archive-data.json
-    ========================= */
 
     async function loadArchive() {
-
       try {
-
-        const response =
-          await fetch(
-            "archive-data.json"
-          );
-
+        const response = await fetch("archive-data.json");
 
         if (!response.ok) {
-
-          throw new Error(
-            "Archive data not found"
-          );
-
+          throw new Error("Archive data not found");
         }
 
-
-        archiveItems =
-          await response.json();
-
-
+        archiveItems = await response.json();
         render();
 
-
       } catch (error) {
-
         console.error(error);
-
-
         grid.innerHTML =
           '<div class="empty">Archiveを読み込めませんでした。</div>';
-
       }
-
     }
 
-
-    /* =========================
-       Category buttons
-    ========================= */
-
     filters.forEach(filter => {
-
-      filter.addEventListener(
-        "click",
-        () => {
-
-          filters.forEach(button => {
-
-            button.classList.remove(
-              "active"
-            );
-
-          });
-
-
-          filter.classList.add(
-            "active"
-          );
-
-
-          render(
-            filter.dataset.category
-          );
-
-        }
-      );
-
+      filter.addEventListener("click", () => {
+        filters.forEach(button => button.classList.remove("active"));
+        filter.classList.add("active");
+        render(filter.dataset.category);
+      });
     });
 
-
-    /* =========================
-       Start
-    ========================= */
-
     loadArchive();
-
   </script>
 
 </body>
