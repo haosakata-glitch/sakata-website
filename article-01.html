@@ -103,6 +103,9 @@
     }
   </style>
 
+
+
+
 <style id="site-design">
   :root {
     --background: #E9E5DE;
@@ -111,7 +114,9 @@
     --line: #CBC5BB;
   }
 
-  * { box-sizing: border-box; }
+  * {
+    box-sizing: border-box;
+  }
 
   body {
     margin: 0;
@@ -168,7 +173,9 @@
     scrollbar-width: none;
   }
 
-  .category-nav::-webkit-scrollbar { display: none; }
+  .category-nav::-webkit-scrollbar {
+    display: none;
+  }
 
   .header-category {
     flex-shrink: 0;
@@ -193,7 +200,8 @@
     padding: 90px 24px 80px;
   }
 
-  .category, .project-category {
+  .category,
+  .project-category {
     margin-bottom: 7px;
     color: var(--secondary);
     font-size: 8px;
@@ -207,13 +215,15 @@
     line-height: 1.5;
   }
 
-  .image, .project-image {
+  .image,
+  .project-image {
     width: 100%;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 0 35px;
   }
 
-  .image img, .project-image img {
+  .image img,
+  .project-image img {
     display: block;
     width: 100%;
     height: auto;
@@ -224,7 +234,9 @@
     font-size: 10px;
   }
 
-  .back a { color: var(--secondary); }
+  .back a {
+    color: var(--secondary);
+  }
 
   @media (max-width: 600px) {
     header {
@@ -233,14 +245,34 @@
       gap: 10px;
     }
 
-    .header-left { gap: 15px; }
-    .site-title { font-size: 10px; }
-    .category-nav { gap: 12px; }
-    .header-category { font-size: 8px; }
-    .about-link { padding-left: 10px; font-size: 9px; }
+    .header-left {
+      gap: 15px;
+    }
 
-    main { padding: 76px 12px 60px; }
-    h1 { font-size: 16px; }
+    .site-title {
+      font-size: 10px;
+    }
+
+    .category-nav {
+      gap: 12px;
+    }
+
+    .header-category {
+      font-size: 8px;
+    }
+
+    .about-link {
+      padding-left: 10px;
+      font-size: 9px;
+    }
+
+    main {
+      padding: 76px 12px 60px;
+    }
+
+    h1 {
+      font-size: 16px;
+    }
   }
 </style>
 
@@ -249,6 +281,7 @@
 <body>
 
   
+
 <header>
   <div class="header-left">
     <a href="index.html" class="site-title">SAKATA KATSUYUKI</a>
@@ -266,6 +299,7 @@
   </div>
   <a href="about.html" class="about-link">About</a>
 </header>
+
 
 
 
