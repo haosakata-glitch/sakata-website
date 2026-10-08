@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BOOK | 坂田雄志</title>
+  <meta
+    name="description"
+    content="坂田雄志の読書アーカイブ。"
+  >
+
+  <style>
+    :root {
+      --background: #E9E5DE;
+      --text: #24231F;
+      --secondary: #77736B;
+      --line: #CBC5BB;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 300;
+      color: var(--text);
+      background: var(--background);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ------------------------------
+       HEADER
+    ------------------------------ */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      width: 100%;
+      height: 54px;
+      padding: 0 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background: rgba(233, 229, 222, 0.88);
+
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .site-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.035em;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .archive-link {
+      font-size: 10px;
+      color: var(--secondary);
+    }
+
+    .about-link {
+      padding-left: 14px;
+      border-left: 1px solid var(--line);
+
+      font-size: 10px;
+    }
+
+    /* ------------------------------
+       MAIN
+    ------------------------------ */
+
+    main {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 100px 24px 100px;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+
+      margin-bottom: 40px;
+      padding-bottom: 12px;
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .page-title {
+      margin: 0;
+
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+    }
+
+    .book-count {
+      font-size: 9px;
+      color: var(--secondary);
+      letter-spacing: 0.05em;
+    }
+
+    /* ------------------------------
+       BOOKSHELF
+    ------------------------------ */
+
+    .bookshelf {
+      display: grid;
+
+      grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
+      column-gap: 22px;
+      row-gap: 46px;
+    }
+
+    .book {
+      display: block;
+      min-width: 0;
+    }
+
+    .book-cover {
+      display: block;
+
+      width: 100%;
+      aspect-ratio: 0.68;
+
+      object-fit: cover;
+
+      background: #DCD6CC;
+
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+    }
+
+    .book:hover .book-cover {
+      transform: translateY(-4px);
+      opacity: 0.88;
+    }
+
+    .book-info {
+      padding-top: 9px;
+    }
+
+    .book-title {
+      font-size: 9px;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .book-category {
+      margin-top: 3px;
+
+      font-size: 7px;
+      line-height: 1.4;
+
+      color: var(--secondary);
+      letter-spacing: 0.05em;
+    }
+
+    /* ------------------------------
+       EMPTY
+    ------------------------------ */
+
+    .empty {
+      grid-column: 1 / -1;
+
+      padding: 50px 0;
+
+      font-size: 10px;
+      color: var(--secondary);
+    }
+
+    /* ------------------------------
+       MOBILE
+    ------------------------------ */
+
+    @media (max-width: 1100px) {
+
+      .bookshelf {
+        grid-template-columns:
+          repeat(5, minmax(0, 1fr));
+
+        column-gap: 18px;
+      }
+    }
+
+    @media (max-width: 700px) {
+
+      header {
+        height: 48px;
+        padding: 0 12px;
+      }
+
+      .site-title {
+        font-size: 10px;
+      }
+
+      .header-right {
+        gap: 12px;
+      }
+
+      .archive-link,
+      .about-link {
+        font-size: 9px;
+      }
+
+      .about-link {
+        padding-left: 10px;
+      }
+
+      main {
+        padding: 76px 12px 70px;
+      }
+
+      .page-header {
+        margin-bottom: 28px;
+      }
+
+      .bookshelf {
+        grid-template-columns:
+          repeat(3, minmax(0, 1fr));
+
+        column-gap: 12px;
+        row-gap: 34px;
+      }
+
+      .book-info {
+        padding-top: 7px;
+      }
+
+      .book-title {
+        font-size: 8px;
+      }
+
+      .book-category {
+        font-size: 6px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <header>
+
+    <a
+      href="index.html"
+      class="site-title"
+    >
+      SAKATA KATSUYUKI
+    </a>
+
+    <div class="header-right">
+
+      <a
+        href="index.html"
+        class="archive-link"
+      >
+        Archive
+      </a>
+
+      <a
+        href="about.html"
+        class="about-link"
+      >
+        About
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <div class="page-header">
+
+      <h1 class="page-title">
+        BOOK
+      </h1>
+
+      <div
+        id="book-count"
+        class="book-count"
+      >
+        0 BOOKS
+      </div>
+
+    </div>
+
+
+    <div
+      id="bookshelf"
+      class="bookshelf"
+    ></div>
+
+  </main>
+
+
+  <script>
+
+    const bookshelf =
+      document.getElementById("bookshelf");
+
+    const bookCount =
+      document.getElementById("book-count");
+
+
+    async function loadBooks() {
+
+      try {
+
+        const response =
+          await fetch("archive-data.json");
+
+        if (!response.ok) {
+          throw new Error(
+            "Archive data not found"
+          );
+        }
+
+        const archive =
+          await response.json();
+
+
+        const books =
+          archive.filter(
+            item => item.category === "BOOK"
+          );
+
+
+        bookCount.textContent =
+          `${books.length} BOOKS`;
+
+
+        if (books.length === 0) {
+
+          bookshelf.innerHTML =
+            '<div class="empty">まだ本がありません。</div>';
+
+          return;
+        }
+
+
+        books.forEach(book => {
+
+          const link =
+            document.createElement("a");
+
+          link.className = "book";
+
+          link.href =
+            book.detailPage;
+
+
+          const image =
+            document.createElement("img");
+
+          image.className =
+            "book-cover";
+
+          image.src =
+            book.image;
+
+          image.alt =
+            book.title || "";
+
+          image.loading =
+            "lazy";
+
+
+          const info =
+            document.createElement("div");
+
+          info.className =
+            "book-info";
+
+
+          const title =
+            document.createElement("div");
+
+          title.className =
+            "book-title";
+
+          title.textContent =
+            book.title;
+
+
+          const category =
+            document.createElement("div");
+
+          category.className =
+            "book-category";
+
+          category.textContent =
+            "BOOK";
+
+
+          info.appendChild(title);
+          info.appendChild(category);
+
+          link.appendChild(image);
+          link.appendChild(info);
+
+          bookshelf.appendChild(link);
+
+        });
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        bookshelf.innerHTML =
+          '<div class="empty">BOOKを読み込めませんでした。</div>';
+
+      }
+
+    }
+
+
+    loadBooks();
+
+  </script>
+
+</body>
+
+</html>
