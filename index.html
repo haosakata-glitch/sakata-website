@@ -242,7 +242,14 @@
           slide.className = 'carousel-slide';
           const link = document.createElement('a');
           link.className = 'photo-link';
-          link.href = item.detailPage || 'archive.html';
+          const categoryPages = {
+            FOOD: 'archive.html?category=FOOD',
+            ARCHITECTURE: 'archive.html?category=ARCHITECTURE',
+            OBJECT: 'archive.html?category=OBJECT',
+            BOOK: 'archive.html?category=BOOK',
+            PHOTO: 'archive.html?category=PHOTO'
+          };
+          link.href = categoryPages[item.category] || 'archive.html';
           const frame = document.createElement('div');
           frame.className = 'photo-frame';
           const image = document.createElement('img');
@@ -262,13 +269,6 @@
           caption.append(category, title);
           frame.append(image, caption);
           link.appendChild(frame);
-          link.addEventListener('click', event => {
-            if (window.matchMedia('(max-width: 650px) and (hover: none)').matches && !link.classList.contains('is-caption-visible')) {
-              event.preventDefault();
-              document.querySelectorAll('.photo-link.is-caption-visible').forEach(el => el.classList.remove('is-caption-visible'));
-              link.classList.add('is-caption-visible');
-            }
-          });
           slide.appendChild(link);
           photoTrack.appendChild(slide);
           photoCarousel.addDot();
