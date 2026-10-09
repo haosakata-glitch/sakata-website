@@ -706,6 +706,18 @@ jobs:
 
               archive.append(item)
 
+          # テキスト記事もArchiveに追加（画像のない記事は文字カードとして表示）
+          try:
+              article_items = json.loads(Path("articles.json").read_text(encoding="utf-8"))
+          except (FileNotFoundError, json.JSONDecodeError):
+              article_items = []
+
+          for article in article_items:
+              article["image"] = None
+              article["capturedAt"] = None
+              article["isArticle"] = True
+              archive.append(article)
+
           Path("archive-data.json").write_text(
               json.dumps(archive, ensure_ascii=False, indent=2) + "\n",
               encoding="utf-8"
