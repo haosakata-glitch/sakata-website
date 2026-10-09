@@ -1,85 +1,85 @@
 [
   {
-    "image": "book-01.jpg",
+    "image": "assets/optimized/book-01.webp",
     "detailPage": "book-01.html",
     "category": "BOOK",
     "title": "本のタイトル",
     "bookTitle": "book-01"
   },
   {
-    "image": "food-01.jpeg",
+    "image": "assets/optimized/food-01.webp",
     "detailPage": "food-01.html",
     "category": "FOOD",
     "title": "food-01"
   },
   {
-    "image": "food-02.jpeg",
+    "image": "assets/optimized/food-02.webp",
     "detailPage": "food-02.html",
     "category": "FOOD",
     "title": "food-02"
   },
   {
-    "image": "food-04.jpeg",
+    "image": "assets/optimized/food-04.webp",
     "detailPage": "food-04.html",
     "category": "FOOD",
     "title": "food-04"
   },
   {
-    "image": "food-05.jpg",
+    "image": "assets/optimized/food-05.webp",
     "detailPage": "food-05.html",
     "category": "FOOD",
     "title": "food-05"
   },
   {
-    "image": "food-06.jpeg",
+    "image": "assets/optimized/food-06.webp",
     "detailPage": "food-06.html",
     "category": "FOOD",
     "title": "food-06"
   },
   {
-    "image": "food-07.jpeg",
+    "image": "assets/optimized/food-07.webp",
     "detailPage": "food-07.html",
     "category": "FOOD",
     "title": "food-07"
   },
   {
-    "image": "food-08.jpeg",
+    "image": "assets/optimized/food-08.webp",
     "detailPage": "food-08.html",
     "category": "FOOD",
     "title": "food-08"
   },
   {
-    "image": "food-09.jpg",
+    "image": "assets/optimized/food-09.webp",
     "detailPage": "food-09.html",
     "category": "FOOD",
     "title": "food-09"
   },
   {
-    "image": "food-10.jpeg",
+    "image": "assets/optimized/food-10.webp",
     "detailPage": "food-10.html",
     "category": "FOOD",
     "title": "food-10"
   },
   {
-    "image": "photo-01.jpg",
+    "image": "assets/optimized/photo-01.webp",
     "detailPage": "photo-01.html",
     "category": "PHOTO",
     "title": "写真のタイトル"
   },
   {
-    "image": "work-01.jpg",
+    "image": "assets/optimized/work-01.webp",
     "detailPage": "work-01.html",
     "category": "OBJECT",
     "title": "(仮)下仁田蒸留所"
   },
   {
-    "image": "work-02.jpeg",
+    "image": "assets/optimized/work-02.webp",
     "detailPage": "work-02.html",
     "category": "OBJECT",
     "title": "work-02"
   },
   {
-    "image": "work-03.jpeg",
+    "image": "assets/optimized/work-03.webp",
     "detailPage": "work-03.html",
     "category": "OBJECT",
     "title": "work-03"
