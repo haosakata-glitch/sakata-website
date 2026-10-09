@@ -404,6 +404,7 @@ main {
     const hotCount = document.getElementById("hot-count");
     const hotSlider = document.getElementById("hot-slider");
     const hotSection = document.querySelector(".hot-section");
+    const hotSection = document.querySelector(".hot-section");
     const archiveCount = document.getElementById("archive-count");
     const hotPause = document.getElementById("hot-pause");
 
@@ -415,6 +416,7 @@ main {
       "photo-01.html": "PHOTO / FIELD NOTES。写真を通して、見たものや場所の記録をたどる。"
     };
     let hotItems = [];
+    let allHotItems = [];
     let hotIndex = 0;
     let hotTimer = null;
     let hotIsPaused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -452,9 +454,11 @@ main {
       return `${year}.${month}.${day}`;
     }
 
-    function renderHot() {
+    function renderHot(category = "ALL") {
       hotTrack.innerHTML = "";
       hotDots.innerHTML = "";
+      hotItems = category === "ALL" ? [...allHotItems] : allHotItems.filter(item => item.category === category);
+      hotSection.hidden = hotItems.length === 0;
       hotItems.forEach((item, index) => {
         const slide = document.createElement("article");
         slide.className = "hot-slide";
@@ -632,6 +636,7 @@ main {
 
         window.history.pushState({}, "", url);
 
+        renderHot(category);
         renderArchive(category);
       });
     });
@@ -656,7 +661,8 @@ main {
       if (activeButton) {
         activeButton.classList.add("active");
       }
-renderArchive(category);
+      renderHot(category);
+      renderArchive(category);
     });
 
     /* archive-data.jsonを読み込み */
@@ -678,10 +684,10 @@ renderArchive(category);
 
         // HOTには、分野ごとに1点ずつ代表写真を表示する
         const hotCategories = ["ARCHITECTURE", "OBJECT", "BOOK", "FOOD", "PHOTO", "PLACE", "TEXT", "OTHER"];
-        hotItems = hotCategories
+        allHotItems = hotCategories
           .map(category => archiveData.find(item => item.category === category))
           .filter(Boolean);
-        renderHot();
+        renderHot(initialCategory);
         startHotTimer();
 
         navItems.forEach(item => {
