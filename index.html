@@ -48,12 +48,19 @@
     .photo-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; }
     .photo-image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
     .photo-caption {
-      position: absolute; inset: 0; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 6px; padding: 18px;
-      background: rgba(233,229,222,.80); color: rgba(34,34,34,.82);
-      text-align: center; font-size: 11px; letter-spacing: .03em;
+      position: absolute; right: 0; bottom: 0; left: auto; top: auto;
+      display: flex; flex-direction: column; align-items: flex-end; justify-content: center;
+      gap: 3px; max-width: 86%; padding: 9px 12px;
+      background: rgba(233,229,222,.94); color: rgba(34,34,34,.82);
+      text-align: right; font-size: 10px; letter-spacing: .03em;
       opacity: 0; pointer-events: none; transition: opacity .15s ease;
     }
+    .photo-thumbnails { display:flex; gap:8px; margin-top:10px; overflow-x:auto; padding:1px 0 4px; }
+    .photo-thumbnail { flex:0 0 clamp(76px,12vw,132px); width:clamp(76px,12vw,132px); padding:0; border:1px solid transparent; background:transparent; cursor:pointer; opacity:.66; }
+    .photo-thumbnail img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; }
+    .photo-thumbnail span { display:block; margin-top:4px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; font-size:9px; text-align:left; }
+    .photo-thumbnail[aria-current="true"] { opacity:1; border-color:rgba(34,34,34,.72); }
+    .photo-browse-hint { margin:8px 0 0; color:rgba(34,34,34,.45); font-size:9px; letter-spacing:.04em; }
     .photo-caption-title { max-width: 100%; overflow-wrap: anywhere; }
     .photo-caption-category { color: rgba(34,34,34,.52); font-size: 9px; }
     @media (hover:hover) and (pointer:fine) {
@@ -128,6 +135,8 @@
       <div class="carousel" id="photo-carousel" aria-label="Archive photographs">
         <div class="carousel-track" id="photo-track"></div>
       </div>
+      <div class="photo-thumbnails" id="photo-thumbnails" aria-label="Choose photograph"></div>
+      <p class="photo-browse-hint">写真を選ぶと切り替わります。写真を押すと詳細を開きます。</p>
       <div class="carousel-controls">
         <button class="carousel-arrow" id="photo-prev" type="button" aria-label="Previous photograph">←</button>
         <button class="carousel-arrow" id="photo-next" type="button" aria-label="Next photograph">→</button>
@@ -139,7 +148,7 @@
     <section class="home-section" aria-labelledby="text-heading">
       <div class="section-heading">
         <span id="text-heading">TEXT</span>
-        <a href="text-01.html">ALL TEXTS ↗</a>
+        <a href="text.html">VIEW ALL ↗</a>
       </div>
       <div class="carousel text-carousel" id="text-carousel" aria-label="Texts">
         <div class="carousel-track" id="text-track"></div>
@@ -162,6 +171,9 @@
         track.style.transform = 'translateX(' + (-index * 100) + '%)';
         dots.querySelectorAll('button').forEach((dot, i) => dot.setAttribute('aria-current', i === index ? 'true' : 'false'));
         counter.textContent = count ? String(index + 1).padStart(2, '0') + ' / ' + String(count).padStart(2, '0') : '';
+        if (track.id === 'photo-track') {
+          document.querySelectorAll('#photo-thumbnails button').forEach((thumb, i) => thumb.setAttribute('aria-current', i === index ? 'true' : 'false'));
+        }
       };
       const go = next => {
         if (!count) return;
@@ -182,12 +194,14 @@
           count += 1;
           update();
         },
-        update
+        update,
+        go
       };
     }
 
     const photoTrack = document.getElementById('photo-track');
     const photoDots = document.getElementById('photo-dots');
+    const photoThumbnails = document.getElementById('photo-thumbnails');
     const photoCarousel = setupCarousel(
       photoTrack, photoDots, document.getElementById('photo-counter'),
       document.getElementById('photo-prev'), document.getElementById('photo-next')
@@ -247,6 +261,20 @@
           slide.appendChild(link);
           photoTrack.appendChild(slide);
           photoCarousel.addDot();
+          const thumb = document.createElement('button');
+          thumb.type = 'button';
+          thumb.className = 'photo-thumbnail';
+          thumb.setAttribute('aria-label', 'Show ' + (item.title || 'photograph'));
+          thumb.setAttribute('aria-current', photos.indexOf(item) === 0 ? 'true' : 'false');
+          const thumbImage = document.createElement('img');
+          thumbImage.src = item.coverImage || item.image;
+          thumbImage.alt = '';
+          thumbImage.loading = 'lazy';
+          const thumbTitle = document.createElement('span');
+          thumbTitle.textContent = item.title || item.category || 'ARCHIVE';
+          thumb.append(thumbImage, thumbTitle);
+          thumb.addEventListener('click', () => photoCarousel.go(photos.indexOf(item)));
+          photoThumbnails.appendChild(thumb);
         });
       })
       .catch(error => {
