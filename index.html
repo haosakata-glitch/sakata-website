@@ -464,14 +464,11 @@ main {
     );
 
     let archiveData = [];
-    let currentCategory = initialCategory;
     let currentSearch = "";
 
-    const params = new URLSearchParams(
-      window.location.search
-    );
-
+    const params = new URLSearchParams(window.location.search);
     const initialCategory = params.get("category") || "ALL";
+    let currentCategory = initialCategory;
 
     function formatDate(value) {
       if (!value) {
