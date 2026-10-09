@@ -42,6 +42,7 @@
     .section-heading a { white-space: nowrap; color: rgba(34,34,34,.55); }
     .section-heading a:hover { color: #222; }
     .carousel { position: relative; overflow: hidden; }
+    #photo-carousel { touch-action: pan-y; }
     .carousel-track { display: flex; width: 100%; transition: transform .55s cubic-bezier(.22,.61,.36,1); }
     .carousel-slide { flex: 0 0 100%; min-width: 0; }
     .photo-link { display: block; position: relative; overflow: hidden; background: rgba(34,34,34,.04); }
@@ -206,6 +207,37 @@
       photoTrack, photoDots, document.getElementById('photo-counter'),
       document.getElementById('photo-prev'), document.getElementById('photo-next')
     );
+    const photoCarouselElement = document.getElementById('photo-carousel');
+    let swipeStartX = null;
+    let swipeStartY = null;
+    let suppressPhotoClick = false;
+    photoCarouselElement.addEventListener('pointerdown', event => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      swipeStartX = event.clientX;
+      swipeStartY = event.clientY;
+      suppressPhotoClick = false;
+    });
+    photoCarouselElement.addEventListener('pointerup', event => {
+      if (swipeStartX === null || swipeStartY === null) return;
+      const dx = event.clientX - swipeStartX;
+      const dy = event.clientY - swipeStartY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+        photoCarousel.go(dx < 0 ? Number(document.getElementById('photo-counter').textContent.split(' / ')[0]) : Number(document.getElementById('photo-counter').textContent.split(' / ')[0]) - 2);
+        suppressPhotoClick = true;
+      }
+      swipeStartX = null;
+      swipeStartY = null;
+    });
+    photoCarouselElement.addEventListener('pointercancel', () => {
+      swipeStartX = null;
+      swipeStartY = null;
+    });
+    photoCarouselElement.addEventListener('click', event => {
+      if (!suppressPhotoClick) return;
+      event.preventDefault();
+      event.stopPropagation();
+      suppressPhotoClick = false;
+    }, true);
     const textTrack = document.getElementById('text-track');
     const textDots = document.getElementById('text-dots');
     const textCarousel = setupCarousel(
