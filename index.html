@@ -406,8 +406,6 @@ main {
   <main>
     <section class="hot-section" aria-label="HOT articles">
       <div class="hot-heading">
-        <span>HOT / FEATURED ARTICLES</span>
-        <span class="hot-count" id="hot-count">01 / 05</span>
       </div>
       <div class="hot-slider" id="hot-slider">
         <div class="hot-track" id="hot-track"></div>
@@ -437,7 +435,6 @@ main {
     const archive = document.getElementById("archive");
     const hotTrack = document.getElementById("hot-track");
     const hotDots = document.getElementById("hot-dots");
-    const hotCount = document.getElementById("hot-count");
     const hotSlider = document.getElementById("hot-slider");
     const hotSection = document.querySelector(".hot-section");
     const archiveCount = document.getElementById("archive-count");
@@ -553,7 +550,6 @@ main {
       if (!hotItems.length) return;
       hotIndex = (index + hotItems.length) % hotItems.length;
       hotTrack.style.transform = "translateX(-" + (hotIndex * 100) + "%)";
-      hotCount.textContent = String(hotIndex + 1).padStart(2, "0") + " / " + String(hotItems.length).padStart(2, "0");
       [...hotDots.children].forEach((dot, i) => dot.setAttribute("aria-current", i === hotIndex ? "true" : "false"));
     }
 
