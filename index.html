@@ -171,23 +171,23 @@
 
     .archive-caption {
       position: absolute;
-      right: 10px;
-      bottom: 8px;
+      inset: 0;
       display: flex;
-      align-items: baseline;
-      gap: 8px;
-      max-width: calc(100% - 20px);
-      padding: 0;
-      background: transparent;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 18px;
+      background: rgba(233, 229, 222, 0.80);
       color: rgba(34, 34, 34, 0.82);
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 400;
-      line-height: 1.4;
+      line-height: 1.45;
       letter-spacing: 0.03em;
-      text-align: right;
-      text-shadow: none;
+      text-align: center;
       pointer-events: none;
       opacity: 0;
+      transition: opacity 0.15s ease;
     }
 
     /* PC：カーソルを合わせると写真が薄く白くなる */
@@ -198,7 +198,7 @@
       }
 
       .archive-item:hover .archive-image {
-        opacity: 0.76;
+        opacity: 1;
       }
 
       .archive-item:hover .archive-caption {
@@ -211,13 +211,14 @@
     }
 
     .archive-item:focus-visible .archive-image {
-      opacity: 0.76;
+      opacity: 1;
     }
 
     .archive-caption-title {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      text-overflow: clip;
+      max-width: 100%;
     }
 
     .archive-caption-date {
@@ -311,11 +312,7 @@
       }
 
       .archive-caption {
-        right: 7px;
-        bottom: 6px;
-        gap: 5px;
-        max-width: calc(100% - 14px);
-        padding: 0;
+        padding: 12px;
         font-size: 8px;
       }
 
@@ -331,7 +328,7 @@
       /* スマホ：最初のタップで写真を白くしてタイトルを表示 */
 
       .archive-item.is-caption-visible .archive-image {
-        opacity: 0.76;
+        opacity: 1;
       }
 
       .archive-item.is-caption-visible .archive-caption {
@@ -369,7 +366,6 @@
         SAKATA KATSUYUKI
       </a>
 
-```
   <nav class="main-nav">
     <button type="button" data-category="ALL" class="active">
       ALL
@@ -408,7 +404,6 @@
     <a href="#about" class="about-link">ABOUT</a>
   </nav>
 </div>
-```
 
   </header>
 
@@ -421,7 +416,6 @@
       aria-live="polite"
     ></section>
 
-```
 <section id="about" class="about">
   <div class="about-inner">
     <div class="about-label">ABOUT</div>
@@ -468,7 +462,6 @@
     </div>
   </div>
 </section>
-```
 
   </main>
 
