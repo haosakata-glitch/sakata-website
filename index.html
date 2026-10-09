@@ -119,16 +119,6 @@
       border-left: 1px solid rgba(34, 34, 34, 0.14) !important;
     }
 
-    /* ABOUTはABOUTを選択したときだけ表示 */
-
-    .about {
-      display: none;
-    }
-
-    .about.is-visible {
-      display: block;
-    }
-
     /* MAIN */
 
     main {
@@ -226,52 +216,6 @@
       color: rgba(34, 34, 34, 0.56);
     }
 
-    /* ABOUT */
-
-    .about {
-      margin-top: 140px;
-      border-top: 1px solid rgba(34, 34, 34, 0.07);
-      padding-top: 35px;
-    }
-
-    .about-inner {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      column-gap: 30px;
-      max-width: 900px;
-    }
-
-    .about-label {
-      font-size: 10px;
-      color: rgba(34, 34, 34, 0.50);
-      letter-spacing: 0.04em;
-    }
-
-    .about-text {
-      max-width: 600px;
-      font-size: 10px;
-      line-height: 1.7;
-      color: rgba(34, 34, 34, 0.62);
-    }
-
-    .about-name {
-      margin-bottom: 16px;
-      font-size: 11px;
-      color: rgba(34, 34, 34, 0.70);
-    }
-
-    .about-text p {
-      margin: 0 0 18px;
-    }
-
-    .about-contact a {
-      border-bottom: 1px solid rgba(34, 34, 34, 0.12);
-    }
-
-    .about-contact a:hover {
-      opacity: 0.65;
-    }
-
     /* MOBILE */
 
     @media (max-width: 650px) {
@@ -295,13 +239,7 @@
         font-size: 9px;
         height: 18px;
       }
-
-      .about-link {
-        margin-left: 4px !important;
-        padding-left: 10px !important;
-      }
-
-      main {
+main {
         padding: 72px 10px 70px;
       }
 
@@ -334,25 +272,7 @@
       .archive-item.is-caption-visible .archive-caption {
         opacity: 1;
       }
-
-      .about {
-        margin-top: 90px;
-        padding-top: 25px;
-      }
-
-      .about-inner {
-        grid-template-columns: 70px 1fr;
-        column-gap: 15px;
-      }
-
-      .about-text {
-        font-size: 9px;
-      }
-
-      .about-name {
-        font-size: 10px;
-      }
-    }
+}
   </style>
 
 </head>
@@ -401,7 +321,7 @@
       OTHER
     </button>
 
-    <a href="#about" class="about-link">ABOUT</a>
+    <a href="about.html" class="about-link">ABOUT</a>
   </nav>
 </div>
 
@@ -416,54 +336,7 @@
       aria-live="polite"
     ></section>
 
-<section id="about" class="about">
-  <div class="about-inner">
-    <div class="about-label">ABOUT</div>
-
-    <div class="about-text">
-      <div class="about-name">
-        坂田雄志 / Sakata Katsuyuki
-      </div>
-
-      <p class="about-profile">
-        建築家。<br>
-        2016–2020 近畿大学建築学部建築学科 松岡聡研究室<br>
-        2020–2023 横浜国立大学大学院 Y-GSA<br>
-        2023–2024 平田明久建築設計事務所<br>
-        2024–2026 Archipelago Architects Studio
-      </p>
-
-      <p class="about-contact">
-        <a href="mailto:hao.sakata@gmail.com">
-          hao.sakata@gmail.com
-        </a>
-        <br>
-
-        <a
-          href="https://www.instagram.com/katsu_0708/"
-          target="_blank"
-          rel="noopener"
-        >Instagram</a>
-        <br>
-
-        <a
-          href="https://x.com/Katsuskt"
-          target="_blank"
-          rel="noopener"
-        >X</a>
-        <br>
-
-        <a
-          href="https://note.com/kind_nerine7"
-          target="_blank"
-          rel="noopener"
-        >note</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-  </main>
+</main>
 
   <script>
     const archive = document.getElementById("archive");
@@ -471,9 +344,6 @@
     const categoryButtons = document.querySelectorAll(
       ".main-nav button[data-category]"
     );
-
-    const aboutSection = document.getElementById("about");
-    const aboutLink = document.querySelector(".about-link");
     const navItems = document.querySelectorAll(
       ".main-nav a, .main-nav button"
     );
@@ -594,9 +464,6 @@
 
         button.classList.add("active");
 
-        /* カテゴリー表示時はABOUTを閉じる */
-        aboutSection.classList.remove("is-visible");
-
         const url = new URL(window.location.href);
 
         if (category === "ALL") {
@@ -608,24 +475,6 @@
         window.history.pushState({}, "", url);
 
         renderArchive(category);
-      });
-    });
-
-    /* ABOUTを押したときだけ自己紹介を表示 */
-
-    aboutLink.addEventListener("click", event => {
-      event.preventDefault();
-
-      navItems.forEach(item => {
-        item.classList.remove("active");
-      });
-
-      aboutLink.classList.add("active");
-      aboutSection.classList.add("is-visible");
-
-      aboutSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
       });
     });
 
@@ -649,10 +498,7 @@
       if (activeButton) {
         activeButton.classList.add("active");
       }
-
-      aboutSection.classList.remove("is-visible");
-
-      renderArchive(category);
+renderArchive(category);
     });
 
     /* archive-data.jsonを読み込み */
