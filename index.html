@@ -135,7 +135,7 @@
       font-size: 10px; letter-spacing: .1em;
     }
     .hot-count { color: rgba(34,34,34,.45); font-size: 9px; letter-spacing: .04em; }
-    .hot-slider { position: relative; overflow: hidden; background: rgba(255,255,255,.18); }
+    .hot-slider { position: relative; overflow: hidden; background: rgba(255,255,255,.18); touch-action: pan-y; }
     .hot-track { display: flex; width: 100%; transition: transform .65s cubic-bezier(.22,.61,.36,1); }
     .hot-slide {
       flex: 0 0 100%; display: grid;
@@ -572,6 +572,25 @@ main {
       hotPause.setAttribute("aria-pressed", hotIsPaused ? "true" : "false");
       startHotTimer();
     });
+    // スマートフォンでは左右スワイプでスライドを切り替える
+    let hotTouchStartX = 0;
+    let hotTouchStartY = 0;
+    hotSlider.addEventListener("touchstart", event => {
+      if (!event.changedTouches.length) return;
+      hotTouchStartX = event.changedTouches[0].clientX;
+      hotTouchStartY = event.changedTouches[0].clientY;
+      stopHotTimer();
+    }, { passive: true });
+    hotSlider.addEventListener("touchend", event => {
+      if (!event.changedTouches.length) return;
+      const deltaX = event.changedTouches[0].clientX - hotTouchStartX;
+      const deltaY = event.changedTouches[0].clientY - hotTouchStartY;
+      if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+        showHot(hotIndex + (deltaX < 0 ? 1 : -1));
+      }
+      startHotTimer();
+    }, { passive: true });
+    hotSlider.addEventListener("touchcancel", startHotTimer, { passive: true });
     hotSlider.addEventListener("mouseenter", stopHotTimer);
     hotSlider.addEventListener("mouseleave", startHotTimer);
     hotSlider.addEventListener("focusin", stopHotTimer);
