@@ -53,7 +53,7 @@
       gap: 3px; max-width: 86%; padding: 9px 12px;
       background: rgba(233,229,222,.94); color: rgba(34,34,34,.82);
       text-align: right; font-size: 10px; letter-spacing: .03em;
-      opacity: 0; pointer-events: none; transition: opacity .15s ease;
+      opacity: 1; pointer-events: none;
     }
     .photo-thumbnails { display:flex; gap:8px; margin-top:10px; overflow-x:auto; padding:1px 0 4px; }
     .photo-thumbnail { flex:0 0 clamp(76px,12vw,132px); width:clamp(76px,12vw,132px); padding:0; border:1px solid transparent; background:transparent; cursor:pointer; opacity:.66; }
@@ -220,12 +220,14 @@
       })
       .then(data => {
         const items = Array.isArray(data) ? data : (data.items || []);
-        const preferred = ['ARCHITECTURE', 'OBJECT', 'FOOD', 'BOOK', 'PHOTO', 'PLACE', 'OTHER'];
-        const photos = [];
-        preferred.forEach(category => {
-          const item = items.find(entry => entry.category === category && (entry.image || entry.coverImage));
-          if (item && photos.length < 5) photos.push(item);
-        });
+        const photos = items
+          .filter(entry => !entry.isArticle && (entry.image || entry.coverImage))
+          .sort((a, b) => {
+            const dateA = a.capturedAt ? Date.parse(a.capturedAt) : 0;
+            const dateB = b.capturedAt ? Date.parse(b.capturedAt) : 0;
+            return dateB - dateA;
+          })
+          .slice(0, 5);
         photos.forEach(item => {
           const slide = document.createElement('div');
           slide.className = 'carousel-slide';
@@ -264,14 +266,14 @@
           const thumb = document.createElement('button');
           thumb.type = 'button';
           thumb.className = 'photo-thumbnail';
-          thumb.setAttribute('aria-label', 'Show ' + (item.title || 'photograph'));
+          thumb.setAttribute('aria-label', 'Show ' + (item.category || 'ARCHIVE') + ' photograph');
           thumb.setAttribute('aria-current', photos.indexOf(item) === 0 ? 'true' : 'false');
           const thumbImage = document.createElement('img');
           thumbImage.src = item.coverImage || item.image;
           thumbImage.alt = '';
           thumbImage.loading = 'lazy';
           const thumbTitle = document.createElement('span');
-          thumbTitle.textContent = item.title || item.category || 'ARCHIVE';
+          thumbTitle.textContent = item.category || 'ARCHIVE';
           thumb.append(thumbImage, thumbTitle);
           thumb.addEventListener('click', () => photoCarousel.go(photos.indexOf(item)));
           photoThumbnails.appendChild(thumb);
