@@ -250,7 +250,7 @@
           const category = document.createElement('span');
           category.className = 'photo-caption-category';
           category.textContent = item.category || 'ARCHIVE';
-          caption.append(title, category);
+          caption.append(category, title);
           frame.append(image, caption);
           link.appendChild(frame);
           link.addEventListener('click', event => {
