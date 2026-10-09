@@ -173,6 +173,18 @@
     }
     @media (prefers-reduced-motion: reduce) { .hot-track { transition: none; } html { scroll-behavior: auto; } }
 
+
+    .archive-tools { display:flex; justify-content:space-between; gap:12px; margin:0 0 14px; }
+    .search-box { flex:1; min-width:0; }
+    .search-box input, .sort-box select { width:100%; min-height:34px; border:1px solid rgba(34,34,34,.18); border-radius:0; background:transparent; color:inherit; padding:7px 9px; font:inherit; font-size:10px; letter-spacing:.06em; outline-offset:3px; }
+    .search-box input::placeholder { color:rgba(34,34,34,.42); }
+    .sort-box { width:130px; flex:0 0 auto; }
+    .archive-empty { padding:24px 0; color:rgba(34,34,34,.55); }
+    .visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .back-to-top { position:fixed; right:18px; bottom:18px; z-index:900; border:1px solid rgba(34,34,34,.25); border-radius:50%; width:38px; height:38px; background:rgba(233,229,222,.92); color:rgba(34,34,34,.8); cursor:pointer; opacity:0; pointer-events:none; transition:opacity .2s ease; }
+    .back-to-top.is-visible { opacity:1; pointer-events:auto; }
+    @media(max-width:650px) { .archive-tools { gap:8px; } .sort-box { width:105px; } .back-to-top { right:12px; bottom:12px; } }
+
     /* ARCHIVE GRID */
 
     .archive-grid {
@@ -408,10 +420,20 @@ main {
       </div>
     </section>
     <div class="archive-label"><span>ARCHIVE</span><span id="archive-count"></span></div>
+    <div class="archive-tools" aria-label="アーカイブ検索と並び替え">
+      <label class="search-box"><span class="visually-hidden">キーワード検索</span><input id="archive-search" type="search" placeholder="SEARCH ARCHIVE" autocomplete="off"></label>
+      <label class="sort-box"><span class="visually-hidden">並び替え</span><select id="archive-sort"><option value="default">DEFAULT</option><option value="newest">NEWEST</option><option value="oldest">OLDEST</option><option value="title">TITLE A–Z</option></select></label>
+    </div>
+    <p id="archive-empty" class="archive-empty" hidden>該当する記事はありません。</p>
     <section id="archive" class="archive-grid" aria-live="polite"></section>
   </main>
 
+  <button type="button" id="back-to-top" class="back-to-top" aria-label="ページ上部に戻る">↑</button>
   <script>
+    const searchInput = document.getElementById("archive-search");
+    const sortSelect = document.getElementById("archive-sort");
+    const emptyMessage = document.getElementById("archive-empty");
+    const backToTop = document.getElementById("back-to-top");
     const archive = document.getElementById("archive");
     const hotTrack = document.getElementById("hot-track");
     const hotDots = document.getElementById("hot-dots");
@@ -442,6 +464,8 @@ main {
     );
 
     let archiveData = [];
+    let currentCategory = initialCategory;
+    let currentSearch = "";
 
     const params = new URLSearchParams(
       window.location.search
@@ -559,18 +583,36 @@ main {
     document.addEventListener("visibilitychange", () => document.hidden ? stopHotTimer() : startHotTimer());
 
     function renderArchive(category) {
+      currentCategory = category;
       archive.innerHTML = "";
 
       let filteredData = archiveData;
 
       if (category !== "ALL") {
-        filteredData = archiveData.filter(
-          item => item.category === category
+        filteredData = archiveData.filter(item => item.category === category);
+      }
+      if (currentSearch) {
+        const query = currentSearch.toLocaleLowerCase();
+        filteredData = filteredData.filter(item =>
+          [item.title, item.category, item.description, item.date, item.bookTitle, item.author, item.location]
+            .filter(Boolean).join(" ").toLocaleLowerCase().includes(query)
         );
+      }
+      const sortMode = sortSelect.value;
+      filteredData = [...filteredData];
+      if (sortMode === "newest" || sortMode === "oldest") {
+        filteredData.sort((a,b) => {
+          const da = Date.parse(a.date || a.createdAt || a.publishedAt || "") || 0;
+          const db = Date.parse(b.date || b.createdAt || b.publishedAt || "") || 0;
+          return sortMode === "newest" ? db-da : da-db;
+        });
+      } else if (sortMode === "title") {
+        filteredData.sort((a,b) => (a.title || "").localeCompare(b.title || "", "ja"));
       }
 
       archiveCount.textContent = String(filteredData.length).padStart(2, "0") + " ITEMS";
 
+      emptyMessage.hidden = filteredData.length !== 0;
       filteredData.forEach(item => {
         const link = document.createElement("a");
 
@@ -637,6 +679,16 @@ main {
         archive.appendChild(link);
       });
     }
+
+    searchInput.addEventListener("input", () => {
+      currentSearch = searchInput.value.trim();
+      renderArchive(currentCategory);
+    });
+    sortSelect.addEventListener("change", () => renderArchive(currentCategory));
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle("is-visible", window.scrollY > 400);
+    }, { passive: true });
+    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
     /* カテゴリー切り替え */
 
