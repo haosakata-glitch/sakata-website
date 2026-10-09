@@ -101,6 +101,13 @@ jobs:
 
           def category_for(stem):
               stem_lower = stem.lower()
+              # 個別作品のカテゴリを上書き
+              category_overrides = {
+                  "work-01": "ARCHITECTURE",
+              }
+              if stem_lower in category_overrides:
+                  return category_overrides[stem_lower]
+
               for prefix, category in category_map.items():
                   if stem_lower.startswith(prefix):
                       return category
