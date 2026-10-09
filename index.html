@@ -125,6 +125,54 @@
       padding: 86px 22px 100px;
     }
 
+
+    /* HOT FEATURE SLIDER */
+    .hot-section { margin: 0 0 34px; }
+    .hot-heading, .archive-label {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin: 0 0 12px; padding-bottom: 8px;
+      border-bottom: 1px solid rgba(34,34,34,.18);
+      font-size: 10px; letter-spacing: .1em;
+    }
+    .hot-count { color: rgba(34,34,34,.45); font-size: 9px; letter-spacing: .04em; }
+    .hot-slider { position: relative; overflow: hidden; background: rgba(255,255,255,.18); }
+    .hot-track { display: flex; width: 100%; transition: transform .65s cubic-bezier(.22,.61,.36,1); }
+    .hot-slide {
+      flex: 0 0 100%; display: grid;
+      grid-template-columns: minmax(0,1.15fr) minmax(260px,.85fr);
+      min-height: clamp(300px,36vw,500px); color: rgba(34,34,34,.82);
+    }
+    .hot-image-link { display: block; min-width: 0; min-height: 0; overflow: hidden; background: rgba(34,34,34,.04); }
+    .hot-image { display: block; width: 100%; height: 100%; min-height: 300px; object-fit: cover; }
+    .hot-copy {
+      display: flex; flex-direction: column; align-items: flex-start;
+      padding: clamp(22px,4vw,58px); border: 1px solid rgba(34,34,34,.08); border-left: 0;
+    }
+    .hot-category { margin-bottom: auto; font-size: 9px; letter-spacing: .1em; color: rgba(34,34,34,.48); }
+    .hot-title { margin: 30px 0 16px; font-size: clamp(20px,2.5vw,34px); line-height: 1.45; font-weight: 400; letter-spacing: .015em; overflow-wrap: anywhere; }
+    .hot-description { max-width: 34em; margin: 0 0 28px; font-size: 12px; line-height: 1.9; white-space: pre-line; }
+    .hot-more { margin-top: auto; padding-bottom: 4px; border-bottom: 1px solid rgba(34,34,34,.38); font-size: 10px; letter-spacing: .04em; }
+    .hot-controls { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+    .hot-arrow { appearance: none; border: 1px solid rgba(34,34,34,.2); border-radius: 50%; width: 28px; height: 28px; padding: 0; background: transparent; cursor: pointer; font-size: 13px; }
+    .hot-arrow:hover { background: rgba(34,34,34,.06); }
+    .hot-dots { display: flex; gap: 7px; margin-left: 2px; }
+    .hot-dot { appearance: none; width: 6px; height: 6px; border: 0; border-radius: 50%; padding: 0; background: rgba(34,34,34,.25); cursor: pointer; }
+    .hot-dot[aria-current="true"] { background: rgba(34,34,34,.85); }
+    .hot-pause { margin-left: auto; appearance: none; border: 0; padding: 4px 0; background: transparent; cursor: pointer; font-size: 9px; letter-spacing: .04em; }
+    .archive-label { margin: 30px 0 12px; }
+    @media (max-width: 650px) {
+      .hot-section { margin-bottom: 26px; }
+      .hot-heading { margin-bottom: 8px; }
+      .hot-slide { grid-template-columns: 1fr; min-height: auto; }
+      .hot-image { height: 56vw; min-height: 220px; max-height: 360px; }
+      .hot-copy { min-height: 240px; padding: 18px 18px 22px; border-left: 1px solid rgba(34,34,34,.08); border-top: 0; }
+      .hot-category { margin-bottom: 0; }
+      .hot-title { margin: 18px 0 10px; font-size: 21px; }
+      .hot-description { margin-bottom: 18px; font-size: 11px; }
+      .archive-label { margin-top: 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .hot-track { transition: none; } html { scroll-behavior: auto; } }
+
     /* ARCHIVE GRID */
 
     .archive-grid {
@@ -330,16 +378,45 @@ main {
   <!-- MAIN -->
 
   <main>
-    <section
-      id="archive"
-      class="archive-grid"
-      aria-live="polite"
-    ></section>
-
-</main>
+    <section class="hot-section" aria-label="HOT articles">
+      <div class="hot-heading">
+        <span>HOT / FEATURED ARTICLES</span>
+        <span class="hot-count" id="hot-count">01 / 05</span>
+      </div>
+      <div class="hot-slider" id="hot-slider">
+        <div class="hot-track" id="hot-track"></div>
+      </div>
+      <div class="hot-controls">
+        <button class="hot-arrow" type="button" id="hot-prev" aria-label="前の記事">←</button>
+        <button class="hot-arrow" type="button" id="hot-next" aria-label="次の記事">→</button>
+        <div class="hot-dots" id="hot-dots" aria-label="記事を選択"></div>
+        <button class="hot-pause" type="button" id="hot-pause" aria-pressed="false">PAUSE</button>
+      </div>
+    </section>
+    <div class="archive-label"><span>ARCHIVE</span><span id="archive-count"></span></div>
+    <section id="archive" class="archive-grid" aria-live="polite"></section>
+  </main>
 
   <script>
     const archive = document.getElementById("archive");
+    const hotTrack = document.getElementById("hot-track");
+    const hotDots = document.getElementById("hot-dots");
+    const hotCount = document.getElementById("hot-count");
+    const hotSlider = document.getElementById("hot-slider");
+    const archiveCount = document.getElementById("archive-count");
+    const hotPause = document.getElementById("hot-pause");
+
+    const hotDescriptions = {
+      "work-01.html": "設計の記録。計画の背景や条件を、写真とあわせて整理していく。",
+      "work-02.html": "OBJECT / ARCHIVE。かたちや素材を手がかりに、制作の記録をたどる。",
+      "book-01.html": "BOOK / READING NOTES。読んだ本を入口に、気になった考えや言葉を記録する。",
+      "food-01.html": "FOOD / DAILY NOTES。日々の食事を写真に残し、暮らしの断片をアーカイブする。",
+      "photo-01.html": "PHOTO / FIELD NOTES。写真を通して、見たものや場所の記録をたどる。"
+    };
+    let hotItems = [];
+    let hotIndex = 0;
+    let hotTimer = null;
+    let hotIsPaused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const categoryButtons = document.querySelectorAll(
       ".main-nav button[data-category]"
@@ -374,6 +451,84 @@ main {
       return `${year}.${month}.${day}`;
     }
 
+    function renderHot() {
+      hotTrack.innerHTML = "";
+      hotDots.innerHTML = "";
+      hotItems.forEach((item, index) => {
+        const slide = document.createElement("article");
+        slide.className = "hot-slide";
+        const imageLink = document.createElement("a");
+        imageLink.className = "hot-image-link";
+        imageLink.href = item.detailPage || "#";
+        const image = document.createElement("img");
+        image.className = "hot-image";
+        image.src = item.coverImage || item.image;
+        image.alt = item.title || "";
+        image.loading = index === 0 ? "eager" : "lazy";
+        imageLink.appendChild(image);
+
+        const copy = document.createElement("div");
+        copy.className = "hot-copy";
+        const category = document.createElement("div");
+        category.className = "hot-category";
+        category.textContent = item.category || "ARCHIVE";
+        const title = document.createElement("h2");
+        title.className = "hot-title";
+        title.textContent = item.title || "Untitled";
+        const description = document.createElement("p");
+        description.className = "hot-description";
+        description.textContent = hotDescriptions[item.detailPage] || "写真と記録を通して、日々の関心をアーカイブする。";
+        const more = document.createElement("a");
+        more.className = "hot-more";
+        more.href = item.detailPage || "#";
+        more.textContent = "VIEW ARTICLE ↗";
+        copy.append(category, title, description, more);
+        slide.append(imageLink, copy);
+        hotTrack.appendChild(slide);
+
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "hot-dot";
+        dot.setAttribute("aria-label", (index + 1) + "番目の記事");
+        dot.addEventListener("click", () => { showHot(index); startHotTimer(); });
+        hotDots.appendChild(dot);
+      });
+      showHot(0);
+    }
+
+    function showHot(index) {
+      if (!hotItems.length) return;
+      hotIndex = (index + hotItems.length) % hotItems.length;
+      hotTrack.style.transform = "translateX(-" + (hotIndex * 100) + "%)";
+      hotCount.textContent = String(hotIndex + 1).padStart(2, "0") + " / " + String(hotItems.length).padStart(2, "0");
+      [...hotDots.children].forEach((dot, i) => dot.setAttribute("aria-current", i === hotIndex ? "true" : "false"));
+    }
+
+    function stopHotTimer() {
+      if (hotTimer) window.clearInterval(hotTimer);
+      hotTimer = null;
+    }
+
+    function startHotTimer() {
+      stopHotTimer();
+      if (hotIsPaused || hotItems.length < 2) return;
+      hotTimer = window.setInterval(() => showHot(hotIndex + 1), 6500);
+    }
+
+    document.getElementById("hot-prev").addEventListener("click", () => { showHot(hotIndex - 1); startHotTimer(); });
+    document.getElementById("hot-next").addEventListener("click", () => { showHot(hotIndex + 1); startHotTimer(); });
+    hotPause.addEventListener("click", () => {
+      hotIsPaused = !hotIsPaused;
+      hotPause.textContent = hotIsPaused ? "PLAY" : "PAUSE";
+      hotPause.setAttribute("aria-pressed", hotIsPaused ? "true" : "false");
+      startHotTimer();
+    });
+    hotSlider.addEventListener("mouseenter", stopHotTimer);
+    hotSlider.addEventListener("mouseleave", startHotTimer);
+    hotSlider.addEventListener("focusin", stopHotTimer);
+    hotSlider.addEventListener("focusout", startHotTimer);
+    document.addEventListener("visibilitychange", () => document.hidden ? stopHotTimer() : startHotTimer());
+
     function renderArchive(category) {
       archive.innerHTML = "";
 
@@ -384,6 +539,8 @@ main {
           item => item.category === category
         );
       }
+
+      archiveCount.textContent = String(filteredData.length).padStart(2, "0") + " ITEMS";
 
       filteredData.forEach(item => {
         const link = document.createElement("a");
@@ -517,6 +674,16 @@ renderArchive(category);
         archiveData = Array.isArray(data)
           ? data
           : data.items || [];
+
+        hotItems = [
+          archiveData.find(item => item.detailPage === "work-01.html"),
+          archiveData.find(item => item.detailPage === "work-02.html"),
+          archiveData.find(item => item.detailPage === "book-01.html"),
+          archiveData.find(item => item.detailPage === "food-01.html"),
+          archiveData.find(item => item.detailPage === "photo-01.html")
+        ].filter(Boolean);
+        renderHot();
+        startHotTimer();
 
         navItems.forEach(item => {
           item.classList.remove("active");
