@@ -97,5 +97,41 @@
     "category": "OBJECT",
     "title": "work-03",
     "capturedAt": "2026-09-06T15:15:11"
+  },
+  {
+    "detailPage": "text-01.html",
+    "title": "誰のための建築をつくりたいのか",
+    "category": "TEXT",
+    "description": "住宅設計の仕事を続けながら、ケアや福祉に近い領域へ向かう入口を探す。",
+    "isArticle": true,
+    "image": null,
+    "capturedAt": null
+  },
+  {
+    "detailPage": "text-02.html",
+    "title": "生きることの初期衝動を受け止める建築",
+    "category": "TEXT",
+    "description": "アール・ブリュットの受容史を手がかりに、福祉と建築、個別の生を考える。",
+    "isArticle": true,
+    "image": null,
+    "capturedAt": null
+  },
+  {
+    "detailPage": "text-03.html",
+    "title": "自由を奪うものに先回りすること",
+    "category": "TEXT",
+    "description": "自由に生きるために、生活全体を設計しながら、その中で何をするかは自由にしておく。",
+    "isArticle": true,
+    "image": null,
+    "capturedAt": null
+  },
+  {
+    "detailPage": "text-04.html",
+    "title": "結婚が個人化した時代の、結婚式のかたち",
+    "category": "TEXT",
+    "description": "結婚式の形式を使い直すことから、家族や人間関係のあり方を考える。",
+    "isArticle": true,
+    "image": null,
+    "capturedAt": null
   }
 ]
