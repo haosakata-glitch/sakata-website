@@ -1,498 +1,64 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About｜坂田雄志</title>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: #111;
-      background: #fff;
-    }
-
-    header {
-      padding: 24px 30px;
-      border-bottom: 1px solid #111;
-    }
-
-    header a {
-      color: #111;
-      text-decoration: none;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 70px 30px;
-    }
-
-    h1 {
-      font-size: 42px;
-      font-weight: normal;
-      margin: 0 0 60px;
-    }
-
-    section {
-      border-top: 1px solid #ccc;
-      padding: 30px 0;
-    }
-
-    h2 {
-      font-size: 18px;
-      font-weight: normal;
-      margin: 0 0 25px;
-    }
-
-    p {
-      font-size: 16px;
-      line-height: 2;
-      margin: 0 0 20px;
-    }
-
-    .name {
-      font-size: 22px;
-      margin-bottom: 5px;
-    }
-
-    .name-en {
-      font-size: 15px;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    .career {
-      line-height: 2;
-    }
-
-    .career-item {
-      margin-bottom: 20px;
-    }
-
-    .career-year {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 3px;
-    }
-
-    .links a {
-      color: #111;
-      text-decoration: none;
-    }
-
-    .links a:hover {
-      opacity: 0.5;
-    }
-
-    .back {
-      margin-top: 70px;
-    }
-
-    .back a {
-      color: #111;
-      text-decoration: none;
-    }
-  </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style id="site-design">
-
-  :root {
-    --background: #E9E5DE;
-    --text: #24231F;
-    --secondary: #77736B;
-    --line: #CBC5BB;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 300;
-    color: var(--text);
-    background: var(--background);
-  }
-
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    width: 100%;
-    min-height: 58px;
-    padding: 0 22px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 30px;
-
-    background: rgba(233, 229, 222, 0.88);
-
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-
-  header a {
-    color: var(--text);
-    text-decoration: none;
-  }
-
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    min-width: 0;
-    flex: 1;
-  }
-
-  .site-title {
-    flex: 0 0 auto;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .035em;
-    white-space: nowrap;
-  }
-
-  .category-nav {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    min-width: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .category-nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  .header-category {
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 20px;
-    padding: 0;
-    font-size: 10px;
-    line-height: 1;
-    font-weight: 300;
-    letter-spacing: .04em;
-    color: rgba(34, 34, 34, 0.48);
-    white-space: nowrap;
-    border-bottom: 1px solid transparent;
-  }
-
-  .header-category.active {
-    color: #222;
-    border-bottom-color: #222;
-  }
-
-  .about-link {
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    height: 20px;
-    padding-left: 14px;
-    border-left: 1px solid var(--line);
-    font-size: 10px;
-    line-height: 1;
-    font-weight: 300;
-    letter-spacing: .04em;
-    color: rgba(34, 34, 34, 0.48);
-    white-space: nowrap;
-  }
-
-  main {
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 90px 24px 80px;
-  }
-
-  .category {
-    margin-bottom: 7px;
-    color: var(--secondary);
-    font-size: 8px;
-    letter-spacing: .075em;
-  }
-
-  h1 {
-    margin: 0 0 24px;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.5;
-  }
-
-  .image {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 0 35px;
-  }
-
-  .image img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  .back {
-    margin-top: 30px;
-    font-size: 10px;
-  }
-
-  .back a {
-    color: var(--secondary);
-  }
-
-  @media (max-width: 600px) {
-
-    header {
-      min-height: 52px;
-      padding: 0 14px;
-      gap: 20px;
-    }
-
-    .header-left {
-      gap: 20px;
-    }
-
-    .site-title {
-      font-size: 10px;
-    }
-
-    .category-nav {
-      gap: 10px;
-    }
-
-    .header-category {
-      height: 18px;
-      font-size: 9px;
-    }
-
-    .about-link {
-      height: 18px;
-      padding-left: 10px;
-      font-size: 9px;
-    }
-
-    main {
-      padding: 76px 12px 60px;
-    }
-
-    h1 {
-      font-size: 16px;
-    }
-
-  }
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABOUT｜SAKATA KATSUYUKI</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#E9E5DE;--text:rgba(34,34,34,.72);--sub:rgba(34,34,34,.48);--line:rgba(34,34,34,.14)}
+body{margin:0;background:var(--bg);color:var(--text);font:400 11px/1.6 Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}
+.site-header{position:fixed;inset:0 0 auto;width:100%;z-index:1000;background:rgba(233,229,222,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid rgba(34,34,34,.06)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:30px;min-height:58px;padding:0 22px}
+.site-title{flex:0 0 auto;font-size:11px;font-weight:400;letter-spacing:.08em;white-space:nowrap}
+.main-nav{display:flex;align-items:center;justify-content:flex-end;gap:18px;flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;scrollbar-width:none}
+.main-nav::-webkit-scrollbar{display:none}
+.main-nav a{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;height:20px;font-size:10px;line-height:1;letter-spacing:.04em;color:var(--sub)}
+.main-nav a:hover{color:var(--text)}
+.main-nav .about-link{padding-left:18px;border-left:1px solid var(--line);color:#222}
+main{width:100%;max-width:1500px;margin:0 auto;padding:100px 22px 90px}
+.page-label{margin:0 0 34px;color:var(--sub);font-size:9px;letter-spacing:.08em}
+.about-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:42px;row-gap:54px;align-items:start}
+.about-section{min-width:0;border-top:1px solid var(--line);padding-top:15px}
+h2{margin:0 0 24px;font-size:10px;font-weight:400;letter-spacing:.06em;color:var(--sub);text-transform:uppercase}
+.profile-name{margin:0 0 5px;color:rgba(34,34,34,.86);font-size:17px;line-height:1.5;letter-spacing:.02em}
+.profile-name-en{margin:0 0 20px;color:var(--sub);font-size:10px;letter-spacing:.03em}
+.profile-role{margin:0;font-size:11px}
+.career-item{display:grid;grid-template-columns:94px minmax(0,1fr);gap:12px;margin:0 0 17px;line-height:1.8}
+.career-year{color:var(--sub);white-space:nowrap}
+.contact-social{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:42px}
+.contact-social .about-section{min-width:0}
+.link-list{margin:0;padding:0;list-style:none}
+.link-list li{margin:0 0 12px;overflow-wrap:anywhere}
+.link-label{display:block;margin-bottom:2px;color:var(--sub);font-size:10px}
+.link-list a:hover{border-bottom:1px solid var(--line)}
+@media(max-width:850px){.header-inner{gap:18px}.main-nav{gap:12px}.main-nav a{font-size:9px}.about-grid{column-gap:26px}.contact-social{gap:26px}}
+@media(max-width:650px){.header-inner{min-height:52px;padding:0 14px;gap:15px}.site-title{font-size:10px}.main-nav{justify-content:flex-start;gap:10px}.main-nav a{height:18px;font-size:9px}.main-nav .about-link{padding-left:10px}main{padding:78px 14px 60px}.page-label{margin-bottom:26px}.about-grid{grid-template-columns:1fr;row-gap:34px}.contact-social{gap:22px}.career-item{grid-template-columns:82px minmax(0,1fr);gap:10px}}
+@media(max-width:380px){.header-inner{gap:10px;padding:0 10px}.site-title{font-size:9px;letter-spacing:.03em}.main-nav{gap:8px}.main-nav a{font-size:8px}main{padding-right:10px;padding-left:10px}}
 </style>
-
 </head>
-
 <body>
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-<header>
-
-  <div class="header-left">
-
-    <a
-      href="index.html"
-      class="site-title"
-    >
-      SAKATA KATSUYUKI
-    </a>
-
-    <nav
-      class="category-nav"
-      aria-label="Archive categories"
-    >
-
-<a class="header-category category-ALL" href="index.html">ALL</a>
-<a class="header-category category-ARCHITECTURE" href="index.html">ARCHITECTURE</a>
-<a class="header-category category-OBJECT" href="index.html">OBJECT</a>
-<a class="header-category category-FOOD" href="index.html">FOOD</a>
-<a class="header-category category-BOOK" href="index.html">BOOK</a>
-<a class="header-category category-TEXT" href="index.html">TEXT</a>
-<a class="header-category category-PHOTO" href="index.html">PHOTO</a>
-<a class="header-category category-PLACE" href="index.html">PLACE</a>
-<a class="header-category category-OTHER active" href="index.html">OTHER</a>
-
-    </nav>
-
-  </div>
-
-  <a
-    href="https://haosakata-glitch.github.io/sakata-website/about.html"
-    class="about-link"
-  >
-    About
-  </a>
-
-</header>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <main>
-
-    <h1>About</h1>
-
-    <section>
-
-      <h2>Profile</h2>
-
-      <p class="name">
-        坂田雄志
-      </p>
-
-      <p class="name-en">
-        Sakata Katsuyuki
-      </p>
-
-      <p>
-        建築家
-      </p>
-
-    </section>
-
-    <section>
-
-      <h2>Biography</h2>
-
-      <div class="career">
-
-        <div class="career-item">
-          <div class="career-year">2016–2020</div>
-          近畿大学 建築学部 建築学科<br>
-          松岡聡研究室
-        </div>
-
-        <div class="career-item">
-          <div class="career-year">2020–2023</div>
-          横浜国立大学大学院 Y-GSA 修了
-        </div>
-
-        <div class="career-item">
-          <div class="career-year">2023–2024</div>
-          平田明久建築設計事務所
-        </div>
-
-        <div class="career-item">
-          <div class="career-year">2024–2026</div>
-          Archipelago Architects Studio
-        </div>
-
-      </div>
-
-    </section>
-
-    <section>
-
-      <h2>Contact</h2>
-
-      <p>
-        <a href="mailto:hao.sakata@gmail.com">
-          hao.sakata@gmail.com
-        </a>
-      </p>
-
-    </section>
-
-    <section>
-
-      <h2>SNS</h2>
-
-      <p class="links">
-        Instagram<br>
-        <a href="https://www.instagram.com/katsu_0708/" target="_blank">
-          @katsu_0708
-        </a>
-      </p>
-
-      <p class="links">
-        X / Twitter<br>
-        <a href="https://twitter.com/Katsuskt" target="_blank">
-          @Katsuskt
-        </a>
-      </p>
-
-      <p class="links">
-        note<br>
-        <a href="https://note.com/kind_nerine7" target="_blank">
-          note.com/kind_nerine7
-        </a>
-      </p>
-
-    </section>
-
-    <p class="back">
-      <a href="index.html">← トップへ戻る</a>
-    </p>
-
-  </main>
-
-</body>
-</html>
+<header class="site-header"><div class="header-inner">
+<a href="index.html" class="site-title">SAKATA KATSUYUKI</a>
+<nav class="main-nav" aria-label="Archive categories">
+<a href="index.html">ALL</a><a href="index.html?category=ARCHITECTURE">ARCHITECTURE</a><a href="index.html?category=OBJECT">OBJECT</a><a href="index.html?category=FOOD">FOOD</a><a href="book.html">BOOK</a><a href="index.html?category=TEXT">TEXT</a><a href="index.html?category=PHOTO">PHOTO</a><a href="index.html?category=PLACE">PLACE</a><a href="index.html?category=OTHER">OTHER</a><a href="about.html" class="about-link" aria-current="page">ABOUT</a>
+</nav></div></header>
+<main>
+<p class="page-label">ABOUT</p>
+<div class="about-grid">
+<section class="about-section"><h2>Profile</h2><p class="profile-name">坂田雄志</p><p class="profile-name-en">Sakata Katsuyuki</p><p class="profile-role">建築家</p></section>
+<section class="about-section"><h2>Biography</h2>
+<div class="career-item"><div class="career-year">2016–2020</div><div>近畿大学 建築学部 建築学科<br>松岡聡研究室</div></div>
+<div class="career-item"><div class="career-year">2020–2023</div><div>横浜国立大学大学院 Y-GSA 修了</div></div>
+<div class="career-item"><div class="career-year">2023–2024</div><div>平田明久建築設計事務所</div></div>
+<div class="career-item"><div class="career-year">2024–2026</div><div>Archipelago Architects Studio</div></div>
+</section>
+<div class="contact-social">
+<section class="about-section"><h2>Contact</h2><ul class="link-list"><li><a href="mailto:hao.sakata@gmail.com">hao.sakata@gmail.com</a></li></ul></section>
+<section class="about-section"><h2>SNS</h2><ul class="link-list">
+<li><span class="link-label">Instagram</span><a href="https://www.instagram.com/katsu_0708/" target="_blank" rel="noopener noreferrer">@katsu_0708</a></li>
+<li><span class="link-label">X</span><a href="https://twitter.com/Katsuskt" target="_blank" rel="noopener noreferrer">@Katsuskt</a></li>
+<li><span class="link-label">note</span><a href="https://note.com/kind_nerine7" target="_blank" rel="noopener noreferrer">note.com/kind_nerine7</a></li>
+</ul></section></div>
+</div></main></body></html>
