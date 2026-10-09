@@ -1,430 +1,114 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sakata Katsuyuki — architecture, photographs, and texts.">
   <title>SAKATA YUSHI</title>
-
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      margin: 0;
-      background: #E9E5DE;
-      color: rgba(34, 34, 34, 0.68);
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      line-height: 1.45;
+      margin: 0; background: #E9E5DE; color: rgba(34,34,34,.72);
+      font-family: Arial, Helvetica, sans-serif; font-size: 11px;
+      font-weight: 400; line-height: 1.45;
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      color: inherit;
-      font-family: inherit;
-    }
-
-    /* HEADER */
-
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font-family: inherit; }
     .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(233, 229, 222, 0.68);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(34, 34, 34, 0.06);
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: rgba(233,229,222,.78); backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid rgba(34,34,34,.06);
     }
-
     .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-      min-height: 58px;
-      padding: 0 22px;
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 58px; padding: 0 22px; gap: 20px;
     }
-
-    .site-title {
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      white-space: nowrap;
-      color: rgba(34, 34, 34, 0.72);
+    .site-title { flex: 0 0 auto; font-size: 11px; letter-spacing: .08em; white-space: nowrap; }
+    .main-nav { display: flex; align-items: center; justify-content: flex-end; margin-left: auto; }
+    .main-nav a {
+      display: inline-flex; align-items: center; justify-content: center; height: 20px;
+      font-size: 10px; letter-spacing: .04em; color: rgba(34,34,34,.55);
     }
-
-    .main-nav {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 18px;
-      flex-wrap: nowrap;
-      white-space: nowrap;
+    .main-nav a:hover { color: #222; }
+    .about-link { margin-left: auto; padding-left: 18px; border-left: 1px solid rgba(34,34,34,.16); }
+    main { padding: 88px 22px 76px; }
+    .home-section { max-width: 1120px; margin: 0 auto 48px; }
+    .section-heading {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+      margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(34,34,34,.18);
+      font-size: 10px; letter-spacing: .1em; color: rgba(34,34,34,.72);
     }
-
-    .main-nav a,
-    .main-nav button {
-      appearance: none;
-      -webkit-appearance: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      flex: 0 0 auto;
-      height: 20px;
-      margin: 0;
-      padding: 0;
-      border: 0;
-      border-radius: 0;
-      background: none;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 10px;
-      font-weight: 400;
-      line-height: 1;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-      color: rgba(34, 34, 34, 0.48);
-      text-decoration: none;
-      text-underline-offset: 3px;
+    .section-heading a { white-space: nowrap; color: rgba(34,34,34,.55); }
+    .section-heading a:hover { color: #222; }
+    .carousel { position: relative; overflow: hidden; }
+    .carousel-track { display: flex; width: 100%; transition: transform .55s cubic-bezier(.22,.61,.36,1); }
+    .carousel-slide { flex: 0 0 100%; min-width: 0; }
+    .photo-link { display: block; position: relative; overflow: hidden; background: rgba(34,34,34,.04); }
+    .photo-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; }
+    .photo-image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .photo-caption {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 6px; padding: 18px;
+      background: rgba(233,229,222,.80); color: rgba(34,34,34,.82);
+      text-align: center; font-size: 11px; letter-spacing: .03em;
+      opacity: 0; pointer-events: none; transition: opacity .15s ease;
     }
-
-    .main-nav a:hover,
-    .main-nav button:hover {
-      color: rgba(34, 34, 34, 0.72);
+    .photo-caption-title { max-width: 100%; overflow-wrap: anywhere; }
+    .photo-caption-category { color: rgba(34,34,34,.52); font-size: 9px; }
+    @media (hover:hover) and (pointer:fine) {
+      .photo-link:hover .photo-caption { opacity: 1; }
     }
-
-    .main-nav .active {
-      color: #222222;
-      text-decoration: underline;
-      text-underline-offset: 3px;
+    .photo-link:focus-visible .photo-caption,
+    .photo-link.is-caption-visible .photo-caption { opacity: 1; }
+    .carousel-controls {
+      display: flex; align-items: center; gap: 10px; margin-top: 12px;
     }
-
-    .about-link {
-      margin-left: 10px !important;
-      padding-left: 18px !important;
-      border-left: 1px solid rgba(34, 34, 34, 0.14) !important;
+    .carousel-arrow {
+      appearance: none; border: 1px solid rgba(34,34,34,.2); border-radius: 50%;
+      width: 28px; height: 28px; padding: 0; background: transparent; cursor: pointer;
+      font-size: 13px; flex: 0 0 auto;
     }
-
-    /* MAIN */
-
-    main {
-      padding: 86px 22px 100px;
+    .carousel-arrow:hover { background: rgba(34,34,34,.06); }
+    .carousel-dots { display: flex; align-items: center; gap: 7px; margin-left: 2px; }
+    .carousel-dot {
+      appearance: none; width: 6px; height: 6px; border: 0; border-radius: 50%;
+      padding: 0; background: rgba(34,34,34,.25); cursor: pointer;
     }
-
-
-    /* HOT FEATURE SLIDER */
-    .hot-section { margin: 0 0 26px; max-width: 1080px; }
-    .hot-heading, .archive-label {
-      display: flex; align-items: baseline; justify-content: space-between;
-      margin: 0 0 12px; padding-bottom: 8px;
-      border-bottom: 1px solid rgba(34,34,34,.18);
-      font-size: 10px; letter-spacing: .1em;
+    .carousel-dot[aria-current="true"] { background: rgba(34,34,34,.85); }
+    .carousel-counter { margin-left: auto; font-size: 9px; color: rgba(34,34,34,.45); letter-spacing: .04em; }
+    .text-carousel { border-top: 1px solid rgba(34,34,34,.16); }
+    .text-slide {
+      min-height: 190px; display: flex; flex-direction: column; justify-content: space-between;
+      padding: clamp(18px,3vw,34px); border: 1px solid rgba(34,34,34,.12);
+      border-top: 0; color: rgba(34,34,34,.78);
     }
-    .hot-count { color: rgba(34,34,34,.45); font-size: 9px; letter-spacing: .04em; }
-    .hot-slider { position: relative; overflow: hidden; background: rgba(255,255,255,.18); touch-action: pan-y; }
-    .hot-track { display: flex; width: 100%; transition: transform .65s cubic-bezier(.22,.61,.36,1); }
-    .hot-slide {
-      flex: 0 0 100%; display: grid;
-      grid-template-columns: minmax(0,2.2fr) minmax(220px,.8fr);
-      min-height: clamp(300px,34vw,460px); color: rgba(34,34,34,.82);
-    }
-    .hot-image-link { display: block; min-width: 0; min-height: 0; overflow: hidden; background: rgba(34,34,34,.04); }
-    .hot-image { display: block; width: 100%; height: 100%; min-height: 300px; max-height: 460px; object-fit: cover; }
-    .hot-copy {
-      display: flex; flex-direction: column; align-items: flex-start;
-      padding: clamp(16px,2vw,26px); border: 1px solid rgba(34,34,34,.08); border-left: 0;
-    }
-    .hot-category { margin-bottom: auto; font-size: 9px; letter-spacing: .1em; color: rgba(34,34,34,.48); }
-    .hot-title { margin: 14px 0 10px; font-size: clamp(18px,2vw,27px); line-height: 1.45; font-weight: 400; letter-spacing: .015em; overflow-wrap: anywhere; }
-    .hot-description { max-width: 34em; margin: 0 0 12px; font-size: 11px; line-height: 1.8; white-space: pre-line; }
-    .hot-more { margin-top: auto; padding-bottom: 4px; border-bottom: 1px solid rgba(34,34,34,.38); font-size: 10px; letter-spacing: .04em; }
-    .hot-controls { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
-    .hot-arrow { appearance: none; border: 1px solid rgba(34,34,34,.2); border-radius: 50%; width: 28px; height: 28px; padding: 0; background: transparent; cursor: pointer; font-size: 13px; }
-    .hot-arrow:hover { background: rgba(34,34,34,.06); }
-    .hot-dots { display: flex; gap: 7px; margin-left: 2px; }
-    .hot-dot { appearance: none; width: 6px; height: 6px; border: 0; border-radius: 50%; padding: 0; background: rgba(34,34,34,.25); cursor: pointer; }
-    .hot-dot[aria-current="true"] { background: rgba(34,34,34,.85); }
-    .hot-pause { margin-left: auto; appearance: none; border: 0; padding: 4px 0; background: transparent; cursor: pointer; font-size: 9px; letter-spacing: .04em; }
-    .archive-label { margin: 30px 0 12px; }
-    @media (max-width: 650px) {
-      .hot-section { margin-bottom: 26px; }
-      .hot-heading { margin-bottom: 8px; }
-      .hot-slide { grid-template-columns: 1fr; min-height: auto; }
-      .hot-image { height: 68vw; min-height: 240px; max-height: 420px; }
-      .hot-copy { min-height: 0; padding: 14px 16px 16px; border-left: 1px solid rgba(34,34,34,.08); border-top: 0; }
-      .hot-category { margin-bottom: 0; }
-      .hot-title { margin: 10px 0 6px; font-size: 19px; }
-      .hot-description { margin-bottom: 10px; font-size: 11px; }
-      .archive-label { margin-top: 24px; }
-    }
-    @media (prefers-reduced-motion: reduce) { .hot-track { transition: none; } html { scroll-behavior: auto; } }
-
-
-    .archive-tools { display:flex; justify-content:space-between; gap:12px; margin:0 0 14px; }
-    .search-box { flex:1; min-width:0; }
-    .search-box input, .sort-box select { width:100%; min-height:34px; border:1px solid rgba(34,34,34,.18); border-radius:0; background:transparent; color:inherit; padding:7px 9px; font:inherit; font-size:10px; letter-spacing:.06em; outline-offset:3px; }
-    .search-box input::placeholder { color:rgba(34,34,34,.42); }
-    .sort-box { width:130px; flex:0 0 auto; }
-    .archive-empty { padding:24px 0; color:rgba(34,34,34,.55); }
-    .visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-    .back-to-top { position:fixed; right:18px; bottom:18px; z-index:900; border:1px solid rgba(34,34,34,.25); border-radius:50%; width:38px; height:38px; background:rgba(233,229,222,.92); color:rgba(34,34,34,.8); cursor:pointer; opacity:0; pointer-events:none; transition:opacity .2s ease; }
-    .back-to-top.is-visible { opacity:1; pointer-events:auto; }
-    @media(max-width:650px) { .archive-tools { gap:8px; } .sort-box { width:105px; } .back-to-top { right:12px; bottom:12px; } }
-
-    /* ARCHIVE GRID */
-
-    .archive-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      column-gap: 18px;
-      row-gap: 18px;
-      align-items: start;
-    }
-
-    .archive-item {
-      display: block;
-      position: relative;
-      min-width: 0;
-    }
-
-    .archive-image-wrap {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background: #FFFFFF;
-    }
-
-    .archive-image {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-    }
-
-    .archive-text-wrap {
-      background: rgba(255,255,255,.16);
-      border: 1px solid rgba(34,34,34,.12);
-    }
-    .archive-text-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-      min-height: 150px;
-      padding: clamp(14px, 2vw, 24px);
-      color: rgba(34,34,34,.78);
-    }
-    .archive-text-label {
-      font-size: 9px;
-      letter-spacing: .1em;
-      color: rgba(34,34,34,.48);
-    }
-    .archive-text-title {
-      margin: 18px 0;
-      font-size: clamp(14px, 1.5vw, 19px);
-      font-weight: 400;
-      line-height: 1.7;
+    .text-slide-meta { display: flex; justify-content: space-between; gap: 12px; color: rgba(34,34,34,.48); font-size: 9px; letter-spacing: .08em; }
+    .text-slide-title {
+      display: block; max-width: 760px; margin: 22px 0;
+      font-size: clamp(18px,3vw,30px); line-height: 1.6; font-weight: 400; letter-spacing: .01em;
       overflow-wrap: anywhere;
     }
-    .archive-text-arrow {
-      align-self: flex-end;
-      font-size: 12px;
+    .text-slide-description { max-width: 620px; font-size: 11px; line-height: 1.9; color: rgba(34,34,34,.58); }
+    .text-slide-more { align-self: flex-end; border-bottom: 1px solid rgba(34,34,34,.35); padding-bottom: 3px; font-size: 10px; }
+    .site-footer { max-width: 1120px; margin: 0 auto; padding-top: 14px; border-top: 1px solid rgba(34,34,34,.12); font-size: 9px; letter-spacing: .06em; }
+    @media (max-width:650px) {
+      .header-inner { min-height: 52px; padding: 0 14px; }
+      .site-title { font-size: 10px; }
+      .main-nav a { font-size: 9px; }
+      main { padding: 74px 12px 56px; }
+      .home-section { margin-bottom: 34px; }
+      .photo-frame { aspect-ratio: 4 / 3; }
+      .photo-caption { padding: 12px; font-size: 10px; }
+      .text-slide { min-height: 205px; padding: 18px 16px; }
+      .text-slide-title { margin: 26px 0; font-size: 20px; }
     }
-
-    /* TITLE / DATE */
-
-    .archive-caption {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 18px;
-      background: rgba(233, 229, 222, 0.80);
-      color: rgba(34, 34, 34, 0.82);
-      font-size: 10px;
-      font-weight: 400;
-      line-height: 1.45;
-      letter-spacing: 0.03em;
-      text-align: center;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.15s ease;
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .carousel-track { transition: none; }
     }
-
-    /* PC：カーソルを合わせると写真が薄く白くなる */
-
-    @media (hover: hover) and (pointer: fine) {
-      .archive-image {
-        transition: opacity 0.2s ease;
-      }
-
-      .archive-item:hover .archive-image {
-        opacity: 1;
-      }
-
-      .archive-item:hover .archive-caption {
-        opacity: 1;
-      }
-    }
-
-    .archive-item:focus-visible .archive-caption {
-      opacity: 1;
-    }
-
-    .archive-item:focus-visible .archive-image {
-      opacity: 1;
-    }
-
-    .archive-caption-title {
-      white-space: normal;
-      overflow-wrap: anywhere;
-      text-overflow: clip;
-      max-width: 100%;
-    }
-
-    .archive-caption-date {
-      flex-shrink: 0;
-      color: rgba(34, 34, 34, 0.56);
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 650px) {
-      .header-inner {
-        min-height: 52px;
-        padding: 0 14px;
-        gap: 15px;
-      }
-
-      .site-title {
-        font-size: 10px;
-      }
-
-      .main-nav {
-        gap: 10px;
-        flex: 1 1 auto;
-        min-width: 0;
-        justify-content: flex-start;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scrollbar-width: none;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .main-nav::-webkit-scrollbar {
-        display: none;
-      }
-
-      .site-title {
-        flex: 0 0 auto;
-      }
-
-      .main-nav a,
-      .main-nav button {
-        font-size: 9px;
-        height: 18px;
-      }
-main {
-        padding: 72px 10px 70px;
-      }
-
-      .archive-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        column-gap: 10px;
-        row-gap: 10px;
-      }
-
-      .archive-caption {
-        padding: 12px;
-        font-size: 8px;
-      }
-
-      .archive-caption-title {
-        font-size: 8px;
-      }
-
-      .archive-caption-date {
-        font-size: 8px;
-        color: rgba(34, 34, 34, 0.56);
-      }
-
-      /* スマホ：最初のタップで写真を白くしてタイトルを表示 */
-
-      .archive-item.is-caption-visible .archive-image {
-        opacity: 1;
-      }
-
-      .archive-item.is-caption-visible .archive-caption {
-        opacity: 1;
-      }
-}
-  
-    /* HOME PAGE */
-    .home-main { padding-top: 86px; }
-    .home-section { max-width: 1200px; margin: 0 0 44px; }
-    .home-section-heading {
-      display:flex; align-items:baseline; justify-content:space-between;
-      gap:16px; margin:0 0 12px; padding-bottom:8px;
-      border-bottom:1px solid rgba(34,34,34,.18);
-      color:rgba(34,34,34,.72); font-size:10px; letter-spacing:.1em;
-    }
-    .section-link { color:rgba(34,34,34,.65); white-space:nowrap; }
-    .section-link:hover { color:#222; }
-    .selected-grid {
-      display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:18px; align-items:start;
-    }
-    .selected-item { display:block; min-width:0; }
-    .selected-image-wrap { aspect-ratio:4/3; overflow:hidden; background:rgba(34,34,34,.04); }
-    .selected-image { display:block; width:100%; height:100%; object-fit:cover; transition:opacity .2s ease; }
-    .selected-item:hover .selected-image { opacity:.82; }
-    .selected-caption { display:flex; justify-content:space-between; gap:12px; padding-top:8px; color:rgba(34,34,34,.7); }
-    .selected-category { font-size:9px; color:rgba(34,34,34,.45); letter-spacing:.05em; }
-    .archive-entry { display:block; padding:15px 0; border-bottom:1px solid rgba(34,34,34,.16); }
-    .archive-entry:first-of-type { border-top:1px solid rgba(34,34,34,.16); }
-    .archive-entry-main { display:flex; align-items:center; justify-content:space-between; gap:18px; }
-    .archive-entry-title { font-size:clamp(14px,1.7vw,18px); letter-spacing:.01em; color:rgba(34,34,34,.78); }
-    .archive-entry-note { margin-top:5px; font-size:10px; color:rgba(34,34,34,.48); }
-    .text-list { margin:0; padding:0; list-style:none; }
-    .text-entry { display:grid; grid-template-columns:28px minmax(0,1fr) 18px; gap:10px; align-items:center; padding:15px 0; border-bottom:1px solid rgba(34,34,34,.16); }
-    .text-entry:first-child { border-top:1px solid rgba(34,34,34,.16); }
-    .text-number { color:rgba(34,34,34,.4); font-size:9px; }
-    .text-title { font-size:clamp(12px,1.4vw,15px); line-height:1.7; color:rgba(34,34,34,.78); }
-    .text-arrow { text-align:right; color:rgba(34,34,34,.55); }
-    .home-footer { padding-top:20px; border-top:1px solid rgba(34,34,34,.12); font-size:9px; letter-spacing:.06em; }
-    @media(max-width:650px) {
-      .home-main { padding:78px 16px 70px; }
-      .home-section { margin-bottom:34px; }
-      .selected-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 10px; }
-      .selected-caption { display:block; }
-      .selected-category { display:block; margin-top:3px; }
-      .text-entry { grid-template-columns:22px minmax(0,1fr) 14px; gap:8px; padding:13px 0; }
-    }
-
   </style>
-
 </head>
-
 <body>
   <header class="site-header">
     <div class="header-inner">
@@ -435,113 +119,179 @@ main {
     </div>
   </header>
 
-  <main class="home-main">
-    <section class="home-section" aria-labelledby="selected-heading">
-      <div class="home-section-heading">
-        <span id="selected-heading">SELECTED ARCHIVE</span>
-        <a class="section-link" href="archive.html">VIEW ARCHIVE ↗</a>
-      </div>
-      <div id="selected-grid" class="selected-grid" aria-live="polite"></div>
-    </section>
-
+  <main>
     <section class="home-section" aria-labelledby="archive-heading">
-      <div class="home-section-heading">
+      <div class="section-heading">
         <span id="archive-heading">ARCHIVE</span>
-        <a class="section-link" href="archive.html">ALL ITEMS ↗</a>
+        <a href="archive.html">VIEW ALL ↗</a>
       </div>
-      <a class="archive-entry" href="archive.html">
-        <div class="archive-entry-main">
-          <span class="archive-entry-title">Photographs and records</span>
-          <span>↗</span>
-        </div>
-        <div class="archive-entry-note">ALL / ARCHITECTURE / OBJECT / FOOD / BOOK / TEXT / PHOTO / PLACE / OTHER</div>
-      </a>
+      <div class="carousel" id="photo-carousel" aria-label="Archive photographs">
+        <div class="carousel-track" id="photo-track"></div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-arrow" id="photo-prev" type="button" aria-label="Previous photograph">←</button>
+        <button class="carousel-arrow" id="photo-next" type="button" aria-label="Next photograph">→</button>
+        <div class="carousel-dots" id="photo-dots" aria-label="Choose photograph"></div>
+        <span class="carousel-counter" id="photo-counter"></span>
+      </div>
     </section>
 
     <section class="home-section" aria-labelledby="text-heading">
-      <div class="home-section-heading">
+      <div class="section-heading">
         <span id="text-heading">TEXT</span>
-        <a class="section-link" href="text-01.html">ESSAYS ↗</a>
+        <a href="text-01.html">ALL TEXTS ↗</a>
       </div>
-      <ol id="text-list" class="text-list"></ol>
+      <div class="carousel text-carousel" id="text-carousel" aria-label="Texts">
+        <div class="carousel-track" id="text-track"></div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-arrow" id="text-prev" type="button" aria-label="Previous text">←</button>
+        <button class="carousel-arrow" id="text-next" type="button" aria-label="Next text">→</button>
+        <div class="carousel-dots" id="text-dots" aria-label="Choose text"></div>
+        <span class="carousel-counter" id="text-counter"></span>
+      </div>
     </section>
-
-    <footer class="home-footer">SAKATA YUSHI</footer>
+    <footer class="site-footer">SAKATA YUSHI</footer>
   </main>
 
   <script>
-    const selectedGrid = document.getElementById("selected-grid");
-    const textList = document.getElementById("text-list");
+    function setupCarousel(track, dots, counter, prevButton, nextButton) {
+      let index = 0;
+      let count = 0;
+      const update = () => {
+        track.style.transform = 'translateX(' + (-index * 100) + '%)';
+        dots.querySelectorAll('button').forEach((dot, i) => dot.setAttribute('aria-current', i === index ? 'true' : 'false'));
+        counter.textContent = count ? String(index + 1).padStart(2, '0') + ' / ' + String(count).padStart(2, '0') : '';
+      };
+      const go = next => {
+        if (!count) return;
+        index = (next + count) % count;
+        update();
+      };
+      prevButton.addEventListener('click', () => go(index - 1));
+      nextButton.addEventListener('click', () => go(index + 1));
+      return {
+        addDot() {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'carousel-dot';
+          dot.setAttribute('aria-label', 'Go to slide ' + (count + 1));
+          dot.addEventListener('click', () => go(Number(dot.dataset.index)));
+          dot.dataset.index = String(count);
+          dots.appendChild(dot);
+          count += 1;
+          update();
+        },
+        update
+      };
+    }
 
-    fetch("archive-data.json")
+    const photoTrack = document.getElementById('photo-track');
+    const photoDots = document.getElementById('photo-dots');
+    const photoCarousel = setupCarousel(
+      photoTrack, photoDots, document.getElementById('photo-counter'),
+      document.getElementById('photo-prev'), document.getElementById('photo-next')
+    );
+    const textTrack = document.getElementById('text-track');
+    const textDots = document.getElementById('text-dots');
+    const textCarousel = setupCarousel(
+      textTrack, textDots, document.getElementById('text-counter'),
+      document.getElementById('text-prev'), document.getElementById('text-next')
+    );
+
+    fetch('archive-data.json')
       .then(response => {
-        if (!response.ok) throw new Error("Archive data could not be loaded.");
+        if (!response.ok) throw new Error('Archive data could not be loaded.');
         return response.json();
       })
       .then(data => {
         const items = Array.isArray(data) ? data : (data.items || []);
-        const selectedCategories = ["ARCHITECTURE", "OBJECT", "BOOK", "FOOD", "PHOTO", "PLACE"];
-        const selected = [];
-        selectedCategories.forEach(category => {
+        const preferred = ['ARCHITECTURE', 'OBJECT', 'FOOD', 'BOOK', 'PHOTO', 'PLACE', 'OTHER'];
+        const photos = [];
+        preferred.forEach(category => {
           const item = items.find(entry => entry.category === category && (entry.image || entry.coverImage));
-          if (item) selected.push(item);
+          if (item && photos.length < 5) photos.push(item);
         });
-        selected.slice(0, 6).forEach(item => {
-          const link = document.createElement("a");
-          link.className = "selected-item";
-          link.href = item.detailPage || "archive.html";
-          const imageWrap = document.createElement("div");
-          imageWrap.className = "selected-image-wrap";
-          const image = document.createElement("img");
-          image.className = "selected-image";
+        photos.forEach(item => {
+          const slide = document.createElement('div');
+          slide.className = 'carousel-slide';
+          const link = document.createElement('a');
+          link.className = 'photo-link';
+          link.href = item.detailPage || 'archive.html';
+          const frame = document.createElement('div');
+          frame.className = 'photo-frame';
+          const image = document.createElement('img');
+          image.className = 'photo-image';
           image.src = item.coverImage || item.image;
-          image.alt = item.title || "";
-          image.loading = "lazy";
-          image.decoding = "async";
-          imageWrap.appendChild(image);
-          const caption = document.createElement("div");
-          caption.className = "selected-caption";
-          const title = document.createElement("span");
-          title.textContent = item.title || "Untitled";
-          const category = document.createElement("span");
-          category.className = "selected-category";
-          category.textContent = item.category || "ARCHIVE";
+          image.alt = item.title || '';
+          image.loading = 'lazy';
+          image.decoding = 'async';
+          const caption = document.createElement('div');
+          caption.className = 'photo-caption';
+          const title = document.createElement('span');
+          title.className = 'photo-caption-title';
+          title.textContent = item.title || '';
+          const category = document.createElement('span');
+          category.className = 'photo-caption-category';
+          category.textContent = item.category || 'ARCHIVE';
           caption.append(title, category);
-          link.append(imageWrap, caption);
-          selectedGrid.appendChild(link);
+          frame.append(image, caption);
+          link.appendChild(frame);
+          link.addEventListener('click', event => {
+            if (window.matchMedia('(max-width: 650px) and (hover: none)').matches && !link.classList.contains('is-caption-visible')) {
+              event.preventDefault();
+              document.querySelectorAll('.photo-link.is-caption-visible').forEach(el => el.classList.remove('is-caption-visible'));
+              link.classList.add('is-caption-visible');
+            }
+          });
+          slide.appendChild(link);
+          photoTrack.appendChild(slide);
+          photoCarousel.addDot();
         });
       })
       .catch(error => {
         console.error(error);
-        selectedGrid.innerHTML = '<p>Archive data could not be loaded.</p>';
+        photoTrack.innerHTML = '<div class="carousel-slide">Archive data could not be loaded.</div>';
       });
 
-    fetch("articles.json")
+    fetch('articles.json')
       .then(response => {
-        if (!response.ok) throw new Error("Article data could not be loaded.");
+        if (!response.ok) throw new Error('Article data could not be loaded.');
         return response.json();
       })
       .then(articles => {
         articles.forEach((article, index) => {
-          const item = document.createElement("li");
-          item.className = "text-entry";
-          const number = document.createElement("span");
-          number.className = "text-number";
-          number.textContent = String(index + 1).padStart(2, "0");
-          const link = document.createElement("a");
-          link.className = "text-title";
-          link.href = article.detailPage || "#";
-          link.textContent = article.title || "Untitled";
-          const arrow = document.createElement("span");
-          arrow.className = "text-arrow";
-          arrow.textContent = "↗";
-          item.append(number, link, arrow);
-          textList.appendChild(item);
+          const slide = document.createElement('div');
+          slide.className = 'carousel-slide';
+          const card = document.createElement('article');
+          card.className = 'text-slide';
+          const meta = document.createElement('div');
+          meta.className = 'text-slide-meta';
+          const label = document.createElement('span');
+          label.textContent = 'TEXT / ESSAY';
+          const number = document.createElement('span');
+          number.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(articles.length).padStart(2, '0');
+          meta.append(label, number);
+          const link = document.createElement('a');
+          link.href = article.detailPage || '#';
+          link.className = 'text-slide-title';
+          link.textContent = article.title || 'Untitled';
+          const description = document.createElement('p');
+          description.className = 'text-slide-description';
+          description.textContent = article.description || '';
+          const more = document.createElement('a');
+          more.href = article.detailPage || '#';
+          more.className = 'text-slide-more';
+          more.textContent = 'READ TEXT ↗';
+          card.append(meta, link, description, more);
+          slide.appendChild(card);
+          textTrack.appendChild(slide);
+          textCarousel.addDot();
         });
       })
       .catch(error => {
         console.error(error);
-        textList.innerHTML = '<li>Articles could not be loaded.</li>';
+        textTrack.innerHTML = '<div class="carousel-slide">Articles could not be loaded.</div>';
       });
   </script>
 </body>
