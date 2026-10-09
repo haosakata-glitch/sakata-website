@@ -4,84 +4,98 @@
     "detailPage": "book-01.html",
     "category": "BOOK",
     "title": "本のタイトル",
+    "capturedAt": null,
     "bookTitle": "book-01"
   },
   {
     "image": "assets/optimized/food-01.webp",
     "detailPage": "food-01.html",
     "category": "FOOD",
-    "title": "food-01"
+    "title": "food-01",
+    "capturedAt": "2026-10-07T12:29:05"
   },
   {
     "image": "assets/optimized/food-02.webp",
     "detailPage": "food-02.html",
     "category": "FOOD",
-    "title": "food-02"
+    "title": "food-02",
+    "capturedAt": "2026-10-06T06:48:51"
   },
   {
     "image": "assets/optimized/food-04.webp",
     "detailPage": "food-04.html",
     "category": "FOOD",
-    "title": "food-04"
+    "title": "food-04",
+    "capturedAt": "2026-10-04T03:14:39"
   },
   {
     "image": "assets/optimized/food-05.webp",
     "detailPage": "food-05.html",
     "category": "FOOD",
-    "title": "food-05"
+    "title": "food-05",
+    "capturedAt": "2026-09-28T06:45:13"
   },
   {
     "image": "assets/optimized/food-06.webp",
     "detailPage": "food-06.html",
     "category": "FOOD",
-    "title": "food-06"
+    "title": "food-06",
+    "capturedAt": "2026-09-20T22:24:31"
   },
   {
     "image": "assets/optimized/food-07.webp",
     "detailPage": "food-07.html",
     "category": "FOOD",
-    "title": "food-07"
+    "title": "food-07",
+    "capturedAt": "2026-08-24T21:29:12"
   },
   {
     "image": "assets/optimized/food-08.webp",
     "detailPage": "food-08.html",
     "category": "FOOD",
-    "title": "food-08"
+    "title": "food-08",
+    "capturedAt": "2026-09-13T10:29:36"
   },
   {
     "image": "assets/optimized/food-09.webp",
     "detailPage": "food-09.html",
     "category": "FOOD",
-    "title": "food-09"
+    "title": "food-09",
+    "capturedAt": "2026-09-08T00:48:21"
   },
   {
     "image": "assets/optimized/food-10.webp",
     "detailPage": "food-10.html",
     "category": "FOOD",
-    "title": "food-10"
+    "title": "food-10",
+    "capturedAt": "2026-09-06T15:27:22"
   },
   {
     "image": "assets/optimized/photo-01.webp",
     "detailPage": "photo-01.html",
     "category": "PHOTO",
-    "title": "写真のタイトル"
+    "title": "写真のタイトル",
+    "capturedAt": null
   },
   {
     "image": "assets/optimized/work-01.webp",
     "detailPage": "work-01.html",
     "category": "ARCHITECTURE",
-    "title": "(仮)下仁田蒸留所"
+    "title": "(仮)下仁田蒸留所",
+    "capturedAt": null
   },
   {
     "image": "assets/optimized/work-02.webp",
     "detailPage": "work-02.html",
     "category": "OBJECT",
-    "title": "work-02"
+    "title": "work-02",
+    "capturedAt": "2026-09-13T15:54:40"
   },
   {
     "image": "assets/optimized/work-03.webp",
     "detailPage": "work-03.html",
     "category": "OBJECT",
-    "title": "work-03"
+    "title": "work-03",
+    "capturedAt": "2026-09-06T15:15:11"
   }
 ]
