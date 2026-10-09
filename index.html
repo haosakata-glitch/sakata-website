@@ -615,11 +615,18 @@ main {
       }
       const sortMode = sortSelect.value;
       filteredData = [...filteredData];
-      if (sortMode === "newest" || sortMode === "oldest") {
-        filteredData.sort((a,b) => {
-          const da = Date.parse(a.date || a.createdAt || a.publishedAt || "") || 0;
-          const db = Date.parse(b.date || b.createdAt || b.publishedAt || "") || 0;
-          return sortMode === "newest" ? db-da : da-db;
+      if (sortMode === "default" || sortMode === "newest" || sortMode === "oldest") {
+        filteredData.sort((a, b) => {
+          const dateA = Date.parse(a.capturedAt || a.date || a.createdAt || a.publishedAt || "") || 0;
+          const dateB = Date.parse(b.capturedAt || b.date || b.createdAt || b.publishedAt || "") || 0;
+
+          // 日時がある写真を先に並べ、日時がないものは元の順序を保つ
+          if (dateA && !dateB) return -1;
+          if (!dateA && dateB) return 1;
+          if (!dateA && !dateB) return 0;
+
+          if (sortMode === "oldest") return dateA - dateB;
+          return dateB - dateA;
         });
       } else if (sortMode === "title") {
         filteredData.sort((a,b) => (a.title || "").localeCompare(b.title || "", "ja"));
