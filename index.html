@@ -675,13 +675,11 @@ renderArchive(category);
           ? data
           : data.items || [];
 
-        hotItems = [
-          archiveData.find(item => item.detailPage === "work-01.html"),
-          archiveData.find(item => item.detailPage === "work-02.html"),
-          archiveData.find(item => item.detailPage === "book-01.html"),
-          archiveData.find(item => item.detailPage === "food-01.html"),
-          archiveData.find(item => item.detailPage === "photo-01.html")
-        ].filter(Boolean);
+        // HOTには、分野ごとに1点ずつ代表写真を表示する
+        const hotCategories = ["ARCHITECTURE", "OBJECT", "BOOK", "FOOD", "PHOTO", "PLACE", "TEXT", "OTHER"];
+        hotItems = hotCategories
+          .map(category => archiveData.find(item => item.category === category))
+          .filter(Boolean);
         renderHot();
         startHotTimer();
 
