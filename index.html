@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -169,19 +170,23 @@
 
     .archive-caption {
       position: absolute;
-      right: 10px;
+      right: 8px;
       bottom: 8px;
       display: flex;
       align-items: baseline;
       gap: 8px;
-      max-width: calc(100% - 20px);
+      max-width: calc(100% - 16px);
+      padding: 6px 9px;
+      background: rgba(250, 248, 244, 0.90);
+      color: rgba(34, 34, 34, 0.88);
       font-size: 9px;
       font-weight: 400;
       line-height: 1.4;
       letter-spacing: 0.03em;
-      color: rgba(255, 255, 255, 0.82);
       text-align: right;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+      text-shadow: none;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.2s ease;
@@ -205,7 +210,7 @@
 
     .archive-caption-date {
       flex-shrink: 0;
-      color: rgba(255, 255, 255, 0.62);
+      color: rgba(34, 34, 34, 0.58);
     }
 
     /* ABOUT */
@@ -294,10 +299,21 @@
       }
 
       .archive-caption {
-        right: 7px;
-        bottom: 6px;
+        right: 5px;
+        bottom: 5px;
         gap: 5px;
+        max-width: calc(100% - 10px);
+        padding: 5px 6px;
         font-size: 8px;
+      }
+
+      .archive-caption-title {
+        font-size: 8px;
+      }
+
+      .archive-caption-date {
+        font-size: 8px;
+        color: rgba(34, 34, 34, 0.58);
       }
 
       .archive-item.is-caption-visible .archive-caption {
@@ -323,6 +339,7 @@
       }
     }
   </style>
+
 </head>
 
 <body>
@@ -334,44 +351,47 @@
         SAKATA KATSUYUKI
       </a>
 
-      <nav class="main-nav">
-        <button type="button" data-category="ALL" class="active">
-          ALL
-        </button>
+```
+  <nav class="main-nav">
+    <button type="button" data-category="ALL" class="active">
+      ALL
+    </button>
 
-        <button type="button" data-category="ARCHITECTURE">
-          ARCHITECTURE
-        </button>
+    <button type="button" data-category="ARCHITECTURE">
+      ARCHITECTURE
+    </button>
 
-        <button type="button" data-category="OBJECT">
-          OBJECT
-        </button>
+    <button type="button" data-category="OBJECT">
+      OBJECT
+    </button>
 
-        <button type="button" data-category="FOOD">
-          FOOD
-        </button>
+    <button type="button" data-category="FOOD">
+      FOOD
+    </button>
 
-        <a href="book.html">BOOK</a>
+    <a href="book.html">BOOK</a>
 
-        <button type="button" data-category="TEXT">
-          TEXT
-        </button>
+    <button type="button" data-category="TEXT">
+      TEXT
+    </button>
 
-        <button type="button" data-category="PHOTO">
-          PHOTO
-        </button>
+    <button type="button" data-category="PHOTO">
+      PHOTO
+    </button>
 
-        <button type="button" data-category="PLACE">
-          PLACE
-        </button>
+    <button type="button" data-category="PLACE">
+      PLACE
+    </button>
 
-        <button type="button" data-category="OTHER">
-          OTHER
-        </button>
+    <button type="button" data-category="OTHER">
+      OTHER
+    </button>
 
-        <a href="#about" class="about-link">ABOUT</a>
-      </nav>
-    </div>
+    <a href="#about" class="about-link">ABOUT</a>
+  </nav>
+</div>
+```
+
   </header>
 
   <!-- MAIN -->
@@ -383,52 +403,55 @@
       aria-live="polite"
     ></section>
 
-    <section id="about" class="about">
-      <div class="about-inner">
-        <div class="about-label">ABOUT</div>
+```
+<section id="about" class="about">
+  <div class="about-inner">
+    <div class="about-label">ABOUT</div>
 
-        <div class="about-text">
-          <div class="about-name">
-            坂田雄志 / Sakata Katsuyuki
-          </div>
-
-          <p class="about-profile">
-            建築家。<br>
-            2016–2020 近畿大学建築学部建築学科 松岡聡研究室<br>
-            2020–2023 横浜国立大学大学院 Y-GSA<br>
-            2023–2024 平田明久建築設計事務所<br>
-            2024–2026 Archipelago Architects Studio
-          </p>
-
-          <p class="about-contact">
-            <a href="mailto:hao.sakata@gmail.com">
-              hao.sakata@gmail.com
-            </a>
-            <br>
-
-            <a
-              href="https://www.instagram.com/katsu_0708/"
-              target="_blank"
-              rel="noopener"
-            >Instagram</a>
-            <br>
-
-            <a
-              href="https://x.com/Katsuskt"
-              target="_blank"
-              rel="noopener"
-            >X</a>
-            <br>
-
-            <a
-              href="https://note.com/kind_nerine7"
-              target="_blank"
-              rel="noopener"
-            >note</a>
-          </p>
-        </div>
+    <div class="about-text">
+      <div class="about-name">
+        坂田雄志 / Sakata Katsuyuki
       </div>
-    </section>
+
+      <p class="about-profile">
+        建築家。<br>
+        2016–2020 近畿大学建築学部建築学科 松岡聡研究室<br>
+        2020–2023 横浜国立大学大学院 Y-GSA<br>
+        2023–2024 平田明久建築設計事務所<br>
+        2024–2026 Archipelago Architects Studio
+      </p>
+
+      <p class="about-contact">
+        <a href="mailto:hao.sakata@gmail.com">
+          hao.sakata@gmail.com
+        </a>
+        <br>
+
+        <a
+          href="https://www.instagram.com/katsu_0708/"
+          target="_blank"
+          rel="noopener"
+        >Instagram</a>
+        <br>
+
+        <a
+          href="https://x.com/Katsuskt"
+          target="_blank"
+          rel="noopener"
+        >X</a>
+        <br>
+
+        <a
+          href="https://note.com/kind_nerine7"
+          target="_blank"
+          rel="noopener"
+        >note</a>
+      </p>
+    </div>
+  </div>
+</section>
+```
+
   </main>
 
   <script>
@@ -659,5 +682,6 @@
           "<p>Archive data could not be loaded.</p>";
       });
   </script>
+
 </body>
 </html>
