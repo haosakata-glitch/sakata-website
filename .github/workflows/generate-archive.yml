@@ -19,6 +19,39 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Install image optimization tools
+        run: python -m pip install --upgrade Pillow
+
+      - name: Optimize archive images
+        shell: python
+        run: |
+          from pathlib import Path
+          from PIL import Image, ImageOps
+
+          root = Path(".")
+          output_dir = root / "assets" / "optimized"
+          output_dir.mkdir(parents=True, exist_ok=True)
+          extensions = {".jpg", ".jpeg", ".png", ".webp"}
+
+          for source in sorted(root.iterdir()):
+              if not source.is_file() or source.suffix.lower() not in extensions:
+                  continue
+              if source.stem.startswith("book-cover-"):
+                  continue
+
+              destination = output_dir / (source.stem + ".webp")
+              try:
+                  with Image.open(source) as original:
+                      image = ImageOps.exif_transpose(original)
+                      if image.mode not in ("RGB", "RGBA"):
+                          image = image.convert("RGBA" if "transparency" in image.info else "RGB")
+                      image.thumbnail((2000, 2000), Image.Resampling.LANCZOS)
+                      image.save(destination, "WEBP", quality=87, method=6)
+                  print(f"Optimized {source.name} -> {destination} ({destination.stat().st_size:,} bytes)")
+              except Exception as error:
+                  print(f"Could not optimize {source.name}: {error}")
+                  raise
+
       - name: Install OCR tools
         shell: bash
         run: |
@@ -37,6 +70,11 @@ jobs:
 
           root = Path(".")
           image_extensions = {".jpg", ".jpeg", ".png", ".webp"}
+          optimized_dir = root / "assets" / "optimized"
+
+          def optimized_image_path(image):
+              optimized = optimized_dir / (image.stem + ".webp")
+              return optimized.as_posix() if optimized.exists() else image.name
 
           category_map = {
               "architecture-": "ARCHITECTURE",
@@ -72,7 +110,7 @@ jobs:
           header_html = """
           <header>
             <div class="header-left">
-              <a href="index.html" class="site-title">SAKATA KATSUYUKI</a>
+              <a href="index.html" class="site-title">SAKATA YUSHI</a>
               <nav class="category-nav" aria-label="Archive categories">
           """ + "\n".join(
               f'<a class="header-category category-{category}" href="index.html">{category}</a>'
@@ -337,7 +375,7 @@ jobs:
               <div class="category">__CATEGORY__</div>
               <h1>__TITLE__</h1>
               <div class="image">
-                <img src="__IMAGE__" alt="__TITLE__">
+                <img src="__IMAGE__" alt="__TITLE__" loading="lazy" decoding="async">
               </div>
               <div class="back"><a href="index.html">← Archive</a></div>
             </main>
@@ -347,7 +385,7 @@ jobs:
 
               html = html.replace("__TITLE__", stem)
               html = html.replace("__CATEGORY__", category)
-              html = html.replace("__IMAGE__", image.name)
+              html = html.replace("__IMAGE__", optimized_image_path(image))
               html_file.write_text(html, encoding="utf-8")
               print("Created:", html_file)
 
@@ -382,7 +420,7 @@ jobs:
                   if image.exists():
                       html = re.sub(
                           r'(<img\b[^>]*\bsrc=")[^"]*(")',
-                          lambda match: match.group(1) + image.name + match.group(2),
+                          lambda match: match.group(1) + optimized_image_path(image) + match.group(2),
                           html,
                           count=1,
                           flags=re.I
@@ -621,7 +659,7 @@ jobs:
                       title = re.sub(r"<[^>]+>", "", match.group(1)).strip()
 
               item = {
-                  "image": image.name,
+                  "image": optimized_image_path(image),
                   "detailPage": f"{stem}.html",
                   "category": category_for(stem),
                   "title": title,
