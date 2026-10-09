@@ -470,7 +470,18 @@ main {
     function renderHot(category = "ALL") {
       hotTrack.innerHTML = "";
       hotDots.innerHTML = "";
-      hotItems = category === "ALL" ? [...allHotItems] : allHotItems.filter(item => item.category === category);
+      if (category === "ALL") {
+        // トップページは各カテゴリーから代表を1点ずつ表示
+        const seenCategories = new Set();
+        hotItems = allHotItems.filter(item => {
+          if (seenCategories.has(item.category)) return false;
+          seenCategories.add(item.category);
+          return true;
+        });
+      } else {
+        // 各カテゴリーのページではHOTを最大3点表示
+        hotItems = allHotItems.filter(item => item.category === category).slice(0, 3);
+      }
       hotSection.hidden = hotItems.length === 0;
       hotItems.forEach((item, index) => {
         const slide = document.createElement("article");
@@ -695,11 +706,9 @@ main {
           ? data
           : data.items || [];
 
-        // HOTには、分野ごとに1点ずつ代表写真を表示する
+        // HOTの候補は全カテゴリーの記事から取得。表示点数はrenderHot側で調整する
         const hotCategories = ["ARCHITECTURE", "OBJECT", "BOOK", "FOOD", "PHOTO", "PLACE", "TEXT", "OTHER"];
-        allHotItems = hotCategories
-          .map(category => archiveData.find(item => item.category === category))
-          .filter(Boolean);
+        allHotItems = archiveData.filter(item => hotCategories.includes(item.category));
         navItems.forEach(item => {
           item.classList.remove("active");
         });
