@@ -530,7 +530,7 @@ main {
         title.textContent = item.title || "Untitled";
         const description = document.createElement("p");
         description.className = "hot-description";
-        description.textContent = hotDescriptions[item.detailPage] || "写真と記録を通して、日々の関心をアーカイブする。";
+        description.textContent = item.description || hotDescriptions[item.detailPage] || "写真と記録を通して、日々の関心をアーカイブする。";
         const more = document.createElement("a");
         more.className = "hot-more";
         more.href = item.detailPage || "#";
