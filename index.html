@@ -217,6 +217,37 @@
       object-position: center center;
     }
 
+    .archive-text-wrap {
+      background: rgba(255,255,255,.16);
+      border: 1px solid rgba(34,34,34,.12);
+    }
+    .archive-text-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+      min-height: 150px;
+      padding: clamp(14px, 2vw, 24px);
+      color: rgba(34,34,34,.78);
+    }
+    .archive-text-label {
+      font-size: 9px;
+      letter-spacing: .1em;
+      color: rgba(34,34,34,.48);
+    }
+    .archive-text-title {
+      margin: 18px 0;
+      font-size: clamp(14px, 1.5vw, 19px);
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+    .archive-text-arrow {
+      align-self: flex-end;
+      font-size: 12px;
+    }
+
     /* TITLE / DATE */
 
     .archive-caption {
@@ -644,10 +675,30 @@ main {
         const imageWrap = document.createElement("div");
         imageWrap.className = "archive-image-wrap";
 
-        const image = document.createElement("img");
-        image.className = "archive-image";
-        image.src = item.coverImage || item.image;
-        image.alt = item.title || "";
+        if (item.image || item.coverImage) {
+          const image = document.createElement("img");
+          image.className = "archive-image";
+          image.src = item.coverImage || item.image;
+          image.alt = item.title || "";
+          image.loading = "lazy";
+          image.decoding = "async";
+          imageWrap.appendChild(image);
+        } else {
+          imageWrap.classList.add("archive-text-wrap");
+          const textCard = document.createElement("div");
+          textCard.className = "archive-text-card";
+          const label = document.createElement("span");
+          label.className = "archive-text-label";
+          label.textContent = "TEXT / ESSAY";
+          const cardTitle = document.createElement("span");
+          cardTitle.className = "archive-text-title";
+          cardTitle.textContent = item.title || "";
+          const arrow = document.createElement("span");
+          arrow.className = "archive-text-arrow";
+          arrow.textContent = "↗";
+          textCard.append(label, cardTitle, arrow);
+          imageWrap.appendChild(textCard);
+        }
 
         const caption = document.createElement("div");
         caption.className = "archive-caption";
@@ -672,7 +723,6 @@ main {
           caption.appendChild(date);
         }
 
-        imageWrap.appendChild(image);
         imageWrap.appendChild(caption);
         link.appendChild(imageWrap);
 
@@ -782,7 +832,7 @@ main {
 
         // HOTの候補は全カテゴリーの記事から取得。表示点数はrenderHot側で調整する
         const hotCategories = ["ARCHITECTURE", "OBJECT", "BOOK", "FOOD", "PHOTO", "PLACE", "TEXT", "OTHER"];
-        allHotItems = archiveData.filter(item => hotCategories.includes(item.category));
+        allHotItems = archiveData.filter(item => hotCategories.includes(item.category) && item.image);
         navItems.forEach(item => {
           item.classList.remove("active");
         });
