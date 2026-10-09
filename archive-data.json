@@ -3,17 +3,14 @@
     "image": "book-01.jpg",
     "detailPage": "book-01.html",
     "category": "BOOK",
-    "title": "大杉栄伝　永遠のアナキズム",
-    "bookTitle": "大杉栄伝　永遠のアナキズム",
-    "description": "大杉栄の生涯とアナキズムをたどる読書記録。"
+    "title": "本のタイトル",
+    "bookTitle": "book-01"
   },
   {
     "image": "food-01.jpeg",
     "detailPage": "food-01.html",
     "category": "FOOD",
-    "title": "今朝のピクルス",
-    "description": "今朝のピクルス",
-    "date": "2026.10.06"
+    "title": "food-01"
   },
   {
     "image": "food-02.jpeg",
@@ -67,15 +64,13 @@
     "image": "photo-01.jpg",
     "detailPage": "photo-01.html",
     "category": "PHOTO",
-    "title": "写真のタイトル",
-    "description": "写真の記録。"
+    "title": "写真のタイトル"
   },
   {
     "image": "work-01.jpg",
     "detailPage": "work-01.html",
     "category": "OBJECT",
-    "title": "(仮)下仁田蒸留所",
-    "description": "下仁田蒸留所の設計記録。"
+    "title": "(仮)下仁田蒸留所"
   },
   {
     "image": "work-02.jpeg",
