@@ -378,484 +378,171 @@ main {
         opacity: 1;
       }
 }
+  
+    /* HOME PAGE */
+    .home-main { padding-top: 86px; }
+    .home-section { max-width: 1200px; margin: 0 0 44px; }
+    .home-section-heading {
+      display:flex; align-items:baseline; justify-content:space-between;
+      gap:16px; margin:0 0 12px; padding-bottom:8px;
+      border-bottom:1px solid rgba(34,34,34,.18);
+      color:rgba(34,34,34,.72); font-size:10px; letter-spacing:.1em;
+    }
+    .section-link { color:rgba(34,34,34,.65); white-space:nowrap; }
+    .section-link:hover { color:#222; }
+    .selected-grid {
+      display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px; align-items:start;
+    }
+    .selected-item { display:block; min-width:0; }
+    .selected-image-wrap { aspect-ratio:4/3; overflow:hidden; background:rgba(34,34,34,.04); }
+    .selected-image { display:block; width:100%; height:100%; object-fit:cover; transition:opacity .2s ease; }
+    .selected-item:hover .selected-image { opacity:.82; }
+    .selected-caption { display:flex; justify-content:space-between; gap:12px; padding-top:8px; color:rgba(34,34,34,.7); }
+    .selected-category { font-size:9px; color:rgba(34,34,34,.45); letter-spacing:.05em; }
+    .archive-entry { display:block; padding:15px 0; border-bottom:1px solid rgba(34,34,34,.16); }
+    .archive-entry:first-of-type { border-top:1px solid rgba(34,34,34,.16); }
+    .archive-entry-main { display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .archive-entry-title { font-size:clamp(14px,1.7vw,18px); letter-spacing:.01em; color:rgba(34,34,34,.78); }
+    .archive-entry-note { margin-top:5px; font-size:10px; color:rgba(34,34,34,.48); }
+    .text-list { margin:0; padding:0; list-style:none; }
+    .text-entry { display:grid; grid-template-columns:28px minmax(0,1fr) 18px; gap:10px; align-items:center; padding:15px 0; border-bottom:1px solid rgba(34,34,34,.16); }
+    .text-entry:first-child { border-top:1px solid rgba(34,34,34,.16); }
+    .text-number { color:rgba(34,34,34,.4); font-size:9px; }
+    .text-title { font-size:clamp(12px,1.4vw,15px); line-height:1.7; color:rgba(34,34,34,.78); }
+    .text-arrow { text-align:right; color:rgba(34,34,34,.55); }
+    .home-footer { padding-top:20px; border-top:1px solid rgba(34,34,34,.12); font-size:9px; letter-spacing:.06em; }
+    @media(max-width:650px) {
+      .home-main { padding:78px 16px 70px; }
+      .home-section { margin-bottom:34px; }
+      .selected-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 10px; }
+      .selected-caption { display:block; }
+      .selected-category { display:block; margin-top:3px; }
+      .text-entry { grid-template-columns:22px minmax(0,1fr) 14px; gap:8px; padding:13px 0; }
+    }
+
   </style>
 
 </head>
 
 <body>
-  <!-- HEADER -->
-
   <header class="site-header">
     <div class="header-inner">
-      <a href="index.html" class="site-title">
-        SAKATA YUSHI
-      </a>
-
-  <nav class="main-nav">
-    <button type="button" data-category="ALL" class="active">
-      ALL
-    </button>
-
-    <button type="button" data-category="ARCHITECTURE">
-      ARCHITECTURE
-    </button>
-
-    <button type="button" data-category="OBJECT">
-      OBJECT
-    </button>
-
-    <button type="button" data-category="FOOD">
-      FOOD
-    </button>
-
-    <button type="button" data-category="BOOK">BOOK</button>
-
-    <button type="button" data-category="TEXT">
-      TEXT
-    </button>
-
-    <button type="button" data-category="PHOTO">
-      PHOTO
-    </button>
-
-    <button type="button" data-category="PLACE">
-      PLACE
-    </button>
-
-    <button type="button" data-category="OTHER">
-      OTHER
-    </button>
-
-    <a href="https://haosakata-glitch.github.io/sakata-website/about.html" class="about-link">ABOUT</a>
-  </nav>
-</div>
-
+      <a href="index.html" class="site-title">SAKATA YUSHI</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="about.html" class="about-link">ABOUT</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- MAIN -->
-
-  <main>
-    <section class="hot-section" aria-label="HOT articles">
-      <div class="hot-heading">
+  <main class="home-main">
+    <section class="home-section" aria-labelledby="selected-heading">
+      <div class="home-section-heading">
+        <span id="selected-heading">SELECTED ARCHIVE</span>
+        <a class="section-link" href="archive.html">VIEW ARCHIVE ↗</a>
       </div>
-      <div class="hot-slider" id="hot-slider">
-        <div class="hot-track" id="hot-track"></div>
-      </div>
-      <div class="hot-controls">
-        <button class="hot-arrow" type="button" id="hot-prev" aria-label="前の記事">←</button>
-        <button class="hot-arrow" type="button" id="hot-next" aria-label="次の記事">→</button>
-        <div class="hot-dots" id="hot-dots" aria-label="記事を選択"></div>
-        <button class="hot-pause" type="button" id="hot-pause" aria-pressed="false">PAUSE</button>
-      </div>
+      <div id="selected-grid" class="selected-grid" aria-live="polite"></div>
     </section>
-    <div class="archive-label"><span>ARCHIVE</span><span id="archive-count"></span></div>
-    <div class="archive-tools" aria-label="アーカイブ検索と並び替え">
-      <label class="search-box"><span class="visually-hidden">キーワード検索</span><input id="archive-search" type="search" placeholder="SEARCH ARCHIVE" autocomplete="off"></label>
-      <label class="sort-box"><span class="visually-hidden">並び替え</span><select id="archive-sort"><option value="default">DEFAULT</option><option value="newest">NEWEST</option><option value="oldest">OLDEST</option><option value="title">TITLE A–Z</option></select></label>
-    </div>
-    <p id="archive-empty" class="archive-empty" hidden>該当する記事はありません。</p>
-    <section id="archive" class="archive-grid" aria-live="polite"></section>
+
+    <section class="home-section" aria-labelledby="archive-heading">
+      <div class="home-section-heading">
+        <span id="archive-heading">ARCHIVE</span>
+        <a class="section-link" href="archive.html">ALL ITEMS ↗</a>
+      </div>
+      <a class="archive-entry" href="archive.html">
+        <div class="archive-entry-main">
+          <span class="archive-entry-title">Photographs and records</span>
+          <span>↗</span>
+        </div>
+        <div class="archive-entry-note">ALL / ARCHITECTURE / OBJECT / FOOD / BOOK / TEXT / PHOTO / PLACE / OTHER</div>
+      </a>
+    </section>
+
+    <section class="home-section" aria-labelledby="text-heading">
+      <div class="home-section-heading">
+        <span id="text-heading">TEXT</span>
+        <a class="section-link" href="text-01.html">ESSAYS ↗</a>
+      </div>
+      <ol id="text-list" class="text-list"></ol>
+    </section>
+
+    <footer class="home-footer">SAKATA YUSHI</footer>
   </main>
 
-  <button type="button" id="back-to-top" class="back-to-top" aria-label="ページ上部に戻る">↑</button>
   <script>
-    const searchInput = document.getElementById("archive-search");
-    const sortSelect = document.getElementById("archive-sort");
-    const emptyMessage = document.getElementById("archive-empty");
-    const backToTop = document.getElementById("back-to-top");
-    const archive = document.getElementById("archive");
-    const hotTrack = document.getElementById("hot-track");
-    const hotDots = document.getElementById("hot-dots");
-    const hotSlider = document.getElementById("hot-slider");
-    const hotSection = document.querySelector(".hot-section");
-    const archiveCount = document.getElementById("archive-count");
-    const hotPause = document.getElementById("hot-pause");
+    const selectedGrid = document.getElementById("selected-grid");
+    const textList = document.getElementById("text-list");
 
-    const hotDescriptions = {
-      "work-01.html": "設計の記録。計画の背景や条件を、写真とあわせて整理していく。",
-      "work-02.html": "OBJECT / ARCHIVE。かたちや素材を手がかりに、制作の記録をたどる。",
-      "book-01.html": "BOOK / READING NOTES。読んだ本を入口に、気になった考えや言葉を記録する。",
-      "food-01.html": "FOOD / DAILY NOTES。日々の食事を写真に残し、暮らしの断片をアーカイブする。",
-      "photo-01.html": "PHOTO / FIELD NOTES。写真を通して、見たものや場所の記録をたどる。"
-    };
-    let hotItems = [];
-    let allHotItems = [];
-    let hotIndex = 0;
-    let hotTimer = null;
-    let hotIsPaused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const categoryButtons = document.querySelectorAll(
-      ".main-nav button[data-category]"
-    );
-    const navItems = document.querySelectorAll(
-      ".main-nav a, .main-nav button"
-    );
-
-    let archiveData = [];
-    let currentSearch = "";
-
-    const params = new URLSearchParams(window.location.search);
-    const initialCategory = params.get("category") || "ALL";
-    let currentCategory = initialCategory;
-
-    function formatDate(value) {
-      if (!value) {
-        return "";
-      }
-
-      const date = new Date(value);
-
-      if (Number.isNaN(date.getTime())) {
-        return String(value);
-      }
-
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
-
-      return `${year}.${month}.${day}`;
-    }
-
-    function renderHot(category = "ALL") {
-      hotTrack.innerHTML = "";
-      hotDots.innerHTML = "";
-      if (category === "ALL") {
-        // トップページは各カテゴリーから代表を1点ずつ表示
-        const seenCategories = new Set();
-        hotItems = allHotItems.filter(item => {
-          if (seenCategories.has(item.category)) return false;
-          seenCategories.add(item.category);
-          return true;
+    fetch("archive-data.json")
+      .then(response => {
+        if (!response.ok) throw new Error("Archive data could not be loaded.");
+        return response.json();
+      })
+      .then(data => {
+        const items = Array.isArray(data) ? data : (data.items || []);
+        const selectedCategories = ["ARCHITECTURE", "OBJECT", "BOOK", "FOOD", "PHOTO", "PLACE"];
+        const selected = [];
+        selectedCategories.forEach(category => {
+          const item = items.find(entry => entry.category === category && (entry.image || entry.coverImage));
+          if (item) selected.push(item);
         });
-      } else {
-        // 各カテゴリーのページではHOTを最大3点表示
-        hotItems = allHotItems.filter(item => item.category === category).slice(0, 3);
-      }
-      hotSection.hidden = hotItems.length === 0;
-      hotItems.forEach((item, index) => {
-        const slide = document.createElement("article");
-        slide.className = "hot-slide";
-        const imageLink = document.createElement("a");
-        imageLink.className = "hot-image-link";
-        imageLink.href = item.detailPage || "#";
-        const image = document.createElement("img");
-        image.className = "hot-image";
-        image.src = item.coverImage || item.image;
-        image.alt = item.title || "";
-        image.loading = index < 4 ? "eager" : "lazy";
-        image.decoding = "async";
-        if (index === 0) image.fetchPriority = "high";
-        image.loading = index === 0 ? "eager" : "lazy";
-        imageLink.appendChild(image);
-
-        const copy = document.createElement("div");
-        copy.className = "hot-copy";
-        const category = document.createElement("div");
-        category.className = "hot-category";
-        category.textContent = item.category || "ARCHIVE";
-        const title = document.createElement("h2");
-        title.className = "hot-title";
-        title.textContent = item.title || "Untitled";
-        const description = document.createElement("p");
-        description.className = "hot-description";
-        description.textContent = item.description || hotDescriptions[item.detailPage] || "写真と記録を通して、日々の関心をアーカイブする。";
-        const more = document.createElement("a");
-        more.className = "hot-more";
-        more.href = item.detailPage || "#";
-        more.textContent = "VIEW ARTICLE ↗";
-        copy.append(category, title, description, more);
-        slide.append(imageLink, copy);
-        hotTrack.appendChild(slide);
-
-        const dot = document.createElement("button");
-        dot.type = "button";
-        dot.className = "hot-dot";
-        dot.setAttribute("aria-label", (index + 1) + "番目の記事");
-        dot.addEventListener("click", () => { showHot(index); startHotTimer(); });
-        hotDots.appendChild(dot);
-      });
-      showHot(0);
-    }
-
-    function showHot(index) {
-      if (!hotItems.length) return;
-      hotIndex = (index + hotItems.length) % hotItems.length;
-      hotTrack.style.transform = "translateX(-" + (hotIndex * 100) + "%)";
-      [...hotDots.children].forEach((dot, i) => dot.setAttribute("aria-current", i === hotIndex ? "true" : "false"));
-    }
-
-    function stopHotTimer() {
-      if (hotTimer) window.clearInterval(hotTimer);
-      hotTimer = null;
-    }
-
-    function startHotTimer() {
-      stopHotTimer();
-      if (hotIsPaused || hotItems.length < 2) return;
-      hotTimer = window.setInterval(() => showHot(hotIndex + 1), 6500);
-    }
-
-    document.getElementById("hot-prev").addEventListener("click", () => { showHot(hotIndex - 1); startHotTimer(); });
-    document.getElementById("hot-next").addEventListener("click", () => { showHot(hotIndex + 1); startHotTimer(); });
-    hotPause.addEventListener("click", () => {
-      hotIsPaused = !hotIsPaused;
-      hotPause.textContent = hotIsPaused ? "PLAY" : "PAUSE";
-      hotPause.setAttribute("aria-pressed", hotIsPaused ? "true" : "false");
-      startHotTimer();
-    });
-    // スマートフォンでは左右スワイプでスライドを切り替える
-    let hotTouchStartX = 0;
-    let hotTouchStartY = 0;
-    hotSlider.addEventListener("touchstart", event => {
-      if (!event.changedTouches.length) return;
-      hotTouchStartX = event.changedTouches[0].clientX;
-      hotTouchStartY = event.changedTouches[0].clientY;
-      stopHotTimer();
-    }, { passive: true });
-    hotSlider.addEventListener("touchend", event => {
-      if (!event.changedTouches.length) return;
-      const deltaX = event.changedTouches[0].clientX - hotTouchStartX;
-      const deltaY = event.changedTouches[0].clientY - hotTouchStartY;
-      if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
-        showHot(hotIndex + (deltaX < 0 ? 1 : -1));
-      }
-      startHotTimer();
-    }, { passive: true });
-    hotSlider.addEventListener("touchcancel", startHotTimer, { passive: true });
-    hotSlider.addEventListener("mouseenter", stopHotTimer);
-    hotSlider.addEventListener("mouseleave", startHotTimer);
-    hotSlider.addEventListener("focusin", stopHotTimer);
-    hotSlider.addEventListener("focusout", startHotTimer);
-    document.addEventListener("visibilitychange", () => document.hidden ? stopHotTimer() : startHotTimer());
-
-    function renderArchive(category) {
-      currentCategory = category;
-      archive.innerHTML = "";
-
-      let filteredData = archiveData;
-
-      if (category !== "ALL") {
-        filteredData = archiveData.filter(item => item.category === category);
-      }
-      if (currentSearch) {
-        const query = currentSearch.toLocaleLowerCase();
-        filteredData = filteredData.filter(item =>
-          [item.title, item.category, item.description, item.date, item.bookTitle, item.author, item.location]
-            .filter(Boolean).join(" ").toLocaleLowerCase().includes(query)
-        );
-      }
-      const sortMode = sortSelect.value;
-      filteredData = [...filteredData];
-      if (sortMode === "default" || sortMode === "newest" || sortMode === "oldest") {
-        filteredData.sort((a, b) => {
-          const dateA = Date.parse(a.capturedAt || a.date || a.createdAt || a.publishedAt || "") || 0;
-          const dateB = Date.parse(b.capturedAt || b.date || b.createdAt || b.publishedAt || "") || 0;
-
-          // 日時がある写真を先に並べ、日時がないものは元の順序を保つ
-          if (dateA && !dateB) return -1;
-          if (!dateA && dateB) return 1;
-          if (!dateA && !dateB) return 0;
-
-          if (sortMode === "oldest") return dateA - dateB;
-          return dateB - dateA;
-        });
-      } else if (sortMode === "title") {
-        filteredData.sort((a,b) => (a.title || "").localeCompare(b.title || "", "ja"));
-      }
-
-      archiveCount.textContent = String(filteredData.length).padStart(2, "0") + " ITEMS";
-
-      emptyMessage.hidden = filteredData.length !== 0;
-      filteredData.forEach((item, index) => {
-        const link = document.createElement("a");
-
-        link.className = "archive-item";
-        link.href = item.detailPage || "#";
-
-        const imageWrap = document.createElement("div");
-        imageWrap.className = "archive-image-wrap";
-
-        if (item.image || item.coverImage) {
+        selected.slice(0, 6).forEach(item => {
+          const link = document.createElement("a");
+          link.className = "selected-item";
+          link.href = item.detailPage || "archive.html";
+          const imageWrap = document.createElement("div");
+          imageWrap.className = "selected-image-wrap";
           const image = document.createElement("img");
-          image.className = "archive-image";
+          image.className = "selected-image";
           image.src = item.coverImage || item.image;
           image.alt = item.title || "";
           image.loading = "lazy";
           image.decoding = "async";
           imageWrap.appendChild(image);
-        } else {
-          imageWrap.classList.add("archive-text-wrap");
-          const textCard = document.createElement("div");
-          textCard.className = "archive-text-card";
-          const label = document.createElement("span");
-          label.className = "archive-text-label";
-          label.textContent = "TEXT / ESSAY";
-          const cardTitle = document.createElement("span");
-          cardTitle.className = "archive-text-title";
-          cardTitle.textContent = item.title || "";
-          const arrow = document.createElement("span");
-          arrow.className = "archive-text-arrow";
-          arrow.textContent = "↗";
-          textCard.append(label, cardTitle, arrow);
-          imageWrap.appendChild(textCard);
-        }
-
-        const caption = document.createElement("div");
-        caption.className = "archive-caption";
-
-        const title = document.createElement("span");
-        title.className = "archive-caption-title";
-        title.textContent = item.title || "";
-
-        const dateValue =
-          item.date ||
-          item.createdAt ||
-          item.publishedAt ||
-          "";
-
-        const date = document.createElement("span");
-        date.className = "archive-caption-date";
-        date.textContent = formatDate(dateValue);
-
-        caption.appendChild(title);
-
-        if (date.textContent) {
-          caption.appendChild(date);
-        }
-
-        imageWrap.appendChild(caption);
-        link.appendChild(imageWrap);
-
-        link.addEventListener("click", event => {
-          const isTouchLayout = window.matchMedia(
-            "(max-width: 650px) and (hover: none)"
-          ).matches;
-
-          if (!isTouchLayout) {
-            return;
-          }
-
-          if (!link.classList.contains("is-caption-visible")) {
-            event.preventDefault();
-
-            document
-              .querySelectorAll(".archive-item.is-caption-visible")
-              .forEach(openItem => {
-                openItem.classList.remove("is-caption-visible");
-              });
-
-            link.classList.add("is-caption-visible");
-          }
+          const caption = document.createElement("div");
+          caption.className = "selected-caption";
+          const title = document.createElement("span");
+          title.textContent = item.title || "Untitled";
+          const category = document.createElement("span");
+          category.className = "selected-category";
+          category.textContent = item.category || "ARCHIVE";
+          caption.append(title, category);
+          link.append(imageWrap, caption);
+          selectedGrid.appendChild(link);
         });
-
-        archive.appendChild(link);
-      });
-    }
-
-    searchInput.addEventListener("input", () => {
-      currentSearch = searchInput.value.trim();
-      renderArchive(currentCategory);
-    });
-    sortSelect.addEventListener("change", () => renderArchive(currentCategory));
-    window.addEventListener("scroll", () => {
-      backToTop.classList.toggle("is-visible", window.scrollY > 400);
-    }, { passive: true });
-    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-
-    /* カテゴリー切り替え */
-
-    categoryButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        const category = button.dataset.category;
-
-        navItems.forEach(item => {
-          item.classList.remove("active");
-        });
-
-        button.classList.add("active");
-
-        const url = new URL(window.location.href);
-
-        if (category === "ALL") {
-          url.searchParams.delete("category");
-        } else {
-          url.searchParams.set("category", category);
-        }
-
-        window.history.pushState({}, "", url);
-
-        renderHot(category);
-        renderArchive(category);
-      });
-    });
-
-    /* ブラウザの戻る・進む */
-
-    window.addEventListener("popstate", () => {
-      const urlParams = new URLSearchParams(
-        window.location.search
-      );
-
-      const category = urlParams.get("category") || "ALL";
-
-      navItems.forEach(item => {
-        item.classList.remove("active");
-      });
-
-      const activeButton = document.querySelector(
-        `.main-nav button[data-category="${category}"]`
-      );
-
-      if (activeButton) {
-        activeButton.classList.add("active");
-      }
-      renderHot(category);
-      renderArchive(category);
-    });
-
-    /* archive-data.jsonを読み込み */
-
-    fetch("archive-data.json")
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(
-            "archive-data.json の読み込みに失敗しました。"
-          );
-        }
-
-        return response.json();
-      })
-      .then(data => {
-        archiveData = Array.isArray(data)
-          ? data
-          : data.items || [];
-
-        // HOTの候補は全カテゴリーの記事から取得。表示点数はrenderHot側で調整する
-        const hotCategories = ["ARCHITECTURE", "OBJECT", "BOOK", "FOOD", "PHOTO", "PLACE", "TEXT", "OTHER"];
-        allHotItems = archiveData.filter(item => hotCategories.includes(item.category) && item.image);
-        navItems.forEach(item => {
-          item.classList.remove("active");
-        });
-
-        const initialButton = document.querySelector(
-          `.main-nav button[data-category="${initialCategory}"]`
-        );
-
-        if (initialButton) {
-          initialButton.classList.add("active");
-        }
-
-        renderHot(initialCategory);
-        renderArchive(initialCategory);
-        startHotTimer();
       })
       .catch(error => {
         console.error(error);
+        selectedGrid.innerHTML = '<p>Archive data could not be loaded.</p>';
+      });
 
-        archive.innerHTML =
-          "<p>Archive data could not be loaded.</p>";
+    fetch("articles.json")
+      .then(response => {
+        if (!response.ok) throw new Error("Article data could not be loaded.");
+        return response.json();
+      })
+      .then(articles => {
+        articles.forEach((article, index) => {
+          const item = document.createElement("li");
+          item.className = "text-entry";
+          const number = document.createElement("span");
+          number.className = "text-number";
+          number.textContent = String(index + 1).padStart(2, "0");
+          const link = document.createElement("a");
+          link.className = "text-title";
+          link.href = article.detailPage || "#";
+          link.textContent = article.title || "Untitled";
+          const arrow = document.createElement("span");
+          arrow.className = "text-arrow";
+          arrow.textContent = "↗";
+          item.append(number, link, arrow);
+          textList.appendChild(item);
+        });
+      })
+      .catch(error => {
+        console.error(error);
+        textList.innerHTML = '<li>Articles could not be loaded.</li>';
       });
   </script>
-
 </body>
 </html>
