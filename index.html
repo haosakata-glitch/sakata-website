@@ -514,6 +514,9 @@ main {
         image.className = "hot-image";
         image.src = item.coverImage || item.image;
         image.alt = item.title || "";
+        image.loading = index < 4 ? "eager" : "lazy";
+        image.decoding = "async";
+        if (index === 0) image.fetchPriority = "high";
         image.loading = index === 0 ? "eager" : "lazy";
         imageLink.appendChild(image);
 
@@ -610,7 +613,7 @@ main {
       archiveCount.textContent = String(filteredData.length).padStart(2, "0") + " ITEMS";
 
       emptyMessage.hidden = filteredData.length !== 0;
-      filteredData.forEach(item => {
+      filteredData.forEach((item, index) => {
         const link = document.createElement("a");
 
         link.className = "archive-item";
