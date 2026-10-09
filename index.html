@@ -279,7 +279,21 @@
 
       .main-nav {
         gap: 10px;
-        flex-wrap: nowrap;
+        flex: 1 1 auto;
+        min-width: 0;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .main-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .site-title {
+        flex: 0 0 auto;
       }
 
       .main-nav a,
@@ -686,9 +700,6 @@ main {
         allHotItems = hotCategories
           .map(category => archiveData.find(item => item.category === category))
           .filter(Boolean);
-        renderHot(initialCategory);
-        startHotTimer();
-
         navItems.forEach(item => {
           item.classList.remove("active");
         });
@@ -703,6 +714,7 @@ main {
 
         renderHot(initialCategory);
         renderArchive(initialCategory);
+        startHotTimer();
       })
       .catch(error => {
         console.error(error);
