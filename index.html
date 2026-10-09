@@ -220,8 +220,17 @@
       })
       .then(data => {
         const items = Array.isArray(data) ? data : (data.items || []);
-        const photos = items
+        const categoryLatest = new Map();
+        items
           .filter(entry => !entry.isArticle && (entry.image || entry.coverImage))
+          .forEach(entry => {
+            const category = entry.category || 'ARCHIVE';
+            const current = categoryLatest.get(category);
+            const date = entry.capturedAt ? Date.parse(entry.capturedAt) : 0;
+            const currentDate = current && current.capturedAt ? Date.parse(current.capturedAt) : 0;
+            if (!current || date > currentDate) categoryLatest.set(category, entry);
+          });
+        const photos = Array.from(categoryLatest.values())
           .sort((a, b) => {
             const dateA = a.capturedAt ? Date.parse(a.capturedAt) : 0;
             const dateB = b.capturedAt ? Date.parse(b.capturedAt) : 0;
