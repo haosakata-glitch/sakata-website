@@ -66,7 +66,9 @@ jobs:
           import subprocess
           import urllib.parse
           import urllib.request
+          from datetime import datetime
           from pathlib import Path
+          from PIL import Image
 
           root = Path(".")
           image_extensions = {".jpg", ".jpeg", ".png", ".webp"}
@@ -75,6 +77,25 @@ jobs:
           def optimized_image_path(image):
               optimized = optimized_dir / (image.stem + ".webp")
               return optimized.as_posix() if optimized.exists() else image.name
+
+          def captured_at(image):
+              # Convert only after reading EXIF from the original image.
+              try:
+                  with Image.open(image) as source:
+                      exif = source.getexif()
+                      exif_ifd = exif.get_ifd(0x8769) if 0x8769 in exif else {}
+                      raw = (
+                          exif.get(0x9003)  # DateTimeOriginal
+                          or exif_ifd.get(0x9003)
+                          or exif.get(0x9004)  # DateTimeDigitized
+                          or exif.get(0x0132)  # DateTime
+                      )
+                  if raw:
+                      parsed = datetime.strptime(str(raw).strip(), "%Y:%m:%d %H:%M:%S")
+                      return parsed.isoformat(timespec="seconds")
+              except Exception as error:
+                  print(f"Could not read capture date from {image.name}: {error}")
+              return None
 
           category_map = {
               "architecture-": "ARCHITECTURE",
@@ -670,6 +691,7 @@ jobs:
                   "detailPage": f"{stem}.html",
                   "category": category_for(stem),
                   "title": title,
+                  "capturedAt": captured_at(image),
               }
 
               if category_for(stem) == "BOOK":
