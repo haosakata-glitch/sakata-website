@@ -139,18 +139,18 @@
     .hot-track { display: flex; width: 100%; transition: transform .65s cubic-bezier(.22,.61,.36,1); }
     .hot-slide {
       flex: 0 0 100%; display: grid;
-      grid-template-columns: minmax(0,1.15fr) minmax(260px,.85fr);
-      min-height: clamp(220px,24vw,330px); color: rgba(34,34,34,.82);
+      grid-template-columns: minmax(0,2.2fr) minmax(220px,.8fr);
+      min-height: clamp(300px,34vw,460px); color: rgba(34,34,34,.82);
     }
     .hot-image-link { display: block; min-width: 0; min-height: 0; overflow: hidden; background: rgba(34,34,34,.04); }
-    .hot-image { display: block; width: 100%; height: 100%; min-height: 220px; max-height: 330px; object-fit: cover; }
+    .hot-image { display: block; width: 100%; height: 100%; min-height: 300px; max-height: 460px; object-fit: cover; }
     .hot-copy {
       display: flex; flex-direction: column; align-items: flex-start;
-      padding: clamp(18px,2.5vw,34px); border: 1px solid rgba(34,34,34,.08); border-left: 0;
+      padding: clamp(16px,2vw,26px); border: 1px solid rgba(34,34,34,.08); border-left: 0;
     }
     .hot-category { margin-bottom: auto; font-size: 9px; letter-spacing: .1em; color: rgba(34,34,34,.48); }
-    .hot-title { margin: 20px 0 12px; font-size: clamp(18px,2vw,27px); line-height: 1.45; font-weight: 400; letter-spacing: .015em; overflow-wrap: anywhere; }
-    .hot-description { max-width: 34em; margin: 0 0 18px; font-size: 11px; line-height: 1.8; white-space: pre-line; }
+    .hot-title { margin: 14px 0 10px; font-size: clamp(18px,2vw,27px); line-height: 1.45; font-weight: 400; letter-spacing: .015em; overflow-wrap: anywhere; }
+    .hot-description { max-width: 34em; margin: 0 0 12px; font-size: 11px; line-height: 1.8; white-space: pre-line; }
     .hot-more { margin-top: auto; padding-bottom: 4px; border-bottom: 1px solid rgba(34,34,34,.38); font-size: 10px; letter-spacing: .04em; }
     .hot-controls { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
     .hot-arrow { appearance: none; border: 1px solid rgba(34,34,34,.2); border-radius: 50%; width: 28px; height: 28px; padding: 0; background: transparent; cursor: pointer; font-size: 13px; }
@@ -164,11 +164,11 @@
       .hot-section { margin-bottom: 26px; }
       .hot-heading { margin-bottom: 8px; }
       .hot-slide { grid-template-columns: 1fr; min-height: auto; }
-      .hot-image { height: 42vw; min-height: 180px; max-height: 260px; }
-      .hot-copy { min-height: 190px; padding: 16px 18px 18px; border-left: 1px solid rgba(34,34,34,.08); border-top: 0; }
+      .hot-image { height: 68vw; min-height: 240px; max-height: 420px; }
+      .hot-copy { min-height: 0; padding: 14px 16px 16px; border-left: 1px solid rgba(34,34,34,.08); border-top: 0; }
       .hot-category { margin-bottom: 0; }
-      .hot-title { margin: 14px 0 8px; font-size: 19px; }
-      .hot-description { margin-bottom: 18px; font-size: 11px; }
+      .hot-title { margin: 10px 0 6px; font-size: 19px; }
+      .hot-description { margin-bottom: 10px; font-size: 11px; }
       .archive-label { margin-top: 24px; }
     }
     @media (prefers-reduced-motion: reduce) { .hot-track { transition: none; } html { scroll-behavior: auto; } }
