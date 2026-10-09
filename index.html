@@ -156,6 +156,7 @@
       width: 100%;
       aspect-ratio: 4 / 3;
       overflow: hidden;
+      background: #FFFFFF;
     }
 
     .archive-image {
@@ -170,29 +171,36 @@
 
     .archive-caption {
       position: absolute;
-      right: 8px;
+      right: 10px;
       bottom: 8px;
       display: flex;
       align-items: baseline;
       gap: 8px;
-      max-width: calc(100% - 16px);
-      padding: 6px 9px;
-      background: rgba(250, 248, 244, 0.90);
-      color: rgba(34, 34, 34, 0.88);
+      max-width: calc(100% - 20px);
+      padding: 0;
+      background: transparent;
+      color: rgba(34, 34, 34, 0.82);
       font-size: 9px;
       font-weight: 400;
       line-height: 1.4;
       letter-spacing: 0.03em;
       text-align: right;
       text-shadow: none;
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
       pointer-events: none;
       opacity: 0;
-      transition: opacity 0.2s ease;
     }
 
+    /* PC：カーソルを合わせると写真が薄く白くなる */
+
     @media (hover: hover) and (pointer: fine) {
+      .archive-image {
+        transition: opacity 0.2s ease;
+      }
+
+      .archive-item:hover .archive-image {
+        opacity: 0.76;
+      }
+
       .archive-item:hover .archive-caption {
         opacity: 1;
       }
@@ -200,6 +208,10 @@
 
     .archive-item:focus-visible .archive-caption {
       opacity: 1;
+    }
+
+    .archive-item:focus-visible .archive-image {
+      opacity: 0.76;
     }
 
     .archive-caption-title {
@@ -210,7 +222,7 @@
 
     .archive-caption-date {
       flex-shrink: 0;
-      color: rgba(34, 34, 34, 0.58);
+      color: rgba(34, 34, 34, 0.56);
     }
 
     /* ABOUT */
@@ -299,11 +311,11 @@
       }
 
       .archive-caption {
-        right: 5px;
-        bottom: 5px;
+        right: 7px;
+        bottom: 6px;
         gap: 5px;
-        max-width: calc(100% - 10px);
-        padding: 5px 6px;
+        max-width: calc(100% - 14px);
+        padding: 0;
         font-size: 8px;
       }
 
@@ -313,7 +325,13 @@
 
       .archive-caption-date {
         font-size: 8px;
-        color: rgba(34, 34, 34, 0.58);
+        color: rgba(34, 34, 34, 0.56);
+      }
+
+      /* スマホ：最初のタップで写真を白くしてタイトルを表示 */
+
+      .archive-item.is-caption-visible .archive-image {
+        opacity: 0.76;
       }
 
       .archive-item.is-caption-visible .archive-caption {
@@ -583,7 +601,7 @@
 
         button.classList.add("active");
 
-        /* OTHERを含むカテゴリー表示時はABOUTを閉じる */
+        /* カテゴリー表示時はABOUTを閉じる */
         aboutSection.classList.remove("is-visible");
 
         const url = new URL(window.location.href);
