@@ -85,7 +85,7 @@
     }
     .carousel-dot[aria-current="true"] { background: rgba(34,34,34,.85); }
     .carousel-counter { margin-left: auto; font-size: 9px; color: rgba(34,34,34,.45); letter-spacing: .04em; }
-    .text-carousel { border-top: 1px solid rgba(34,34,34,.16); }
+    .text-carousel { border-top: 1px solid rgba(34,34,34,.16); touch-action: pan-y; }
     .text-slide {
       min-height: 190px; display: flex; flex-direction: column; justify-content: space-between;
       padding: clamp(18px,3vw,34px); border: 1px solid rgba(34,34,34,.12);
@@ -244,6 +244,38 @@
       textTrack, textDots, document.getElementById('text-counter'),
       document.getElementById('text-prev'), document.getElementById('text-next')
     );
+    const textCarouselElement = document.getElementById('text-carousel');
+    let textSwipeStartX = null;
+    let textSwipeStartY = null;
+    let suppressTextClick = false;
+    textCarouselElement.addEventListener('pointerdown', event => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      textSwipeStartX = event.clientX;
+      textSwipeStartY = event.clientY;
+      suppressTextClick = false;
+    });
+    textCarouselElement.addEventListener('pointerup', event => {
+      if (textSwipeStartX === null || textSwipeStartY === null) return;
+      const dx = event.clientX - textSwipeStartX;
+      const dy = event.clientY - textSwipeStartY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+        const current = Number(document.getElementById('text-counter').textContent.split(' / ')[0]) || 1;
+        textCarousel.go(dx < 0 ? current : current - 2);
+        suppressTextClick = true;
+      }
+      textSwipeStartX = null;
+      textSwipeStartY = null;
+    });
+    textCarouselElement.addEventListener('pointercancel', () => {
+      textSwipeStartX = null;
+      textSwipeStartY = null;
+    });
+    textCarouselElement.addEventListener('click', event => {
+      if (!suppressTextClick) return;
+      event.preventDefault();
+      event.stopPropagation();
+      suppressTextClick = false;
+    }, true);
 
     fetch('archive-data.json')
       .then(response => {
