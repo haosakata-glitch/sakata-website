@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RELATIONS｜SAKATA YUSHI</title>
+<style>
+*{box-sizing:border-box} :root{--bg:#E9E5DE;--ink:#24231F;--sub:#77736B;--line:#CBC5BB}
+body{margin:0;background:var(--bg);color:var(--ink);font:11px/1.6 Arial,Helvetica,sans-serif}a{color:inherit;text-decoration:none}button,input{font:inherit;color:inherit}
+header{position:fixed;inset:0 0 auto;z-index:10;display:flex;align-items:center;justify-content:space-between;min-height:58px;padding:0 22px;background:rgba(233,229,222,.88);backdrop-filter:blur(10px);border-bottom:1px solid rgba(34,34,34,.06)}
+.site-title{font-size:11px;letter-spacing:.08em}.nav{display:flex;gap:22px;align-items:center}.nav a{font-size:10px;letter-spacing:.05em;color:var(--sub)}.nav a[aria-current]{color:var(--ink);border-bottom:1px solid}
+main{max-width:1500px;margin:auto;padding:100px 24px 70px}.eyebrow{font-size:9px;letter-spacing:.12em;color:var(--sub)}h1{margin:8px 0 12px;font-size:clamp(44px,8vw,96px);font-weight:400;line-height:1;letter-spacing:.02em}.intro{max-width:600px;margin:18px 0 28px;color:var(--sub);line-height:1.9}
+.tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}.tools button{border:1px solid var(--line);background:transparent;padding:8px 12px;cursor:pointer}.tools button.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}.status{margin-left:auto;color:var(--sub);font-size:10px}
+.plane-wrap{position:relative;border:1px solid var(--line);background:rgba(255,255,255,.12);overflow:hidden}.plane{display:block;width:100%;height:min(67vh,720px);min-height:430px;touch-action:pan-y;cursor:crosshair}.plane .region{fill:none;stroke:#99948A;stroke-width:1;stroke-dasharray:3 5;opacity:.72}.edge{stroke:#99948A;stroke-width:1;opacity:.75}.edge.suggested{stroke-dasharray:3 5;opacity:.45}.node{cursor:grab}.node:active{cursor:grabbing}.node circle{fill:var(--bg);stroke:#77736B;stroke-width:1}.node text{fill:var(--ink);font-size:12px;pointer-events:none}.node.selected circle{fill:var(--ink);stroke:var(--ink)}.node.selected text{fill:var(--ink);font-weight:600}.node.related circle{stroke:#24231F;stroke-width:2.2}.plane-note{display:flex;justify-content:space-between;gap:14px;padding:10px 12px;border-top:1px solid var(--line);color:var(--sub);font-size:9px}
+.below{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:24px}.panel{border-top:1px solid var(--line);padding-top:12px}.panel h2{margin:0 0 12px;font-size:10px;font-weight:400;letter-spacing:.1em}.panel p{color:var(--sub);line-height:1.8}.selected-list{display:flex;flex-wrap:wrap;gap:7px}.record-chip{display:inline-flex;align-items:center;gap:8px;padding:7px 9px;border:1px solid var(--line);background:transparent;cursor:pointer;text-align:left}.record-chip small{color:var(--sub)}.record-chip:hover{border-color:var(--ink)}.connection-form{display:flex;gap:8px;flex-wrap:wrap}.connection-form input{min-width:0;flex:1;padding:8px;border:1px solid var(--line);background:transparent}.connection-form button{padding:8px 12px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer}.footer{margin-top:50px;padding-top:12px;border-top:1px solid var(--line);color:var(--sub);font-size:9px;letter-spacing:.08em}
+@media(max-width:650px){header{min-height:52px;padding:0 14px;gap:12px}.site-title{font-size:9px}.nav{gap:12px}.nav a{font-size:9px}main{padding:82px 12px 54px}.plane{height:60vh;min-height:400px}.node text{font-size:11px}.below{grid-template-columns:1fr;gap:22px}.status{width:100%;margin:0}.plane-note{flex-direction:column;gap:3px}}
+</style>
+</head>
+<body>
+<header><a class="site-title" href="index.html">SAKATA YUSHI</a><nav class="nav"><a href="archive.html">ARCHIVE</a><a href="relations.html" aria-current="page">RELATIONS</a><a href="about.html">ABOUT</a></nav></header>
+<main>
+<div class="eyebrow">ARCHIVE / RELATIONS</div>
+<h1>RELATIONS</h1>
+<p class="intro">記録を、関係の平面に置き換える。点を選び、二つの記録を結び、まだ結ばれていないものの近さを見つける。ここにある線や配置は、完成した分類ではなく、更新され続ける仮説です。</p>
+<div class="tools"><button id="mode-connect" class="active" type="button">CONNECT</button><button id="mode-explore" type="button">DISCOVER</button><button id="reset-layout" type="button">RESET VIEW</button><span class="status" id="status">記録を読み込んでいます…</span></div>
+<div class="plane-wrap"><svg id="plane" class="plane" viewBox="0 0 1000 620" role="img" aria-label="記録同士の関係を表す平面"><g id="regions"><ellipse class="region" cx="300" cy="230" rx="235" ry="155" transform="rotate(-24 300 230)"/><ellipse class="region" cx="635" cy="255" rx="255" ry="175" transform="rotate(18 635 255)"/><ellipse class="region" cx="485" cy="420" rx="250" ry="145" transform="rotate(-30 485 420)"/></g><g id="edges"></g><g id="nodes"></g></svg><div class="plane-note"><span>CONNECT：点を2つ選ぶと関係を記述できます。</span><span>DISCOVER：点を選ぶと、意味の近い記録が示されます。</span></div></div>
+<div class="below">
+<section class="panel"><h2 id="selection-title">SELECT RECORDS</h2><p id="selection-copy">平面上の点を選んでください。自分で結びつけた関係は、このブラウザに保存されます。</p><div class="selected-list" id="suggestions"></div></section>
+<section class="panel"><h2>MAKE A CONNECTION</h2><p>選択した2つの記録のあいだに、関係を表す言葉を置く。例：反復、自由、他者性、身体、設計。</p><form class="connection-form" id="connection-form"><input id="relation-label" placeholder="関係を表す言葉" maxlength="80" aria-label="関係を表す言葉"><button type="submit">SAVE RELATION ↗</button></form><p id="connection-status"></p></section>
+</div>
+<div class="footer">SAKATA YUSHI — AN OPEN ARCHIVE OF INTERESTS</div>
+</main>
+<script>
+const plane=document.getElementById('plane'),nodesLayer=document.getElementById('nodes'),edgesLayer=document.getElementById('edges'),statusEl=document.getElementById('status'),suggestionsEl=document.getElementById('suggestions');
+let records=[],positions={},connections=[],selected=[],mode='connect',dragging=null,dragMoved=false;
+const storageKey='sakata-relations-v1';
+const ns='http://www.w3.org/2000/svg';
+const manualKey=(a,b)=>[a,b].sort().join('::');
+function loadSaved(){try{const x=JSON.parse(localStorage.getItem(storageKey)||'{}');positions=x.positions||{};connections=x.connections||[]}catch(e){positions={};connections=[]}}
+function save(){try{localStorage.setItem(storageKey,JSON.stringify({positions,connections}))}catch(e){}}
+function words(r){return ((r.title||'')+' '+(r.description||'')+' '+(r.category||'')).toLocaleLowerCase().replace(/[、。・：:（）()「」『』]/g,' ').split(/\s+/).filter(x=>x.length>1)}
+function similarity(a,b){const wa=new Set(words(a)),wb=new Set(words(b));let n=0;wa.forEach(w=>{if(wb.has(w))n++});if(a.category===b.category)n+=.5;return n}
+function pos(r,i){if(positions[r.detailPage])return positions[r.detailPage];const angle=i*2.39996,rad=65+Math.sqrt(i+1)*38;return{x:500+Math.cos(angle)*Math.min(390,rad*1.45),y:310+Math.sin(angle)*Math.min(245,rad)}}
+function svg(tag,attrs={}){const e=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));return e}
+function render(){
+ edgesLayer.innerHTML='';nodesLayer.innerHTML='';
+ const recordById=new Map(records.map(r=>[r.detailPage,r]));
+ const visibleConnections=connections.filter(c=>recordById.has(c.a)&&recordById.has(c.b));
+ visibleConnections.forEach(c=>{const a=pos(recordById.get(c.a),records.indexOf(recordById.get(c.a))),b=pos(recordById.get(c.b),records.indexOf(recordById.get(c.b)));const line=svg('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,class:'edge'});line.appendChild(svg('title'));line.firstChild.textContent=c.label||'connection';edgesLayer.appendChild(line);if(c.label){const t=svg('text',{x:(a.x+b.x)/2,y:(a.y+b.y)/2-5,'font-size':'10',fill:'#77736B','text-anchor':'middle'});t.textContent=c.label;edgesLayer.appendChild(t)}});
+ if(mode==='discover'){records.forEach((r,i)=>{records.slice(i+1).forEach(other=>{if(visibleConnections.some(c=>manualKey(c.a,c.b)===manualKey(r.detailPage,other.detailPage)))return;if(similarity(r,other)<1)return;const a=pos(r,i),b=pos(other,records.indexOf(other));edgesLayer.appendChild(svg('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,class:'edge suggested'}))})})}
+ records.forEach((r,i)=>{const p=pos(r,i),g=svg('g',{class:'node'+(selected.includes(r.detailPage)?' selected':'')+(suggestedIds().has(r.detailPage)?' related':''),transform:'translate('+p.x+' '+p.y+')','data-id':r.detailPage});g.appendChild(svg('circle',{r:selected.includes(r.detailPage)?5:3.3}));const t=svg('text',{x:8,y:4});t.textContent=(r.title||r.detailPage).length>24?(r.title||r.detailPage).slice(0,23)+'…':(r.title||r.detailPage);g.appendChild(t);g.addEventListener('pointerdown',e=>{if(e.button!==undefined&&e.button!==0)return;dragging=r.detailPage;dragMoved=false;const p0=toPlane(e);dragging={id:r.detailPage,offsetX:p.x-p0.x,offsetY:p.y-p0.y};g.setPointerCapture?.(e.pointerId);e.stopPropagation()});g.addEventListener('click',e=>{if(dragMoved){e.preventDefault();return}selectRecord(r.detailPage);e.stopPropagation()});nodesLayer.appendChild(g)});
+ statusEl.textContent=records.length+' RECORDS · '+connections.length+' SAVED RELATIONS';
+}
+function suggestedIds(){const ids=new Set();if(selected.length!==1)return ids;const base=records.find(r=>r.detailPage===selected[0]);if(!base)return ids;records.filter(r=>r.detailPage!==base.detailPage).map(r=>({r,s:similarity(base,r)})).sort((a,b)=>b.s-a.s).slice(0,5).forEach(x=>{if(x.s>0)ids.add(x.r.detailPage)});return ids}
+function selectRecord(id){if(mode==='connect'){if(selected.includes(id))selected=selected.filter(x=>x!==id);else{selected.push(id);if(selected.length>2)selected=selected.slice(-2)}if(selected.length===2){document.getElementById('selection-title').textContent='RELATION BETWEEN TWO RECORDS';document.getElementById('selection-copy').textContent=records.find(r=>r.detailPage===selected[0]).title+' ↔ '+records.find(r=>r.detailPage===selected[1]).title+'。関係を表す言葉を入力してください。'}else{const r=records.find(x=>x.detailPage===id);document.getElementById('selection-title').textContent='SELECT RECORDS';document.getElementById('selection-copy').textContent=(r.title||'記録')+' を選択中。もう1点選ぶと関係をつくれます。';showSuggestions(r)}}else{selected=[id];const r=records.find(x=>x.detailPage===id);document.getElementById('selection-title').textContent='RELATED RECORDS';document.getElementById('selection-copy').textContent='選択した記録に近いもの。自動候補は仮説であり、確定した関係ではありません。';showSuggestions(r)}render()}
+function showSuggestions(r){suggestionsEl.innerHTML='';if(!r)return;records.filter(x=>x.detailPage!==r.detailPage).map(x=>({x,s:similarity(r,x)})).sort((a,b)=>b.s-a.s).slice(0,6).forEach(({x,s})=>{if(!s)return;const b=document.createElement('button');b.className='record-chip';b.type='button';b.innerHTML='<span></span><small></small>';b.firstChild.textContent=x.title||x.detailPage;b.lastChild.textContent='+'+s;b.addEventListener('click',()=>selectRecord(x.detailPage));suggestionsEl.appendChild(b)})}
+function toPlane(e){const rect=plane.getBoundingClientRect();return{x:(e.clientX-rect.left)*1000/rect.width,y:(e.clientY-rect.top)*620/rect.height}}
+plane.addEventListener('pointermove',e=>{if(!dragging)return;const p=toPlane(e);positions[dragging.id]={x:Math.max(20,Math.min(980,p.x+dragging.offsetX)),y:Math.max(20,Math.min(600,p.y+dragging.offsetY))};dragMoved=true;render()});
+plane.addEventListener('pointerup',()=>{if(dragging){dragging=null;save()}});
+plane.addEventListener('pointercancel',()=>{dragging=null});
+document.getElementById('mode-connect').addEventListener('click',()=>setMode('connect'));
+document.getElementById('mode-explore').addEventListener('click',()=>setMode('discover'));
+function setMode(m){mode=m;selected=[];document.getElementById('mode-connect').classList.toggle('active',m==='connect');document.getElementById('mode-explore').classList.toggle('active',m==='discover');document.getElementById('selection-title').textContent=m==='connect'?'SELECT RECORDS':'DISCOVER CONNECTIONS';document.getElementById('selection-copy').textContent=m==='connect'?'点を2つ選び、関係を表す言葉を付けてください。':'点を選ぶと、タイトルや説明文の語句が近い記録を候補として示します。';suggestionsEl.innerHTML='';render()}
+document.getElementById('connection-form').addEventListener('submit',e=>{e.preventDefault();const label=document.getElementById('relation-label').value.trim();if(selected.length!==2){document.getElementById('connection-status').textContent='先に平面上の点を2つ選んでください。';return}if(!label){document.getElementById('connection-status').textContent='関係を表す言葉を入力してください。';return}const key=manualKey(selected[0],selected[1]);connections=connections.filter(c=>manualKey(c.a,c.b)!==key);connections.push({a:selected[0],b:selected[1],label});save();document.getElementById('relation-label').value='';document.getElementById('connection-status').textContent='関係を保存しました。このブラウザで保持されます。';render()});
+document.getElementById('reset-layout').addEventListener('click',()=>{positions={};save();render()});
+fetch('archive-data.json').then(r=>r.json()).then(data=>{loadSaved();records=(Array.isArray(data)?data:data.items||[]).filter(r=>r.detailPage&&r.title);records.forEach((r,i)=>{if(r.isArticle&&!r.description)r.description='TEXT';});render();}).catch(()=>{statusEl.textContent='記録を読み込めませんでした。'});
+</script>
+</body></html>
