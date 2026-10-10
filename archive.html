@@ -127,6 +127,14 @@
 
 
     /* HOT FEATURE SLIDER */
+    .archive-page-title {
+      margin: 0 0 30px;
+      color: #24231F;
+      font-size: clamp(34px, 6vw, 76px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: .025em;
+    }
     .hot-section { margin: 0 0 26px; max-width: 1080px; }
     .hot-heading, .archive-label {
       display: flex; align-items: baseline; justify-content: space-between;
@@ -595,6 +603,7 @@ main {
   <!-- MAIN -->
 
   <main>
+    <h1 id="archive-page-title" class="archive-page-title">ALL</h1>
     <section class="hot-section" aria-label="HOT articles">
       <div class="hot-heading">
       </div>
@@ -608,7 +617,7 @@ main {
         <button class="hot-pause" type="button" id="hot-pause" aria-pressed="false">PAUSE</button>
       </div>
     </section>
-    <div class="archive-label"><span id="archive-page-title">ALL</span><span id="archive-count"></span></div>
+    <div class="archive-label"><span id="archive-section-label">ITEMS</span><span id="archive-count"></span></div>
     <div class="archive-tools" aria-label="アーカイブ検索と並び替え">
       <label class="search-box"><span class="visually-hidden">キーワード検索</span><input id="archive-search" type="search" placeholder="SEARCH ARCHIVE" autocomplete="off"></label>
       <label class="sort-box"><span class="visually-hidden">並び替え</span><select id="archive-sort"><option value="default">DEFAULT</option><option value="newest">NEWEST</option><option value="oldest">OLDEST</option><option value="title">TITLE A–Z</option></select></label>
@@ -796,6 +805,7 @@ main {
       currentCategory = category;
       const pageTitle = category === "ALL" ? "ALL" : category;
       document.getElementById("archive-page-title").textContent = pageTitle;
+      document.getElementById("archive-section-label").textContent = pageTitle === "ALL" ? "ARCHIVE" : pageTitle;
       document.title = pageTitle + "｜SAKATA YUSHI";
       archive.innerHTML = "";
 
