@@ -608,7 +608,7 @@ main {
         <button class="hot-pause" type="button" id="hot-pause" aria-pressed="false">PAUSE</button>
       </div>
     </section>
-    <div class="archive-label"><span>ARCHIVE</span><span id="archive-count"></span></div>
+    <div class="archive-label"><span id="archive-page-title">ALL</span><span id="archive-count"></span></div>
     <div class="archive-tools" aria-label="アーカイブ検索と並び替え">
       <label class="search-box"><span class="visually-hidden">キーワード検索</span><input id="archive-search" type="search" placeholder="SEARCH ARCHIVE" autocomplete="off"></label>
       <label class="sort-box"><span class="visually-hidden">並び替え</span><select id="archive-sort"><option value="default">DEFAULT</option><option value="newest">NEWEST</option><option value="oldest">OLDEST</option><option value="title">TITLE A–Z</option></select></label>
@@ -794,6 +794,9 @@ main {
 
     function renderArchive(category) {
       currentCategory = category;
+      const pageTitle = category === "ALL" ? "ALL" : category;
+      document.getElementById("archive-page-title").textContent = pageTitle;
+      document.title = pageTitle + "｜SAKATA YUSHI";
       archive.innerHTML = "";
 
       let filteredData = archiveData;
