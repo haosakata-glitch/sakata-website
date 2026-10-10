@@ -99,15 +99,6 @@
     }
     .text-slide-description { max-width: 620px; font-size: 11px; line-height: 1.9; color: rgba(34,34,34,.58); }
     .text-slide-more { align-self: flex-end; border-bottom: 1px solid rgba(34,34,34,.35); padding-bottom: 3px; font-size: 10px; }
-    .relations-panel {
-      display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between;
-      gap:34px; min-height:190px; padding:clamp(20px,4vw,42px);
-      border:1px solid rgba(34,34,34,.16); color:rgba(34,34,34,.78);
-      background:rgba(255,255,255,.1);
-    }
-    .relations-panel-title { font-size:clamp(22px,4vw,42px); letter-spacing:.025em; }
-    .relations-panel-copy { font-size:11px; color:rgba(34,34,34,.58); }
-    .relations-panel-link { align-self:flex-end; padding-bottom:4px; border-bottom:1px solid rgba(34,34,34,.35); font-size:10px; letter-spacing:.05em; }
     .site-footer { max-width: 1120px; margin: 0 auto; padding-top: 14px; border-top: 1px solid rgba(34,34,34,.12); font-size: 9px; letter-spacing: .06em; }
     @media (max-width:650px) {
       .header-inner { min-height: 52px; padding: 0 14px; }
@@ -155,16 +146,20 @@
       </div>
     </section>
 
-    <section class="home-section relations-entry" aria-labelledby="relations-heading">
+    <section class="home-section" aria-labelledby="text-heading">
       <div class="section-heading">
-        <a id="relations-heading" href="relations.html">RELATIONS ↗</a>
-        <span>FROM ARCHIVE TO RELATIONS</span>
+        <a id="text-heading" href="text.html">TEXT ↗</a>
+        <a href="text.html">VIEW ALL ↗</a>
       </div>
-      <a class="relations-panel" href="relations.html">
-        <span class="relations-panel-title">A PLANE OF CONNECTIONS</span>
-        <span class="relations-panel-copy">記録を並べることと、記録のあいだに関係を見つけること。</span>
-        <span class="relations-panel-link">OPEN RELATIONS ↗</span>
-      </a>
+      <div class="carousel text-carousel" id="text-carousel" aria-label="Texts">
+        <div class="carousel-track" id="text-track"></div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-arrow" id="text-prev" type="button" aria-label="Previous text">←</button>
+        <button class="carousel-arrow" id="text-next" type="button" aria-label="Next text">→</button>
+        <div class="carousel-dots" id="text-dots" aria-label="Choose text"></div>
+        <span class="carousel-counter" id="text-counter"></span>
+      </div>
     </section>
     <footer class="site-footer">SAKATA YUSHI</footer>
   </main>
