@@ -142,7 +142,7 @@ jobs:
               <nav class="category-nav" aria-label="Archive categories">
           """ + "\n".join(
               (f'<a class="header-category category-{category}" href="archive.html">{category}</a>' if category == "ALL" else
-               f'<a class="header-category category-{category}" href="archive.html?category=TEXT">{category}</a>' if category == "TEXT" else
+               f'<a class="header-category category-{category}" href="text.html">{category}</a>' if category == "TEXT" else
                f'<a class="header-category category-{category}" href="archive.html?category={category}">{category}</a>')
               for category in categories
           ) + """
