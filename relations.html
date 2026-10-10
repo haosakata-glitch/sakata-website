@@ -15,9 +15,216 @@ main{max-width:1500px;margin:auto;padding:100px 24px 70px}.eyebrow{font-size:9px
 .below{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:24px}.panel{border-top:1px solid var(--line);padding-top:12px}.panel h2{margin:0 0 12px;font-size:10px;font-weight:400;letter-spacing:.1em}.panel p{color:var(--sub);line-height:1.8}.selected-list{display:flex;flex-wrap:wrap;gap:7px}.record-chip{display:inline-flex;align-items:center;gap:8px;padding:7px 9px;border:1px solid var(--line);background:transparent;cursor:pointer;text-align:left}.record-chip small{color:var(--sub)}.record-chip:hover{border-color:var(--ink)}.connection-form{display:flex;gap:8px;flex-wrap:wrap}.connection-form input{min-width:0;flex:1;padding:8px;border:1px solid var(--line);background:transparent}.connection-form button{padding:8px 12px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer}.footer{margin-top:50px;padding-top:12px;border-top:1px solid var(--line);color:var(--sub);font-size:9px;letter-spacing:.08em}
 @media(max-width:650px){header{min-height:52px;padding:0 14px;gap:12px}.site-title{font-size:9px}.nav{gap:12px}.nav a{font-size:9px}main{padding:82px 12px 54px}.plane{height:60vh;min-height:400px}.node text{font-size:11px}.below{grid-template-columns:1fr;gap:22px}.status{width:100%;margin:0}.plane-note{flex-direction:column;gap:3px}}
 </style>
+
+<style id="site-design">
+  :root {
+    --background: #E9E5DE;
+    --text: #24231F;
+    --secondary: #77736B;
+    --line: #CBC5BB;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    color: var(--text);
+    background: var(--background);
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    min-height: 58px;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    background: rgba(233, 229, 222, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  header a {
+    text-decoration: none;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .site-title {
+    flex: 0 0 auto;
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .035em;
+    white-space: nowrap;
+  }
+
+  .category-nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .category-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .header-category {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    padding: 0;
+    color: rgba(34, 34, 34, 0.48);
+    font-size: 10px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: .04em;
+    white-space: nowrap;
+    border-bottom: 1px solid transparent;
+  }
+
+  .header-category.active {
+    color: #222;
+    border-bottom-color: #222;
+  }
+
+  .about-link {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 0 0 14px;
+    border-left: 1px solid var(--line);
+    color: rgba(34, 34, 34, 0.48);
+    font-size: 10px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+
+  main {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 90px 24px 80px;
+  }
+
+  .category {
+    margin-bottom: 7px;
+    color: var(--secondary);
+    font-size: 8px;
+    letter-spacing: .075em;
+  }
+
+  h1 {
+    margin: 0 0 24px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .image {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 0 35px;
+  }
+
+  .image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .back {
+    margin-top: 30px;
+    font-size: 10px;
+  }
+
+  .back a {
+    color: var(--secondary);
+  }
+
+  @media (max-width: 600px) {
+    header {
+      min-height: 52px;
+      padding: 0 14px;
+      gap: 10px;
+    }
+
+    .header-left {
+      gap: 20px;
+    }
+
+    .site-title {
+      font-size: 10px;
+    }
+
+    .category-nav {
+      gap: 10px;
+    }
+
+    .header-category {
+      height: 18px;
+      font-size: 9px;
+    }
+
+    .about-link {
+      height: 18px;
+      padding-left: 10px;
+      font-size: 9px;
+    }
+
+    main {
+      padding: 76px 12px 60px;
+    }
+
+    h1 {
+      font-size: 16px;
+    }
+  }
+</style>
+
 </head>
 <body>
-<header><a class="site-title" href="index.html">SAKATA YUSHI</a><nav class="nav"><a href="archive.html">ARCHIVE</a><a href="relations.html" aria-current="page">RELATIONS</a><a href="about.html">ABOUT</a></nav></header>
+
+<header>
+  <div class="header-left">
+    <a href="index.html" class="site-title">SAKATA YUSHI</a>
+    <nav class="category-nav" aria-label="Archive categories">
+<a class="header-category category-ALL" href="archive.html">ALL</a>
+<a class="header-category category-ARCHITECTURE" href="archive.html?category=ARCHITECTURE">ARCHITECTURE</a>
+<a class="header-category category-OBJECT" href="archive.html?category=OBJECT">OBJECT</a>
+<a class="header-category category-FOOD" href="archive.html?category=FOOD">FOOD</a>
+<a class="header-category category-BOOK" href="archive.html?category=BOOK">BOOK</a>
+<a class="header-category category-TEXT" href="archive.html?category=TEXT">TEXT</a>
+<a class="header-category category-PHOTO" href="archive.html?category=PHOTO">PHOTO</a>
+<a class="header-category category-PLACE" href="archive.html?category=PLACE">PLACE</a>
+<a class="header-category category-OTHER" href="archive.html?category=OTHER">OTHER</a>
+    </nav>
+  </div>
+  <a href="about.html" class="about-link">About</a>
+</header>
+
 <main>
 <div class="eyebrow">ARCHIVE / RELATIONS</div>
 <h1>RELATIONS</h1>
