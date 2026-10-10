@@ -679,18 +679,22 @@ main {
     function renderHot(category = "ALL") {
       hotTrack.innerHTML = "";
       hotDots.innerHTML = "";
-      if (category === "ALL") {
-        // トップページは各カテゴリーから代表を1点ずつ表示
-        const seenCategories = new Set();
-        hotItems = allHotItems.filter(item => {
-          if (seenCategories.has(item.category)) return false;
-          seenCategories.add(item.category);
-          return true;
-        });
-      } else {
-        // 各カテゴリーのページではHOTを最大3点表示
-        hotItems = allHotItems.filter(item => item.category === category).slice(0, 3);
+
+      // スライド表示はALLページだけに出し、カテゴリー別ページでは非表示
+      if (category !== "ALL") {
+        hotItems = [];
+        hotSection.hidden = true;
+        stopHotTimer();
+        return;
       }
+
+      // ALLページでは各カテゴリーから代表を1点ずつ表示
+      const seenCategories = new Set();
+      hotItems = allHotItems.filter(item => {
+        if (seenCategories.has(item.category)) return false;
+        seenCategories.add(item.category);
+        return true;
+      });
       hotSection.hidden = hotItems.length === 0;
       hotItems.forEach((item, index) => {
         const slide = document.createElement("article");
