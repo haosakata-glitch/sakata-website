@@ -1,401 +1,227 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sakata Katsuyuki — architecture, photographs, and texts.">
-  <title>SAKATA YUSHI</title>
-  <style>
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0; background: #E9E5DE; color: rgba(34,34,34,.72);
-      font-family: Arial, Helvetica, sans-serif; font-size: 11px;
-      font-weight: 400; line-height: 1.45;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { color: inherit; font-family: inherit; }
-    .site-header {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      background: rgba(233,229,222,.78); backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid rgba(34,34,34,.06);
-    }
-    .header-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      min-height: 58px; padding: 0 22px; gap: 20px;
-    }
-    .site-title { flex: 0 0 auto; font-size: 11px; letter-spacing: .08em; white-space: nowrap; }
-    .main-nav { display: flex; align-items: center; justify-content: flex-end; margin-left: auto; }
-    .main-nav a {
-      display: inline-flex; align-items: center; justify-content: center; height: 20px;
-      font-size: 10px; letter-spacing: .04em; color: rgba(34,34,34,.55);
-    }
-    .main-nav a:hover { color: #222; }
-    .about-link { margin-left: auto; padding-left: 18px; border-left: 1px solid rgba(34,34,34,.16); }
-    main { padding: 88px 22px 76px; }
-    .home-section { max-width: 1120px; margin: 0 auto 48px; }
-    .section-heading {
-      display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
-      margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(34,34,34,.18);
-      font-size: 10px; letter-spacing: .1em; color: rgba(34,34,34,.72);
-    }
-    .section-heading a { white-space: nowrap; color: rgba(34,34,34,.55); }
-    .section-heading a:hover { color: #222; }
-    .carousel { position: relative; overflow: hidden; }
-    #photo-carousel { touch-action: pan-y; }
-    .carousel-track { display: flex; width: 100%; transition: transform .55s cubic-bezier(.22,.61,.36,1); }
-    .carousel-slide { flex: 0 0 100%; min-width: 0; }
-    .photo-link { display: block; position: relative; overflow: hidden; background: rgba(34,34,34,.04); }
-    .photo-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; }
-    .photo-image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-    .photo-caption {
-      position: absolute; right: 0; bottom: 0; left: auto; top: auto;
-      display: flex; flex-direction: column; align-items: flex-end; justify-content: center;
-      gap: 3px; max-width: 86%; padding: 9px 12px;
-      background: rgba(233,229,222,.94); color: rgba(34,34,34,.82);
-      text-align: right; font-size: 10px; letter-spacing: .03em;
-      opacity: 1; pointer-events: none;
-    }
-    .photo-thumbnails { display:flex; gap:8px; margin-top:10px; overflow-x:auto; padding:1px 0 4px; }
-    .photo-thumbnail { flex:0 0 clamp(76px,12vw,132px); width:clamp(76px,12vw,132px); padding:0; border:1px solid transparent; background:transparent; cursor:pointer; opacity:.66; }
-    .photo-thumbnail img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; }
-    .photo-thumbnail span { display:block; margin-top:4px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; font-size:9px; text-align:left; }
-    .photo-thumbnail[aria-current="true"] { opacity:1; border-color:rgba(34,34,34,.72); }
-    .photo-browse-hint { margin:8px 0 0; color:rgba(34,34,34,.45); font-size:9px; letter-spacing:.04em; }
-    .photo-caption-title { max-width: 100%; overflow-wrap: anywhere; }
-    .photo-caption-category { color: rgba(34,34,34,.52); font-size: 9px; }
-    @media (hover:hover) and (pointer:fine) {
-      .photo-link:hover .photo-caption { opacity: 1; }
-    }
-    .photo-link:focus-visible .photo-caption,
-    .photo-link.is-caption-visible .photo-caption { opacity: 1; }
-    .carousel-controls {
-      display: flex; align-items: center; gap: 10px; margin-top: 12px;
-    }
-    .carousel-arrow {
-      appearance: none; border: 1px solid rgba(34,34,34,.2); border-radius: 50%;
-      width: 28px; height: 28px; padding: 0; background: transparent; cursor: pointer;
-      font-size: 13px; flex: 0 0 auto;
-    }
-    .carousel-arrow:hover { background: rgba(34,34,34,.06); }
-    .carousel-dots { display: flex; align-items: center; gap: 7px; margin-left: 2px; }
-    .carousel-dot {
-      appearance: none; width: 6px; height: 6px; border: 0; border-radius: 50%;
-      padding: 0; background: rgba(34,34,34,.25); cursor: pointer;
-    }
-    .carousel-dot[aria-current="true"] { background: rgba(34,34,34,.85); }
-    .carousel-counter { margin-left: auto; font-size: 9px; color: rgba(34,34,34,.45); letter-spacing: .04em; }
-    .text-carousel { border-top: 1px solid rgba(34,34,34,.16); touch-action: pan-y; }
-    .text-slide {
-      min-height: 190px; display: flex; flex-direction: column; justify-content: space-between;
-      padding: clamp(18px,3vw,34px); border: 1px solid rgba(34,34,34,.12);
-      border-top: 0; color: rgba(34,34,34,.78);
-    }
-    .text-slide-meta { display: flex; justify-content: space-between; gap: 12px; color: rgba(34,34,34,.48); font-size: 9px; letter-spacing: .08em; }
-    .text-slide-title {
-      display: block; max-width: 760px; margin: 22px 0;
-      font-size: clamp(18px,3vw,30px); line-height: 1.6; font-weight: 400; letter-spacing: .01em;
-      overflow-wrap: anywhere;
-    }
-    .text-slide-description { max-width: 620px; font-size: 11px; line-height: 1.9; color: rgba(34,34,34,.58); }
-    .text-slide-more { align-self: flex-end; border-bottom: 1px solid rgba(34,34,34,.35); padding-bottom: 3px; font-size: 10px; }
-    .site-footer { max-width: 1120px; margin: 0 auto; padding-top: 14px; border-top: 1px solid rgba(34,34,34,.12); font-size: 9px; letter-spacing: .06em; }
-    @media (max-width:650px) {
-      .header-inner { min-height: 52px; padding: 0 14px; }
-      .site-title { font-size: 10px; }
-      .main-nav a { font-size: 9px; }
-      main { padding: 74px 12px 56px; }
-      .home-section { margin-bottom: 34px; }
-      .photo-frame { aspect-ratio: 4 / 3; }
-      .photo-caption { padding: 12px; font-size: 10px; }
-      .text-slide { min-height: 205px; padding: 18px 16px; }
-      .text-slide-title { margin: 26px 0; font-size: 20px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .carousel-track { transition: none; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="SAKATA YUSHI — an archive of architecture, books, food, places and texts.">
+<meta name="theme-color" content="#050505">
+<title>SAKATA YUSHI</title>
+<style>
+:root{color-scheme:dark;--bg:#050505;--fg:#e9e8e3;--muted:rgba(233,232,227,.54);--line:rgba(233,232,227,.22)}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;background:var(--bg);color:var(--fg);font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:400}
+body{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+.site-title{position:fixed;z-index:1000;top:22px;left:24px;font-size:11px;letter-spacing:.16em;white-space:nowrap}
+.edge-menu{position:fixed;z-index:1002;top:22px;right:24px;border:0;background:none;padding:8px 0 8px 12px;cursor:pointer;font-size:9px;letter-spacing:.12em;color:var(--muted)}
+.edge-menu:before{content:"";display:inline-block;width:22px;height:1px;background:currentColor;vertical-align:middle;margin-right:9px;transition:width .25s}
+.edge-menu:hover:before{width:32px}
+.space{position:fixed;inset:0;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 52%,#101010 0%,#080808 45%,#030303 100%)}
+.space:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.28) 100%);z-index:50}
+.record{position:absolute;left:var(--x);top:var(--y);width:var(--w);z-index:var(--z);transform:translate3d(0,0,0);animation:appear .9s both,drift var(--duration,28s) ease-in-out var(--delay,0s) infinite alternate;will-change:transform;touch-action:pan-y;user-select:none}
+.record[data-depth="far"]{filter:brightness(.57) blur(.45px)}
+.record[data-depth="mid"]{filter:brightness(.78)}
+.record[data-depth="near"]{filter:brightness(1)}
+.record.is-dragging{animation:none!important;cursor:grabbing;z-index:400!important;transition:none}
+.record.is-selected{animation:none!important;z-index:600!important;filter:none;cursor:default}
+.record-image{display:block;width:100%;height:auto;max-height:58vh;object-fit:cover;background:#111;cursor:grab;box-shadow:0 8px 35px rgba(0,0,0,.35);-webkit-user-drag:none}
+.record.text-record{width:var(--w);min-height:80px;padding:13px 14px;border-top:1px solid rgba(233,232,227,.3);border-bottom:1px solid rgba(233,232,227,.12);background:rgba(8,8,8,.74);color:var(--fg);cursor:grab}
+.record.text-record .record-title{font-size:clamp(13px,1.6vw,19px);line-height:1.55;letter-spacing:.01em;font-weight:400}
+.record.text-record .record-category{margin-bottom:10px}
+.record-category{display:block;color:var(--muted);font-size:8px;letter-spacing:.13em;margin-bottom:7px}
+.record-label{margin-top:8px;color:var(--muted);font-size:9px;line-height:1.55}
+.record.is-selected{width:min(52vw,760px)!important;max-width:calc(100vw - 36px)}
+.record.is-selected .record-image{max-height:58vh;object-fit:contain;object-position:left center;box-shadow:none}
+.record.is-selected.text-record{width:min(52vw,760px)!important}
+.record-info{position:absolute;left:calc(100% + 24px);top:0;width:min(28vw,360px);min-width:190px;max-height:65vh;overflow:auto;opacity:0;pointer-events:none;transform:translateY(5px);transition:opacity .4s ease .18s,transform .4s ease .18s;user-select:text}
+.record.is-selected .record-info{opacity:1;pointer-events:auto;transform:translateY(0)}
+.record-info .info-title{font-size:clamp(15px,1.7vw,22px);line-height:1.55;font-weight:400;margin:0 0 13px;overflow-wrap:anywhere}
+.record-info .info-excerpt{font-size:11px;line-height:1.95;color:rgba(233,232,227,.74);white-space:pre-line}
+.record-info .read-more{display:inline-block;margin-top:18px;padding-bottom:4px;border-bottom:1px solid var(--line);font-size:10px;color:var(--fg)}
+.record-info .detail-link{display:block;margin-top:18px;color:var(--muted);font-size:9px;letter-spacing:.08em}
+.record.is-selected.text-record .record-info{left:calc(100% + 24px)}
+.backdrop-dim{position:fixed;inset:0;background:rgba(0,0,0,.18);z-index:100;pointer-events:none;opacity:0;transition:opacity .35s}
+body.has-selection .backdrop-dim{opacity:1}
+body.has-selection .record:not(.is-selected){animation-duration:40s!important}
+body.has-selection .space:after{background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.38) 100%)}
+.menu-panel{position:fixed;z-index:1001;top:0;right:0;width:min(330px,86vw);height:100dvh;padding:90px 28px 28px;background:rgba(8,8,8,.96);border-left:1px solid var(--line);transform:translateX(102%);transition:transform .45s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;gap:0}
+.menu-panel.is-open{transform:translateX(0)}
+.menu-panel a,.menu-panel button{display:block;width:100%;padding:18px 0;border:0;border-bottom:1px solid rgba(233,232,227,.12);background:none;text-align:left;font-size:10px;letter-spacing:.12em;cursor:pointer}
+.menu-panel .filter-title{color:var(--muted);font-size:9px;margin-top:22px;letter-spacing:.14em}
+.menu-panel input{width:100%;padding:11px 0;border:0;border-bottom:1px solid var(--line);background:transparent;outline:none;font-size:12px}
+.menu-panel input::placeholder{color:rgba(233,232,227,.35)}
+.space-status{position:fixed;z-index:70;left:24px;bottom:20px;color:rgba(233,232,227,.38);font-size:9px;letter-spacing:.1em;pointer-events:none}
+@keyframes drift{0%{transform:translate3d(-4px,-7px,0)}50%{transform:translate3d(7px,3px,0)}100%{transform:translate3d(-2px,9px,0)}}
+@keyframes appear{from{opacity:0}to{opacity:1}}
+@media(max-width:700px){
+ .site-title{top:17px;left:14px;font-size:10px}.edge-menu{top:13px;right:14px}
+ .record{max-width:42vw}.record-image{max-height:28vh}
+ .record.is-selected,.record.is-selected.text-record{left:14px!important;top:70px!important;width:calc(100vw - 28px)!important;max-width:calc(100vw - 28px)}
+ .record.is-selected .record-image{max-height:38vh;max-width:100%;object-position:center}
+ .record-info,.record.is-selected.text-record .record-info{position:relative;left:auto;top:auto;width:100%;min-width:0;max-height:30vh;margin-top:16px;padding:0 1px 18px;overflow:auto}
+ .record.is-selected .record-info{opacity:1}
+ .record.is-selected.text-record{max-height:calc(100dvh - 92px);overflow:auto}
+ .record.is-selected.text-record .record-info{max-height:none}
+ .record.is-selected.text-record .record-title{font-size:19px}
+ .record.text-record{padding:9px 10px;min-height:54px}
+ .record.text-record .record-title{font-size:12px}
+ .record-category{font-size:7px;margin-bottom:5px}
+ .record-label{font-size:8px}
+ .space-status{left:14px;bottom:12px;font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="site-title">SAKATA YUSHI</a>
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="about.html" class="about-link">ABOUT</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="home-section" aria-labelledby="archive-heading">
-      <div class="section-heading">
-        <a id="archive-heading" href="archive.html">ARCHIVE ↗</a>
-        <a href="archive.html">VIEW ALL ↗</a>
-      </div>
-      <div class="carousel" id="photo-carousel" aria-label="Archive photographs">
-        <div class="carousel-track" id="photo-track"></div>
-      </div>
-      <div class="photo-thumbnails" id="photo-thumbnails" aria-label="Choose photograph"></div>
-      <p class="photo-browse-hint">写真を選ぶと切り替わります。写真を押すと詳細を開きます。</p>
-      <div class="carousel-controls">
-        <button class="carousel-arrow" id="photo-prev" type="button" aria-label="Previous photograph">←</button>
-        <button class="carousel-arrow" id="photo-next" type="button" aria-label="Next photograph">→</button>
-        <div class="carousel-dots" id="photo-dots" aria-label="Choose photograph"></div>
-        <span class="carousel-counter" id="photo-counter"></span>
-      </div>
-    </section>
-
-    <section class="home-section" aria-labelledby="text-heading">
-      <div class="section-heading">
-        <a id="text-heading" href="text.html">TEXT ↗</a>
-        <a href="text.html">VIEW ALL ↗</a>
-      </div>
-      <div class="carousel text-carousel" id="text-carousel" aria-label="Texts">
-        <div class="carousel-track" id="text-track"></div>
-      </div>
-      <div class="carousel-controls">
-        <button class="carousel-arrow" id="text-prev" type="button" aria-label="Previous text">←</button>
-        <button class="carousel-arrow" id="text-next" type="button" aria-label="Next text">→</button>
-        <div class="carousel-dots" id="text-dots" aria-label="Choose text"></div>
-        <span class="carousel-counter" id="text-counter"></span>
-      </div>
-    </section>
-    <footer class="site-footer">SAKATA YUSHI</footer>
-  </main>
-
-  <script>
-    function setupCarousel(track, dots, counter, prevButton, nextButton) {
-      let index = 0;
-      let count = 0;
-      const update = () => {
-        track.style.transform = 'translateX(' + (-index * 100) + '%)';
-        dots.querySelectorAll('button').forEach((dot, i) => dot.setAttribute('aria-current', i === index ? 'true' : 'false'));
-        counter.textContent = count ? String(index + 1).padStart(2, '0') + ' / ' + String(count).padStart(2, '0') : '';
-        if (track.id === 'photo-track') {
-          document.querySelectorAll('#photo-thumbnails button').forEach((thumb, i) => thumb.setAttribute('aria-current', i === index ? 'true' : 'false'));
-        }
-      };
-      const go = next => {
-        if (!count) return;
-        index = (next + count) % count;
-        update();
-      };
-      prevButton.addEventListener('click', () => go(index - 1));
-      nextButton.addEventListener('click', () => go(index + 1));
-      return {
-        addDot() {
-          const dot = document.createElement('button');
-          dot.type = 'button';
-          dot.className = 'carousel-dot';
-          dot.setAttribute('aria-label', 'Go to slide ' + (count + 1));
-          dot.addEventListener('click', () => go(Number(dot.dataset.index)));
-          dot.dataset.index = String(count);
-          dots.appendChild(dot);
-          count += 1;
-          update();
-        },
-        update,
-        go
-      };
-    }
-
-    const photoTrack = document.getElementById('photo-track');
-    const photoDots = document.getElementById('photo-dots');
-    const photoThumbnails = document.getElementById('photo-thumbnails');
-    const photoCarousel = setupCarousel(
-      photoTrack, photoDots, document.getElementById('photo-counter'),
-      document.getElementById('photo-prev'), document.getElementById('photo-next')
-    );
-    const photoCarouselElement = document.getElementById('photo-carousel');
-    let swipeStartX = null;
-    let swipeStartY = null;
-    let suppressPhotoClick = false;
-    photoCarouselElement.addEventListener('pointerdown', event => {
-      if (event.pointerType === 'mouse' && event.button !== 0) return;
-      swipeStartX = event.clientX;
-      swipeStartY = event.clientY;
-      suppressPhotoClick = false;
-    });
-    photoCarouselElement.addEventListener('pointerup', event => {
-      if (swipeStartX === null || swipeStartY === null) return;
-      const dx = event.clientX - swipeStartX;
-      const dy = event.clientY - swipeStartY;
-      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) {
-        photoCarousel.go(dx < 0 ? Number(document.getElementById('photo-counter').textContent.split(' / ')[0]) : Number(document.getElementById('photo-counter').textContent.split(' / ')[0]) - 2);
-        suppressPhotoClick = true;
-      }
-      swipeStartX = null;
-      swipeStartY = null;
-    });
-    photoCarouselElement.addEventListener('pointercancel', () => {
-      swipeStartX = null;
-      swipeStartY = null;
-    });
-    photoCarouselElement.addEventListener('click', event => {
-      if (!suppressPhotoClick) return;
-      event.preventDefault();
-      event.stopPropagation();
-      suppressPhotoClick = false;
-    }, true);
-    const textTrack = document.getElementById('text-track');
-    const textDots = document.getElementById('text-dots');
-    const textCarousel = setupCarousel(
-      textTrack, textDots, document.getElementById('text-counter'),
-      document.getElementById('text-prev'), document.getElementById('text-next')
-    );
-    const textCarouselElement = document.getElementById('text-carousel');
-    let textSwipeStartX = null;
-    let textSwipeStartY = null;
-    let suppressTextClick = false;
-    textCarouselElement.addEventListener('pointerdown', event => {
-      if (event.pointerType === 'mouse' && event.button !== 0) return;
-      textSwipeStartX = event.clientX;
-      textSwipeStartY = event.clientY;
-      suppressTextClick = false;
-    });
-    textCarouselElement.addEventListener('pointerup', event => {
-      if (textSwipeStartX === null || textSwipeStartY === null) return;
-      const dx = event.clientX - textSwipeStartX;
-      const dy = event.clientY - textSwipeStartY;
-      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) {
-        const current = Number(document.getElementById('text-counter').textContent.split(' / ')[0]) || 1;
-        textCarousel.go(dx < 0 ? current : current - 2);
-        suppressTextClick = true;
-      }
-      textSwipeStartX = null;
-      textSwipeStartY = null;
-    });
-    textCarouselElement.addEventListener('pointercancel', () => {
-      textSwipeStartX = null;
-      textSwipeStartY = null;
-    });
-    textCarouselElement.addEventListener('click', event => {
-      if (!suppressTextClick) return;
-      event.preventDefault();
-      event.stopPropagation();
-      suppressTextClick = false;
-    }, true);
-
-    fetch('archive-data.json')
-      .then(response => {
-        if (!response.ok) throw new Error('Archive data could not be loaded.');
-        return response.json();
-      })
-      .then(data => {
-        const items = Array.isArray(data) ? data : (data.items || []);
-        const categoryLatest = new Map();
-        items
-          .filter(entry => !entry.isArticle && (entry.image || entry.coverImage))
-          .forEach(entry => {
-            const category = entry.category || 'ARCHIVE';
-            const current = categoryLatest.get(category);
-            const date = entry.capturedAt ? Date.parse(entry.capturedAt) : 0;
-            const currentDate = current && current.capturedAt ? Date.parse(current.capturedAt) : 0;
-            if (!current || date > currentDate) categoryLatest.set(category, entry);
-          });
-        const photos = Array.from(categoryLatest.values())
-          .sort((a, b) => {
-            const dateA = a.capturedAt ? Date.parse(a.capturedAt) : 0;
-            const dateB = b.capturedAt ? Date.parse(b.capturedAt) : 0;
-            return dateB - dateA;
-          })
-          .slice(0, 5);
-        photos.forEach(item => {
-          const slide = document.createElement('div');
-          slide.className = 'carousel-slide';
-          const link = document.createElement('a');
-          link.className = 'photo-link';
-          const categoryPages = {
-            FOOD: 'archive.html?category=FOOD',
-            ARCHITECTURE: 'archive.html?category=ARCHITECTURE',
-            OBJECT: 'archive.html?category=OBJECT',
-            BOOK: 'archive.html?category=BOOK',
-            PHOTO: 'archive.html?category=PHOTO'
-          };
-          link.href = categoryPages[item.category] || 'archive.html';
-          const frame = document.createElement('div');
-          frame.className = 'photo-frame';
-          const image = document.createElement('img');
-          image.className = 'photo-image';
-          image.src = item.coverImage || item.image;
-          image.alt = item.title || '';
-          image.loading = 'lazy';
-          image.decoding = 'async';
-          const caption = document.createElement('div');
-          caption.className = 'photo-caption';
-          const title = document.createElement('span');
-          title.className = 'photo-caption-title';
-          title.textContent = item.title || '';
-          const category = document.createElement('span');
-          category.className = 'photo-caption-category';
-          category.textContent = item.category || 'ARCHIVE';
-          caption.append(category, title);
-          frame.append(image, caption);
-          link.appendChild(frame);
-          slide.appendChild(link);
-          photoTrack.appendChild(slide);
-          photoCarousel.addDot();
-          const thumb = document.createElement('button');
-          thumb.type = 'button';
-          thumb.className = 'photo-thumbnail';
-          thumb.setAttribute('aria-label', 'Show ' + (item.category || 'ARCHIVE') + ' photograph');
-          thumb.setAttribute('aria-current', photos.indexOf(item) === 0 ? 'true' : 'false');
-          const thumbImage = document.createElement('img');
-          thumbImage.src = item.coverImage || item.image;
-          thumbImage.alt = '';
-          thumbImage.loading = 'lazy';
-          const thumbTitle = document.createElement('span');
-          thumbTitle.textContent = item.category || 'ARCHIVE';
-          thumb.append(thumbImage, thumbTitle);
-          thumb.addEventListener('click', () => photoCarousel.go(photos.indexOf(item)));
-          photoThumbnails.appendChild(thumb);
-        });
-      })
-      .catch(error => {
-        console.error(error);
-        photoTrack.innerHTML = '<div class="carousel-slide">Archive data could not be loaded.</div>';
-      });
-
-    fetch('articles.json')
-      .then(response => {
-        if (!response.ok) throw new Error('Article data could not be loaded.');
-        return response.json();
-      })
-      .then(articles => {
-        articles.forEach((article, index) => {
-          const slide = document.createElement('div');
-          slide.className = 'carousel-slide';
-          const card = document.createElement('article');
-          card.className = 'text-slide';
-          const meta = document.createElement('div');
-          meta.className = 'text-slide-meta';
-          const label = document.createElement('span');
-          label.textContent = 'TEXT / ESSAY';
-          const number = document.createElement('span');
-          number.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(articles.length).padStart(2, '0');
-          meta.append(label, number);
-          const link = document.createElement('a');
-          link.href = article.detailPage || '#';
-          link.className = 'text-slide-title';
-          link.textContent = article.title || 'Untitled';
-          const description = document.createElement('p');
-          description.className = 'text-slide-description';
-          description.textContent = article.description || '';
-          const more = document.createElement('a');
-          more.href = article.detailPage || '#';
-          more.className = 'text-slide-more';
-          more.textContent = 'READ TEXT ↗';
-          card.append(meta, link, description, more);
-          slide.appendChild(card);
-          textTrack.appendChild(slide);
-          textCarousel.addDot();
-        });
-      })
-      .catch(error => {
-        console.error(error);
-        textTrack.innerHTML = '<div class="carousel-slide">Articles could not be loaded.</div>';
-      });
-  </script>
+<a class="site-title" href="index.html">SAKATA YUSHI</a>
+<button class="edge-menu" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-panel">MENU</button>
+<main class="space" id="space" aria-label="Floating archive space">
+  <div class="backdrop-dim" id="backdrop-dim"></div>
+  <p class="space-status" id="space-status">AN ARCHIVE OF CURIOSITIES</p>
+</main>
+<nav class="menu-panel" id="menu-panel" aria-label="Site menu" aria-hidden="true">
+  <a href="archive.html">ARCHIVE ↗</a>
+  <a href="text.html">TEXT ↗</a>
+  <a href="about.html">ABOUT ↗</a>
+  <span class="filter-title">FIND A RECORD</span>
+  <input id="record-search" type="search" placeholder="Search title or category" aria-label="Search records">
+  <div id="category-filters"></div>
+</nav>
+<script>
+(() => {
+ const space=document.getElementById('space');
+ const menu=document.getElementById('menu-panel');
+ const menuToggle=document.getElementById('menu-toggle');
+ const search=document.getElementById('record-search');
+ const categoryFilters=document.getElementById('category-filters');
+ const status=document.getElementById('space-status');
+ let records=[],selected=null,drag=null,zCounter=20,menuOpen=false;
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const mobile=()=>window.matchMedia('(max-width:700px)').matches;
+ const rand=(min,max)=>Math.random()*(max-min)+min;
+ const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ function closeSelected(){
+   if(!selected)return;
+   selected.classList.remove('is-selected');
+   selected.style.zIndex=selected.dataset.baseZ||'';
+   selected=null;document.body.classList.remove('has-selection');
+   status.textContent='AN ARCHIVE OF CURIOSITIES';
+ }
+ function selectRecord(el){
+   if(selected===el){closeSelected();return}
+   if(selected)selected.classList.remove('is-selected');
+   selected=el;el.classList.add('is-selected');el.style.zIndex=600;
+   document.body.classList.add('has-selection');
+   status.textContent='SELECTED RECORD / TAP AGAIN TO RETURN';
+   if(mobile()){
+     el.style.left='14px';el.style.top='70px';
+   }
+ }
+ function makeRecord(item,index){
+   const el=document.createElement('article');
+   el.className='record'+(!item.image?' text-record':'');
+   el.dataset.category=item.category||'ARCHIVE';
+   el.dataset.depth=['far','mid','near'][index%3];
+   const width=mobile()?rand(25,39):rand(10,23);
+   el.style.setProperty('--w',width.toFixed(1)+'vw');
+   el.style.setProperty('--x',rand(5,Math.max(6,94-width)).toFixed(2)+'vw');
+   el.style.setProperty('--y',rand(13,mobile()?68:74).toFixed(2)+'vh');
+   el.style.setProperty('--z',String(Math.round(rand(2,18))));
+   el.style.setProperty('--duration',(reduced?0:rand(23,38)).toFixed(1)+'s');
+   el.style.setProperty('--delay',(-rand(0,25)).toFixed(1)+'s');
+   el.dataset.baseZ=el.style.getPropertyValue('--z');
+   const category=document.createElement('span');category.className='record-category';category.textContent=item.category||'ARCHIVE';
+   if(item.image){
+     const img=document.createElement('img');img.className='record-image';img.src=item.coverImage||item.image;img.alt=item.title||'';img.draggable=false;img.loading=index<8?'eager':'lazy';img.decoding='async';
+     el.append(img,category);
+   }else{
+     const title=document.createElement('div');title.className='record-title';title.textContent=item.title||'Untitled';
+     el.append(category,title);
+   }
+   const label=document.createElement('div');label.className='record-label';label.textContent=item.title||'';
+   if(item.image)el.append(label);
+   const info=document.createElement('div');info.className='record-info';
+   const infoTitle=document.createElement('h2');infoTitle.className='info-title';infoTitle.textContent=item.title||'Untitled';
+   const excerpt=document.createElement('div');excerpt.className='info-excerpt';excerpt.textContent=item.description||item.excerpt||'';
+   info.append(infoTitle);
+   if(excerpt.textContent)info.append(excerpt);
+   const detail=document.createElement('a');detail.className='detail-link';detail.href=item.detailPage||'#';detail.textContent='OPEN FULL RECORD ↗';
+   if(item.detailPage)info.append(detail);
+   el.append(info);
+   el.addEventListener('click',event=>{
+     if(drag&&drag.moved)return;
+     if(event.target.closest('.record-info a'))return;
+     if(selected===el){closeSelected();return}
+     selectRecord(el);
+   });
+   el.addEventListener('pointerdown',event=>{
+     if(event.target.closest('.record-info'))return;
+     if(event.pointerType==='mouse'&&event.button!==0)return;
+     drag={el,startX:event.clientX,startY:event.clientY,lastX:event.clientX,lastY:event.clientY,moved:false,baseLeft:el.getBoundingClientRect().left,baseTop:el.getBoundingClientRect().top};
+     el.setPointerCapture?.(event.pointerId);
+   });
+   el.addEventListener('pointermove',event=>{
+     if(!drag||drag.el!==el)return;
+     const dx=event.clientX-drag.startX,dy=event.clientY-drag.startY;
+     if(Math.abs(dx)+Math.abs(dy)>7&&!drag.moved){
+       drag.moved=true;el.classList.add('is-dragging');el.style.zIndex=++zCounter;
+     }
+     if(drag.moved){
+       const left=Math.max(0,Math.min(window.innerWidth-el.offsetWidth,drag.baseLeft+dx));
+       const top=Math.max(0,Math.min(window.innerHeight-el.offsetHeight,drag.baseTop+dy));
+       el.style.left=left+'px';el.style.top=top+'px';el.style.setProperty('--x',left+'px');el.style.setProperty('--y',top+'px');
+       event.preventDefault();
+     }
+   });
+   const finish=()=>{
+     if(!drag||drag.el!==el)return;
+     const moved=drag.moved;el.classList.remove('is-dragging');
+     if(!moved)el.style.zIndex=el.classList.contains('is-selected')?'600':el.dataset.baseZ;
+     drag=null;
+   };
+   el.addEventListener('pointerup',finish);el.addEventListener('pointercancel',finish);
+   return el;
+ }
+ function render(items){
+   closeSelected();space.querySelectorAll('.record').forEach(el=>el.remove());records=[];
+   const available=items.filter(item=>item.image||item.title);
+   const limit=mobile()?Math.min(9,available.length):Math.min(18,available.length);
+   const pool=available.slice().sort(()=>Math.random()-.5).slice(0,limit);
+   pool.forEach((item,index)=>{const el=makeRecord(item,index);records.push({el,item});space.append(el)});
+   status.textContent=records.length+' RECORDS / AN ARCHIVE OF CURIOSITIES';
+ }
+ function applyFilters(){
+   const q=search.value.trim().toLowerCase();
+   const active=categoryFilters.querySelector('[aria-pressed="true"]')?.dataset.filter||'ALL';
+   const filtered=allItems.filter(item=>(active==='ALL'||item.category===active)&&(!q||[item.title,item.category,item.description].join(' ').toLowerCase().includes(q)));
+   render(filtered);
+ }
+ let allItems=[];
+ function setupFilters(items){
+   const categories=[...new Set(items.map(x=>x.category).filter(Boolean))].sort();
+   categoryFilters.innerHTML='';
+   const add=(label,value)=>{
+     const b=document.createElement('button');b.type='button';b.textContent=label;b.dataset.filter=value;b.setAttribute('aria-pressed',value==='ALL'?'true':'false');
+     b.style.cssText='display:inline-block;width:auto;margin:8px 12px 0 0;padding:0 0 4px;border:0;border-bottom:1px solid transparent;background:none;color:rgba(233,232,227,.55);font-size:9px;letter-spacing:.08em';
+     b.addEventListener('click',()=>{categoryFilters.querySelectorAll('button').forEach(x=>{x.setAttribute('aria-pressed','false');x.style.borderBottomColor='transparent'});b.setAttribute('aria-pressed','true');b.style.borderBottomColor='currentColor';applyFilters()});
+     categoryFilters.append(b);
+   };
+   add('ALL','ALL');categories.forEach(c=>add(c,c));
+ }
+ menuToggle.addEventListener('click',()=>{
+   menuOpen=!menuOpen;menu.classList.toggle('is-open',menuOpen);menu.setAttribute('aria-hidden',String(!menuOpen));menuToggle.setAttribute('aria-expanded',String(menuOpen));
+ });
+ document.getElementById('backdrop-dim').addEventListener('click',closeSelected);
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeSelected();menuOpen=false;menu.classList.remove('is-open');menu.setAttribute('aria-hidden','true');menuToggle.setAttribute('aria-expanded','false')}});
+ search.addEventListener('input',applyFilters);
+ window.addEventListener('resize',()=>{if(allItems.length)applyFilters()});
+ fetch('archive-data.json').then(r=>{if(!r.ok)throw Error('Archive data unavailable');return r.json()}).then(data=>{
+   const items=Array.isArray(data)?data:(data.items||[]);
+   allItems=items.filter(item=>!item.isArticle ? (item.image||item.coverImage||item.title) : true);
+   setupFilters(allItems);render(allItems);
+ }).catch(err=>{console.error(err);status.textContent='ARCHIVE DATA COULD NOT BE LOADED'});
+})();
+</script>
 </body>
 </html>
