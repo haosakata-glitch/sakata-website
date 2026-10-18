@@ -108,7 +108,7 @@ animation:spaceBreath 22s ease-in-out infinite alternate}
 // Move around a large virtual space. The site title and menu are fixed siblings, not world children.
 function clampWorldPan(){const minX=Math.min(0,space.clientWidth-world.clientWidth*worldZoom),minY=Math.min(0,space.clientHeight-world.clientHeight*worldZoom);const maxX=0,maxY=0;worldPanX=Math.max(minX,Math.min(maxX,worldPanX));worldPanY=Math.max(minY,Math.min(maxY,worldPanY))}
 function applyWorldPan(){clampWorldPan();world.style.transform=`translate3d(${worldPanX}px,${worldPanY}px,0) scale(${worldZoom})`;zoomLabel.textContent=Math.round(worldZoom*100)+'%'}
-function zoomAt(nextZoom,x,y,baseX=worldPanX,baseY=worldPanY,baseZoom=worldZoom,anchorX=x,anchorY=y){nextZoom=Math.max(MIN_ZOOM,Math.min(MAX_ZOOM,nextZoom));worldPanX=x-(anchorX-baseX)*(nextZoom/baseZoom);worldPanY=y-(anchorY-baseY)*(nextZoom/baseZoom);worldZoom=nextZoom;applyWorldPan();if(selected)selected.style.setProperty('--selected-width',((mobile()?94:46)/worldZoom)+'vw')}
+function zoomAt(nextZoom,x,y,baseX=worldPanX,baseY=worldPanY,baseZoom=worldZoom,anchorX=x,anchorY=y){nextZoom=Math.max(MIN_ZOOM,Math.min(MAX_ZOOM,nextZoom));const contentX=(anchorX-baseX)/baseZoom,contentY=(anchorY-baseY)/baseZoom;worldZoom=nextZoom;worldPanX=x-contentX*nextZoom;worldPanY=y-contentY*nextZoom;applyWorldPan();if(selected)selected.style.setProperty('--selected-width',((mobile()?94:46)/worldZoom)+'vw')}
 applyWorldPan();
 document.getElementById('zoom-in').addEventListener('click',()=>zoomAt(worldZoom*1.2,space.clientWidth/2,space.clientHeight/2));document.getElementById('zoom-out').addEventListener('click',()=>zoomAt(worldZoom/1.2,space.clientWidth/2,space.clientHeight/2));document.getElementById('view-reset').addEventListener('click',()=>{worldZoom=INITIAL_ZOOM;worldPanX=0;worldPanY=0;applyWorldPan()});
 space.addEventListener('pointerdown',e=>{
@@ -117,7 +117,7 @@ space.addEventListener('pointerdown',e=>{
   if(activePointers.size>=2){
    if(drag){drag.el.classList.remove('is-dragging');drag=null}
    const pts=[...activePointers.values()].slice(0,2);
-   pan={mode:'two',x:(pts[0].x+pts[1].x)/2,y:(pts[0].y+pts[1].y)/2,distance:Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y),baseX:worldPanX,baseY:worldPanY,baseZoom:worldZoom};
+   const midX=(pts[0].x+pts[1].x)/2,midY=(pts[0].y+pts[1].y)/2;pan={mode:'two',x:midX,y:midY,distance:Math.max(1,Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y)),baseX:worldPanX,baseY:worldPanY,baseZoom:worldZoom,contentX:(midX-worldPanX)/worldZoom,contentY:(midY-worldPanY)/worldZoom};
    for(const id of activePointers.keys()){try{space.setPointerCapture(id)}catch{}}
    e.preventDefault();
   }else if(mobile()&&!e.target.closest('.record,.record-close')){
@@ -139,8 +139,7 @@ space.addEventListener('pointermove',e=>{
    const pts=[...activePointers.values()].slice(0,2);
    const midX=(pts[0].x+pts[1].x)/2,midY=(pts[0].y+pts[1].y)/2,distance=Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);
    if(!pan||pan.mode!=='two')pan={mode:'two',x:midX,y:midY,distance,baseX:worldPanX,baseY:worldPanY,baseZoom:worldZoom};
-   const nextZoom=pan.baseZoom*(distance/Math.max(1,pan.distance));
-   zoomAt(nextZoom,midX,midY,pan.baseX,pan.baseY,pan.baseZoom,pan.x,pan.y);
+   const nextZoom=Math.max(MIN_ZOOM,Math.min(MAX_ZOOM,pan.baseZoom*(distance/pan.distance)));worldZoom=nextZoom;worldPanX=midX-pan.contentX*nextZoom;worldPanY=midY-pan.contentY*nextZoom;applyWorldPan();if(selected)selected.style.setProperty('--selected-width',((mobile()?94:46)/worldZoom)+'vw');
    e.preventDefault();
   }else if(pan?.mode==='one'&&pan.id===e.pointerId){
    const dx=e.clientX-pan.x,dy=e.clientY-pan.y;
