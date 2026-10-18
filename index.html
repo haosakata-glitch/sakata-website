@@ -72,7 +72,7 @@ animation:spaceBreath 22s ease-in-out infinite alternate}
 <script>
 (()=> {
  const space=document.getElementById('space'),world=document.getElementById('world'),menu=document.getElementById('menu-panel'),toggle=document.getElementById('menu-toggle'),search=document.getElementById('record-search'),filters=document.getElementById('category-filters'),status=document.getElementById('space-status');
- const INITIAL_ZOOM=.38,MIN_ZOOM=.16,MAX_ZOOM=.82;const zoomLabel=document.getElementById('zoom-label');let worldZoom=INITIAL_ZOOM;let allItems=[],selected=null,drag=null,zCounter=30,menuOpen=false,renderToken=0,selectedMotionTimer=null;const activePointers=new Map();let pan=null,worldPanX=0,worldPanY=0;
+ const INITIAL_ZOOM=.38,MIN_ZOOM=.24,MAX_ZOOM=.82;const zoomLabel=document.getElementById('zoom-label');let worldZoom=INITIAL_ZOOM;let allItems=[],selected=null,drag=null,zCounter=30,menuOpen=false,renderToken=0,selectedMotionTimer=null;const activePointers=new Map();let pan=null,worldPanX=0,worldPanY=0;
  const mobile=()=>matchMedia('(max-width:700px)').matches,reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
  const rand=(a,b)=>Math.random()*(b-a)+a;
  const esc=s=>String(s||'');
@@ -106,7 +106,7 @@ animation:spaceBreath 22s ease-in-out infinite alternate}
  function setupFilters(){filters.replaceChildren();const cats=[...new Set(allItems.map(x=>x.category).filter(Boolean))].sort();function add(label,value){const b=document.createElement('button');b.textContent=label;b.dataset.filter=value;b.setAttribute('aria-pressed',value==='ALL'?'true':'false');if(value==='ALL')b.style.borderBottomColor='currentColor';b.onclick=()=>{filters.querySelectorAll('button').forEach(t=>{t.setAttribute('aria-pressed','false');t.style.borderBottomColor='transparent'});b.setAttribute('aria-pressed','true');b.style.borderBottomColor='currentColor';applyFilters()};filters.append(b)}add('ALL','ALL');cats.forEach(c=>add(c,c))}
  
 // Move around a large virtual space. The site title and menu are fixed siblings, not world children.
-function clampWorldPan(){const minX=Math.min(0,space.clientWidth-world.clientWidth*worldZoom),minY=Math.min(0,space.clientHeight-world.clientHeight*worldZoom);worldPanX=Math.max(minX,Math.min(0,worldPanX));worldPanY=Math.max(minY,Math.min(0,worldPanY))}
+function clampWorldPan(){const minX=Math.min(0,space.clientWidth-world.clientWidth*worldZoom),minY=Math.min(0,space.clientHeight-world.clientHeight*worldZoom);const maxX=space.clientWidth*.42,maxY=space.clientHeight*.32;worldPanX=Math.max(minX,Math.min(maxX,worldPanX));worldPanY=Math.max(minY,Math.min(maxY,worldPanY))}
 function applyWorldPan(){clampWorldPan();world.style.transform=`translate3d(${worldPanX}px,${worldPanY}px,0) scale(${worldZoom})`;zoomLabel.textContent=Math.round(worldZoom*100)+'%'}
 function zoomAt(nextZoom,x,y,baseX=worldPanX,baseY=worldPanY,baseZoom=worldZoom,anchorX=x,anchorY=y){nextZoom=Math.max(MIN_ZOOM,Math.min(MAX_ZOOM,nextZoom));worldPanX=x-(anchorX-baseX)*(nextZoom/baseZoom);worldPanY=y-(anchorY-baseY)*(nextZoom/baseZoom);worldZoom=nextZoom;applyWorldPan();if(selected)selected.style.setProperty('--selected-width',((mobile()?94:46)/worldZoom)+'vw')}
 applyWorldPan();
