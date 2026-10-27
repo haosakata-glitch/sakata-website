@@ -189,28 +189,16 @@
       "publishedDate": "",
       "isbn": "",
       "cover": null,
+      "coverUrl": null,
       "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「最新世界のアーティストファイル100 : one hundred very new artists for the twenty-first century」（美術手帖編集部）です",
-      "matchScore": 0.303,
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
       "addedAt": "2026-10-28T02:32:39+09:00",
       "recognized": {
         "title": "美術手帖 2025年1月号 特集 現代の陶芸",
         "author": "美術手帖編集部"
-      },
-      "candidates": [
-        {
-          "title": "最新世界のアーティストファイル100 : one hundred very new artists for the twenty-first century",
-          "authors": [
-            "美術手帖編集部"
-          ],
-          "publisher": "美術出版社",
-          "isbn": "9784568201819",
-          "score": 0.303
-        }
-      ]
+      }
     },
     {
       "id": "t-afa6e7f170",
@@ -224,7 +212,7 @@
       "cover": null,
       "infoLink": "",
       "source": "recognized",
-      "status": "needs_review",
+      "status": "ignored",
       "reasonCode": "author",
       "reason": "書名は近いのですが、著者が一致しません。読み取り: エミリー・シンプソン / 候補: アール・ブリュット・ジャポネ展カタログ編集委員会 編",
       "matchScore": 0.746,
@@ -263,41 +251,8 @@
           "isbn": "9784582620573",
           "score": 0.726
         }
-      ]
-    },
-    {
-      "id": "t-f5d202f363",
-      "title": "言語沼",
-      "authors": [
-        "水野太貴、堀元見"
       ],
-      "publisher": "あさ出版",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「言語沼 : 言語オタクが友だちに700日間語り続けて引きずりこんだ : ゆる言語学ラジオ」（堀元見, 1992-、水野太貴, 1995-）です",
-      "matchScore": 0.278,
-      "addedAt": "2026-10-28T02:33:31+09:00",
-      "recognized": {
-        "title": "言語沼",
-        "author": "水野太貴、堀元見"
-      },
-      "candidates": [
-        {
-          "title": "言語沼 : 言語オタクが友だちに700日間語り続けて引きずりこんだ : ゆる言語学ラジオ",
-          "authors": [
-            "堀元見, 1992-",
-            "水野太貴, 1995-"
-          ],
-          "publisher": "あさ出版",
-          "isbn": "9784866673806",
-          "score": 0.278
-        }
-      ]
+      "ignoredAt": "2026-10-28T03:04:56+09:00"
     },
     {
       "id": "9784065294208",
@@ -538,41 +493,6 @@
       }
     },
     {
-      "id": "t-9d9b46c8e7",
-      "title": "生産緑地はこう活用するQ&A 2022年問題に向き合う",
-      "authors": [
-        "日刊建設通信新聞社"
-      ],
-      "publisher": "日刊建設通信新聞社",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "author",
-      "reason": "書名は近いのですが、著者が一致しません。読み取り: 日刊建設通信新聞社 / 候補: 藤田壮一郎、原雅彦",
-      "matchScore": 0.685,
-      "addedAt": "2026-10-28T02:37:13+09:00",
-      "recognized": {
-        "title": "生産緑地はこう活用するQ&A 2022年問題に向き合う",
-        "author": "日刊建設通信新聞社"
-      },
-      "candidates": [
-        {
-          "title": "生産緑地はこう活用するQ&A (キューアンドエー ) : 2022年問題に向き合う",
-          "authors": [
-            "藤田壮一郎",
-            "原雅彦",
-            "中村優"
-          ],
-          "publisher": "日刊建設通信新聞社",
-          "isbn": "9784902611793",
-          "score": 0.685
-        }
-      ]
-    },
-    {
       "id": "9784903127149",
       "title": "釜ケ崎のススメ",
       "authors": [
@@ -768,39 +688,6 @@
       }
     },
     {
-      "id": "t-398541c566",
-      "title": "ブラタモリ 14",
-      "authors": [
-        "NHK「ブラタモリ」制作班"
-      ],
-      "publisher": "KADOKAWA",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "author",
-      "reason": "書名は近いのですが、著者が一致しません。読み取り: NHK「ブラタモリ」制作班 / 候補: 日本放送協会",
-      "matchScore": 0.785,
-      "addedAt": "2026-10-28T02:39:22+09:00",
-      "recognized": {
-        "title": "ブラタモリ 14",
-        "author": "NHK「ブラタモリ」制作班"
-      },
-      "candidates": [
-        {
-          "title": "ブラタモリ 14",
-          "authors": [
-            "日本放送協会"
-          ],
-          "publisher": "KADOKAWA",
-          "isbn": "9784041073766",
-          "score": 0.785
-        }
-      ]
-    },
-    {
       "id": "9784915009891",
       "title": "ガラス工芸ノート",
       "authors": [
@@ -906,39 +793,6 @@
       }
     },
     {
-      "id": "t-d02449aade",
-      "title": "土",
-      "authors": [
-        "エルメス財団"
-      ],
-      "publisher": "岩波書店",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「土 : Savoir & Faire」（エルメス財団）です",
-      "matchScore": 0.392,
-      "addedAt": "2026-10-28T02:40:24+09:00",
-      "recognized": {
-        "title": "土",
-        "author": "エルメス財団"
-      },
-      "candidates": [
-        {
-          "title": "土 : Savoir & Faire",
-          "authors": [
-            "エルメス財団"
-          ],
-          "publisher": "岩波書店",
-          "isbn": "9784000239073",
-          "score": 0.392
-        }
-      ]
-    },
-    {
       "id": "9784791771752",
       "title": "なぜ脳はアートがわかるのか : 現代美術史から学ぶ脳科学入門",
       "authors": [
@@ -1025,39 +879,6 @@
       }
     },
     {
-      "id": "t-6c850314d2",
-      "title": "公共性 publicness",
-      "authors": [
-        "齋藤純一"
-      ],
-      "publisher": "岩波書店",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「公共性」（斎藤純一, 1958-）です",
-      "matchScore": 0.441,
-      "addedAt": "2026-10-28T02:41:10+09:00",
-      "recognized": {
-        "title": "公共性 publicness",
-        "author": "齋藤純一"
-      },
-      "candidates": [
-        {
-          "title": "公共性",
-          "authors": [
-            "斎藤純一, 1958-"
-          ],
-          "publisher": "岩波書店",
-          "isbn": "9784000264297",
-          "score": 0.441
-        }
-      ]
-    },
-    {
       "id": "9784479393320",
       "title": "上野先生、フェミニズムについてゼロから教えてください!",
       "authors": [
@@ -1080,18 +901,18 @@
       }
     },
     {
-      "id": "t-55fd978b47",
+      "id": "t-6a45838547",
       "title": "はじめてのジェンダー論",
       "authors": [
-        "加藤秀一, 1963-"
+        "加藤秀一"
       ],
-      "publisher": "日本点字図書館",
-      "publishedDate": "2021.10",
+      "publisher": "有斐閣",
+      "publishedDate": "",
       "isbn": "",
       "cover": null,
       "coverUrl": null,
-      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I032571579",
-      "source": "ndl",
+      "infoLink": "",
+      "source": "manual",
       "status": "matched",
       "matchScore": 1.0,
       "addedAt": "2026-10-28T02:41:21+09:00",
@@ -1218,46 +1039,16 @@
       "publishedDate": "",
       "isbn": "",
       "cover": null,
+      "coverUrl": null,
       "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「湖底の雲 : 句集」（石井保, 1935-）です",
-      "matchScore": 0.278,
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
       "addedAt": "2026-10-28T02:43:01+09:00",
       "recognized": {
         "title": "現代の俳句",
         "author": "金子兜太"
-      },
-      "candidates": [
-        {
-          "title": "湖底の雲 : 句集",
-          "authors": [
-            "石井保, 1935-"
-          ],
-          "publisher": "文學の森",
-          "isbn": "9784861737848",
-          "score": 0.278
-        },
-        {
-          "title": "浮野 : 句集",
-          "authors": [
-            "落合水尾, 1937-"
-          ],
-          "publisher": "文學の森",
-          "isbn": "9784861732096",
-          "score": 0.172
-        },
-        {
-          "title": "浦祭 : 句集",
-          "authors": [
-            "荒井八雪, 1945-"
-          ],
-          "publisher": "北溟社",
-          "isbn": "9784894481565",
-          "score": 0.172
-        }
-      ]
+      }
     },
     {
       "id": "9784622070474",
@@ -1371,74 +1162,6 @@
       }
     },
     {
-      "id": "t-6e42bc1fba",
-      "title": "金属",
-      "authors": [
-        "エルメス財団"
-      ],
-      "publisher": "岩波書店",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「金属 : Savoir & Faire」（エルメス財団）です",
-      "matchScore": 0.473,
-      "addedAt": "2026-10-28T02:44:53+09:00",
-      "recognized": {
-        "title": "金属",
-        "author": "エルメス財団"
-      },
-      "candidates": [
-        {
-          "title": "金属 : Savoir & Faire",
-          "authors": [
-            "エルメス財団"
-          ],
-          "publisher": "岩波書店",
-          "isbn": "9784000617246",
-          "score": 0.473
-        }
-      ]
-    },
-    {
-      "id": "t-fdf6bd2aac",
-      "title": "KAZUYO SEJIMA + RYUE NISHIZAWA / SANAA WORKS 1995-2003",
-      "authors": [
-        "妹島和世＋西沢立衛"
-      ],
-      "publisher": "TOTO出版",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「妹島和世+西沢立衛/SANAA works 1995-2003」（妹島和世, 1956-、西沢立衛, 1966-）です",
-      "matchScore": 0.554,
-      "addedAt": "2026-10-28T02:45:12+09:00",
-      "recognized": {
-        "title": "KAZUYO SEJIMA + RYUE NISHIZAWA / SANAA WORKS 1995-2003",
-        "author": "妹島和世＋西沢立衛"
-      },
-      "candidates": [
-        {
-          "title": "妹島和世+西沢立衛/SANAA works 1995-2003",
-          "authors": [
-            "妹島和世, 1956-",
-            "西沢立衛, 1966-",
-            "SANAA"
-          ],
-          "publisher": "TOTO出版",
-          "isbn": "9784887062245",
-          "score": 0.554
-        }
-      ]
-    },
-    {
       "id": "9784871406970",
       "title": "妹島和世+西沢立衛読本-2024",
       "authors": [
@@ -1547,39 +1270,6 @@
       }
     },
     {
-      "id": "t-909be92979",
-      "title": "建築の前夜 前川國男文集",
-      "authors": [
-        "前川國男"
-      ],
-      "publisher": "西立書房",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "author",
-      "reason": "書名は近いのですが、著者が一致しません。読み取り: 前川國男 / 候補: 前川国男, 1905-1986",
-      "matchScore": 0.781,
-      "addedAt": "2026-10-28T02:46:26+09:00",
-      "recognized": {
-        "title": "建築の前夜 前川國男文集",
-        "author": "前川國男"
-      },
-      "candidates": [
-        {
-          "title": "建築の前夜 : 前川国男文集",
-          "authors": [
-            "前川国男, 1905-1986"
-          ],
-          "publisher": "而立書房",
-          "isbn": "9784880592206",
-          "score": 0.781
-        }
-      ]
-    },
-    {
       "id": "9784492444344",
       "title": "経済学者日本の最貧困地域に挑む : あいりん改革3年8カ月の全記録",
       "authors": [
@@ -1668,37 +1358,6 @@
       }
     },
     {
-      "id": "t-ed3af3e00a",
-      "title": "「笑い」はどこから来るのか？",
-      "authors": [
-        "早稲田大学文学会"
-      ],
-      "publisher": "筑摩書房",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "author",
-      "reason": "書名は近いのですが、著者が一致しません。読み取り: 早稲田大学文学会 / 候補: 著者の記載なし",
-      "matchScore": 0.755,
-      "addedAt": "2026-10-28T02:47:51+09:00",
-      "recognized": {
-        "title": "「笑い」はどこから来るのか？",
-        "author": "早稲田大学文学会"
-      },
-      "candidates": [
-        {
-          "title": "「笑い」はどこから来るのか?",
-          "authors": [],
-          "publisher": "早稲田文学会",
-          "isbn": "9784480993212",
-          "score": 0.755
-        }
-      ]
-    },
-    {
       "id": "9784801305144",
       "title": "西成で生きる : この街に生きる14人の素顔",
       "authors": [
@@ -1740,6 +1399,198 @@
       "recognized": {
         "title": "脱学校の社会",
         "author": "イヴァン・イリッチ"
+      }
+    },
+    {
+      "id": "9784866673806",
+      "title": "言語沼 : 言語オタクが友だちに700日間語り続けて引きずりこんだ : ゆる言語学ラジオ",
+      "authors": [
+        "堀元見, 1992-",
+        "水野太貴, 1995-"
+      ],
+      "publisher": "あさ出版",
+      "publishedDate": "2023.4",
+      "isbn": "9784866673806",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I032561245",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:04:32+09:00",
+      "recognized": {
+        "title": "言語沼 : 言語オタクが友だちに700日間語り続けて引きずりこんだ : ゆる言語学ラジオ",
+        "author": "堀元見"
+      }
+    },
+    {
+      "id": "9784000239073",
+      "title": "土 : Savoir & Faire",
+      "authors": [
+        "エルメス財団"
+      ],
+      "publisher": "岩波書店",
+      "publishedDate": "2023.8",
+      "isbn": "9784000239073",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I032951469",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:04:34+09:00",
+      "recognized": {
+        "title": "土 : Savoir & Faire",
+        "author": "エルメス財団"
+      }
+    },
+    {
+      "id": "9784000617246",
+      "title": "金属 : Savoir & Faire",
+      "authors": [
+        "エルメス財団"
+      ],
+      "publisher": "岩波書店",
+      "publishedDate": "2025.10",
+      "isbn": "9784000617246",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I034314237",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:04:37+09:00",
+      "recognized": {
+        "title": "金属 : Savoir & Faire",
+        "author": "エルメス財団"
+      }
+    },
+    {
+      "id": "9784000264297",
+      "title": "公共性",
+      "authors": [
+        "斎藤純一, 1958-"
+      ],
+      "publisher": "岩波書店",
+      "publishedDate": "2000.5",
+      "isbn": "9784000264297",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000002892433",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:04:42+09:00",
+      "recognized": {
+        "title": "公共性",
+        "author": "斎藤純一"
+      }
+    },
+    {
+      "id": "9784041073766",
+      "title": "ブラタモリ 14",
+      "authors": [
+        "日本放送協会"
+      ],
+      "publisher": "KADOKAWA",
+      "publishedDate": "2018.9",
+      "isbn": "9784041073766",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I029214057",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:04:46+09:00",
+      "recognized": {
+        "title": "ブラタモリ 14",
+        "author": "日本放送協会"
+      }
+    },
+    {
+      "id": "9784880592206",
+      "title": "建築の前夜 : 前川国男文集",
+      "authors": [
+        "前川国男, 1905-1986"
+      ],
+      "publisher": "而立書房",
+      "publishedDate": "1996.10",
+      "isbn": "9784880592206",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000002549708",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:04:49+09:00",
+      "recognized": {
+        "title": "建築の前夜 : 前川国男文集",
+        "author": "前川国男"
+      }
+    },
+    {
+      "id": "9784902611793",
+      "title": "生産緑地はこう活用するQ&A (キューアンドエー ) : 2022年問題に向き合う",
+      "authors": [
+        "藤田壮一郎",
+        "原雅彦",
+        "中村優"
+      ],
+      "publisher": "日刊建設通信新聞社",
+      "publishedDate": "2019.2",
+      "isbn": "9784902611793",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I029507959",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:04:54+09:00",
+      "recognized": {
+        "title": "生産緑地はこう活用するQ&A (キューアンドエー ) : 2022年問題に向き合う",
+        "author": "藤田壮一郎"
+      }
+    },
+    {
+      "id": "9784480993212",
+      "title": "「笑い」はどこから来るのか?",
+      "authors": [],
+      "publisher": "早稲田文学会",
+      "publishedDate": "2019.12",
+      "isbn": "9784480993212",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I030140814",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:04:56+09:00",
+      "recognized": {
+        "title": "「笑い」はどこから来るのか?",
+        "author": ""
+      }
+    },
+    {
+      "id": "9784887062245",
+      "title": "妹島和世+西沢立衛/SANAA works 1995-2003",
+      "authors": [
+        "妹島和世, 1956-",
+        "西沢立衛, 1966-",
+        "SANAA"
+      ],
+      "publisher": "TOTO出版",
+      "publishedDate": "2003.6",
+      "isbn": "9784887062245",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000004363707",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:04:58+09:00",
+      "recognized": {
+        "title": "妹島和世+西沢立衛/SANAA works 1995-2003",
+        "author": "妹島和世"
       }
     }
   ]
