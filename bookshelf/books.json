@@ -1592,6 +1592,218 @@
         "title": "妹島和世+西沢立衛/SANAA works 1995-2003",
         "author": "妹島和世"
       }
+    },
+    {
+      "id": "t-dcef2f52e7",
+      "title": "陶芸批評の新地平 現代日本の陶芸家たち",
+      "authors": [
+        "清水穣"
+      ],
+      "publisher": "現代思潮新社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:49:13+09:00",
+      "recognized": {
+        "title": "陶芸批評の新地平 現代日本の陶芸家たち",
+        "author": "清水穣"
+      }
+    },
+    {
+      "id": "t-48bdb9a1e7",
+      "title": "現代思想 2020年3月臨時増刊号 総特集 フェミニズムの現在",
+      "authors": [
+        "現代思想編集部"
+      ],
+      "publisher": "青土社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:49:13+09:00",
+      "recognized": {
+        "title": "現代思想 2020年3月臨時増刊号 総特集 フェミニズムの現在",
+        "author": "現代思想編集部"
+      }
+    },
+    {
+      "id": "t-d9ecdb95a7",
+      "title": "世界文学の物語",
+      "authors": [
+        "高橋康也"
+      ],
+      "publisher": "新潮社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:49:13+09:00",
+      "recognized": {
+        "title": "世界文学の物語",
+        "author": "高橋康也"
+      }
+    },
+    {
+      "id": "t-43ba9ceeec",
+      "title": "ALTERNIGHTLIGHT",
+      "authors": [
+        "ANREALAGE"
+      ],
+      "publisher": "PARCO出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:49:13+09:00",
+      "recognized": {
+        "title": "ALTERNIGHTLIGHT",
+        "author": "ANREALAGE"
+      }
+    },
+    {
+      "id": "t-e7ac87025a",
+      "title": "TOKYO TOTEM A Guide to Tokyo",
+      "authors": [
+        "Monnik"
+      ],
+      "publisher": "flick studio",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:49:13+09:00",
+      "recognized": {
+        "title": "TOKYO TOTEM A Guide to Tokyo",
+        "author": "Monnik"
+      }
+    },
+    {
+      "id": "t-36b8e0280c",
+      "title": "小さなリズム 人類学者による観察録",
+      "authors": [
+        "磯野真穂"
+      ],
+      "publisher": "鹿島出版会",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:49:13+09:00",
+      "recognized": {
+        "title": "小さなリズム 人類学者による観察録",
+        "author": "磯野真穂"
+      }
+    },
+    {
+      "id": "t-87ff6fae3a",
+      "title": "形の美しさとは何か",
+      "authors": [
+        "二井清樹"
+      ],
+      "publisher": "NHK出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:49:13+09:00",
+      "recognized": {
+        "title": "形の美しさとは何か",
+        "author": "二井清樹"
+      }
+    },
+    {
+      "id": "9784622050315",
+      "title": "サバルタンは語ることができるか",
+      "authors": [
+        "Spivak, Gayatri Chakravorty, 1942-",
+        "上村忠男, 1941-"
+      ],
+      "publisher": "みすず書房",
+      "publishedDate": "1998.12",
+      "isbn": "9784622050315",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000002743726",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.814,
+      "addedAt": "2026-10-28T03:49:17+09:00",
+      "recognized": {
+        "title": "サバルタンは語ることができるか",
+        "author": "G・C・スピヴァク"
+      }
+    },
+    {
+      "id": "9784750510231",
+      "title": "災害ユートピア : なぜそのとき特別な共同体が立ち上がるのか",
+      "authors": [
+        "Solnit, Rebecca, 1961-",
+        "高月園子, 1952-"
+      ],
+      "publisher": "亜紀書房",
+      "publishedDate": "2010.12",
+      "isbn": "9784750510231",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000011074332",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.935,
+      "addedAt": "2026-10-28T03:49:21+09:00",
+      "recognized": {
+        "title": "災害ユートピア なぜそのとき特別な共同体が立ち上がるのか",
+        "author": "レベッカ・ソルニット"
+      }
+    },
+    {
+      "id": "t-695b198f96",
+      "title": "東京の空間人類学",
+      "authors": [
+        "陣内秀信, 1947-"
+      ],
+      "publisher": "筑摩書房",
+      "publishedDate": "1985.4",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001741359",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T03:49:25+09:00",
+      "recognized": {
+        "title": "東京の空間人類学",
+        "author": "陣内秀信"
+      }
     }
   ]
 }
