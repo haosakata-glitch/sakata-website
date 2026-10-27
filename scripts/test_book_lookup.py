@@ -14,6 +14,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import book_lookup as bl  # noqa: E402
+import process_inbox as pi  # noqa: E402
 
 def _isbn13(body12):
     total = sum(int(d) * (1 if i % 2 == 0 else 3) for i, d in enumerate(body12))
@@ -218,6 +219,80 @@ class AddTests(Base):
         with contextlib.redirect_stdout(io.StringIO()):
             bl.main(["add", "--title", "大杉栄伝", "--author", "栗原康", "--dry-run"])
         self.assertFalse(bl.BOOKS_JSON.exists())
+
+
+
+class SearchTests(Base):
+    def test_author_order_and_dots(self):
+        self.assertEqual(bl.author_sim("エドワード・レルフ", [bl.tidy_name("レルフ, エドワード")]), 1.0)
+        self.assertEqual(bl.author_sim("レヴィ＝ストロース", [bl.tidy_name("レヴィ=ストロース, クロード")]), 1.0)
+        self.assertLess(bl.author_sim("末永照和", ["全然ちがう人"]), 0.5)
+
+    def test_query_relaxation(self):
+        queries = bl.ndl_queries("悲しき熱帯 上", "レヴィ＝ストロース")
+        self.assertEqual(queries[0], ("悲しき熱帯 上", "レヴィ＝ストロース"))
+        self.assertIn(("悲しき熱帯 上", None), queries)
+        self.assertIn(("悲しき熱帯", "レヴィ＝ストロース"), queries)
+
+    def test_falls_back_to_title_only_when_creator_search_is_empty(self):
+        calls = []
+
+        def fake(url, *a, **k):
+            calls.append(url)
+            if "api/opensearch" in url:
+                return (EMPTY_XML if "creator" in url else NDL_XML), "application/xml"
+            raise bl.FetchError("no route")
+        bl.FETCH = fake
+        data = {"version": 1, "books": []}
+        with contextlib.redirect_stdout(io.StringIO()):
+            outcome = bl.add_one(data, {"title": "大杉栄伝", "author": "栗原康"})
+        self.assertEqual(outcome, "added")
+        self.assertGreaterEqual(len([u for u in calls if "api/opensearch" in u]), 2)
+
+
+class InboxTests(Base):
+    def make_inbox(self, entries):
+        inbox = bl.ROOT / "bookshelf" / "inbox"
+        inbox.mkdir(parents=True, exist_ok=True)
+        (inbox / "a.json").write_text(json.dumps(entries, ensure_ascii=False), encoding="utf-8")
+        return inbox
+
+    def test_inbox_is_processed_and_moved(self):
+        isbn = valid_isbn13("978404400000")
+        self.route({"api/opensearch": (NDL_XML, "application/xml"),
+                    "googleapis.com/books": (json.dumps({}).encode(), "application/json"),
+                    f"thumbnail/{isbn}.jpg": (JPEG, "image/jpeg")})
+        inbox = self.make_inbox([{"title": "大杉栄伝", "author": "栗原康", "publisher": "KADOKAWA"},
+                                 {"title": "まったく別の本のタイトル", "author": "誰か"}])
+        with contextlib.redirect_stdout(io.StringIO()):
+            code = pi.main()
+        self.assertEqual(code, 0)
+        self.assertFalse((inbox / "a.json").exists())
+        self.assertTrue((bl.ROOT / "bookshelf" / "processed" / "a.json").exists())
+        statuses = sorted(b["status"] for b in bl.load_books()["books"])
+        self.assertEqual(statuses, ["matched", "needs_review"])
+
+    def test_network_failure_keeps_file_in_inbox(self):
+        self.route({"api/opensearch": bl.FetchError("down"), "googleapis": bl.FetchError("down")})
+        inbox = self.make_inbox([{"title": "大杉栄伝", "author": "栗原康"}])
+        with contextlib.redirect_stdout(io.StringIO()):
+            code = pi.main()
+        self.assertEqual(code, 1)
+        self.assertTrue((inbox / "a.json").exists())
+        self.assertFalse(bl.BOOKS_JSON.exists())
+
+    def test_bad_json_is_left_alone(self):
+        inbox = bl.ROOT / "bookshelf" / "inbox"
+        inbox.mkdir(parents=True, exist_ok=True)
+        (inbox / "bad.json").write_text("[ここは貼り付けミス", encoding="utf-8")
+        with contextlib.redirect_stdout(io.StringIO()):
+            code = pi.main()
+        self.assertEqual(code, 1)
+        self.assertTrue((inbox / "bad.json").exists())
+
+    def test_empty_inbox_is_ok(self):
+        with contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(pi.main(), 0)
 
 
 if __name__ == "__main__":

@@ -8,7 +8,19 @@
 本棚の写真から、書名・著者・出版社・書影を集めて `bookshelf/books.json` に蓄える仕組み。
 一覧は `books.html` が `bookshelf/books.json` を読んで表示する。
 
-### 写真を渡されたとき、または「本を取り込んで」と言われたとき
+### 携帯から取り込む（パソコン不要・基本の流れ）
+
+本人は携帯だけで行う。クラウド上の作業環境からは書誌 API に接続できないため、取得は GitHub Actions に任せる。
+
+1. 本人が NotebookLM アプリで写真を読み取り、書名・著者・出版社の JSON 配列をこのチャットに貼る。
+2. 貼られた JSON を確認する（配列であること、各要素に title があること）。壊れていたら、直す箇所を伝えて貼り直してもらう。
+3. `bookshelf/inbox/YYYY-MM-DD-連番.json` として保存し、そのファイルだけをコミットして `main` に push する（本人了承済み）。
+   push すると `.github/workflows/add-books.yml` が動き、書誌と書影を取得して `bookshelf/books.json` に追加し、`bookshelf/processed/` に移す。
+4. 「取り込みを開始した。1〜2分後に books.html に出る。自信のない本は books.html?review=1 に出る」と短く伝える。
+   Actions の結果は見えないので、「追加済み」とは言わない。確認できたことだけを報告する。
+5. 本人が GitHub のアプリ／ブラウザで `bookshelf/inbox/` に直接 JSON を作成しても、同じ処理が走る（Claude を通さない場合）。
+
+### パソコンのセッションで写真を渡されたとき、または「本を取り込んで」と言われたとき
 
 1. **写真から文字を読む作業は、NotebookLM などのプラグイン・最適な skill を先に使う**（本人の恒常的な指示）。
    - この PC には `notebooklm` コマンド（WSL）と `book-intake` skill がある。使い方は `notebooklm --help` で確認する。
@@ -30,4 +42,5 @@
 - 書誌 API の応答形式は仕様書をもとに実装しており、実機での初回確認が済んでいない。
   最初の1冊は `--debug` をつけて実行し、解析が0件になるときは応答の先頭を見て `scripts/book_lookup.py` の `parse_ndl` を直す。
 - 一覧の確認は `books.html?review=1`（要確認も表示）。
+- 通信に失敗した分は `bookshelf/inbox/` に残る。Actions タブの「Add books from inbox」→「Run workflow」で再実行できる。
 - テスト: `python3 scripts/test_book_lookup.py`（通信は模擬データ）。

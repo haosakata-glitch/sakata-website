@@ -1,0 +1,45 @@
+name: Add books from inbox
+
+# bookshelf/inbox/ に JSON を置く（コミットする）と、書誌と書影を取得して books.json に追加します。
+# 手動で動かすときは、Actions タブから「Run workflow」を押します。
+on:
+  push:
+    branches: [main]
+    paths:
+      - "bookshelf/inbox/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: add-books
+  cancel-in-progress: false
+
+jobs:
+  add-books:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch bibliographic data and covers
+        env:
+          BOOK_DEBUG: "1"
+        run: python3 scripts/process_inbox.py
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bookshelf
+          if git diff --cached --quiet; then
+            echo "変更はありません"
+            exit 0
+          fi
+          git commit -m "蔵書を追加（自動取得）"
+          git pull --rebase origin main
+          git push origin HEAD:main

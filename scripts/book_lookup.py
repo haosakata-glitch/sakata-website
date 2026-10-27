@@ -82,7 +82,7 @@ FETCH = http_get
 
 # ---------------------------------------------------------------- 文字・ISBN
 
-_PUNCT = re.compile(r"[\s　\-‐‑–—―・,，、。.:：;；/／()（）\[\]「」『』“”\"'!?！？~〜]+")
+_PUNCT = re.compile(r"[\s　\-‐‑–—―・=＝,，、。.:：;；/／()（）\[\]「」『』“”\"'!?！？~〜]+")
 
 
 def norm(text: str | None) -> str:
@@ -248,14 +248,18 @@ def author_sim(query: str | None, candidates: list[str]) -> float | None:
     q = norm(query)
     if not q:
         return None
+    # 「エドワード・レルフ」と「レルフ, エドワード」のような姓名の並び替えにも対応するため、語に分けて照合する
+    tokens = [norm(t) for t in re.split(r"[・,，、=＝\s]+", unicodedata.normalize("NFKC", query or ""))]
+    tokens = [t for t in tokens if len(t) >= 2]
     best = 0.0
     for name in candidates:
         n = norm(name)
         if not n:
             continue
         if q == n or (len(q) >= 2 and len(n) >= 2 and (q in n or n in q)):
-            best = 1.0
-            break
+            return 1.0
+        if tokens:
+            best = max(best, sum(1 for t in tokens if t in n) / len(tokens))
         best = max(best, difflib.SequenceMatcher(None, q, n).ratio())
     return best
 
@@ -269,6 +273,18 @@ def score(candidate: dict, title: str, author: str | None = None, publisher: str
     if candidate.get("isbn"):
         s += 0.005  # ISBN があれば書影も引けるので僅差なら優先
     return min(s, 1.0)
+
+
+def ndl_queries(title: str, author: str | None) -> list[tuple[str, str | None]]:
+    """NDL サーチに投げる (書名, 著者) の候補を、厳しい順に並べる。"""
+    base = re.sub(r"\s+", " ", unicodedata.normalize("NFKC", title or "")).strip()
+    no_volume = re.sub(r"\s*(上|中|下|[0-9]+|第[0-9一二三四五六七八九十]+巻|[ⅠⅡⅢ]+)$", "", base).strip()
+    head = re.split(r"[ :：]", no_volume)[0]
+    queries: list[tuple[str, str | None]] = []
+    for pair in ((base, author), (base, None), (no_volume, author), (head, author)):
+        if pair[0] and pair not in queries:
+            queries.append(pair)
+    return queries
 
 
 def search_candidates(title: str, author: str | None = None, publisher: str | None = None,
@@ -296,10 +312,18 @@ def search_candidates(title: str, author: str | None = None, publisher: str | No
         for c in cands:
             c["score"] = 1.0 if c.get("isbn") == wanted else 0.5
     else:
-        params = {"title": title}
-        if author:
-            params["creator"] = author
-        cands += attempt("NDL", lambda: _search_ndl(params, debug))
+        # 見つからなければ、著者なし・巻数なし・書名の頭だけ、の順にゆるめて探す
+        for query_title, query_author in ndl_queries(title, author):
+            params = {"title": query_title}
+            if query_author:
+                params["creator"] = query_author
+            before = len(errors)
+            found = attempt("NDL", lambda p=params: _search_ndl(p, debug))
+            if found:
+                cands += found
+                break
+            if len(errors) > before:
+                break  # 通信そのものに失敗したときは、言い換えても同じなので打ち切る
         for c in cands:
             c["score"] = score(c, title, author, publisher)
         if max((c["score"] for c in cands), default=0.0) < MATCH_THRESHOLD:
