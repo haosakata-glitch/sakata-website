@@ -6181,50 +6181,6 @@
       }
     },
     {
-      "id": "t-f0c452a266",
-      "title": "シュルレアリスム宣言・溶ける魚",
-      "authors": [
-        "A・ブルトン"
-      ],
-      "publisher": "岩波文庫",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "author",
-      "reason": "書名は近いのですが、著者が一致しません。読み取り: A・ブルトン / 候補: Breton, André, 1896-1966、巌谷国士, 1943-",
-      "matchScore": 0.776,
-      "addedAt": "2026-10-28T04:35:11+09:00",
-      "recognized": {
-        "title": "シュルレアリスム宣言・溶ける魚",
-        "author": "A・ブルトン"
-      },
-      "candidates": [
-        {
-          "title": "シュルレアリスム宣言・溶ける魚",
-          "authors": [
-            "Breton, André, 1896-1966",
-            "巌谷国士, 1943-"
-          ],
-          "publisher": "岩波書店",
-          "isbn": "9784003259016",
-          "score": 0.776
-        },
-        {
-          "title": "シュルレアリスム宣言・溶ける魚",
-          "authors": [
-            "Breton, André, 1896-1966",
-            "巌谷国士, 1943-"
-          ],
-          "publisher": "学芸書林",
-          "isbn": "",
-          "score": 0.771
-        }
-      ]
-    },
-    {
       "id": "9784259568474",
       "title": "美しき日本の土壌図鑑",
       "authors": [
@@ -6463,60 +6419,6 @@
       }
     },
     {
-      "id": "t-82ef809668",
-      "title": "GA DETAIL 1 Mies van der Rohe / Farnsworth House",
-      "authors": [
-        "Mies van der Rohe"
-      ],
-      "publisher": "A.D.A. EDITA Tokyo",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「GAグローバル・アーキテクチュア no.75」（二川幸夫, 1932-2013、Mies van der Rohe, Ludwig, 1886-1969）です",
-      "matchScore": 0.39,
-      "addedAt": "2026-10-28T04:36:32+09:00",
-      "recognized": {
-        "title": "GA DETAIL 1 Mies van der Rohe / Farnsworth House",
-        "author": "Mies van der Rohe"
-      },
-      "candidates": [
-        {
-          "title": "GAグローバル・アーキテクチュア no.75",
-          "authors": [
-            "二川幸夫, 1932-2013",
-            "Mies van der Rohe, Ludwig, 1886-1969",
-            "Neumeyer, Fritz"
-          ],
-          "publisher": "A.D.A.EDITA Tokyo",
-          "isbn": "9784871400756",
-          "score": 0.39
-        },
-        {
-          "title": "GAディテール no.1",
-          "authors": [
-            "Mies van der Rohe, Ludwig, 1886-1969"
-          ],
-          "publisher": "A.D.A.EDITA Tokyo Co.",
-          "isbn": "",
-          "score": 0.374
-        },
-        {
-          "title": "GAグローバル・アーキテクチュア no.27 (ミース・ファン・デル・ローエ)",
-          "authors": [
-            "二川幸夫, 1932-2013",
-            "Mies van der Rohe, Ludwig, 1886-1969"
-          ],
-          "publisher": "A.D.A.EDITA Tokyo",
-          "isbn": "",
-          "score": 0.368
-        }
-      ]
-    },
-    {
       "id": "t-f3203cc46d",
       "title": "The Sea Ranch",
       "authors": [
@@ -6526,47 +6428,16 @@
       "publishedDate": "",
       "isbn": "",
       "cover": null,
+      "coverUrl": null,
       "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「The management of the red sea bream ranching in Kagoshima Bay, Japan : an economic approach」（Julita Ragasa Ungson）です",
-      "matchScore": 0.24,
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
       "addedAt": "2026-10-28T04:37:10+09:00",
       "recognized": {
         "title": "The Sea Ranch",
         "author": "MLTW"
-      },
-      "candidates": [
-        {
-          "title": "The management of the red sea bream ranching in Kagoshima Bay, Japan : an economic approach",
-          "authors": [
-            "Julita Ragasa Ungson"
-          ],
-          "publisher": "",
-          "isbn": "",
-          "score": 0.24
-        },
-        {
-          "title": "Marine ranching / edited by Devin M. Bartley and Kenneth M. Leber.",
-          "authors": [
-            "国際連合食糧農業機関"
-          ],
-          "publisher": "Food and Agriculture Organization of the United Nations",
-          "isbn": "9789251049617",
-          "score": 0.18
-        },
-        {
-          "title": "Ecosystem-based management for marine fisheries : an evolving perspective",
-          "authors": [
-            "Belgrano, Andrea.",
-            "Fowler, Charles W. (Charles Winsor), 1941-"
-          ],
-          "publisher": "Cambridge University Press",
-          "isbn": "9780521519816",
-          "score": 0.175
-        }
-      ]
+      }
     },
     {
       "id": "9784582543674",
@@ -6751,48 +6622,16 @@
       "publishedDate": "",
       "isbn": "",
       "cover": null,
+      "coverUrl": null,
       "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「The literature of Australia : an anthology」（Jose, Nicholas, 1952-）です",
-      "matchScore": 0.304,
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
       "addedAt": "2026-10-28T04:39:26+09:00",
       "recognized": {
         "title": "URBAN WILD ECOLOGY",
         "author": "Fuminori Nousaku + Mio Tsuneyama"
-      },
-      "candidates": [
-        {
-          "title": "The literature of Australia : an anthology",
-          "authors": [
-            "Jose, Nicholas, 1952-"
-          ],
-          "publisher": "W.W. Norton & Co.",
-          "isbn": "9780393072617",
-          "score": 0.304
-        },
-        {
-          "title": "Beasts at bedtime : revealing the environmental wisdom in children's literature",
-          "authors": [
-            "Heneghan, Liam."
-          ],
-          "publisher": "The University of Chicago Press",
-          "isbn": "9780226431383",
-          "score": 0.218
-        },
-        {
-          "title": "Designing low carbon societies in landscapes",
-          "authors": [
-            "中越信和, 1951-",
-            "Mabuhay, Jhonamie A",
-            "巌佐庸, 1952-"
-          ],
-          "publisher": "Springer",
-          "isbn": "9784431548188",
-          "score": 0.214
-        }
-      ]
+      }
     },
     {
       "id": "9784395050796",
@@ -6926,72 +6765,6 @@
       }
     },
     {
-      "id": "t-7ac3a13cb8",
-      "title": "Geography of Dreams RCR Arquitectes",
-      "authors": [
-        "RCR Arquitectes"
-      ],
-      "publisher": "TOTO出版",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「RCRアーキテクツ夢のジオグラフィー」（RCRアーキテクツ）です",
-      "matchScore": 0.252,
-      "addedAt": "2026-10-28T04:40:10+09:00",
-      "recognized": {
-        "title": "Geography of Dreams RCR Arquitectes",
-        "author": "RCR Arquitectes"
-      },
-      "candidates": [
-        {
-          "title": "RCRアーキテクツ夢のジオグラフィー",
-          "authors": [
-            "RCRアーキテクツ"
-          ],
-          "publisher": "TOTO出版",
-          "isbn": "9784887063778",
-          "score": 0.252
-        }
-      ]
-    },
-    {
-      "id": "t-01cec5c022",
-      "title": "Sou Fujimoto Architecture Works 1995-2015",
-      "authors": [
-        "藤本壮介"
-      ],
-      "publisher": "TOTO出版",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「藤本壮介建築作品集」（藤本壮介）です",
-      "matchScore": 0.285,
-      "addedAt": "2026-10-28T04:40:24+09:00",
-      "recognized": {
-        "title": "Sou Fujimoto Architecture Works 1995-2015",
-        "author": "藤本壮介"
-      },
-      "candidates": [
-        {
-          "title": "藤本壮介建築作品集",
-          "authors": [
-            "藤本壮介"
-          ],
-          "publisher": "TOTO出版",
-          "isbn": "9784887063495",
-          "score": 0.285
-        }
-      ]
-    },
-    {
       "id": "t-cf48c65c14",
       "title": "Light in Japanese Architecture 日本建築における光と影",
       "authors": [
@@ -7001,29 +6774,16 @@
       "publishedDate": "",
       "isbn": "",
       "cover": null,
+      "coverUrl": null,
       "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「自然光を活かした建築」（Plummer, Henry、小竹由加里, 1962-）です",
-      "matchScore": 0.318,
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
       "addedAt": "2026-10-28T04:40:40+09:00",
       "recognized": {
         "title": "Light in Japanese Architecture 日本建築における光と影",
         "author": "Henry Plummer"
-      },
-      "candidates": [
-        {
-          "title": "自然光を活かした建築",
-          "authors": [
-            "Plummer, Henry",
-            "小竹由加里, 1962-"
-          ],
-          "publisher": "ガイアブックス",
-          "isbn": "9784882827597",
-          "score": 0.318
-        }
-      ]
+      }
     },
     {
       "id": "t-400cb61a2f",
@@ -7033,45 +6793,16 @@
       "publishedDate": "",
       "isbn": "",
       "cover": null,
+      "coverUrl": null,
       "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「あぁ、アジのひらきがたべたいっ!」（かねまつすみれ、青山友美, 1974-）です",
-      "matchScore": 0.031,
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
       "addedAt": "2026-10-28T04:40:56+09:00",
       "recognized": {
         "title": "GA DOCUMENT SPECIAL ISSUE 3 1920-1945 MODERN ARCHITECTURE 世界の建築",
         "author": ""
-      },
-      "candidates": [
-        {
-          "title": "あぁ、アジのひらきがたべたいっ!",
-          "authors": [
-            "かねまつすみれ",
-            "青山友美, 1974-"
-          ],
-          "publisher": "文研出版",
-          "isbn": "9784580824188",
-          "score": 0.031
-        },
-        {
-          "title": "ああ、浅間が焼る : 千曲川の[セセラギ] : 二〇〇〇年記念",
-          "authors": [
-            "美紀光彦, 1927-"
-          ],
-          "publisher": "ひこばえ社",
-          "isbn": "9784938803483",
-          "score": 0.029
-        },
-        {
-          "title": "あゝあの人がありながら;浮気の虫",
-          "authors": [],
-          "publisher": "テイチク",
-          "isbn": "",
-          "score": 0.026
-        }
-      ]
+      }
     },
     {
       "id": "t-6b21c24db0",
@@ -7081,45 +6812,16 @@
       "publishedDate": "",
       "isbn": "",
       "cover": null,
+      "coverUrl": null,
       "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「あぁ、アジのひらきがたべたいっ!」（かねまつすみれ、青山友美, 1974-）です",
-      "matchScore": 0.031,
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
       "addedAt": "2026-10-28T04:41:10+09:00",
       "recognized": {
         "title": "GA DOCUMENT SPECIAL ISSUE 2 1851-1919 MODERN ARCHITECTURE 世界の建築",
         "author": ""
-      },
-      "candidates": [
-        {
-          "title": "あぁ、アジのひらきがたべたいっ!",
-          "authors": [
-            "かねまつすみれ",
-            "青山友美, 1974-"
-          ],
-          "publisher": "文研出版",
-          "isbn": "9784580824188",
-          "score": 0.031
-        },
-        {
-          "title": "ああ、浅間が焼る : 千曲川の[セセラギ] : 二〇〇〇年記念",
-          "authors": [
-            "美紀光彦, 1927-"
-          ],
-          "publisher": "ひこばえ社",
-          "isbn": "9784938803483",
-          "score": 0.029
-        },
-        {
-          "title": "あゝあの人がありながら;浮気の虫",
-          "authors": [],
-          "publisher": "テイチク",
-          "isbn": "",
-          "score": 0.026
-        }
-      ]
+      }
     },
     {
       "id": "9784887063730",
@@ -7330,47 +7032,16 @@
       "publishedDate": "",
       "isbn": "",
       "cover": null,
+      "coverUrl": null,
       "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「あああ!この手この足が! : 末梢神経の障害『クロー・フカセ病』」（新名絋一, -1988）です",
-      "matchScore": 0.12,
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
       "addedAt": "2026-10-28T04:42:08+09:00",
       "recognized": {
         "title": "GA JAPAN 149 PLOT 設計のプロセス",
         "author": ""
-      },
-      "candidates": [
-        {
-          "title": "あああ!この手この足が! : 末梢神経の障害『クロー・フカセ病』",
-          "authors": [
-            "新名絋一, -1988"
-          ],
-          "publisher": "新名克子",
-          "isbn": "",
-          "score": 0.12
-        },
-        {
-          "title": "ああ、浅間が焼る : 千曲川の[セセラギ] : 二〇〇〇年記念",
-          "authors": [
-            "美紀光彦, 1927-"
-          ],
-          "publisher": "ひこばえ社",
-          "isbn": "9784938803483",
-          "score": 0.089
-        },
-        {
-          "title": "あぁ、アジのひらきがたべたいっ!",
-          "authors": [
-            "かねまつすみれ",
-            "青山友美, 1974-"
-          ],
-          "publisher": "文研出版",
-          "isbn": "9784580824188",
-          "score": 0.056
-        }
-      ]
+      }
     },
     {
       "id": "t-343a99a7c2",
@@ -7380,42 +7051,16 @@
       "publishedDate": "",
       "isbn": "",
       "cover": null,
+      "coverUrl": null,
       "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「AHKAH 2017-2018 just the TWO of US LIMITED EDITION」（著者の記載なし）です",
-      "matchScore": 0.197,
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
       "addedAt": "2026-10-28T04:42:29+09:00",
       "recognized": {
         "title": "THE JAPANESE HOUSE ARCHITECTURE AND LIFE AFTER 1945 日本の家 1945年以降の建築と暮らし",
         "author": ""
-      },
-      "candidates": [
-        {
-          "title": "AHKAH 2017-2018 just the TWO of US LIMITED EDITION",
-          "authors": [],
-          "publisher": "宝島社",
-          "isbn": "9784800277626",
-          "score": 0.197
-        },
-        {
-          "title": "AHKAH 2017-2018 just the TWO of US",
-          "authors": [],
-          "publisher": "宝島社",
-          "isbn": "9784800277602",
-          "score": 0.126
-        },
-        {
-          "title": "アーカイブズ学研究 1号-5号 2004年10月-2006年11月",
-          "authors": [
-            "日本アーカイブズ学会"
-          ],
-          "publisher": "日本アーカイブズ学会",
-          "isbn": "",
-          "score": 0.079
-        }
-      ]
+      }
     },
     {
       "id": "9784844137610",
@@ -7469,46 +7114,16 @@
       "publishedDate": "",
       "isbn": "",
       "cover": null,
+      "coverUrl": null,
       "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「帰ってきたハイスクール!奇面組」（新沢基栄, 1958-）です",
-      "matchScore": 0.194,
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
       "addedAt": "2026-10-28T04:42:50+09:00",
       "recognized": {
         "title": "POPEYE 935 部屋作りのマイルール",
         "author": ""
-      },
-      "candidates": [
-        {
-          "title": "帰ってきたハイスクール!奇面組",
-          "authors": [
-            "新沢基栄, 1958-"
-          ],
-          "publisher": "マガジンハウス",
-          "isbn": "",
-          "score": 0.194
-        },
-        {
-          "title": "男だってきれいになりたい : こころと身体の新グルーミングbook",
-          "authors": [
-            "蔦森樹, 1960-"
-          ],
-          "publisher": "マガジンハウス",
-          "isbn": "9784838701148",
-          "score": 0.182
-        },
-        {
-          "title": "イマイチ君の理由なき探検",
-          "authors": [
-            "綱島理友, 1954-"
-          ],
-          "publisher": "マガジンハウス",
-          "isbn": "9784838700523",
-          "score": 0.151
-        }
-      ]
+      }
     },
     {
       "id": "9784403250187",
@@ -7553,39 +7168,6 @@
       }
     },
     {
-      "id": "t-1e80c34919",
-      "title": "映画には「動機」がある",
-      "authors": [
-        "町山智浩"
-      ],
-      "publisher": "インターナショナル新書",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「映画には「動機(ワケ)」がある : 「最前線の映画」を読む Vol.2」（町山智浩, 1962-）です",
-      "matchScore": 0.664,
-      "addedAt": "2026-10-28T04:43:44+09:00",
-      "recognized": {
-        "title": "映画には「動機」がある",
-        "author": "町山智浩"
-      },
-      "candidates": [
-        {
-          "title": "映画には「動機(ワケ)」がある : 「最前線の映画」を読む Vol.2",
-          "authors": [
-            "町山智浩, 1962-"
-          ],
-          "publisher": "集英社インターナショナル",
-          "isbn": "9784797680553",
-          "score": 0.664
-        }
-      ]
-    },
-    {
       "id": "t-ebe659d3a9",
       "title": "GA HOUSES 187 PROJECT 2023 世界の住宅",
       "authors": [],
@@ -7593,43 +7175,16 @@
       "publishedDate": "",
       "isbn": "",
       "cover": null,
+      "coverUrl": null,
       "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「あぁ、アジのひらきがたべたいっ!」（かねまつすみれ、青山友美, 1974-）です",
-      "matchScore": 0.049,
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
       "addedAt": "2026-10-28T04:44:00+09:00",
       "recognized": {
         "title": "GA HOUSES 187 PROJECT 2023 世界の住宅",
         "author": ""
-      },
-      "candidates": [
-        {
-          "title": "あぁ、アジのひらきがたべたいっ!",
-          "authors": [
-            "かねまつすみれ",
-            "青山友美, 1974-"
-          ],
-          "publisher": "文研出版",
-          "isbn": "9784580824188",
-          "score": 0.049
-        },
-        {
-          "title": "ああ、いやらしい…自宅で妻が精飲クリいじり!",
-          "authors": [],
-          "publisher": "インフォメディア",
-          "isbn": "9784909498298",
-          "score": 0.044
-        },
-        {
-          "title": "あゝあの人がありながら;浮気の虫",
-          "authors": [],
-          "publisher": "テイチク",
-          "isbn": "",
-          "score": 0.043
-        }
-      ]
+      }
     },
     {
       "id": "9784130820868",
@@ -7917,52 +7472,6 @@
       }
     },
     {
-      "id": "t-71b4e4c149",
-      "title": "ART 世界の美術 コンパクト版",
-      "authors": [
-        "アンドリュー・グレアム＝ディクソン"
-      ],
-      "publisher": "河出書房新社",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「世界の美術 : The Definitive Visual Guide」（Graham-Dixon, Andrew、樺山紘一, 1941-）です",
-      "matchScore": 0.244,
-      "addedAt": "2026-10-28T04:45:08+09:00",
-      "recognized": {
-        "title": "ART 世界の美術 コンパクト版",
-        "author": "アンドリュー・グレアム＝ディクソン"
-      },
-      "candidates": [
-        {
-          "title": "世界の美術 : The Definitive Visual Guide",
-          "authors": [
-            "Graham-Dixon, Andrew",
-            "樺山紘一, 1941-",
-            "エスプロジェクト"
-          ],
-          "publisher": "河出書房新社",
-          "isbn": "9784309255804",
-          "score": 0.244
-        },
-        {
-          "title": "世界の美術 : The Definitive Visual Guide",
-          "authors": [
-            "Graham-Dixon, Andrew",
-            "樺山紘一, 1941-",
-            "エスプロジェクト"
-          ],
-          "publisher": "河出書房新社",
-          "isbn": "9784309257105",
-          "score": 0.244
-        }
-      ]
-    },
-    {
       "id": "9784336063342",
       "title": "日本のアール・ブリュット : もうひとつの眼差し",
       "authors": [
@@ -8174,8 +7683,8 @@
       }
     },
     {
-      "id": "t-23dd304e55",
-      "title": "失敗の社会学",
+      "id": "t-487de93b6a",
+      "title": "失敗の社会学 視認性と責任をめぐる試論",
       "authors": [
         "中森弘樹"
       ],
@@ -8183,46 +7692,16 @@
       "publishedDate": "",
       "isbn": "",
       "cover": null,
+      "coverUrl": null,
       "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "author",
-      "reason": "書名は近いのですが、著者が一致しません。読み取り: 中森弘樹 / 候補: 小谷敏, 1956-",
-      "matchScore": 0.73,
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
       "addedAt": "2026-10-28T04:46:20+09:00",
       "recognized": {
-        "title": "失敗の社会学",
+        "title": "失敗の社会学 視認性と責任をめぐる試論",
         "author": "中森弘樹"
-      },
-      "candidates": [
-        {
-          "title": "無能と失敗の社会学",
-          "authors": [
-            "小谷敏, 1956-"
-          ],
-          "publisher": "高文研",
-          "isbn": "9784874988817",
-          "score": 0.73
-        },
-        {
-          "title": "「政府の失敗」の社会学 : 整備新幹線建設と旧国鉄長期債務問題",
-          "authors": [
-            "船橋晴俊, 1948-2014"
-          ],
-          "publisher": "ハーベスト社",
-          "isbn": "9784938551537",
-          "score": 0.697
-        },
-        {
-          "title": "負担問題と「政府の失敗」の社会学 : 鉄道政策と廃棄物政策を事例に",
-          "authors": [
-            "湯浅陽一"
-          ],
-          "publisher": "[湯浅陽一]",
-          "isbn": "",
-          "score": 0.691
-        }
-      ]
+      }
     },
     {
       "id": "9784041014288",
@@ -8246,8 +7725,8 @@
       }
     },
     {
-      "id": "t-70f5a8d16b",
-      "title": "世界の終りとハードボイルド・ワンダーランド 上",
+      "id": "t-6ad9d8bddf",
+      "title": "世界の終わりとハードボイルド・ワンダーランド (上)",
       "authors": [
         "村上春樹"
       ],
@@ -8255,47 +7734,35 @@
       "publishedDate": "",
       "isbn": "",
       "cover": null,
+      "coverUrl": null,
       "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「村上春樹全作品1979～1989 4 (世界の終りとハードボイルド・ワンダーランド)」（村上春樹, 1949-）です",
-      "matchScore": 0.781,
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
       "addedAt": "2026-10-28T04:46:43+09:00",
       "recognized": {
-        "title": "世界の終りとハードボイルド・ワンダーランド 上",
+        "title": "世界の終わりとハードボイルド・ワンダーランド (上)",
         "author": "村上春樹"
-      },
-      "candidates": [
-        {
-          "title": "村上春樹全作品1979～1989 4 (世界の終りとハードボイルド・ワンダーランド)",
-          "authors": [
-            "村上春樹, 1949-"
-          ],
-          "publisher": "講談社",
-          "isbn": "9784061879348",
-          "score": 0.781
-        }
-      ]
+      }
     },
     {
-      "id": "9784106006449",
-      "title": "世界の終りとハードボイルド・ワンダーランド",
+      "id": "t-ddc1e2e852",
+      "title": "世界の終わりとハードボイルド・ワンダーランド (下)",
       "authors": [
-        "村上春樹, 1949-"
+        "村上春樹"
       ],
-      "publisher": "新潮社",
-      "publishedDate": "1985.6",
-      "isbn": "9784106006449",
+      "publisher": "新潮文庫",
+      "publishedDate": "",
+      "isbn": "",
       "cover": null,
       "coverUrl": null,
-      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001749816",
-      "source": "ndl",
+      "infoLink": "",
+      "source": "manual",
       "status": "matched",
       "matchScore": 1.0,
       "addedAt": "2026-10-28T04:46:48+09:00",
       "recognized": {
-        "title": "世界の終りとハードボイルド・ワンダーランド 下",
+        "title": "世界の終わりとハードボイルド・ワンダーランド (下)",
         "author": "村上春樹"
       }
     },
@@ -8361,6 +7828,401 @@
         "title": "大阪「高低差」の秘密",
         "author": "梅林秀行"
       }
+    },
+    {
+      "id": "9784003259016",
+      "title": "シュルレアリスム宣言・溶ける魚",
+      "authors": [
+        "Breton, André, 1896-1966",
+        "巌谷国士, 1943-"
+      ],
+      "publisher": "岩波書店",
+      "publishedDate": "1992.6",
+      "isbn": "9784003259016",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000002192342",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:42+09:00",
+      "recognized": {
+        "title": "シュルレアリスム宣言・溶ける魚",
+        "author": "Breton, André, 1896-1966"
+      }
+    },
+    {
+      "id": "t-e298a7407e",
+      "title": "GAディテール no.1",
+      "authors": [
+        "Mies van der Rohe, Ludwig, 1886-1969"
+      ],
+      "publisher": "A.D.A.EDITA Tokyo Co.",
+      "publishedDate": "1976",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001144047",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:46+09:00",
+      "recognized": {
+        "title": "GAディテール no.1",
+        "author": "Mies van der Rohe, Ludwig, 1886-1969"
+      }
+    },
+    {
+      "id": "9784887063778",
+      "title": "RCRアーキテクツ夢のジオグラフィー",
+      "authors": [
+        "RCRアーキテクツ"
+      ],
+      "publisher": "TOTO出版",
+      "publishedDate": "2019.1",
+      "isbn": "9784887063778",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I029436137",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:49+09:00",
+      "recognized": {
+        "title": "RCRアーキテクツ夢のジオグラフィー",
+        "author": "RCRアーキテクツ"
+      }
+    },
+    {
+      "id": "9784887063495",
+      "title": "藤本壮介建築作品集",
+      "authors": [
+        "藤本壮介"
+      ],
+      "publisher": "TOTO出版",
+      "publishedDate": "2015.4",
+      "isbn": "9784887063495",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I026297402",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:51+09:00",
+      "recognized": {
+        "title": "藤本壮介建築作品集",
+        "author": "藤本壮介"
+      }
+    },
+    {
+      "id": "9784797680553",
+      "title": "映画には「動機(ワケ)」がある : 「最前線の映画」を読む Vol.2",
+      "authors": [
+        "町山智浩, 1962-"
+      ],
+      "publisher": "集英社インターナショナル",
+      "publishedDate": "2020.6",
+      "isbn": "9784797680553",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I030414578",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:55+09:00",
+      "recognized": {
+        "title": "映画には「動機(ワケ)」がある : 「最前線の映画」を読む Vol.2",
+        "author": "町山智浩, 1962-"
+      }
+    },
+    {
+      "id": "9784309257105",
+      "title": "世界の美術 : The Definitive Visual Guide",
+      "authors": [
+        "Graham-Dixon, Andrew",
+        "樺山紘一, 1941-",
+        "エスプロジェクト"
+      ],
+      "publisher": "河出書房新社",
+      "publishedDate": "2023.11",
+      "isbn": "9784309257105",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I033150964",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:57+09:00",
+      "recognized": {
+        "title": "世界の美術 : The Definitive Visual Guide",
+        "author": "Graham-Dixon, Andrew"
+      }
+    },
+    {
+      "id": "t-dc4cff76d7",
+      "title": "B-sides, History: ビスイズ、ヒストリー 現代建築にとっての歴史",
+      "authors": [
+        "長谷川豪・ケルステン・ゲールス・ダヴィッド・ファン・セーヴェレン"
+      ],
+      "publisher": "鹿島出版会",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:57+09:00",
+      "recognized": {
+        "title": "B-sides, History: ビスイズ、ヒストリー 現代建築にとっての歴史",
+        "author": "長谷川豪・ケルステン・ゲールス・ダヴィッド・ファン・セーヴェレン"
+      }
+    },
+    {
+      "id": "t-e5b63bd4b8",
+      "title": "Row House in Sumiyoshi/Koshino House/Kidosaki House",
+      "authors": [
+        "Tadao Ando"
+      ],
+      "publisher": "GA",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:57+09:00",
+      "recognized": {
+        "title": "Row House in Sumiyoshi/Koshino House/Kidosaki House",
+        "author": "Tadao Ando"
+      }
+    },
+    {
+      "id": "t-a43915d3b6",
+      "title": "道具のブッシリ",
+      "authors": [
+        "田中幸、結城千代子"
+      ],
+      "publisher": "雷鳥社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:57+09:00",
+      "recognized": {
+        "title": "道具のブッシリ",
+        "author": "田中幸、結城千代子"
+      }
+    },
+    {
+      "id": "t-08f5894b9e",
+      "title": "日本の現代建築を考える〇と× I",
+      "authors": [],
+      "publisher": "GA",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:57+09:00",
+      "recognized": {
+        "title": "日本の現代建築を考える〇と× I",
+        "author": ""
+      }
+    },
+    {
+      "id": "t-97fca1fa7c",
+      "title": "日本の現代建築を考える〇と× II",
+      "authors": [],
+      "publisher": "GA",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:57+09:00",
+      "recognized": {
+        "title": "日本の現代建築を考える〇と× II",
+        "author": ""
+      }
+    },
+    {
+      "id": "t-7c116b7f8c",
+      "title": "ja THE JAPAN ARCHITECT 93 SPRING, 2014 KAZUO SHINOHARA",
+      "authors": [
+        "篠原一男"
+      ],
+      "publisher": "新建築社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:57+09:00",
+      "recognized": {
+        "title": "ja THE JAPAN ARCHITECT 93 SPRING, 2014 KAZUO SHINOHARA",
+        "author": "篠原一男"
+      }
+    },
+    {
+      "id": "t-9f329a1b8c",
+      "title": "映画空間400層 映画史115年×空間のタイポロジー",
+      "authors": [],
+      "publisher": "INAX出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:57+09:00",
+      "recognized": {
+        "title": "映画空間400層 映画史115年×空間のタイポロジー",
+        "author": ""
+      }
+    },
+    {
+      "id": "t-bd6ad7d02d",
+      "title": "京都大学建築学科100年の歩み",
+      "authors": [
+        "京都大学建築学教室創立100周年記念史出版編集委員会"
+      ],
+      "publisher": "京都大学学術出版会",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:49:57+09:00",
+      "recognized": {
+        "title": "京都大学建築学科100年の歩み",
+        "author": "京都大学建築学教室創立100周年記念史出版編集委員会"
+      }
+    },
+    {
+      "id": "9784588008559",
+      "title": "運動イメージ",
+      "authors": [
+        "Deleuze, Gilles, 1925-1995",
+        "財津理",
+        "齋藤範"
+      ],
+      "publisher": "法政大学出版局",
+      "publishedDate": "2008.10",
+      "isbn": "9784588008559",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000009746332",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.905,
+      "addedAt": "2026-10-28T04:49:59+09:00",
+      "recognized": {
+        "title": "シネマ 運動イメージ",
+        "author": "ジル・ドゥルーズ"
+      }
+    },
+    {
+      "id": "9784588008566",
+      "title": "時間イメージ",
+      "authors": [
+        "Deleuze, Gilles, 1925-1995",
+        "宇野邦一, 1948-",
+        "石原陽一郎, 1962-",
+        "江澤健一郎"
+      ],
+      "publisher": "法政大学出版局",
+      "publishedDate": "2006.11",
+      "isbn": "9784588008566",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000008372140",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.905,
+      "addedAt": "2026-10-28T04:50:01+09:00",
+      "recognized": {
+        "title": "シネマ 時間イメージ",
+        "author": "ジル・ドゥルーズ"
+      }
+    },
+    {
+      "id": "9784087816839",
+      "title": "聖なるズー",
+      "authors": [
+        "濱野ちひろ, 1977-"
+      ],
+      "publisher": "集英社",
+      "publishedDate": "2019.11",
+      "isbn": "9784087816839",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I030070218",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:50:03+09:00",
+      "recognized": {
+        "title": "聖なるズー",
+        "author": "濱野ちひろ"
+      }
+    },
+    {
+      "id": "t-5626a31818",
+      "title": "定本 映画術",
+      "authors": [
+        "フランソワ・トリュフォー"
+      ],
+      "publisher": "晶文社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「映画術 : 定本」（Hitchcock, Alfred, 1899-1980、Truffaut, François, 1932-1984）です",
+      "matchScore": 0.575,
+      "addedAt": "2026-10-28T04:50:20+09:00",
+      "recognized": {
+        "title": "定本 映画術",
+        "author": "フランソワ・トリュフォー"
+      },
+      "candidates": [
+        {
+          "title": "映画術 : 定本",
+          "authors": [
+            "Hitchcock, Alfred, 1899-1980",
+            "Truffaut, François, 1932-1984",
+            "山田宏一, 1938-",
+            "蓮実重彦, 1936-"
+          ],
+          "publisher": "晶文社",
+          "isbn": "9784794958181",
+          "score": 0.575
+        }
+      ]
     }
   ]
 }
