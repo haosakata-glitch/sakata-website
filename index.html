@@ -285,7 +285,6 @@ $('view-reset').onclick=()=>{view.anchor=null;deselect();centerView();view.ts=pc
 /* ---------- selection + card ---------- */
 const catHref=c=>c==='TEXT'?'text.html':'archive.html?category='+encodeURIComponent(c);
 function select(n){
- if(n.type==='cat'){location.href=catHref(n.cat);return}
  selected=n;view.anchor=null;view.tcx=n.x;view.tcy=n.y;view.ts=clampS(Math.max(view.ts,mobile()?1.1:1.2));
  if(mobile())document.body.classList.remove('list-open');
  showCard(n);syncRows();
@@ -301,10 +300,10 @@ function showCard(n){
  if(n.type==='item'){
   if(n.src){const img=document.createElement('img');img.src=n.src;img.alt='';card.append(img)}
   const d=n.item.description||n.item.excerpt||'';if(d){const p=document.createElement('p');p.className='card-desc';p.textContent=d;body.append(p)}
-  if(n.item.detailPage){const a=document.createElement('a');a.className='card-open';a.href=n.item.detailPage;a.textContent='OPEN ↗';body.append(a)}
+  if(n.item.detailPage){const a=document.createElement('a');a.className='card-open';a.href=n.item.detailPage;a.textContent='MORE ↗';body.append(a)}
  }else{
   const cnt=n.type==='cat'?nodes.filter(x=>x.type==='item'&&x.cat===n.cat).length:nodes.filter(x=>x.type==='item').length;
-  const p=document.createElement('p');p.className='card-desc';p.textContent=cnt+' RECORDS';body.append(p);
+  const p=document.createElement('p');p.className='card-desc';p.textContent=cnt+' RECORDS';body.append(p);if(n.type==='cat'){const a=document.createElement('a');a.className='card-open';a.href=catHref(n.cat);a.textContent='MORE ↗';body.append(a)}
  }
  const rel=[...adj.get(n.id)].map(id=>byId.get(id)).filter(x=>x.type==='item');
  if(rel.length&&n.type==='item'){const box=document.createElement('div');box.className='card-links';rel.forEach(r=>{const b=document.createElement('button');b.type='button';b.textContent=r.label.length>16?r.label.slice(0,16)+'…':r.label;b.onclick=()=>select(r);box.append(b)});body.append(box)}
