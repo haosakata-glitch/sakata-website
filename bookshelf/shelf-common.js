@@ -58,6 +58,89 @@
     return list;
   }
 
+  // ISBN が無い本のために、Google Books をタイトルで検索して書影を探す。
+  // 対象は、ISBN-10 を作れない本（ISBN が無い、または 979 始まり）。本の記録に coverSearch: true を付ければ ISBN がある本も、false を付ければ検索しない。
+  // ブラウザが直接検索する（GitHub Actions からは Google Books が 429 になるため）。
+  // 書名が一致しない結果は使わない（別の本の書影を出すより、書名のタイルのほうがよい）。
+  function normText(value) {
+    return String(value == null ? "" : value).normalize("NFKC").toLowerCase().replace(/[\s　]+/g, "");
+  }
+
+  // 「悲しき熱帯 上」→「悲しき熱帯」、「大杉栄伝　永遠のアナキズム」→「大杉栄伝」（最初の空白・コロンまで）
+  function mainTitle(title) {
+    return String(title || "").split(/[\s　:：]/)[0];
+  }
+
+  function searchQuery(book) {
+    var q = "intitle:" + mainTitle(book.title);
+    var author = authorsOf(book)[0];
+    if (author) {
+      // 「Lévi-Strauss, Claude, 1908-2009」のような NDL の形は検索に向かないので、日本語の著者名のときだけ使う
+      var name = String(author).replace(/,?\s*\d{4}-(\d{4})?$/, "");
+      if (/[\u3040-\u30ff\u3400-\u9fff]/.test(name)) {
+        q += "+inauthor:" + name;
+      }
+    }
+    return "https://www.googleapis.com/books/v1/volumes?q=" + encodeURIComponent(q).replace(/%2B/g, "+") + "&maxResults=10&printType=books";
+  }
+
+  // 検索結果から、書名が一致し、書影のあるものを選ぶ。出版社・著者が合うものを優先する。
+  function pickCover(book, items) {
+    var wanted = normText(mainTitle(book.title));
+    var publisher = normText(book.publisher);
+    var authors = authorsOf(book).map(normText).filter(Boolean);
+    var best = null;
+    var bestScore = -1;
+    (Array.isArray(items) ? items : []).forEach(function (item) {
+      var info = item && item.volumeInfo;
+      var links = info && info.imageLinks;
+      var url = links && (links.thumbnail || links.smallThumbnail);
+      if (!url || !wanted || normText(info.title).indexOf(wanted) === -1) {
+        return;
+      }
+      var score = 1;
+      if (publisher && normText(info.publisher).indexOf(publisher) !== -1) { score += 2; }
+      var infoAuthors = normText((info.authors || []).join(" "));
+      if (authors.some(function (a) { return a.length >= 2 && infoAuthors.indexOf(a.split(",")[0]) !== -1; })) { score += 2; }
+      if (score > bestScore) {
+        best = url;
+        bestScore = score;
+      }
+    });
+    if (!best) {
+      return "";
+    }
+    // Google Books の画像: https にし、紙のめくれ（edge=curl）の加工を外す
+    return String(best).replace(/^http:/, "https:").replace(/&edge=curl/, "");
+  }
+
+  function wantsSearch(book) {
+    if (book.coverSearch === true) { return true; }
+    if (book.coverSearch === false) { return false; }
+    return !isbn10Of(book.isbn);
+  }
+
+  var searchCache = {};
+
+  // 本ごとに1回だけ検索する（一覧は検索・並び替えのたびに作り直されるため）。見つからなければ ""。
+  function searchCover(book) {
+    var key = String(book.id || book.title);
+    if (!searchCache[key]) {
+      searchCache[key] = fetch(searchQuery(book)).then(function (response) {
+        if (!response.ok) {
+          throw new Error("HTTP " + response.status);
+        }
+        return response.json();
+      }).then(function (data) {
+        return safeHttps(pickCover(book, data && data.items));
+      }).catch(function (error) {
+        console.error(error);
+        return "";
+      });
+    }
+    return searchCache[key];
+  }
+
   function titleTile(title) {
     var tile = document.createElement("div");
     tile.className = "cover noimg";
@@ -66,9 +149,11 @@
   }
 
   // 書影の要素。候補を順に試し、最初に表示できたものを使う。どれも駄目なら書名のタイルにする。
+  // ISBN-10 を作れない本（coverSearch: true の本も）は、候補を使い切ったあと、Google Books のタイトル検索を最後に試す。
   function coverFor(book, lazy) {
     var covers = coverCandidates(book);
-    if (!covers.length) {
+    var searchable = wantsSearch(book);
+    if (!covers.length && !searchable) {
       return titleTile(book.title);
     }
     var media = document.createElement("img");
@@ -77,11 +162,26 @@
     media.referrerPolicy = "no-referrer";
     if (lazy) { media.loading = "lazy"; }
     var next = 0;
+    var searched = false;
+    var giveUp = function () {
+      if (media.parentNode) {
+        media.parentNode.replaceChild(titleTile(book.title), media);
+      }
+    };
     var tryNext = function () {
       if (next < covers.length) {
         media.src = covers[next++];
-      } else if (media.parentNode) {
-        media.parentNode.replaceChild(titleTile(book.title), media);
+      } else if (searchable && !searched) {
+        searched = true;
+        searchCover(book).then(function (url) {
+          if (url) {
+            media.src = url;  // これが表示できなければ、error で giveUp になる
+          } else {
+            giveUp();
+          }
+        });
+      } else {
+        giveUp();
       }
     };
     media.addEventListener("error", tryNext);
@@ -151,6 +251,9 @@
     authorsOf: authorsOf,
     isbn10Of: isbn10Of,
     coverCandidates: coverCandidates,
+    wantsSearch: wantsSearch,
+    searchQuery: searchQuery,
+    pickCover: pickCover,
     coverFor: coverFor,
     loadBooks: loadBooks,
     loadNotes: loadNotes,
