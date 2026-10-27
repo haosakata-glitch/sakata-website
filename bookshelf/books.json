@@ -36,83 +36,55 @@
       "recognized": {
         "title": "評伝 ジャン・デュビュッフェ アール・ブリュットの探究者",
         "author": "末永照和"
-      }
+      },
+      "coverTries": 1
     },
     {
-      "id": "t-dc5ecaec17",
+      "id": "t-60a8305480",
       "title": "悲しき熱帯 上",
       "authors": [
-        "レヴィ＝ストロース"
+        "Lévi-Strauss, Claude, 1908-2009",
+        "川田順造, 1934-2024"
       ],
       "publisher": "中央公論社",
-      "publishedDate": "",
+      "publishedDate": "1977.10",
       "isbn": "",
       "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "matchScore": 0.78,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001338767",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.93,
       "addedAt": "2026-10-28T00:49:42+09:00",
       "recognized": {
         "title": "悲しき熱帯 上",
         "author": "レヴィ＝ストロース"
-      },
-      "candidates": [
-        {
-          "title": "悲しき熱帯 上",
-          "authors": [
-            "Lévi-Strauss, Claude, 1908-2009",
-            "川田順造, 1934-2024"
-          ],
-          "publisher": "中央公論社",
-          "isbn": "",
-          "score": 0.78
-        }
-      ]
+      }
     },
     {
-      "id": "t-d16509f57f",
+      "id": "9784480084798",
       "title": "場所の現象学",
       "authors": [
-        "エドワード・レルフ"
+        "Relf, E. C, 1944-",
+        "高野岳彦, 1956-",
+        "阿部隆, 1947-",
+        "石山美也子, 1963-"
       ],
       "publisher": "筑摩書房",
-      "publishedDate": "",
-      "isbn": "",
+      "publishedDate": "1999.3",
+      "isbn": "9784480084798",
       "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "matchScore": 0.785,
+      "coverUrl": null,
+      "coverTries": 2,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000002784376",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.935,
       "addedAt": "2026-10-28T00:49:59+09:00",
       "recognized": {
         "title": "場所の現象学",
         "author": "エドワード・レルフ"
-      },
-      "candidates": [
-        {
-          "title": "場所の現象学",
-          "authors": [
-            "Relf, E. C, 1944-",
-            "高野岳彦, 1956-",
-            "阿部隆, 1947-",
-            "石山美也子, 1963-"
-          ],
-          "publisher": "筑摩書房",
-          "isbn": "9784480084798",
-          "score": 0.785
-        },
-        {
-          "title": "場所の現象学 : 没場所性を越えて",
-          "authors": [
-            "Relf, E. C, 1944-",
-            "高野岳彦, 1956-"
-          ],
-          "publisher": "筑摩書房",
-          "isbn": "9784480855923",
-          "score": 0.742
-        }
-      ]
+      }
     },
     {
       "id": "t-afa6e7f170",
@@ -127,6 +99,8 @@
       "infoLink": "",
       "source": "recognized",
       "status": "needs_review",
+      "reasonCode": "author",
+      "reason": "書名は近いのですが、著者が一致しません。読み取り: エミリー・シンプソン / 候補: アール・ブリュット・ジャポネ展カタログ編集委員会 編",
       "matchScore": 0.746,
       "addedAt": "2026-10-28T00:50:19+09:00",
       "recognized": {
@@ -166,56 +140,27 @@
       ]
     },
     {
-      "id": "t-cab22ff5d5",
-      "title": "監獄の誕生 監視と処罰",
+      "id": "9784105067090",
+      "title": "監獄の誕生 : 監視と処罰",
       "authors": [
-        "ミシェル・フーコー"
+        "Foucault, Michel, 1926-1984",
+        "田村俶, 1931-2023"
       ],
       "publisher": "新潮社",
-      "publishedDate": "",
-      "isbn": "",
+      "publishedDate": "2020.4",
+      "isbn": "9784105067090",
       "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "matchScore": 0.785,
+      "coverUrl": null,
+      "coverTries": 2,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I030367995",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.935,
       "addedAt": "2026-10-28T00:50:35+09:00",
       "recognized": {
         "title": "監獄の誕生 監視と処罰",
         "author": "ミシェル・フーコー"
-      },
-      "candidates": [
-        {
-          "title": "監獄の誕生 : 監視と処罰",
-          "authors": [
-            "Foucault, Michel, 1926-1984",
-            "田村俶, 1931-2023"
-          ],
-          "publisher": "新潮社",
-          "isbn": "9784105067090",
-          "score": 0.785
-        },
-        {
-          "title": "監獄の誕生 : 監視と処罰",
-          "authors": [
-            "Foucault, Michel, 1926-1984",
-            "慎改康之, 1966-"
-          ],
-          "publisher": "新潮社",
-          "isbn": "9784105067137",
-          "score": 0.785
-        },
-        {
-          "title": "監獄の誕生 : 監視と処罰",
-          "authors": [
-            "Foucault, Michel, 1926-1984",
-            "田村俶, 1931-2023"
-          ],
-          "publisher": "新潮社",
-          "isbn": "",
-          "score": 0.78
-        }
-      ]
+      }
     },
     {
       "id": "9784480016874",
@@ -235,41 +180,33 @@
       "recognized": {
         "title": "アジールと国家 中世日本の政治と宗教",
         "author": "伊藤正敏"
-      }
+      },
+      "coverTries": 1
     },
     {
-      "id": "t-a97d662020",
-      "title": "有限性の後で 偶然性の必然性についての試論",
+      "id": "9784409030905",
+      "title": "有限性の後で : 偶然性の必然性についての試論",
       "authors": [
-        "カンタン・メイヤスー"
+        "Meillassoux, Quentin, 1967-",
+        "千葉雅也",
+        "大橋完太郎",
+        "星野太, 1983-"
       ],
       "publisher": "人文書院",
-      "publishedDate": "",
-      "isbn": "",
+      "publishedDate": "2016.1",
+      "isbn": "9784409030905",
       "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "matchScore": 0.785,
+      "coverUrl": null,
+      "coverTries": 2,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I027031764",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.935,
       "addedAt": "2026-10-28T00:51:01+09:00",
       "recognized": {
         "title": "有限性の後で 偶然性の必然性についての試論",
         "author": "カンタン・メイヤスー"
-      },
-      "candidates": [
-        {
-          "title": "有限性の後で : 偶然性の必然性についての試論",
-          "authors": [
-            "Meillassoux, Quentin, 1967-",
-            "千葉雅也",
-            "大橋完太郎",
-            "星野太, 1983-"
-          ],
-          "publisher": "人文書院",
-          "isbn": "9784409030905",
-          "score": 0.785
-        }
-      ]
+      }
     }
   ]
 }

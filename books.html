@@ -283,6 +283,22 @@
     font-size: 12px;
   }
 
+  .book-reason {
+    margin-top: 6px;
+    color: var(--secondary);
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  .credit {
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+
+  .credit a {
+    color: var(--secondary);
+  }
+
   .crosslinks {
     display: flex;
     flex-wrap: wrap;
@@ -412,7 +428,10 @@
 
 </main>
 
-<footer>© 坂田雄志</footer>
+<footer>
+  <div>© 坂田雄志</div>
+  <div class="credit">書誌データ: <a href="https://ndlsearch.ndl.go.jp/" target="_blank" rel="noopener noreferrer">国立国会図書館サーチ</a>（NDLサーチ API）、<a href="https://books.google.com/" target="_blank" rel="noopener noreferrer">Google Books</a>。書影は各提供元の画像を表示しています。</div>
+</footer>
 
 <script>
 (function () {
@@ -477,7 +496,9 @@
       }
     }
 
-    var coverPath = safeLocal(book.cover);
+    // 書影: サイト内に置いた画像（自分で撮った写真など）を優先し、無ければ提供元の画像を直接表示する。
+    // NDL・Google Books の書影は第三者の著作物なので、コピーを保存せず、提供元のURLを参照する。
+    var coverPath = safeLocal(book.cover) || safeHttps(book.coverUrl);
     var media;
     if (coverPath) {
       media = document.createElement("img");
@@ -485,6 +506,7 @@
       media.src = coverPath;
       media.alt = "";
       media.loading = "lazy";
+      media.referrerPolicy = "no-referrer";
       media.addEventListener("error", function () {
         if (media.parentNode) {
           media.parentNode.replaceChild(titleTile(book.title), media);
@@ -513,6 +535,13 @@
     meta.appendChild(document.createTextNode(line));
     card.appendChild(meta);
 
+    if (showReview && book.status === "needs_review" && book.reason) {
+      var reason = document.createElement("div");
+      reason.className = "book-reason";
+      reason.textContent = book.reason;
+      card.appendChild(reason);
+    }
+
     return card;
   }
 
@@ -521,6 +550,9 @@
     var sorter = sorters[sortEl.value] || sorters.added;
 
     var pool = books.filter(function (book) {
+      if (book.status === "ignored") {
+        return false;  // 本人が「載せない」と決めたもの
+      }
       return showReview || book.status !== "needs_review";
     });
     var shown = pool.filter(function (book) {
