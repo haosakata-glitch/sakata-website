@@ -135,6 +135,9 @@
       line-height: 1;
       letter-spacing: .025em;
     }
+    .bookshelf-link { margin: -16px 0 26px; font-size: 10px; letter-spacing: .1em; }
+    .bookshelf-link a { color: rgba(34,34,34,.62); text-decoration: none; border-bottom: 1px solid rgba(34,34,34,.25); }
+    .bookshelf-link a:hover { color: #222; }
     .hot-section { margin: 0 0 26px; max-width: 1080px; }
     .hot-heading, .archive-label {
       display: flex; align-items: baseline; justify-content: space-between;
@@ -604,6 +607,7 @@ main {
 
   <main>
     <h1 id="archive-page-title" class="archive-page-title">ALL</h1>
+    <p id="bookshelf-link" class="bookshelf-link" hidden><a href="books.html">BOOKSHELF — 蔵書一覧 →</a></p>
     <section class="hot-section" aria-label="HOT articles">
       <div class="hot-heading">
       </div>
@@ -805,6 +809,8 @@ main {
       currentCategory = category;
       const pageTitle = category === "ALL" ? "ALL" : category;
       document.getElementById("archive-page-title").textContent = pageTitle;
+      const bookshelfLink = document.getElementById("bookshelf-link");
+      if (bookshelfLink) bookshelfLink.hidden = category !== "BOOK";
       document.getElementById("archive-section-label").textContent = pageTitle === "ALL" ? "ARCHIVE" : pageTitle;
       document.title = pageTitle + "｜SAKATA YUSHI";
       archive.innerHTML = "";

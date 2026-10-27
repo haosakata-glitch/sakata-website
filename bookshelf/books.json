@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "books": [
+    {
+      "id": "site-book-01",
+      "title": "大杉栄伝　永遠のアナキズム",
+      "authors": ["栗原康"],
+      "publisher": "",
+      "publishedDate": "2021",
+      "isbn": "",
+      "cover": "book-01.jpg",
+      "infoLink": "",
+      "page": "book-01.html",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-07T00:00:00+09:00"
+    }
+  ]
+}

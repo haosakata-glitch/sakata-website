@@ -1,224 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Bookshelf｜坂田雄志</title>
-
-  <style>
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: #111;
-      background: #fff;
-    }
-
-    /* Header */
-
-    header {
-      padding: 20px 30px;
-      border-bottom: 1px solid #111;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header a {
-      color: #111;
-      text-decoration: none;
-    }
-
-    .site-title {
-      font-size: 18px;
-    }
-
-    .about-link {
-      font-size: 14px;
-    }
-
-    /* Main */
-
-    main {
-      padding: 30px;
-    }
-
-    /* Page title */
-
-    .page-title {
-      margin-bottom: 60px;
-    }
-
-    .page-title-label {
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 15px;
-    }
-
-    h1 {
-      font-size: 32px;
-      font-weight: normal;
-      margin: 0;
-    }
-
-    /* Bookshelf */
-
-    .bookshelf {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(5, 1fr);
-
-      gap: 45px 20px;
-
-    }
-
-    /* Book */
-
-    .book {
-      display: block;
-
-      color: #111;
-
-      text-decoration: none;
-    }
-
-    .book-image {
-
-      width: 100%;
-
-      aspect-ratio: 2 / 3;
-
-      object-fit: cover;
-
-      display: block;
-
-      margin-bottom: 12px;
-
-    }
-
-    .book-title {
-
-      font-size: 14px;
-
-      line-height: 1.6;
-
-      margin-bottom: 5px;
-
-    }
-
-    .book-meta {
-
-      font-size: 12px;
-
-      color: #777;
-
-      line-height: 1.5;
-
-    }
-
-    .book:hover .book-image {
-
-      opacity: 0.7;
-
-    }
-
-    /* Back */
-
-    .back {
-
-      margin-top: 100px;
-
-    }
-
-    .back a {
-
-      color: #111;
-
-      text-decoration: none;
-
-      font-size: 13px;
-
-    }
-
-    .back a:hover {
-
-      opacity: 0.5;
-
-    }
-
-    /* Footer */
-
-    footer {
-
-      padding:
-        100px
-        30px
-        30px;
-
-      font-size: 12px;
-
-      color: #666;
-
-    }
-
-    /* Tablet */
-
-    @media (max-width: 900px) {
-
-      .bookshelf {
-
-        grid-template-columns:
-          repeat(4, 1fr);
-
-      }
-
-    }
-
-    /* Mobile */
-
-    @media (max-width: 600px) {
-
-      header {
-
-        padding:
-          18px
-          20px;
-
-      }
-
-      main {
-
-        padding:
-          20px;
-
-      }
-
-      .bookshelf {
-
-        grid-template-columns:
-          repeat(2, 1fr);
-
-        gap:
-          35px 15px;
-
-      }
-
-      h1 {
-
-        font-size: 28px;
-
-      }
-
-    }
-
-  </style>
-<style id="site-design">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#E9E5DE">
+<meta name="description" content="SAKATA YUSHI — 蔵書の一覧。書影・著者・出版社を記録するアーカイブ。">
+<title>BOOKSHELF｜SAKATA YUSHI</title>
+<style>
   :root {
     --background: #E9E5DE;
+    --panel: #E4DFD6;
     --text: #24231F;
     --secondary: #77736B;
     --line: #CBC5BB;
@@ -230,11 +21,17 @@
 
   body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
     font-weight: 300;
     color: var(--text);
     background: var(--background);
   }
+
+  a {
+    color: inherit;
+  }
+
+  /* Header (他のページと共通) */
 
   header {
     position: fixed;
@@ -323,45 +120,182 @@
     white-space: nowrap;
   }
 
+  /* Main */
+
   main {
     max-width: 1500px;
     margin: 0 auto;
     padding: 90px 24px 80px;
   }
 
-  .category {
-    margin-bottom: 7px;
-    color: var(--secondary);
-    font-size: 8px;
-    letter-spacing: .075em;
-  }
-
   h1 {
-    margin: 0 0 24px;
-    font-size: 18px;
+    margin: 0 0 30px;
+    color: var(--text);
+    font-size: clamp(22px, 3.2vw, 40px);
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1;
+    letter-spacing: .025em;
   }
 
-  .image {
+  .shelf-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(34, 34, 34, .18);
+    font-size: 10px;
+    letter-spacing: .1em;
+  }
+
+  .shelf-count {
+    color: rgba(34, 34, 34, .45);
+    font-size: 9px;
+    letter-spacing: .04em;
+  }
+
+  .shelf-tools {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 26px;
+  }
+
+  .search-box {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .search-box input,
+  .sort-box select {
     width: 100%;
-    max-width: 900px;
-    margin: 0 0 35px;
+    min-height: 34px;
+    border: 1px solid rgba(34, 34, 34, .18);
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    padding: 7px 9px;
+    font: inherit;
+    font-size: 11px;
+    letter-spacing: .06em;
+    outline-offset: 3px;
   }
 
-  .image img {
+  .search-box input::placeholder {
+    color: rgba(34, 34, 34, .42);
+  }
+
+  .sort-box {
+    width: 140px;
+    flex: 0 0 auto;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .note {
+    margin: 0 0 20px;
+    color: var(--secondary);
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  /* Shelf */
+
+  .shelf {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+    gap: 30px 16px;
+  }
+
+  .book {
+    display: block;
+    min-width: 0;
+    color: var(--text);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  a.book:hover .cover {
+    opacity: .7;
+  }
+
+  .cover {
     display: block;
     width: 100%;
-    height: auto;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    transition: opacity .2s ease;
+  }
+
+  .noimg {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    color: var(--secondary);
+    font-size: 11px;
+    line-height: 1.6;
+    overflow: hidden;
+    word-break: break-all;
+  }
+
+  .book-title {
+    margin-top: 9px;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .book-meta {
+    margin-top: 3px;
+    color: var(--secondary);
+    font-size: 9.5px;
+    line-height: 1.6;
+  }
+
+  .badge {
+    display: inline-block;
+    margin-right: 6px;
+    padding: 0 5px;
+    border: 1px solid var(--secondary);
+    font-size: 9px;
+    letter-spacing: .04em;
+  }
+
+  .empty {
+    padding: 24px 0;
+    color: var(--secondary);
+    font-size: 12px;
   }
 
   .back {
-    margin-top: 30px;
+    margin-top: 60px;
     font-size: 10px;
   }
 
   .back a {
     color: var(--secondary);
+  }
+
+  footer {
+    padding: 0 24px 30px;
+    color: var(--secondary);
+    font-size: 10px;
   }
 
   @media (max-width: 600px) {
@@ -398,16 +332,23 @@
       padding: 76px 12px 60px;
     }
 
-    h1 {
-      font-size: 16px;
+    .shelf {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px 10px;
+    }
+
+    .sort-box {
+      width: 110px;
+    }
+
+    footer {
+      padding: 0 12px 30px;
     }
   }
 </style>
 </head>
 
 <body>
-
-  <!-- Header -->
 
 <header>
   <div class="header-left">
@@ -417,7 +358,7 @@
 <a class="header-category category-ARCHITECTURE" href="archive.html?category=ARCHITECTURE">ARCHITECTURE</a>
 <a class="header-category category-OBJECT" href="archive.html?category=OBJECT">OBJECT</a>
 <a class="header-category category-FOOD" href="archive.html?category=FOOD">FOOD</a>
-<a class="header-category category-BOOK" href="archive.html?category=BOOK">BOOK</a>
+<a class="header-category category-BOOK active" href="archive.html?category=BOOK">BOOK</a>
 <a class="header-category category-TEXT" href="text.html">TEXT</a>
 <a class="header-category category-PHOTO" href="archive.html?category=PHOTO">PHOTO</a>
 <a class="header-category category-PLACE" href="archive.html?category=PLACE">PLACE</a>
@@ -427,72 +368,178 @@
   <a href="about.html" class="about-link">About</a>
 </header>
 
-  <!-- Main -->
+<main>
 
-  <main>
+  <h1>BOOKSHELF</h1>
 
-    <!-- Page title -->
+  <div class="shelf-label"><span>BOOKS</span><span class="shelf-count" id="count"></span></div>
 
-    <section class="page-title">
+  <div class="shelf-tools" aria-label="蔵書の検索と並び替え">
+    <label class="search-box"><span class="visually-hidden">キーワード検索</span><input id="search" type="search" placeholder="SEARCH BOOKS" autocomplete="off"></label>
+    <label class="sort-box"><span class="visually-hidden">並び替え</span>
+      <select id="sort">
+        <option value="added">NEWEST</option>
+        <option value="title">TITLE</option>
+        <option value="author">AUTHOR</option>
+        <option value="year">YEAR</option>
+      </select>
+    </label>
+  </div>
 
-      <div class="page-title-label">
-        ARCHIVE / BOOK
-      </div>
+  <p class="note" id="review-note" hidden>要確認の本も含めて表示しています。自動で書誌を確定できなかったものには「要確認」の印がつきます。</p>
+  <p class="empty" id="empty" hidden>該当する本はありません。</p>
+  <section class="shelf" id="shelf" aria-live="polite"></section>
 
-      <h1>
-        Bookshelf
-      </h1>
+  <p class="back"><a href="archive.html?category=BOOK">← BOOK</a></p>
 
-    </section>
+</main>
 
-    <!-- Bookshelf -->
+<footer>© 坂田雄志</footer>
 
-    <section class="bookshelf">
+<script>
+(function () {
+  "use strict";
 
-      <!-- 大杉栄伝　永遠のアナキズム -->
+  var params = new URLSearchParams(window.location.search);
+  var showReview = params.get("review") === "1";
 
-      <a
-        href="book-01.html"
-        class="book"
-      >
+  var shelf = document.getElementById("shelf");
+  var countEl = document.getElementById("count");
+  var emptyEl = document.getElementById("empty");
+  var searchEl = document.getElementById("search");
+  var sortEl = document.getElementById("sort");
 
-        <img
-          src="book-01.jpg"
-          alt="大杉栄伝　永遠のアナキズム"
-          class="book-image"
-        >
+  var books = [];
 
-        <div class="book-title">
-          大杉栄伝　永遠のアナキズム
-        </div>
+  function norm(value) {
+    return String(value == null ? "" : value).normalize("NFKC").toLowerCase().replace(/[\s　]+/g, "");
+  }
 
-        <div class="book-meta">
-          栗原康 / 2021
-        </div>
+  // データ由来のパスやURLは、想定した形のものだけを通す
+  function safeLocal(path) {
+    return typeof path === "string" && /^[\w./-]+$/.test(path) && path.indexOf("..") === -1 ? path : "";
+  }
 
-      </a>
+  function safeHttps(url) {
+    return typeof url === "string" && /^https:\/\//.test(url) ? url : "";
+  }
 
-    </section>
+  function authorsOf(book) {
+    return Array.isArray(book.authors) ? book.authors.filter(Boolean) : [];
+  }
 
-    <!-- Back -->
+  function haystack(book) {
+    return norm([book.title, authorsOf(book).join(" "), book.publisher, book.isbn, book.publishedDate].join(" "));
+  }
 
-    <p class="back">
+  var sorters = {
+    added: function (a, b) { return String(b.addedAt || "").localeCompare(String(a.addedAt || "")); },
+    title: function (a, b) { return String(a.title || "").localeCompare(String(b.title || ""), "ja"); },
+    author: function (a, b) { return String(authorsOf(a)[0] || "").localeCompare(String(authorsOf(b)[0] || ""), "ja"); },
+    year: function (a, b) { return String(b.publishedDate || "").localeCompare(String(a.publishedDate || "")); }
+  };
 
-      <a href="index.html">
-        ← Archive
-      </a>
+  function titleTile(title) {
+    var tile = document.createElement("div");
+    tile.className = "cover noimg";
+    tile.textContent = title || "";
+    return tile;
+  }
 
-    </p>
+  function cardFor(book) {
+    var local = safeLocal(book.page);
+    var href = local || safeHttps(book.infoLink);
+    var card = document.createElement(href ? "a" : "div");
+    card.className = "book";
+    if (href) {
+      card.href = href;
+      if (!local) {
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+      }
+    }
 
-  </main>
+    var coverPath = safeLocal(book.cover);
+    var media;
+    if (coverPath) {
+      media = document.createElement("img");
+      media.className = "cover";
+      media.src = coverPath;
+      media.alt = "";
+      media.loading = "lazy";
+      media.addEventListener("error", function () {
+        if (media.parentNode) {
+          media.parentNode.replaceChild(titleTile(book.title), media);
+        }
+      });
+    } else {
+      media = titleTile(book.title);
+    }
+    card.appendChild(media);
 
-  <!-- Footer -->
+    var title = document.createElement("div");
+    title.className = "book-title";
+    title.textContent = book.title || "";
+    card.appendChild(title);
 
-  <footer>
+    var meta = document.createElement("div");
+    meta.className = "book-meta";
+    if (book.status === "needs_review") {
+      var badge = document.createElement("span");
+      badge.className = "badge";
+      badge.textContent = "要確認";
+      meta.appendChild(badge);
+    }
+    var year = String(book.publishedDate || "").slice(0, 4);
+    var line = [authorsOf(book).join("、"), book.publisher, year].filter(Boolean).join(" / ");
+    meta.appendChild(document.createTextNode(line));
+    card.appendChild(meta);
 
-    © 坂田雄志
+    return card;
+  }
 
-  </footer>
+  function render() {
+    var query = norm(searchEl.value);
+    var sorter = sorters[sortEl.value] || sorters.added;
+
+    var pool = books.filter(function (book) {
+      return showReview || book.status !== "needs_review";
+    });
+    var shown = pool.filter(function (book) {
+      return !query || haystack(book).indexOf(query) !== -1;
+    }).sort(sorter);
+
+    shelf.textContent = "";
+    shown.forEach(function (book) {
+      shelf.appendChild(cardFor(book));
+    });
+
+    emptyEl.hidden = shown.length > 0;
+    countEl.textContent = query ? shown.length + " / " + pool.length + " BOOKS" : pool.length + " BOOKS";
+  }
+
+  searchEl.addEventListener("input", render);
+  sortEl.addEventListener("change", render);
+  document.getElementById("review-note").hidden = !showReview;
+
+  fetch("bookshelf/books.json", { cache: "no-cache" })
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("HTTP " + response.status);
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      books = Array.isArray(data) ? data : (data && data.books) || [];
+      render();
+    })
+    .catch(function (error) {
+      console.error(error);
+      emptyEl.textContent = "蔵書データを読み込めませんでした。";
+      emptyEl.hidden = false;
+    });
+})();
+</script>
 
 </body>
 </html>
