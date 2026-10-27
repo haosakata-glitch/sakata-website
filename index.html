@@ -77,9 +77,37 @@ button{cursor:pointer}
 }
 @media(min-width:761px){.nav-m{display:none}}
 @media(prefers-reduced-motion:reduce){.side,.card{transition:none}}
+
+/* intro: 最初に出る一文。タップで消える（消え方の長さは --intro-fade） */
+.intro{--intro-fade:3s;position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:max(24px,env(safe-area-inset-top)) max(28px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(28px,env(safe-area-inset-left));background:rgba(0,0,0,.8);color:#F2EFEA;cursor:pointer;outline:none;opacity:1;transition:opacity var(--intro-fade) ease-in-out}
+.intro.is-closing{opacity:0;pointer-events:none}
+.intro-text{margin:0;max-width:30em;font-size:clamp(15px,3.9vw,21px);font-weight:300;line-height:2.3;letter-spacing:.1em;text-align:center}
+.intro-text .cl{display:block}
+.intro-text .ph{display:inline-block}
+@media(prefers-reduced-motion:reduce){.intro{--intro-fade:.4s}}
 </style>
 </head>
 <body>
+<div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="はじめに" tabindex="0">
+ <p class="intro-text"><span class="cl"><span class="ph">これは、</span><span class="ph">保存・分類するための</span><span class="ph">アーカイブではなく、</span></span><span class="cl"><span class="ph">過程を記録し、</span><span class="ph">未来に開くための</span><span class="ph">アーカイブです。</span></span></p>
+</div>
+<noscript><style>.intro{display:none}</style></noscript>
+<script>
+(()=>{
+const intro=document.getElementById('intro');if(!intro)return;
+let closing=false;
+const done=()=>intro.remove();
+const close=()=>{
+ if(closing)return;closing=true;
+ intro.classList.add('is-closing');
+ intro.addEventListener('transitionend',e=>{if(e.target===intro&&e.propertyName==='opacity')done()});
+ setTimeout(done,parseFloat(getComputedStyle(intro).transitionDuration)*1000+600);
+};
+intro.addEventListener('click',close);
+intro.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '||e.key==='Escape'){e.preventDefault();close()}});
+intro.focus({preventScroll:true});
+})();
+</script>
 <aside class="side" id="side" aria-label="Records list">
  <div class="side-head"><a href="index.html">SAKATA YUSHI</a><button class="side-close" id="side-close" type="button" aria-label="Close list">×</button></div>
  <input class="search" id="search" type="search" placeholder="Search" aria-label="Search records" autocomplete="off">
