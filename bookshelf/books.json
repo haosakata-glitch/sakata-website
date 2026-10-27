@@ -1,0 +1,275 @@
+{
+  "version": 1,
+  "books": [
+    {
+      "id": "site-book-01",
+      "title": "大杉栄伝　永遠のアナキズム",
+      "authors": [
+        "栗原康"
+      ],
+      "publisher": "",
+      "publishedDate": "2021",
+      "isbn": "",
+      "cover": "book-01.jpg",
+      "infoLink": "",
+      "page": "book-01.html",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-07T00:00:00+09:00"
+    },
+    {
+      "id": "9784791766406",
+      "title": "評伝ジャン・デュビュッフェ : アール・ブリュットの探求者",
+      "authors": [
+        "末永照和, 1931-"
+      ],
+      "publisher": "青土社",
+      "publishedDate": "2012.11",
+      "isbn": "9784791766406",
+      "cover": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I023996458",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T00:49:27+09:00",
+      "recognized": {
+        "title": "評伝 ジャン・デュビュッフェ アール・ブリュットの探究者",
+        "author": "末永照和"
+      }
+    },
+    {
+      "id": "t-dc5ecaec17",
+      "title": "悲しき熱帯 上",
+      "authors": [
+        "レヴィ＝ストロース"
+      ],
+      "publisher": "中央公論社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "matchScore": 0.78,
+      "addedAt": "2026-10-28T00:49:42+09:00",
+      "recognized": {
+        "title": "悲しき熱帯 上",
+        "author": "レヴィ＝ストロース"
+      },
+      "candidates": [
+        {
+          "title": "悲しき熱帯 上",
+          "authors": [
+            "Lévi-Strauss, Claude, 1908-2009",
+            "川田順造, 1934-2024"
+          ],
+          "publisher": "中央公論社",
+          "isbn": "",
+          "score": 0.78
+        }
+      ]
+    },
+    {
+      "id": "t-d16509f57f",
+      "title": "場所の現象学",
+      "authors": [
+        "エドワード・レルフ"
+      ],
+      "publisher": "筑摩書房",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "matchScore": 0.785,
+      "addedAt": "2026-10-28T00:49:59+09:00",
+      "recognized": {
+        "title": "場所の現象学",
+        "author": "エドワード・レルフ"
+      },
+      "candidates": [
+        {
+          "title": "場所の現象学",
+          "authors": [
+            "Relf, E. C, 1944-",
+            "高野岳彦, 1956-",
+            "阿部隆, 1947-",
+            "石山美也子, 1963-"
+          ],
+          "publisher": "筑摩書房",
+          "isbn": "9784480084798",
+          "score": 0.785
+        },
+        {
+          "title": "場所の現象学 : 没場所性を越えて",
+          "authors": [
+            "Relf, E. C, 1944-",
+            "高野岳彦, 1956-"
+          ],
+          "publisher": "筑摩書房",
+          "isbn": "9784480855923",
+          "score": 0.742
+        }
+      ]
+    },
+    {
+      "id": "t-afa6e7f170",
+      "title": "アール・ブリュット",
+      "authors": [
+        "エミリー・シンプソン"
+      ],
+      "publisher": "白水社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "matchScore": 0.746,
+      "addedAt": "2026-10-28T00:50:19+09:00",
+      "recognized": {
+        "title": "アール・ブリュット",
+        "author": "エミリー・シンプソン"
+      },
+      "candidates": [
+        {
+          "title": "アール・ブリュット・ジャポネ",
+          "authors": [
+            "アール・ブリュット・ジャポネ展カタログ編集委員会 編"
+          ],
+          "publisher": "現代企画室",
+          "isbn": "9784773811070",
+          "score": 0.746
+        },
+        {
+          "title": "アール・ブリュット・ジャポネ展全貌 : 2010年パリ",
+          "authors": [
+            "ボーダレスアートミュージアムNO-MA",
+            "滋賀県社会福祉事業団"
+          ],
+          "publisher": "現代企画室",
+          "isbn": "9784773811179",
+          "score": 0.744
+        },
+        {
+          "title": "アール・ブリュット アート 日本",
+          "authors": [
+            "保坂健二朗, 1976-",
+            "アサダワタル, 1979-"
+          ],
+          "publisher": "平凡社",
+          "isbn": "9784582620573",
+          "score": 0.726
+        }
+      ]
+    },
+    {
+      "id": "t-cab22ff5d5",
+      "title": "監獄の誕生 監視と処罰",
+      "authors": [
+        "ミシェル・フーコー"
+      ],
+      "publisher": "新潮社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "matchScore": 0.785,
+      "addedAt": "2026-10-28T00:50:35+09:00",
+      "recognized": {
+        "title": "監獄の誕生 監視と処罰",
+        "author": "ミシェル・フーコー"
+      },
+      "candidates": [
+        {
+          "title": "監獄の誕生 : 監視と処罰",
+          "authors": [
+            "Foucault, Michel, 1926-1984",
+            "田村俶, 1931-2023"
+          ],
+          "publisher": "新潮社",
+          "isbn": "9784105067090",
+          "score": 0.785
+        },
+        {
+          "title": "監獄の誕生 : 監視と処罰",
+          "authors": [
+            "Foucault, Michel, 1926-1984",
+            "慎改康之, 1966-"
+          ],
+          "publisher": "新潮社",
+          "isbn": "9784105067137",
+          "score": 0.785
+        },
+        {
+          "title": "監獄の誕生 : 監視と処罰",
+          "authors": [
+            "Foucault, Michel, 1926-1984",
+            "田村俶, 1931-2023"
+          ],
+          "publisher": "新潮社",
+          "isbn": "",
+          "score": 0.78
+        }
+      ]
+    },
+    {
+      "id": "9784480016874",
+      "title": "アジールと国家 : 中世日本の政治と宗教",
+      "authors": [
+        "伊藤正敏, 1955-"
+      ],
+      "publisher": "筑摩書房",
+      "publishedDate": "2020.2",
+      "isbn": "9784480016874",
+      "cover": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I030224628",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T00:50:39+09:00",
+      "recognized": {
+        "title": "アジールと国家 中世日本の政治と宗教",
+        "author": "伊藤正敏"
+      }
+    },
+    {
+      "id": "t-a97d662020",
+      "title": "有限性の後で 偶然性の必然性についての試論",
+      "authors": [
+        "カンタン・メイヤスー"
+      ],
+      "publisher": "人文書院",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "matchScore": 0.785,
+      "addedAt": "2026-10-28T00:51:01+09:00",
+      "recognized": {
+        "title": "有限性の後で 偶然性の必然性についての試論",
+        "author": "カンタン・メイヤスー"
+      },
+      "candidates": [
+        {
+          "title": "有限性の後で : 偶然性の必然性についての試論",
+          "authors": [
+            "Meillassoux, Quentin, 1967-",
+            "千葉雅也",
+            "大橋完太郎",
+            "星野太, 1983-"
+          ],
+          "publisher": "人文書院",
+          "isbn": "9784409030905",
+          "score": 0.785
+        }
+      ]
+    }
+  ]
+}
