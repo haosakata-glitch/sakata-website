@@ -37,7 +37,7 @@
         "title": "評伝 ジャン・デュビュッフェ アール・ブリュットの探究者",
         "author": "末永照和"
       },
-      "coverTries": 1
+      "coverTries": 2
     },
     {
       "id": "t-60a8305480",
@@ -75,7 +75,7 @@
       "isbn": "9784480084798",
       "cover": null,
       "coverUrl": null,
-      "coverTries": 2,
+      "coverTries": 3,
       "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000002784376",
       "source": "ndl",
       "status": "matched",
@@ -85,59 +85,6 @@
         "title": "場所の現象学",
         "author": "エドワード・レルフ"
       }
-    },
-    {
-      "id": "t-afa6e7f170",
-      "title": "アール・ブリュット",
-      "authors": [
-        "エミリー・シンプソン"
-      ],
-      "publisher": "白水社",
-      "publishedDate": "",
-      "isbn": "",
-      "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "author",
-      "reason": "書名は近いのですが、著者が一致しません。読み取り: エミリー・シンプソン / 候補: アール・ブリュット・ジャポネ展カタログ編集委員会 編",
-      "matchScore": 0.746,
-      "addedAt": "2026-10-28T00:50:19+09:00",
-      "recognized": {
-        "title": "アール・ブリュット",
-        "author": "エミリー・シンプソン"
-      },
-      "candidates": [
-        {
-          "title": "アール・ブリュット・ジャポネ",
-          "authors": [
-            "アール・ブリュット・ジャポネ展カタログ編集委員会 編"
-          ],
-          "publisher": "現代企画室",
-          "isbn": "9784773811070",
-          "score": 0.746
-        },
-        {
-          "title": "アール・ブリュット・ジャポネ展全貌 : 2010年パリ",
-          "authors": [
-            "ボーダレスアートミュージアムNO-MA",
-            "滋賀県社会福祉事業団"
-          ],
-          "publisher": "現代企画室",
-          "isbn": "9784773811179",
-          "score": 0.744
-        },
-        {
-          "title": "アール・ブリュット アート 日本",
-          "authors": [
-            "保坂健二朗, 1976-",
-            "アサダワタル, 1979-"
-          ],
-          "publisher": "平凡社",
-          "isbn": "9784582620573",
-          "score": 0.726
-        }
-      ]
     },
     {
       "id": "9784105067090",
@@ -151,7 +98,7 @@
       "isbn": "9784105067090",
       "cover": null,
       "coverUrl": null,
-      "coverTries": 2,
+      "coverTries": 3,
       "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I030367995",
       "source": "ndl",
       "status": "matched",
@@ -181,7 +128,7 @@
         "title": "アジールと国家 中世日本の政治と宗教",
         "author": "伊藤正敏"
       },
-      "coverTries": 1
+      "coverTries": 2
     },
     {
       "id": "9784409030905",
@@ -197,7 +144,7 @@
       "isbn": "9784409030905",
       "cover": null,
       "coverUrl": null,
-      "coverTries": 2,
+      "coverTries": 3,
       "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I027031764",
       "source": "ndl",
       "status": "matched",
@@ -206,6 +153,30 @@
       "recognized": {
         "title": "有限性の後で 偶然性の必然性についての試論",
         "author": "カンタン・メイヤスー"
+      }
+    },
+    {
+      "id": "9784560510292",
+      "title": "アール・ブリュット",
+      "authors": [
+        "Champenois, Émilie",
+        "西尾彰泰",
+        "四元朝子"
+      ],
+      "publisher": "白水社",
+      "publishedDate": "2019.7",
+      "isbn": "9784560510292",
+      "cover": null,
+      "coverUrl": null,
+      "coverTries": 2,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I029756523",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.935,
+      "addedAt": "2026-10-28T01:20:04+09:00",
+      "recognized": {
+        "title": "アール・ブリュット",
+        "author": "エミリー・シャンプノワ"
       }
     }
   ]
