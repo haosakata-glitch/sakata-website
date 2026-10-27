@@ -283,6 +283,18 @@
     font-size: 12px;
   }
 
+  .book-flag {
+    margin-top: 6px;
+    color: var(--text);
+    font-size: 9px;
+    letter-spacing: .1em;
+  }
+
+  a.book:focus-visible {
+    outline: 1px solid var(--text);
+    outline-offset: 4px;
+  }
+
   .book-reason {
     margin-top: 6px;
     color: var(--secondary);
@@ -430,9 +442,10 @@
 
 <footer>
   <div>© 坂田雄志</div>
-  <div class="credit">書誌データ: <a href="https://ndlsearch.ndl.go.jp/" target="_blank" rel="noopener noreferrer">国立国会図書館サーチ</a>（NDLサーチ API）、<a href="https://books.google.com/" target="_blank" rel="noopener noreferrer">Google Books</a>。書影は各提供元の画像を表示しています。</div>
+  <div class="credit">書誌データ: <a href="https://ndlsearch.ndl.go.jp/" target="_blank" rel="noopener noreferrer">国立国会図書館サーチ</a>（NDLサーチ API）、<a href="https://books.google.com/" target="_blank" rel="noopener noreferrer">Google Books</a>。書影は Amazon・国立国会図書館サーチ・Google Books の画像を表示しています（画像の権利は各権利者にあります）。</div>
 </footer>
 
+<script src="bookshelf/shelf-common.js"></script>
 <script>
 (function () {
   "use strict";
@@ -447,23 +460,13 @@
   var sortEl = document.getElementById("sort");
 
   var books = [];
+  var notes = {};
 
   function norm(value) {
     return String(value == null ? "" : value).normalize("NFKC").toLowerCase().replace(/[\s　]+/g, "");
   }
 
-  // データ由来のパスやURLは、想定した形のものだけを通す
-  function safeLocal(path) {
-    return typeof path === "string" && /^[\w./-]+$/.test(path) && path.indexOf("..") === -1 ? path : "";
-  }
-
-  function safeHttps(url) {
-    return typeof url === "string" && /^https:\/\//.test(url) ? url : "";
-  }
-
-  function authorsOf(book) {
-    return Array.isArray(book.authors) ? book.authors.filter(Boolean) : [];
-  }
+  var authorsOf = Shelf.authorsOf;
 
   function haystack(book) {
     return norm([book.title, authorsOf(book).join(" "), book.publisher, book.isbn, book.publishedDate].join(" "));
@@ -476,46 +479,17 @@
     year: function (a, b) { return String(b.publishedDate || "").localeCompare(String(a.publishedDate || "")); }
   };
 
-  function titleTile(title) {
-    var tile = document.createElement("div");
-    tile.className = "cover noimg";
-    tile.textContent = title || "";
-    return tile;
-  }
-
+  // 感想がある本だけ押せる。押すと、本人が書いた感想・まとめを読めるページへ行く。
+  // 感想が無い本は、押しても何も起きない（外部サイトには飛ばさない）。
   function cardFor(book) {
-    var local = safeLocal(book.page);
-    var href = local || safeHttps(book.infoLink);
-    var card = document.createElement(href ? "a" : "div");
-    card.className = "book";
-    if (href) {
-      card.href = href;
-      if (!local) {
-        card.target = "_blank";
-        card.rel = "noopener noreferrer";
-      }
+    var target = Shelf.noteTarget(book, notes);
+    var card = document.createElement(target ? "a" : "div");
+    card.className = target ? "book has-note" : "book";
+    if (target) {
+      card.href = target.href;
     }
 
-    // 書影: サイト内に置いた画像（自分で撮った写真など）を優先し、無ければ提供元の画像を直接表示する。
-    // NDL・Google Books の書影は第三者の著作物なので、コピーを保存せず、提供元のURLを参照する。
-    var coverPath = safeLocal(book.cover) || safeHttps(book.coverUrl);
-    var media;
-    if (coverPath) {
-      media = document.createElement("img");
-      media.className = "cover";
-      media.src = coverPath;
-      media.alt = "";
-      media.loading = "lazy";
-      media.referrerPolicy = "no-referrer";
-      media.addEventListener("error", function () {
-        if (media.parentNode) {
-          media.parentNode.replaceChild(titleTile(book.title), media);
-        }
-      });
-    } else {
-      media = titleTile(book.title);
-    }
-    card.appendChild(media);
+    card.appendChild(Shelf.coverFor(book, true));
 
     var title = document.createElement("div");
     title.className = "book-title";
@@ -540,6 +514,13 @@
       reason.className = "book-reason";
       reason.textContent = book.reason;
       card.appendChild(reason);
+    }
+
+    if (target) {
+      var flag = document.createElement("div");
+      flag.className = "book-flag";
+      flag.textContent = "NOTE →";
+      card.appendChild(flag);
     }
 
     return card;
@@ -572,15 +553,11 @@
   sortEl.addEventListener("change", render);
   document.getElementById("review-note").hidden = !showReview;
 
-  fetch("bookshelf/books.json", { cache: "no-cache" })
-    .then(function (response) {
-      if (!response.ok) {
-        throw new Error("HTTP " + response.status);
-      }
-      return response.json();
-    })
-    .then(function (data) {
-      books = Array.isArray(data) ? data : (data && data.books) || [];
+  // 感想の一覧が読めなくても、本棚は表示する（その場合は、どの本も押せない）
+  Promise.all([Shelf.loadBooks(), Shelf.loadNotes()])
+    .then(function (result) {
+      books = result[0];
+      notes = result[1];
       render();
     })
     .catch(function (error) {
