@@ -32,10 +32,10 @@ button{cursor:pointer}
 /* stage */
 .stage{position:fixed;inset:0 0 0 var(--side);overflow:hidden;background:radial-gradient(ellipse at 50% 46%,#131315 0%,#0b0b0c 62%,#070708 100%)}
 #graph{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}#graph.on-node{cursor:pointer}#graph.panning{cursor:grabbing}
-.topbar{position:absolute;z-index:5;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:6px 14px;pointer-events:none}
+.topbar{position:absolute;z-index:5;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:6px 14px;pointer-events:none}.site-title{flex:none}
 .topbar>*{pointer-events:auto}
 .site-title{font-size:13px;letter-spacing:.22em;padding:12px 0;text-shadow:0 1px 14px #000}
-.nav{display:flex;gap:4px}.nav a{padding:12px 10px;font-size:12px;letter-spacing:.16em;color:var(--muted)}.nav a:hover{color:var(--fg)}
+.nav{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;white-space:nowrap;min-width:0}.nav a{padding:12px 9px;font-size:12px;letter-spacing:.16em;color:var(--muted)}.nav a:hover{color:var(--fg)}
 .list-btn{display:none;height:44px;padding:0 14px;border:1px solid var(--line);border-radius:22px;background:#101012cc;font-size:12px;letter-spacing:.14em}
 .status{position:absolute;left:16px;bottom:16px;z-index:4;color:var(--muted);font-size:12px;letter-spacing:.1em;pointer-events:none}
 .tools{position:absolute;z-index:6;right:14px;bottom:14px;display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px}
@@ -83,13 +83,13 @@ button{cursor:pointer}
 <aside class="side" id="side" aria-label="Records list">
  <div class="side-head"><a href="index.html">SAKATA YUSHI</a><button class="side-close" id="side-close" type="button" aria-label="Close list">×</button></div>
  <input class="search" id="search" type="search" placeholder="Search" aria-label="Search records" autocomplete="off">
- <nav class="nav-m" aria-label="Site pages"><a href="archive.html">ARCHIVE</a><a href="text.html">TEXT</a><a href="about.html">ABOUT</a></nav>
+ <nav class="nav-m" aria-label="Site pages"><a href="archive.html">ALL</a><a href="archive.html?category=ARCHITECTURE">ARCHITECTURE</a><a href="archive.html?category=OBJECT">OBJECT</a><a href="archive.html?category=FOOD">FOOD</a><a href="archive.html?category=BOOK">BOOK</a><a href="text.html">TEXT</a><a href="archive.html?category=PHOTO">PHOTO</a><a href="archive.html?category=PLACE">PLACE</a><a href="archive.html?category=OTHER">OTHER</a><a href="about.html">ABOUT</a></nav>
  <div class="tree" id="tree"></div>
  <div class="side-foot" id="side-foot">AN ARCHIVE OF CURIOSITIES</div>
 </aside>
 <main class="stage" id="stage" aria-label="Graph view of records">
  <canvas id="graph" aria-label="Graph of records. Use the list on the left for keyboard access."></canvas>
- <div class="topbar"><button class="list-btn" id="list-btn" type="button" aria-expanded="false">LIST</button><a class="site-title" href="index.html">SAKATA YUSHI</a><nav class="nav" aria-label="Site pages"><a href="archive.html">ARCHIVE</a><a href="text.html">TEXT</a><a href="about.html">ABOUT</a></nav></div>
+ <div class="topbar"><button class="list-btn" id="list-btn" type="button" aria-expanded="false">LIST</button><a class="site-title" href="index.html">SAKATA YUSHI</a><nav class="nav" aria-label="Site pages"><a href="archive.html">ALL</a><a href="archive.html?category=ARCHITECTURE">ARCHITECTURE</a><a href="archive.html?category=OBJECT">OBJECT</a><a href="archive.html?category=FOOD">FOOD</a><a href="archive.html?category=BOOK">BOOK</a><a href="text.html">TEXT</a><a href="archive.html?category=PHOTO">PHOTO</a><a href="archive.html?category=PLACE">PLACE</a><a href="archive.html?category=OTHER">OTHER</a><a href="about.html">ABOUT</a></nav></div>
  <p class="status" id="status">AN ARCHIVE OF CURIOSITIES</p>
  <div class="tools" aria-label="View controls"><button type="button" id="zoom-out" aria-label="Zoom out">−</button><span class="zoom-label" id="zoom-label">50%</span><button type="button" id="zoom-in" aria-label="Zoom in">+</button><button type="button" class="reset" id="view-reset">RESET</button></div>
  <article class="card" id="card" aria-live="polite"></article>
@@ -283,7 +283,9 @@ $('zoom-in').onclick=()=>stepZoom(1);$('zoom-out').onclick=()=>stepZoom(-1);
 $('view-reset').onclick=()=>{view.anchor=null;deselect();centerView();view.ts=pctToScale(INIT_PCT)};
 
 /* ---------- selection + card ---------- */
+const catHref=c=>c==='TEXT'?'text.html':'archive.html?category='+encodeURIComponent(c);
 function select(n){
+ if(n.type==='cat'){location.href=catHref(n.cat);return}
  selected=n;view.anchor=null;view.tcx=n.x;view.tcy=n.y;view.ts=clampS(Math.max(view.ts,mobile()?1.1:1.2));
  if(mobile())document.body.classList.remove('list-open');
  showCard(n);syncRows();
