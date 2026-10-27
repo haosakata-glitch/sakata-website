@@ -8189,40 +8189,28 @@
       }
     },
     {
-      "id": "t-5626a31818",
-      "title": "定本 映画術",
+      "id": "9784794958181",
+      "title": "映画術 : 定本",
       "authors": [
-        "フランソワ・トリュフォー"
+        "Hitchcock, Alfred, 1899-1980",
+        "Truffaut, François, 1932-1984",
+        "山田宏一, 1938-",
+        "蓮実重彦, 1936-"
       ],
       "publisher": "晶文社",
-      "publishedDate": "",
-      "isbn": "",
+      "publishedDate": "1991.7",
+      "isbn": "9784794958181",
       "cover": null,
-      "infoLink": "",
-      "source": "recognized",
-      "status": "needs_review",
-      "reasonCode": "title",
-      "reason": "書名が一致しません。最有力の候補は「映画術 : 定本」（Hitchcock, Alfred, 1899-1980、Truffaut, François, 1932-1984）です",
-      "matchScore": 0.575,
-      "addedAt": "2026-10-28T04:50:20+09:00",
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000002172752",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T04:52:42+09:00",
       "recognized": {
-        "title": "定本 映画術",
-        "author": "フランソワ・トリュフォー"
-      },
-      "candidates": [
-        {
-          "title": "映画術 : 定本",
-          "authors": [
-            "Hitchcock, Alfred, 1899-1980",
-            "Truffaut, François, 1932-1984",
-            "山田宏一, 1938-",
-            "蓮実重彦, 1936-"
-          ],
-          "publisher": "晶文社",
-          "isbn": "9784794958181",
-          "score": 0.575
-        }
-      ]
+        "title": "映画術 : 定本",
+        "author": "Hitchcock, Alfred, 1899-1980"
+      }
     }
   ]
 }
