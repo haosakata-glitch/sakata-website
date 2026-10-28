@@ -8211,6 +8211,2618 @@
         "title": "映画術 : 定本",
         "author": "Hitchcock, Alfred, 1899-1980"
       }
+    },
+    {
+      "id": "t-804eeb5352",
+      "title": "カラー版 建築と都市の歴史",
+      "authors": [
+        "光井渉・太記祐一"
+      ],
+      "publisher": "彰国社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「建築と都市の歴史 : カラー版」（光井渉, 1963-、太記祐一, 1965-）です",
+      "matchScore": 0.638,
+      "addedAt": "2026-10-28T15:26:10+09:00",
+      "recognized": {
+        "title": "カラー版 建築と都市の歴史",
+        "author": "光井渉・太記祐一"
+      },
+      "candidates": [
+        {
+          "title": "建築と都市の歴史 : カラー版",
+          "authors": [
+            "光井渉, 1963-",
+            "太記祐一, 1965-"
+          ],
+          "publisher": "井上書院",
+          "isbn": "9784753014514",
+          "score": 0.638
+        }
+      ]
+    },
+    {
+      "id": "9784306046658",
+      "title": "ビサイズ、ヒストリー : 現代建築にとっての歴史",
+      "authors": [
+        "Borasi, Giovanna, 1971-",
+        "長谷川豪, 1977-",
+        "Geers, Kersten, 1975-",
+        "Severen, David van, 1978-",
+        "坂本知子, 1973-"
+      ],
+      "publisher": "鹿島出版会",
+      "publishedDate": "2018.6",
+      "isbn": "9784306046658",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I029015975",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.898,
+      "addedAt": "2026-10-28T15:26:23+09:00",
+      "recognized": {
+        "title": "Besides, History: ビサイズ、ヒストリー 現代建築にとっての歴史",
+        "author": "長谷川豪、ケルステン・ゲールス、ダヴィッド・ファン・セーヴェレン"
+      }
+    },
+    {
+      "id": "9784872751550",
+      "title": "西沢立衛建築設計事務所スタディ集",
+      "authors": [
+        "西沢立衛, 1966-",
+        "高橋一平"
+      ],
+      "publisher": "INAX出版",
+      "publishedDate": "2009.4",
+      "isbn": "9784872751550",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000010084440",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.984,
+      "addedAt": "2026-10-28T15:26:37+09:00",
+      "recognized": {
+        "title": "西沢立衛建築設計事務所スタディ集 Studies by the Office of Ryue Nishizawa",
+        "author": "西沢立衛"
+      }
+    },
+    {
+      "id": "9784306041349",
+      "title": "安藤忠雄",
+      "authors": [
+        "安藤忠雄, 1941-",
+        "SD編集部"
+      ],
+      "publisher": "鹿島出版会",
+      "publishedDate": "1982.3",
+      "isbn": "9784306041349",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001555207",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.939,
+      "addedAt": "2026-10-28T15:27:09+09:00",
+      "recognized": {
+        "title": "TADAO ANDO 安藤忠雄展 挑戦 TADAO ANDO : ENDEAVORS",
+        "author": "安藤忠雄"
+      }
+    },
+    {
+      "id": "9784087211351",
+      "title": "人新世の「資本論」",
+      "authors": [
+        "斎藤幸平, 1987-"
+      ],
+      "publisher": "集英社",
+      "publishedDate": "2020.9",
+      "isbn": "9784087211351",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I030610080",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:28:26+09:00",
+      "recognized": {
+        "title": "人新世の「資本論」",
+        "author": "斎藤幸平"
+      }
+    },
+    {
+      "id": "9784306052482",
+      "title": "ルイス・カーン建築論集",
+      "authors": [
+        "Kahn, Louis I, 1901-1974",
+        "前田忠直, 1944-"
+      ],
+      "publisher": "鹿島出版会",
+      "publishedDate": "2008.4",
+      "isbn": "9784306052482",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000009862120",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.935,
+      "addedAt": "2026-10-28T15:28:35+09:00",
+      "recognized": {
+        "title": "ルイス・カーン建築論集",
+        "author": "ルイス・カーン 著 / 前田忠直 編訳"
+      }
+    },
+    {
+      "id": "t-28cdfe719e",
+      "title": "続住宅論",
+      "authors": [
+        "篠原一男, 1925-2006"
+      ],
+      "publisher": "鹿島出版会",
+      "publishedDate": "1975",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001278224",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:28:40+09:00",
+      "recognized": {
+        "title": "続住宅論",
+        "author": "篠原一男"
+      }
+    },
+    {
+      "id": "t-109de8d7bb",
+      "title": "住宅論",
+      "authors": [
+        "篠原一男, 1925-2006"
+      ],
+      "publisher": "鹿島研究所出版会",
+      "publishedDate": "1970",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001283672",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:29:11+09:00",
+      "recognized": {
+        "title": "住宅論",
+        "author": "篠原一男"
+      }
+    },
+    {
+      "id": "t-b3be429942",
+      "title": "10+1 No.13 特集 メディア都市の地政学",
+      "authors": [],
+      "publisher": "INAX出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「愛育 10(1)」（母子愛育会）です",
+      "matchScore": 0.216,
+      "addedAt": "2026-10-28T15:30:50+09:00",
+      "recognized": {
+        "title": "10+1 No.13 特集 メディア都市の地政学",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "愛育 10(1)",
+          "authors": [
+            "母子愛育会"
+          ],
+          "publisher": "恩賜財団母子愛育会",
+          "isbn": "",
+          "score": 0.216
+        },
+        {
+          "title": "アーガマ 10(1) (通号 86)-10(3) (通号 88) 19871200-19880200",
+          "authors": [
+            "阿含宗出版社"
+          ],
+          "publisher": "阿含宗出版社",
+          "isbn": "",
+          "score": 0.167
+        },
+        {
+          "title": "アート・トップ 10(1) (通号 50)-10(3) (通号 52) 19790200-19790600",
+          "authors": [
+            "芸術新聞社"
+          ],
+          "publisher": "芸術新聞社",
+          "isbn": "",
+          "score": 0.161
+        }
+      ]
+    },
+    {
+      "id": "t-1afcc47558",
+      "title": "10+1 No.12 特集 東京新論",
+      "authors": [],
+      "publisher": "INAX出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「愛育 10(1)」（母子愛育会）です",
+      "matchScore": 0.284,
+      "addedAt": "2026-10-28T15:32:36+09:00",
+      "recognized": {
+        "title": "10+1 No.12 特集 東京新論",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "愛育 10(1)",
+          "authors": [
+            "母子愛育会"
+          ],
+          "publisher": "恩賜財団母子愛育会",
+          "isbn": "",
+          "score": 0.284
+        },
+        {
+          "title": "アール 10(1)-10(4) 20040100-20040400",
+          "authors": [
+            "主婦と生活社"
+          ],
+          "publisher": "主婦と生活社",
+          "isbn": "",
+          "score": 0.231
+        },
+        {
+          "title": "アーガマ 10(1) (通号 86)-10(3) (通号 88) 19871200-19880200",
+          "authors": [
+            "阿含宗出版社"
+          ],
+          "publisher": "阿含宗出版社",
+          "isbn": "",
+          "score": 0.188
+        }
+      ]
+    },
+    {
+      "id": "t-54cae80004",
+      "title": "10+1 No.6 特集 アーバン・スタディーズ 都市論の臨界点",
+      "authors": [],
+      "publisher": "INAX出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「愛育 10(1)」（母子愛育会）です",
+      "matchScore": 0.174,
+      "addedAt": "2026-10-28T15:33:03+09:00",
+      "recognized": {
+        "title": "10+1 No.6 特集 アーバン・スタディーズ 都市論の臨界点",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "愛育 10(1)",
+          "authors": [
+            "母子愛育会"
+          ],
+          "publisher": "恩賜財団母子愛育会",
+          "isbn": "",
+          "score": 0.174
+        },
+        {
+          "title": "アーリー70's フィーメイル・アイドル・コレクション Vol.2",
+          "authors": [],
+          "publisher": "ソニーレコード",
+          "isbn": "",
+          "score": 0.136
+        },
+        {
+          "title": "アーガマ 10(1) (通号 86)-10(3) (通号 88) 19871200-19880200",
+          "authors": [
+            "阿含宗出版社"
+          ],
+          "publisher": "阿含宗出版社",
+          "isbn": "",
+          "score": 0.12
+        }
+      ]
+    },
+    {
+      "id": "t-c824d1ba33",
+      "title": "10+1 No.39 特集 生きられる東京 都市の経験、都市の時間",
+      "authors": [],
+      "publisher": "INAX出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「愛育 10(1)」（母子愛育会）です",
+      "matchScore": 0.169,
+      "addedAt": "2026-10-28T15:33:28+09:00",
+      "recognized": {
+        "title": "10+1 No.39 特集 生きられる東京 都市の経験、都市の時間",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "愛育 10(1)",
+          "authors": [
+            "母子愛育会"
+          ],
+          "publisher": "恩賜財団母子愛育会",
+          "isbn": "",
+          "score": 0.169
+        },
+        {
+          "title": "アーガマ 10(1) (通号 86)-10(3) (通号 88) 19871200-19880200",
+          "authors": [
+            "阿含宗出版社"
+          ],
+          "publisher": "阿含宗出版社",
+          "isbn": "",
+          "score": 0.148
+        },
+        {
+          "title": "アート・トップ 10(1) (通号 50)-10(3) (通号 52) 19790200-19790600",
+          "authors": [
+            "芸術新聞社"
+          ],
+          "publisher": "芸術新聞社",
+          "isbn": "",
+          "score": 0.143
+        }
+      ]
+    },
+    {
+      "id": "t-df3c639fae",
+      "title": "10+1 No.42 特集 グラウンディング 地図を描く身体",
+      "authors": [],
+      "publisher": "INAX出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「アール 10(1)-10(4) 20040100-20040400」（主婦と生活社）です",
+      "matchScore": 0.18,
+      "addedAt": "2026-10-28T15:33:49+09:00",
+      "recognized": {
+        "title": "10+1 No.42 特集 グラウンディング 地図を描く身体",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "アール 10(1)-10(4) 20040100-20040400",
+          "authors": [
+            "主婦と生活社"
+          ],
+          "publisher": "主婦と生活社",
+          "isbn": "",
+          "score": 0.18
+        },
+        {
+          "title": "愛育 10(1)",
+          "authors": [
+            "母子愛育会"
+          ],
+          "publisher": "恩賜財団母子愛育会",
+          "isbn": "",
+          "score": 0.18
+        },
+        {
+          "title": "アーマーモデリング 10(1) (通号 75)-10(4) (通号 78) 20060100-20060400",
+          "authors": [
+            "大日本絵画"
+          ],
+          "publisher": "大日本絵画",
+          "isbn": "",
+          "score": 0.141
+        }
+      ]
+    },
+    {
+      "id": "9784309276182",
+      "title": "音楽と建築",
+      "authors": [
+        "Xenakis, Iannis, 1922-2001",
+        "高橋悠治, 1938-"
+      ],
+      "publisher": "河出書房新社",
+      "publishedDate": "2017.7",
+      "isbn": "9784309276182",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I028355686",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.857,
+      "addedAt": "2026-10-28T15:34:14+09:00",
+      "recognized": {
+        "title": "音楽と建築 musique architecture: Iannis Xenakis",
+        "author": "ヤニス・クセナキス 著 / 高橋悠治 編訳"
+      }
+    },
+    {
+      "id": "9784622085461",
+      "title": "建築の前夜 : 前川國男論",
+      "authors": [
+        "松隈洋, 1957-"
+      ],
+      "publisher": "みすず書房",
+      "publishedDate": "2016.12",
+      "isbn": "9784622085461",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I027765892",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:34:22+09:00",
+      "recognized": {
+        "title": "建築の前夜 前川國男論",
+        "author": "松隈洋"
+      }
+    },
+    {
+      "id": "9784756245977",
+      "title": "パラレルワールド御土産帳",
+      "authors": [
+        "パンタグラフ",
+        "穂村弘, 1962-"
+      ],
+      "publisher": "パイインターナショナル",
+      "publishedDate": "2015.6",
+      "isbn": "9784756245977",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I026409170",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:34:26+09:00",
+      "recognized": {
+        "title": "パラレルワールド御土産帳",
+        "author": "パンタグラフ 穂村弘"
+      }
+    },
+    {
+      "id": "9784756251916",
+      "title": "世界の美しい学校",
+      "authors": [
+        "パイインターナショナル"
+      ],
+      "publisher": "パイインターナショナル",
+      "publishedDate": "2019.4",
+      "isbn": "9784756251916",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I029616132",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.834,
+      "addedAt": "2026-10-28T15:34:29+09:00",
+      "recognized": {
+        "title": "世界の美しい学校 Beautiful Schools Around the World",
+        "author": ""
+      }
+    },
+    {
+      "id": "t-0698505605",
+      "title": "金属 Le Métal",
+      "authors": [
+        "エルメス財団 編"
+      ],
+      "publisher": "岩波書店",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「金属 : Savoir & Faire」（エルメス財団）です",
+      "matchScore": 0.481,
+      "addedAt": "2026-10-28T15:36:21+09:00",
+      "recognized": {
+        "title": "金属 Le Métal",
+        "author": "エルメス財団 編"
+      },
+      "candidates": [
+        {
+          "title": "金属 : Savoir & Faire",
+          "authors": [
+            "エルメス財団"
+          ],
+          "publisher": "岩波書店",
+          "isbn": "9784000617246",
+          "score": 0.481
+        }
+      ]
+    },
+    {
+      "id": "t-3c0c78924d",
+      "title": "KAZUYO SEJIMA + RYUE NISHIZAWA / SANAA WORKS 1995-2003",
+      "authors": [
+        "妹島和世＋西沢立衛 / SANAA"
+      ],
+      "publisher": "TOTO出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「妹島和世+西沢立衛/SANAA works 1995-2003」（妹島和世, 1956-、西沢立衛, 1966-）です",
+      "matchScore": 0.686,
+      "addedAt": "2026-10-28T15:37:04+09:00",
+      "recognized": {
+        "title": "KAZUYO SEJIMA + RYUE NISHIZAWA / SANAA WORKS 1995-2003",
+        "author": "妹島和世＋西沢立衛 / SANAA"
+      },
+      "candidates": [
+        {
+          "title": "妹島和世+西沢立衛/SANAA works 1995-2003",
+          "authors": [
+            "妹島和世, 1956-",
+            "西沢立衛, 1966-",
+            "SANAA"
+          ],
+          "publisher": "TOTO出版",
+          "isbn": "9784887062245",
+          "score": 0.686
+        }
+      ]
+    },
+    {
+      "id": "t-6c850314d2",
+      "title": "公共性 publicness",
+      "authors": [
+        "齋藤純一"
+      ],
+      "publisher": "岩波書店",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「公共性」（斎藤純一, 1958-）です",
+      "matchScore": 0.441,
+      "addedAt": "2026-10-28T15:37:30+09:00",
+      "recognized": {
+        "title": "公共性 publicness",
+        "author": "齋藤純一"
+      },
+      "candidates": [
+        {
+          "title": "公共性",
+          "authors": [
+            "斎藤純一, 1958-"
+          ],
+          "publisher": "岩波書店",
+          "isbn": "9784000264297",
+          "score": 0.441
+        }
+      ]
+    },
+    {
+      "id": "9784061498679",
+      "title": "現代建築に関する16章 : 空間、時間、そして世界",
+      "authors": [
+        "五十嵐太郎, 1967-"
+      ],
+      "publisher": "講談社",
+      "publishedDate": "2006.11",
+      "isbn": "9784061498679",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000008371339",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:38:21+09:00",
+      "recognized": {
+        "title": "現代建築に関する16章",
+        "author": "五十嵐太郎"
+      }
+    },
+    {
+      "id": "9784865281217",
+      "title": "応答漂うモダニズム",
+      "authors": [
+        "槙文彦, 1928-2024",
+        "真壁智治, 1944-"
+      ],
+      "publisher": "左右社",
+      "publishedDate": "2015.7",
+      "isbn": "9784865281217",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I026449998",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.903,
+      "addedAt": "2026-10-28T15:38:26+09:00",
+      "recognized": {
+        "title": "応答漂うモダニズム",
+        "author": "槇文彦 真壁智治 編著"
+      }
+    },
+    {
+      "id": "9784622016939",
+      "title": "混沌からの秩序",
+      "authors": [
+        "Prigogine, Ilya, 1917-2003",
+        "Stengers, Isabelle, 1949-",
+        "伏見康治, 1909-2008"
+      ],
+      "publisher": "みすず書房",
+      "publishedDate": "1987.6",
+      "isbn": "9784622016939",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001870582",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.814,
+      "addedAt": "2026-10-28T15:38:32+09:00",
+      "recognized": {
+        "title": "混沌からの秩序",
+        "author": "I・プリゴジン / I・スタンジェール"
+      }
+    },
+    {
+      "id": "t-db8b14b699",
+      "title": "ヘーゲル FOR BEGINNERS イラスト版",
+      "authors": [
+        "R・スペンサー 文 / A・クラウゼ 絵 / 椋田直子 訳"
+      ],
+      "publisher": "現代書館",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「ヘーゲル : イラスト版」（Spencer, Lloyd、Krauze, Andrzej）です",
+      "matchScore": 0.568,
+      "addedAt": "2026-10-28T15:39:10+09:00",
+      "recognized": {
+        "title": "ヘーゲル FOR BEGINNERS イラスト版",
+        "author": "R・スペンサー 文 / A・クラウゼ 絵 / 椋田直子 訳"
+      },
+      "candidates": [
+        {
+          "title": "ヘーゲル : イラスト版",
+          "authors": [
+            "Spencer, Lloyd",
+            "Krauze, Andrzej",
+            "椋田直子, 1941-"
+          ],
+          "publisher": "現代書館",
+          "isbn": "9784768400777",
+          "score": 0.568
+        }
+      ]
+    },
+    {
+      "id": "t-8274a79e14",
+      "title": "バッソコンティヌオ 空間を支配する旋律 Hiroshi Kikuchi: Basso Continuo",
+      "authors": [
+        "菊地宏"
+      ],
+      "publisher": "LIXIL出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「菊地宏|バッソコンティヌオ : 空間を支配する旋律」（菊地宏, 1972-）です",
+      "matchScore": 0.688,
+      "addedAt": "2026-10-28T15:39:31+09:00",
+      "recognized": {
+        "title": "バッソコンティヌオ 空間を支配する旋律 Hiroshi Kikuchi: Basso Continuo",
+        "author": "菊地宏"
+      },
+      "candidates": [
+        {
+          "title": "菊地宏|バッソコンティヌオ : 空間を支配する旋律",
+          "authors": [
+            "菊地宏, 1972-"
+          ],
+          "publisher": "LIXIL出版",
+          "isbn": "9784864800051",
+          "score": 0.688
+        }
+      ]
+    },
+    {
+      "id": "9784863588912",
+      "title": "トウキョウ建築コレクション : Official Book 2023",
+      "authors": [
+        "トウキョウ建築コレクション2023実行委員会 編"
+      ],
+      "publisher": "建築資料研究社",
+      "publishedDate": "2023.8",
+      "isbn": "9784863588912",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I032940474",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.932,
+      "addedAt": "2026-10-28T15:39:46+09:00",
+      "recognized": {
+        "title": "トウキョウ建築コレクション 2023 Official Book",
+        "author": "トウキョウ建築コレクション2023実行委員会 編"
+      }
+    },
+    {
+      "id": "t-527bf4ce17",
+      "title": "マニエリスムと近代建築 : コーリン・ロウ建築論選集",
+      "authors": [
+        "Rowe, Colin, 1920-1999",
+        "伊東豊雄, 1941-",
+        "松永安光, 1941-"
+      ],
+      "publisher": "彰国社",
+      "publishedDate": "1981.10",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001525848",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.885,
+      "addedAt": "2026-10-28T15:40:39+09:00",
+      "recognized": {
+        "title": "マニエリスムと近代建築",
+        "author": "コーリン・ロウ 著 / 伊藤豊雄 松永安光 訳"
+      }
+    },
+    {
+      "id": "9784750515458",
+      "title": "被抑圧者の教育学",
+      "authors": [
+        "Freire, Paulo, 1921-1997",
+        "三砂ちづる, 1958-"
+      ],
+      "publisher": "亜紀書房",
+      "publishedDate": "2018.5",
+      "isbn": "9784750515458",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I028908398",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.893,
+      "addedAt": "2026-10-28T15:40:48+09:00",
+      "recognized": {
+        "title": "被抑圧者の教育学 50周年記念版",
+        "author": "パウロ・フレイレ 著 / 三砂ちづる 訳"
+      }
+    },
+    {
+      "id": "t-b114cb08ee",
+      "title": "まんが＆図解でわかる はじめての日本酒",
+      "authors": [
+        "葉石かおり 著 / 大崎メグミ イラスト"
+      ],
+      "publisher": "マイナビ",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「はじめての日本酒 : まんが&図解でわかる」（葉石かおり, 1966-）です",
+      "matchScore": 0.556,
+      "addedAt": "2026-10-28T15:41:08+09:00",
+      "recognized": {
+        "title": "まんが＆図解でわかる はじめての日本酒",
+        "author": "葉石かおり 著 / 大崎メグミ イラスト"
+      },
+      "candidates": [
+        {
+          "title": "はじめての日本酒 : まんが&図解でわかる",
+          "authors": [
+            "葉石かおり, 1966-"
+          ],
+          "publisher": "マイナビ出版",
+          "isbn": "9784839964108",
+          "score": 0.556
+        },
+        {
+          "title": "はじめての日本酒 : まんが&図解でわかる",
+          "authors": [
+            "葉石かおり, 1966-"
+          ],
+          "publisher": "マイナビ出版",
+          "isbn": "9784839975111",
+          "score": 0.556
+        }
+      ]
+    },
+    {
+      "id": "9784907188504",
+      "title": "訂正可能性の哲学",
+      "authors": [
+        "東浩紀, 1971-"
+      ],
+      "publisher": "ゲンロン",
+      "publishedDate": "2023.8",
+      "isbn": "9784907188504",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I033015276",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:41:17+09:00",
+      "recognized": {
+        "title": "訂正可能性の哲学",
+        "author": "東浩紀"
+      }
+    },
+    {
+      "id": "9784492047354",
+      "title": "きみのお金は誰のため : ボスが教えてくれた「お金の謎」と「社会のしくみ」",
+      "authors": [
+        "田内学, 1978-"
+      ],
+      "publisher": "東洋経済新報社",
+      "publishedDate": "2023.10",
+      "isbn": "9784492047354",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I033097706",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:41:24+09:00",
+      "recognized": {
+        "title": "きみのお金は誰のため ボスが教えてくれた「お金の謎」と「社会のしくみ」",
+        "author": "田内学"
+      }
+    },
+    {
+      "id": "9784344034082",
+      "title": "メモの魔力",
+      "authors": [
+        "前田裕二, 1987-"
+      ],
+      "publisher": "幻冬舎",
+      "publishedDate": "2018.12",
+      "isbn": "9784344034082",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I029387346",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.979,
+      "addedAt": "2026-10-28T15:41:51+09:00",
+      "recognized": {
+        "title": "メモの魔力 The Magic of Memos",
+        "author": "前田裕二"
+      }
+    },
+    {
+      "id": "9784409030943",
+      "title": "四方対象 : オブジェクト指向存在論入門",
+      "authors": [
+        "Harman, Graham, 1968-",
+        "岡嶋隆佑, 1987-",
+        "山下智弘, 1991-",
+        "鈴木優花, 1989-",
+        "石井雅巳, 1990-"
+      ],
+      "publisher": "人文書院",
+      "publishedDate": "2017.9",
+      "isbn": "9784409030943",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I028499030",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.935,
+      "addedAt": "2026-10-28T15:42:16+09:00",
+      "recognized": {
+        "title": "四方対象 オブジェクト指向存在論入門",
+        "author": "グレアム・ハーマン"
+      }
+    },
+    {
+      "id": "t-3f5e933c4f",
+      "title": "建築とは〈からまりしろ〉をつくることである Akihisa Hirata: Tangling",
+      "authors": [
+        "平田晃久"
+      ],
+      "publisher": "INAX出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「平田晃久/建築とは〈からまりしろ〉をつくることである」（平田晃久）です",
+      "matchScore": 0.755,
+      "addedAt": "2026-10-28T15:42:39+09:00",
+      "recognized": {
+        "title": "建築とは〈からまりしろ〉をつくることである Akihisa Hirata: Tangling",
+        "author": "平田晃久"
+      },
+      "candidates": [
+        {
+          "title": "平田晃久/建築とは〈からまりしろ〉をつくることである",
+          "authors": [
+            "平田晃久"
+          ],
+          "publisher": "INAX出版",
+          "isbn": "9784872751666",
+          "score": 0.755
+        },
+        {
+          "title": "平田晃久|建築とは〈からまりしろ〉をつくることである",
+          "authors": [
+            "平田晃久"
+          ],
+          "publisher": "LIXIL出版",
+          "isbn": "9784864803113",
+          "score": 0.718
+        }
+      ]
+    },
+    {
+      "id": "9784395321643",
+      "title": "未来都市はムラに近似する",
+      "authors": [
+        "北山恒, 1950-"
+      ],
+      "publisher": "彰国社",
+      "publishedDate": "2021.3",
+      "isbn": "9784395321643",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I031286410",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:42:44+09:00",
+      "recognized": {
+        "title": "未来都市はムラに近似する",
+        "author": "北山恒"
+      }
+    },
+    {
+      "id": "9784864800297",
+      "title": "建築の条件 : 「建築」なきあとの建築",
+      "authors": [
+        "坂牛卓"
+      ],
+      "publisher": "LIXIL出版",
+      "publishedDate": "2017.6",
+      "isbn": "9784864800297",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I028281576",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:43:20+09:00",
+      "recognized": {
+        "title": "建築の条件 「建築」なきあとの建築",
+        "author": "坂牛卓"
+      }
+    },
+    {
+      "id": "t-20d65bf6b5",
+      "title": "モダニズム再考 ［海外編］",
+      "authors": [],
+      "publisher": "彰国社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「関西モダニズム再考」（竹村民郎, 1929-、鈴木貞美, 1947-）です",
+      "matchScore": 0.668,
+      "addedAt": "2026-10-28T15:44:25+09:00",
+      "recognized": {
+        "title": "モダニズム再考 ［海外編］",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "関西モダニズム再考",
+          "authors": [
+            "竹村民郎, 1929-",
+            "鈴木貞美, 1947-"
+          ],
+          "publisher": "思文閣出版",
+          "isbn": "9784784213795",
+          "score": 0.668
+        },
+        {
+          "title": "モノ・カオ・反物語-モダニズム再考",
+          "authors": [
+            "東京都写真美術館"
+          ],
+          "publisher": "東京都文化振興会",
+          "isbn": "",
+          "score": 0.525
+        },
+        {
+          "title": "国際構成主義 : 中欧モダニズム再考",
+          "authors": [
+            "谷本尚子"
+          ],
+          "publisher": "世界思想社",
+          "isbn": "9784790712473",
+          "score": 0.509
+        }
+      ]
+    },
+    {
+      "id": "t-f5d202f363",
+      "title": "言語沼",
+      "authors": [
+        "水野太貴、堀元見"
+      ],
+      "publisher": "あさ出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「言語沼 : 言語オタクが友だちに700日間語り続けて引きずりこんだ : ゆる言語学ラジオ」（堀元見, 1992-、水野太貴, 1995-）です",
+      "matchScore": 0.278,
+      "addedAt": "2026-10-28T15:44:53+09:00",
+      "recognized": {
+        "title": "言語沼",
+        "author": "水野太貴、堀元見"
+      },
+      "candidates": [
+        {
+          "title": "言語沼 : 言語オタクが友だちに700日間語り続けて引きずりこんだ : ゆる言語学ラジオ",
+          "authors": [
+            "堀元見, 1992-",
+            "水野太貴, 1995-"
+          ],
+          "publisher": "あさ出版",
+          "isbn": "9784866673806",
+          "score": 0.278
+        }
+      ]
+    },
+    {
+      "id": "9784395322107",
+      "title": "住宅は、批評する : 現代建築家20人の言葉",
+      "authors": [
+        "Eimar, Mohammad",
+        "大塚優",
+        "小倉宏志郎"
+      ],
+      "publisher": "彰国社",
+      "publishedDate": "2024.9",
+      "isbn": "9784395322107",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I033662236",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.935,
+      "addedAt": "2026-10-28T15:45:13+09:00",
+      "recognized": {
+        "title": "住宅は、批評する 現代建築家20人の言葉",
+        "author": ""
+      }
+    },
+    {
+      "id": "9784306044623",
+      "title": "言葉と建築 : 語彙体系としてのモダニズム",
+      "authors": [
+        "Forty, Adrian, 1948-",
+        "坂牛卓",
+        "邉見浩久"
+      ],
+      "publisher": "鹿島出版会",
+      "publishedDate": "2006.1",
+      "isbn": "9784306044623",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000008042161",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.891,
+      "addedAt": "2026-10-28T15:45:24+09:00",
+      "recognized": {
+        "title": "言葉と建築 語彙体系としてのモダニズム Words and Buildings",
+        "author": "エイドリアン・フォーティー"
+      }
+    },
+    {
+      "id": "9784872751581",
+      "title": "20XXの建築原理へ",
+      "authors": [
+        "伊東豊雄, 1941-",
+        "藤本壮介",
+        "平田晃久"
+      ],
+      "publisher": "INAX出版",
+      "publishedDate": "2009.9",
+      "isbn": "9784872751581",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000010569041",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:46:00+09:00",
+      "recognized": {
+        "title": "20XXの建築原理へ ［建築のちから］2",
+        "author": "伊東豊雄、藤本壮介、平田晃久、佐藤淳"
+      }
+    },
+    {
+      "id": "t-2019713816",
+      "title": "フランス現代思想史 構造主義の成立から21世紀まで",
+      "authors": [
+        "岡本裕一朗"
+      ],
+      "publisher": "中央公論新社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「フランス現代思想史 : 構造主義からデリダ以後へ」（岡本裕一朗, 1954-）です",
+      "matchScore": 0.785,
+      "addedAt": "2026-10-28T15:47:10+09:00",
+      "recognized": {
+        "title": "フランス現代思想史 構造主義の成立から21世紀まで",
+        "author": "岡本裕一朗"
+      },
+      "candidates": [
+        {
+          "title": "フランス現代思想史 : 構造主義からデリダ以後へ",
+          "authors": [
+            "岡本裕一朗, 1954-"
+          ],
+          "publisher": "中央公論新社",
+          "isbn": "9784121023001",
+          "score": 0.785
+        }
+      ]
+    },
+    {
+      "id": "t-19498113cb",
+      "title": "マルクス主義",
+      "authors": [
+        "Lefebvre, Henri, 1901-1991",
+        "竹内良知, 1919-1991"
+      ],
+      "publisher": "白水社",
+      "publishedDate": "1968",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001103949",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.908,
+      "addedAt": "2026-10-28T15:47:25+09:00",
+      "recognized": {
+        "title": "改訳 マルクス主義",
+        "author": "アンリ・ルフェーヴル"
+      }
+    },
+    {
+      "id": "9784480058775",
+      "title": "ハイデガー入門",
+      "authors": [
+        "細川亮一, 1947-"
+      ],
+      "publisher": "筑摩書房",
+      "publishedDate": "2001.1",
+      "isbn": "9784480058775",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000002962632",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:47:39+09:00",
+      "recognized": {
+        "title": "ハイデガー入門",
+        "author": "細川亮一"
+      }
+    },
+    {
+      "id": "9784594030193",
+      "title": "チーズはどこへ消えた?",
+      "authors": [
+        "Johnson, Spencer, 1940-2017",
+        "門田美鈴"
+      ],
+      "publisher": "扶桑社",
+      "publishedDate": "2000.11",
+      "isbn": "9784594030193",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000002940466",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.88,
+      "addedAt": "2026-10-28T15:47:53+09:00",
+      "recognized": {
+        "title": "チーズはどこへ消えた？ Who Moved My Cheese?",
+        "author": "スペンサー・ジョンソン"
+      }
+    },
+    {
+      "id": "t-61e5ac7aab",
+      "title": "常識論 「ふつう」は奥が深い",
+      "authors": [
+        "赤瀬川原平"
+      ],
+      "publisher": "大和書房",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「常識論」（赤瀬川原平, 1937-2014）です",
+      "matchScore": 0.606,
+      "addedAt": "2026-10-28T15:48:36+09:00",
+      "recognized": {
+        "title": "常識論 「ふつう」は奥が深い",
+        "author": "赤瀬川原平"
+      },
+      "candidates": [
+        {
+          "title": "常識論",
+          "authors": [
+            "赤瀬川原平, 1937-2014"
+          ],
+          "publisher": "大和書房",
+          "isbn": "9784479390497",
+          "score": 0.606
+        }
+      ]
+    },
+    {
+      "id": "t-51bfd7100a",
+      "title": "沈黙の世界",
+      "authors": [
+        "M・ピカート 著 / 佐野利勝 訳"
+      ],
+      "publisher": "みすず書房",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "author",
+      "reason": "書名は近いのですが、著者が一致しません。読み取り: M・ピカート 著 / 佐野利勝 訳 / 候補: Shepard, Francis Parker, 1897-1985、氏家宏, 1931-2006",
+      "matchScore": 0.698,
+      "addedAt": "2026-10-28T15:49:48+09:00",
+      "recognized": {
+        "title": "沈黙の世界",
+        "author": "M・ピカート 著 / 佐野利勝 訳"
+      },
+      "candidates": [
+        {
+          "title": "海の下の大陸 : 地球を語る沈黙の世界",
+          "authors": [
+            "Shepard, Francis Parker, 1897-1985",
+            "氏家宏, 1931-2006"
+          ],
+          "publisher": "講談社",
+          "isbn": "",
+          "score": 0.698
+        },
+        {
+          "title": "図説古代エジプトの女性たち : よみがえる沈黙の世界",
+          "authors": [
+            "Hawass, Zahi A",
+            "吉村作治, 1943-",
+            "西川厚"
+          ],
+          "publisher": "原書房",
+          "isbn": "9784562030293",
+          "score": 0.696
+        },
+        {
+          "title": "死神につかれた男・放たれた矢/砂の上の宝・沈黙の世界",
+          "authors": [],
+          "publisher": "パイオニアLDC",
+          "isbn": "",
+          "score": 0.691
+        }
+      ]
+    },
+    {
+      "id": "9784801922624",
+      "title": "男社会がしんどい : 痴漢だとか子育てだとか炎上だとか",
+      "authors": [
+        "田房永子, 1978-"
+      ],
+      "publisher": "竹書房",
+      "publishedDate": "2020.6",
+      "isbn": "9784801922624",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I030405933",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:49:56+09:00",
+      "recognized": {
+        "title": "男社会がしんどい 痴漢だとか子育てだとか炎上だとか",
+        "author": "田房永子"
+      }
+    },
+    {
+      "id": "9784897375717",
+      "title": "前川國男現代との対話",
+      "authors": [
+        "松隈洋, 1957-"
+      ],
+      "publisher": "六耀社",
+      "publishedDate": "2006.10",
+      "isbn": "9784897375717",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000008305175",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:50:02+09:00",
+      "recognized": {
+        "title": "前川國男 現代との対話",
+        "author": "松隈洋 編"
+      }
+    },
+    {
+      "id": "t-a51186de0e",
+      "title": "ALEJANDRO ARAVENA THE FORCES IN ARCHITECTURE",
+      "authors": [
+        "アレハンドロ・アラヴェナ"
+      ],
+      "publisher": "TOTO出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「アレハンドロ・アラヴェナ フォース・イン・アーキテクチャー」（Aravena, Alejandro, 1967-）です",
+      "matchScore": 0.035,
+      "addedAt": "2026-10-28T15:50:32+09:00",
+      "recognized": {
+        "title": "ALEJANDRO ARAVENA THE FORCES IN ARCHITECTURE",
+        "author": "アレハンドロ・アラヴェナ"
+      },
+      "candidates": [
+        {
+          "title": "アレハンドロ・アラヴェナ フォース・イン・アーキテクチャー",
+          "authors": [
+            "Aravena, Alejandro, 1967-"
+          ],
+          "publisher": "TOTO出版",
+          "isbn": "9784887063204",
+          "score": 0.035
+        }
+      ]
+    },
+    {
+      "id": "9784130611350",
+      "title": "時がつくる建築 : リノべーションの西洋建築史",
+      "authors": [
+        "加藤耕一, 1973-"
+      ],
+      "publisher": "東京大学出版会",
+      "publishedDate": "2017.4",
+      "isbn": "9784130611350",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I028103692",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.997,
+      "addedAt": "2026-10-28T15:50:54+09:00",
+      "recognized": {
+        "title": "時がつくる建築 リノベーションの西洋建築史",
+        "author": "加藤耕一"
+      }
+    },
+    {
+      "id": "t-3933c36448",
+      "title": "実存・空間・建築",
+      "authors": [
+        "Norberg-Schulz, Christian",
+        "加藤邦男, 1935-"
+      ],
+      "publisher": "鹿島研究所出版会",
+      "publishedDate": "1973",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001282215",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.9,
+      "addedAt": "2026-10-28T15:51:06+09:00",
+      "recognized": {
+        "title": "実存・空間・建築",
+        "author": "ノルベルグ＝シュルツ 著 / 加藤邦男 訳"
+      }
+    },
+    {
+      "id": "9784306052581",
+      "title": "建物のあいだのアクティビティ",
+      "authors": [
+        "Gehl, Jan, 1936-",
+        "北原理雄, 1947-"
+      ],
+      "publisher": "鹿島出版会",
+      "publishedDate": "2011.6",
+      "isbn": "9784306052581",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000011199939",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.935,
+      "addedAt": "2026-10-28T15:51:45+09:00",
+      "recognized": {
+        "title": "建物のあいだのアクティビティ",
+        "author": "ヤン・ゲール 著 / 北原理雄 訳"
+      }
+    },
+    {
+      "id": "9784306051911",
+      "title": "アルド・ロッシ自伝",
+      "authors": [
+        "Rossi, Aldo, 1931-1997",
+        "三宅理一, 1948-"
+      ],
+      "publisher": "鹿島出版会",
+      "publishedDate": "1984.12",
+      "isbn": "9784306051911",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001716697",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.935,
+      "addedAt": "2026-10-28T15:53:15+09:00",
+      "recognized": {
+        "title": "アルド・ロッシ自伝",
+        "author": "アルド・ロッシ 著 / 三宅理一 訳"
+      }
+    },
+    {
+      "id": "9784309248929",
+      "title": "意味がない無意味",
+      "authors": [
+        "千葉雅也"
+      ],
+      "publisher": "河出書房新社",
+      "publishedDate": "2018.10",
+      "isbn": "9784309248929",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I029274479",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T15:53:55+09:00",
+      "recognized": {
+        "title": "意味がない無意味",
+        "author": "千葉雅也"
+      }
+    },
+    {
+      "id": "9784757143012",
+      "title": "中央線がなかったら見えてくる東京の古層",
+      "authors": [
+        "陣内秀信, 1947-",
+        "三浦展, 1958-"
+      ],
+      "publisher": "NTT出版",
+      "publishedDate": "2012.12",
+      "isbn": "9784757143012",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I024127320",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.903,
+      "addedAt": "2026-10-28T15:58:38+09:00",
+      "recognized": {
+        "title": "中央線がなかったら 見えてくる東京の古層",
+        "author": "陣内秀信・三浦展 編著"
+      }
+    },
+    {
+      "id": "t-a2e648da4f",
+      "title": "10+1 No.40 特集 神経系都市論 身体・都市・クライシス",
+      "authors": [],
+      "publisher": "INAX出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「アール 10(1)-10(4) 20040100-20040400」（主婦と生活社）です",
+      "matchScore": 0.18,
+      "addedAt": "2026-10-28T15:59:26+09:00",
+      "recognized": {
+        "title": "10+1 No.40 特集 神経系都市論 身体・都市・クライシス",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "アール 10(1)-10(4) 20040100-20040400",
+          "authors": [
+            "主婦と生活社"
+          ],
+          "publisher": "主婦と生活社",
+          "isbn": "",
+          "score": 0.18
+        },
+        {
+          "title": "愛育 10(1)",
+          "authors": [
+            "母子愛育会"
+          ],
+          "publisher": "恩賜財団母子愛育会",
+          "isbn": "",
+          "score": 0.18
+        },
+        {
+          "title": "アーマーモデリング 10(1) (通号 75)-10(4) (通号 78) 20060100-20060400",
+          "authors": [
+            "大日本絵画"
+          ],
+          "publisher": "大日本絵画",
+          "isbn": "",
+          "score": 0.141
+        }
+      ]
+    },
+    {
+      "id": "t-bb7c2abbc3",
+      "title": "10+1 No.47 特集 東京をどのように記憶するか？",
+      "authors": [],
+      "publisher": "INAX出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「愛育 10(1)」（母子愛育会）です",
+      "matchScore": 0.193,
+      "addedAt": "2026-10-28T15:59:52+09:00",
+      "recognized": {
+        "title": "10+1 No.47 特集 東京をどのように記憶するか？",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "愛育 10(1)",
+          "authors": [
+            "母子愛育会"
+          ],
+          "publisher": "恩賜財団母子愛育会",
+          "isbn": "",
+          "score": 0.193
+        },
+        {
+          "title": "アール 10(1)-10(4) 20040100-20040400",
+          "authors": [
+            "主婦と生活社"
+          ],
+          "publisher": "主婦と生活社",
+          "isbn": "",
+          "score": 0.15
+        },
+        {
+          "title": "アーマーモデリング 10(1) (通号 75)-10(4) (通号 78) 20060100-20060400",
+          "authors": [
+            "大日本絵画"
+          ],
+          "publisher": "大日本絵画",
+          "isbn": "",
+          "score": 0.145
+        }
+      ]
+    },
+    {
+      "id": "t-8304d3f60a",
+      "title": "10+1 No.11 特集 新しい地理学 New Geography",
+      "authors": [],
+      "publisher": "INAX出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「愛育 10(1)」（母子愛育会）です",
+      "matchScore": 0.164,
+      "addedAt": "2026-10-28T16:01:00+09:00",
+      "recognized": {
+        "title": "10+1 No.11 特集 新しい地理学 New Geography",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "愛育 10(1)",
+          "authors": [
+            "母子愛育会"
+          ],
+          "publisher": "恩賜財団母子愛育会",
+          "isbn": "",
+          "score": 0.164
+        },
+        {
+          "title": "アーガマ 10(1) (通号 86)-10(3) (通号 88) 19871200-19880200",
+          "authors": [
+            "阿含宗出版社"
+          ],
+          "publisher": "阿含宗出版社",
+          "isbn": "",
+          "score": 0.145
+        },
+        {
+          "title": "アート・トップ 10(1) (通号 50)-10(3) (通号 52) 19790200-19790600",
+          "authors": [
+            "芸術新聞社"
+          ],
+          "publisher": "芸術新聞社",
+          "isbn": "",
+          "score": 0.141
+        }
+      ]
+    },
+    {
+      "id": "9784403251030",
+      "title": "現代建築家99",
+      "authors": [
+        "多木浩二, 1928-2011",
+        "飯島洋一, 1959-",
+        "五十嵐太郎, 1967-"
+      ],
+      "publisher": "新書館",
+      "publishedDate": "2010.3",
+      "isbn": "9784403251030",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000010815493",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.894,
+      "addedAt": "2026-10-28T16:01:41+09:00",
+      "recognized": {
+        "title": "現代建築家99",
+        "author": "多木浩二・飯島洋一・五十嵐太郎 編"
+      }
+    },
+    {
+      "id": "9784403250552",
+      "title": "アメリカ史重要人物101",
+      "authors": [
+        "猿谷要, 1923-2011"
+      ],
+      "publisher": "新書館",
+      "publishedDate": "2001.8",
+      "isbn": "9784403250552",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000003643429",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:02:36+09:00",
+      "recognized": {
+        "title": "アメリカ史重要人物101",
+        "author": "猿谷要 編"
+      }
+    },
+    {
+      "id": "9784403250705",
+      "title": "日本の小説101",
+      "authors": [
+        "安藤宏, 1958-"
+      ],
+      "publisher": "新書館",
+      "publishedDate": "2003.6",
+      "isbn": "9784403250705",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000004158964",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:02:44+09:00",
+      "recognized": {
+        "title": "日本の小説101",
+        "author": "安藤宏 編"
+      }
+    },
+    {
+      "id": "9784403251023",
+      "title": "翻訳家列伝101",
+      "authors": [
+        "小谷野敦, 1962-"
+      ],
+      "publisher": "新書館",
+      "publishedDate": "2009.12",
+      "isbn": "9784403251023",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000010663497",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.928,
+      "addedAt": "2026-10-28T16:03:14+09:00",
+      "recognized": {
+        "title": "翻訳家列伝101",
+        "author": "小谷野敦 編著"
+      }
+    },
+    {
+      "id": "9784403250347",
+      "title": "ファッション学のすべて",
+      "authors": [
+        "鷲田清一, 1949-"
+      ],
+      "publisher": "新書館",
+      "publishedDate": "1998.6",
+      "isbn": "9784403250347",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000002763048",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:03:26+09:00",
+      "recognized": {
+        "title": "ファッション学のすべて",
+        "author": "鷲田清一 編"
+      }
+    },
+    {
+      "id": "9784403250651",
+      "title": "時代小説作家ベスト101",
+      "authors": [
+        "向井敏, 1930-2002"
+      ],
+      "publisher": "新書館",
+      "publishedDate": "2002.10",
+      "isbn": "9784403250651",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000004208054",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:03:34+09:00",
+      "recognized": {
+        "title": "時代小説作家ベスト101",
+        "author": "向井敏 編"
+      }
+    },
+    {
+      "id": "9784087816280",
+      "title": "男尊女子",
+      "authors": [
+        "酒井順子, 1966-"
+      ],
+      "publisher": "集英社",
+      "publishedDate": "2017.5",
+      "isbn": "9784087816280",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I028161610",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:05:05+09:00",
+      "recognized": {
+        "title": "男尊女子",
+        "author": "酒井順子"
+      }
+    },
+    {
+      "id": "9784163910543",
+      "title": "夏物語",
+      "authors": [
+        "川上未映子"
+      ],
+      "publisher": "文藝春秋",
+      "publishedDate": "2019.7",
+      "isbn": "9784163910543",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I029765752",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:05:24+09:00",
+      "recognized": {
+        "title": "夏物語",
+        "author": "川上未映子"
+      }
+    },
+    {
+      "id": "9784062142137",
+      "title": "わたくし率イン歯ー、または世界",
+      "authors": [
+        "川上未映子"
+      ],
+      "publisher": "講談社",
+      "publishedDate": "2007.7",
+      "isbn": "9784062142137",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000008797485",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:06:17+09:00",
+      "recognized": {
+        "title": "わたくし率 イン 歯ー、または世界",
+        "author": "川上未映子"
+      }
+    },
+    {
+      "id": "9784434086366",
+      "title": "そら頭はでかいです、世界がすこんと入ります",
+      "authors": [
+        "川上未映子"
+      ],
+      "publisher": "ヒヨコ舎",
+      "publishedDate": "2006.12",
+      "isbn": "9784434086366",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000008398314",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:06:24+09:00",
+      "recognized": {
+        "title": "そら頭はでかいです、世界がすこんと入ります",
+        "author": "川上未映子"
+      }
+    },
+    {
+      "id": "9784120041891",
+      "title": "発光地帯",
+      "authors": [
+        "川上未映子"
+      ],
+      "publisher": "中央公論新社",
+      "publishedDate": "2011.1",
+      "isbn": "9784120041891",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000011129229",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:06:35+09:00",
+      "recognized": {
+        "title": "発光地帯",
+        "author": "川上未映子"
+      }
+    },
+    {
+      "id": "9784062172868",
+      "title": "すべて真夜中の恋人たち",
+      "authors": [
+        "川上未映子"
+      ],
+      "publisher": "講談社",
+      "publishedDate": "2011.10",
+      "isbn": "9784062172868",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000011291145",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:06:47+09:00",
+      "recognized": {
+        "title": "すべて真夜中の恋人たち",
+        "author": "川上未映子"
+      }
+    },
+    {
+      "id": "9784761526221",
+      "title": "エリアリノベーション : 変化の構造とローカライズ",
+      "authors": [
+        "馬場正尊",
+        "オープンエー",
+        "明石卓巳, 1968-",
+        "小山隆輝, 1964-",
+        "加藤寛之, 1975-"
+      ],
+      "publisher": "学芸出版社",
+      "publishedDate": "2016.5",
+      "isbn": "9784761526221",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I027282867",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:08:10+09:00",
+      "recognized": {
+        "title": "エリアリノベーション 変化の構造とローカライズ",
+        "author": "馬場正尊＋Open A"
+      }
+    },
+    {
+      "id": "9784274210112",
+      "title": "メタボリズム・ネクサス",
+      "authors": [
+        "八束はじめ, 1948-"
+      ],
+      "publisher": "オーム社",
+      "publishedDate": "2011.4",
+      "isbn": "9784274210112",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000011178805",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.99,
+      "addedAt": "2026-10-28T16:08:50+09:00",
+      "recognized": {
+        "title": "メタボリズム・ネクサス Metabolism Nexus",
+        "author": "八束はじめ"
+      }
+    },
+    {
+      "id": "t-c81b987c7f",
+      "title": "卒業",
+      "authors": [
+        "東野圭吾"
+      ],
+      "publisher": "講談社文庫",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「卒業 : 雪月花殺人ゲーム」（東野圭吾, 1958-2026）です",
+      "matchScore": 0.505,
+      "addedAt": "2026-10-28T16:09:03+09:00",
+      "recognized": {
+        "title": "卒業",
+        "author": "東野圭吾"
+      },
+      "candidates": [
+        {
+          "title": "卒業 : 雪月花殺人ゲーム",
+          "authors": [
+            "東野圭吾, 1958-2026"
+          ],
+          "publisher": "講談社",
+          "isbn": "9784062027281",
+          "score": 0.505
+        },
+        {
+          "title": "卒業 : 雪月花殺人ゲーム",
+          "authors": [
+            "東野圭吾, 1958-2026"
+          ],
+          "publisher": "講談社",
+          "isbn": "9784061844407",
+          "score": 0.505
+        }
+      ]
+    },
+    {
+      "id": "t-0012549a7a",
+      "title": "知覚の現象学 2",
+      "authors": [
+        "M. メルロー＝ポンティ"
+      ],
+      "publisher": "みすず書房",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "author",
+      "reason": "書名は近いのですが、著者が一致しません。読み取り: M. メルロー＝ポンティ / 候補: Merleau-Ponty, Maurice, 1908-1961、竹内芳郎, 1924-2016",
+      "matchScore": 0.744,
+      "addedAt": "2026-10-28T16:10:20+09:00",
+      "recognized": {
+        "title": "知覚の現象学 2",
+        "author": "M. メルロー＝ポンティ"
+      },
+      "candidates": [
+        {
+          "title": "知覚の現象学 第2",
+          "authors": [
+            "Merleau-Ponty, Maurice, 1908-1961",
+            "竹内芳郎, 1924-2016",
+            "木田元, 1928-2014",
+            "宮本忠雄, 1930-1999"
+          ],
+          "publisher": "みすず書房",
+          "isbn": "",
+          "score": 0.744
+        },
+        {
+          "title": "メルロ=ポンティ読本",
+          "authors": [
+            "松葉祥一, 1955-",
+            "本郷均, 1959-",
+            "広瀬浩司, 1963-"
+          ],
+          "publisher": "法政大学出版局",
+          "isbn": "9784588150920",
+          "score": 0.005
+        }
+      ]
+    },
+    {
+      "id": "t-a492551651",
+      "title": "都市を予約する Booking Cities",
+      "authors": [
+        "都市アーキビスト会議"
+      ],
+      "publisher": "建築資料研究社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「都市を予約する : 都市アーキビスト会議ジャーナル」（都市アーキビスト会議）です",
+      "matchScore": 0.535,
+      "addedAt": "2026-10-28T16:14:38+09:00",
+      "recognized": {
+        "title": "都市を予約する Booking Cities",
+        "author": "都市アーキビスト会議"
+      },
+      "candidates": [
+        {
+          "title": "都市を予約する : 都市アーキビスト会議ジャーナル",
+          "authors": [
+            "都市アーキビスト会議"
+          ],
+          "publisher": "建築資料研究社",
+          "isbn": "9784863585874",
+          "score": 0.535
+        }
+      ]
+    },
+    {
+      "id": "t-a6e19b3f04",
+      "title": "small Tokyo",
+      "authors": [
+        "edited by Darko Radović and Davisi Boontharm"
+      ],
+      "publisher": "flick studio",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「スモール・トーキョー」（Radovic, Darko、Davisi Boontharm）です",
+      "matchScore": 0.285,
+      "addedAt": "2026-10-28T16:15:04+09:00",
+      "recognized": {
+        "title": "small Tokyo",
+        "author": "edited by Darko Radović and Davisi Boontharm"
+      },
+      "candidates": [
+        {
+          "title": "スモール・トーキョー",
+          "authors": [
+            "Radovic, Darko",
+            "Davisi Boontharm"
+          ],
+          "publisher": "Flick Studio",
+          "isbn": "9784904894026",
+          "score": 0.285
+        },
+        {
+          "title": "斉藤和義live tour 2010 Stupid spirit at Zepp Tokyo 2010.12.12",
+          "authors": [
+            "斉藤和義"
+          ],
+          "publisher": "ビクターエンタテインメント",
+          "isbn": "",
+          "score": 0.184
+        },
+        {
+          "title": "時事通信; 共同通信; Nippon Times; 世界日報 [検閲ゲラ] 1948/6/2",
+          "authors": [
+            "[Peter Kalischer]"
+          ],
+          "publisher": "",
+          "isbn": "",
+          "score": 0.131
+        }
+      ]
+    },
+    {
+      "id": "9784767825007",
+      "title": "世界のかわいい本の街",
+      "authors": [
+        "Johnson, Alex, 1969-",
+        "井上舞"
+      ],
+      "publisher": "エクスナレッジ",
+      "publishedDate": "2018.9",
+      "isbn": "9784767825007",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I029214276",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.905,
+      "addedAt": "2026-10-28T16:15:46+09:00",
+      "recognized": {
+        "title": "世界のかわいい本の街",
+        "author": "アレックス・ジョンソン"
+      }
+    },
+    {
+      "id": "t-3f9e7d79ca",
+      "title": "地形からみた歴史 古代の自然災害と土木事業・生活の痕跡",
+      "authors": [
+        "日下雅義"
+      ],
+      "publisher": "",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「地形からみた歴史 : 古代景観を復原する」（日下雅義, 1934-）です",
+      "matchScore": 0.612,
+      "addedAt": "2026-10-28T16:16:18+09:00",
+      "recognized": {
+        "title": "地形からみた歴史 古代の自然災害と土木事業・生活の痕跡",
+        "author": "日下雅義"
+      },
+      "candidates": [
+        {
+          "title": "地形からみた歴史 : 古代景観を復原する",
+          "authors": [
+            "日下雅義, 1934-"
+          ],
+          "publisher": "講談社",
+          "isbn": "9784062921435",
+          "score": 0.612
+        }
+      ]
+    },
+    {
+      "id": "t-6c460241d3",
+      "title": "1Q84 BOOK3 後編",
+      "authors": [
+        "村上春樹"
+      ],
+      "publisher": "新潮文庫",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「1Q84 : [a novel] BOOK3後編 (10月-12月)」（村上春樹, 1949-）です",
+      "matchScore": 0.74,
+      "addedAt": "2026-10-28T16:17:02+09:00",
+      "recognized": {
+        "title": "1Q84 BOOK3 後編",
+        "author": "村上春樹"
+      },
+      "candidates": [
+        {
+          "title": "1Q84 : [a novel] BOOK3後編 (10月-12月)",
+          "authors": [
+            "村上春樹, 1949-"
+          ],
+          "publisher": "新潮社",
+          "isbn": "9784101001647",
+          "score": 0.74
+        }
+      ]
+    },
+    {
+      "id": "t-0676f4ed5a",
+      "title": "1Q84 BOOK2 前編",
+      "authors": [
+        "村上春樹"
+      ],
+      "publisher": "新潮文庫",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「1Q84 : [a novel] BOOK2前編 (7月-9月)」（村上春樹, 1949-）です",
+      "matchScore": 0.771,
+      "addedAt": "2026-10-28T16:17:15+09:00",
+      "recognized": {
+        "title": "1Q84 BOOK2 前編",
+        "author": "村上春樹"
+      },
+      "candidates": [
+        {
+          "title": "1Q84 : [a novel] BOOK2前編 (7月-9月)",
+          "authors": [
+            "村上春樹, 1949-"
+          ],
+          "publisher": "新潮社",
+          "isbn": "9784101001616",
+          "score": 0.771
+        }
+      ]
+    },
+    {
+      "id": "t-3c9d011081",
+      "title": "1Q84 BOOK1 後編",
+      "authors": [
+        "村上春樹"
+      ],
+      "publisher": "新潮文庫",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「1Q84 (イチキュウハチヨン) BOOK1後編 (4月-6月)」（村上春樹, 1949-）です",
+      "matchScore": 0.726,
+      "addedAt": "2026-10-28T16:17:28+09:00",
+      "recognized": {
+        "title": "1Q84 BOOK1 後編",
+        "author": "村上春樹"
+      },
+      "candidates": [
+        {
+          "title": "1Q84 (イチキュウハチヨン) BOOK1後編 (4月-6月)",
+          "authors": [
+            "村上春樹, 1949-"
+          ],
+          "publisher": "新潮社",
+          "isbn": "9784101001609",
+          "score": 0.726
+        }
+      ]
+    },
+    {
+      "id": "t-0969df2d4d",
+      "title": "1Q84 BOOK1 前編",
+      "authors": [
+        "村上春樹"
+      ],
+      "publisher": "新潮文庫",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「1Q84 (イチキュウハチヨン) BOOK1前編 (4月-6月)」（村上春樹, 1949-）です",
+      "matchScore": 0.726,
+      "addedAt": "2026-10-28T16:17:42+09:00",
+      "recognized": {
+        "title": "1Q84 BOOK1 前編",
+        "author": "村上春樹"
+      },
+      "candidates": [
+        {
+          "title": "1Q84 (イチキュウハチヨン) BOOK1前編 (4月-6月)",
+          "authors": [
+            "村上春樹, 1949-"
+          ],
+          "publisher": "新潮社",
+          "isbn": "9784101001593",
+          "score": 0.726
+        }
+      ]
+    },
+    {
+      "id": "t-82ef809668",
+      "title": "GA DETAIL 1 Mies van der Rohe / Farnsworth House",
+      "authors": [
+        "Mies van der Rohe"
+      ],
+      "publisher": "A.D.A. EDITA Tokyo",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「GAグローバル・アーキテクチュア no.75」（二川幸夫, 1932-2013、Mies van der Rohe, Ludwig, 1886-1969）です",
+      "matchScore": 0.39,
+      "addedAt": "2026-10-28T16:21:22+09:00",
+      "recognized": {
+        "title": "GA DETAIL 1 Mies van der Rohe / Farnsworth House",
+        "author": "Mies van der Rohe"
+      },
+      "candidates": [
+        {
+          "title": "GAグローバル・アーキテクチュア no.75",
+          "authors": [
+            "二川幸夫, 1932-2013",
+            "Mies van der Rohe, Ludwig, 1886-1969",
+            "Neumeyer, Fritz"
+          ],
+          "publisher": "A.D.A.EDITA Tokyo",
+          "isbn": "9784871400756",
+          "score": 0.39
+        },
+        {
+          "title": "GAディテール no.1",
+          "authors": [
+            "Mies van der Rohe, Ludwig, 1886-1969"
+          ],
+          "publisher": "A.D.A.EDITA Tokyo Co.",
+          "isbn": "",
+          "score": 0.374
+        },
+        {
+          "title": "GAグローバル・アーキテクチュア no.27 (ミース・ファン・デル・ローエ)",
+          "authors": [
+            "二川幸夫, 1932-2013",
+            "Mies van der Rohe, Ludwig, 1886-1969"
+          ],
+          "publisher": "A.D.A.EDITA Tokyo",
+          "isbn": "",
+          "score": 0.368
+        }
+      ]
+    },
+    {
+      "id": "t-7ac3a13cb8",
+      "title": "Geography of Dreams RCR Arquitectes",
+      "authors": [
+        "RCR Arquitectes"
+      ],
+      "publisher": "TOTO出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「RCRアーキテクツ夢のジオグラフィー」（RCRアーキテクツ）です",
+      "matchScore": 0.252,
+      "addedAt": "2026-10-28T16:22:39+09:00",
+      "recognized": {
+        "title": "Geography of Dreams RCR Arquitectes",
+        "author": "RCR Arquitectes"
+      },
+      "candidates": [
+        {
+          "title": "RCRアーキテクツ夢のジオグラフィー",
+          "authors": [
+            "RCRアーキテクツ"
+          ],
+          "publisher": "TOTO出版",
+          "isbn": "9784887063778",
+          "score": 0.252
+        }
+      ]
+    },
+    {
+      "id": "t-01cec5c022",
+      "title": "Sou Fujimoto Architecture Works 1995-2015",
+      "authors": [
+        "藤本壮介"
+      ],
+      "publisher": "TOTO出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「藤本壮介建築作品集」（藤本壮介）です",
+      "matchScore": 0.285,
+      "addedAt": "2026-10-28T16:23:06+09:00",
+      "recognized": {
+        "title": "Sou Fujimoto Architecture Works 1995-2015",
+        "author": "藤本壮介"
+      },
+      "candidates": [
+        {
+          "title": "藤本壮介建築作品集",
+          "authors": [
+            "藤本壮介"
+          ],
+          "publisher": "TOTO出版",
+          "isbn": "9784887063495",
+          "score": 0.285
+        }
+      ]
+    },
+    {
+      "id": "t-57e0cbbc59",
+      "title": "青木淳 JUN AOKI 1991-1999",
+      "authors": [],
+      "publisher": "建築文化",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「青木淳1991-1999」（青木淳, 1956-、青木淳建築計画事務所）です",
+      "matchScore": 0.688,
+      "addedAt": "2026-10-28T16:24:22+09:00",
+      "recognized": {
+        "title": "青木淳 JUN AOKI 1991-1999",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "青木淳1991-1999",
+          "authors": [
+            "青木淳, 1956-",
+            "青木淳建築計画事務所"
+          ],
+          "publisher": "彰国社",
+          "isbn": "9784395241033",
+          "score": 0.688
+        }
+      ]
+    },
+    {
+      "id": "t-1e80c34919",
+      "title": "映画には「動機」がある",
+      "authors": [
+        "町山智浩"
+      ],
+      "publisher": "インターナショナル新書",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「映画には「動機(ワケ)」がある : 「最前線の映画」を読む Vol.2」（町山智浩, 1962-）です",
+      "matchScore": 0.664,
+      "addedAt": "2026-10-28T16:25:11+09:00",
+      "recognized": {
+        "title": "映画には「動機」がある",
+        "author": "町山智浩"
+      },
+      "candidates": [
+        {
+          "title": "映画には「動機(ワケ)」がある : 「最前線の映画」を読む Vol.2",
+          "authors": [
+            "町山智浩, 1962-"
+          ],
+          "publisher": "集英社インターナショナル",
+          "isbn": "9784797680553",
+          "score": 0.664
+        }
+      ]
+    },
+    {
+      "id": "t-71b4e4c149",
+      "title": "ART 世界の美術 コンパクト版",
+      "authors": [
+        "アンドリュー・グレアム＝ディクソン"
+      ],
+      "publisher": "河出書房新社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「世界の美術 : The Definitive Visual Guide」（Graham-Dixon, Andrew、樺山紘一, 1941-）です",
+      "matchScore": 0.244,
+      "addedAt": "2026-10-28T16:26:48+09:00",
+      "recognized": {
+        "title": "ART 世界の美術 コンパクト版",
+        "author": "アンドリュー・グレアム＝ディクソン"
+      },
+      "candidates": [
+        {
+          "title": "世界の美術 : The Definitive Visual Guide",
+          "authors": [
+            "Graham-Dixon, Andrew",
+            "樺山紘一, 1941-",
+            "エスプロジェクト"
+          ],
+          "publisher": "河出書房新社",
+          "isbn": "9784309255804",
+          "score": 0.244
+        },
+        {
+          "title": "世界の美術 : The Definitive Visual Guide",
+          "authors": [
+            "Graham-Dixon, Andrew",
+            "樺山紘一, 1941-",
+            "エスプロジェクト"
+          ],
+          "publisher": "河出書房新社",
+          "isbn": "9784309257105",
+          "score": 0.244
+        }
+      ]
     }
   ]
 }
