@@ -14709,6 +14709,147 @@
         "title": "残像のモダニズム 「共感のヒューマニズム」をめざして",
         "author": "槇文彦"
       }
+    },
+    {
+      "id": "9784771022201",
+      "title": "西田幾多郎『善の研究』",
+      "authors": [
+        "気多雅子, 1953-",
+        "木田元, 1928-2014",
+        "池田善昭, 1936-",
+        "三島憲一, 1942-"
+      ],
+      "publisher": "晃洋書房",
+      "publishedDate": "2011.1",
+      "isbn": "9784771022201",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000011184080",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.91,
+      "addedAt": "2026-10-28T21:17:15+09:00",
+      "recognized": {
+        "title": "西田幾多郎『善の研究』",
+        "author": "氣多雅子"
+      }
+    },
+    {
+      "id": "t-7d9d4af0e6",
+      "title": "地域社会圏 増補改訂版",
+      "authors": [
+        "山本理顕"
+      ],
+      "publisher": "LIXIL出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「地域社会圏主義」（山本理顕, 1945-、上野千鶴子, 1948-）です",
+      "matchScore": 0.726,
+      "addedAt": "2026-10-28T21:20:20+09:00",
+      "recognized": {
+        "title": "地域社会圏 増補改訂版",
+        "author": "山本理顕"
+      },
+      "candidates": [
+        {
+          "title": "地域社会圏主義",
+          "authors": [
+            "山本理顕, 1945-",
+            "上野千鶴子, 1948-",
+            "金子勝, 1952-"
+          ],
+          "publisher": "LIXIL出版",
+          "isbn": "9784864803045",
+          "score": 0.726
+        },
+        {
+          "title": "地域社会圏主義",
+          "authors": [
+            "山本理顕, 1945-",
+            "上野千鶴子, 1948-",
+            "金子勝, 1952-",
+            "平山洋介, 1958-",
+            "仲俊治, 1976-",
+            "末光弘和, 1976-",
+            "横浜国立大学大学院都市イノベーション学府",
+            "松行輝昌"
+          ],
+          "publisher": "トゥーヴァージンズ",
+          "isbn": "9784910352909",
+          "score": 0.696
+        }
+      ]
+    },
+    {
+      "id": "9784767807805",
+      "title": "1995年以後 : 次世代建築家の語る現代の都市と建築",
+      "authors": [
+        "藤村龍至",
+        "TEAM ROUNDABOUT"
+      ],
+      "publisher": "エクスナレッジ",
+      "publishedDate": "2009.2",
+      "isbn": "9784767807805",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000010045375",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T21:20:41+09:00",
+      "recognized": {
+        "title": "1995年以後 次世代建築家の語る現代の都市と建築",
+        "author": "TEAM ROUNDABOUT、藤村龍至"
+      }
+    },
+    {
+      "id": "9784061589209",
+      "title": "遊びと人間",
+      "authors": [
+        "Caillois, Roger, 1913-1978",
+        "多田道太郎, 1924-2007",
+        "塚崎幹夫, 1930-"
+      ],
+      "publisher": "講談社",
+      "publishedDate": "1990.4",
+      "isbn": "9784061589209",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000002039969",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.905,
+      "addedAt": "2026-10-28T21:30:10+09:00",
+      "recognized": {
+        "title": "遊びと人間",
+        "author": "ロジェ・カイヨワ、多田道太郎、塚崎幹夫"
+      }
+    },
+    {
+      "id": "9784811807362",
+      "title": "パウロ・フレイレ「被抑圧者の教育学」を読む",
+      "authors": [
+        "里見実, 1936-2022"
+      ],
+      "publisher": "太郎次郎社エディタス",
+      "publishedDate": "2010.4",
+      "isbn": "9784811807362",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000010836014",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.993,
+      "addedAt": "2026-10-28T21:30:13+09:00",
+      "recognized": {
+        "title": "パウロ・フレイれ『被抑圧者の教育学』を読む",
+        "author": "里見実"
+      }
     }
   ]
 }
