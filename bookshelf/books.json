@@ -11274,6 +11274,124 @@
         "title": "教養としての美術史",
         "author": "ナカムラクニオ"
       }
+    },
+    {
+      "id": "t-a213b2956d",
+      "title": "建築構成学 建築デザインの方法 Studies of Architectural Composition",
+      "authors": [
+        "坂本一成、塚本由晴、岩岡竜夫、小川次郎、足立真、寺内美紀子、美濃部幸郎、安森亮雄"
+      ],
+      "publisher": "実教出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "author",
+      "reason": "書名は近いのですが、著者が一致しません。読み取り: 坂本一成、塚本由晴、岩岡竜夫、小川次郎、足立真、寺内美紀子、美濃部幸郎、安森亮雄 / 候補: 坂本一成, 1943-",
+      "matchScore": 0.781,
+      "addedAt": "2026-10-28T18:17:10+09:00",
+      "recognized": {
+        "title": "建築構成学 建築デザインの方法 Studies of Architectural Composition",
+        "author": "坂本一成、塚本由晴、岩岡竜夫、小川次郎、足立真、寺内美紀子、美濃部幸郎、安森亮雄"
+      },
+      "candidates": [
+        {
+          "title": "建築構成学 : 建築デザインの方法",
+          "authors": [
+            "坂本一成, 1943-"
+          ],
+          "publisher": "実教出版",
+          "isbn": "9784407325720",
+          "score": 0.781
+        }
+      ]
+    },
+    {
+      "id": "9784395240074",
+      "title": "建築の新しさ、都市の未来",
+      "authors": [
+        "横浜国立大学大学院都市イノベーション学府"
+      ],
+      "publisher": "彰国社",
+      "publishedDate": "2008.9",
+      "isbn": "9784395240074",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000009656775",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.917,
+      "addedAt": "2026-10-28T18:35:37+09:00",
+      "recognized": {
+        "title": "建築の新しさ、都市の未来",
+        "author": "Y-GSA（横浜国立大学大学院）編"
+      }
+    },
+    {
+      "id": "9784395012084",
+      "title": "代謝建築論 : か・かた・かたち",
+      "authors": [
+        "菊竹清訓, 1928-2011"
+      ],
+      "publisher": "彰国社",
+      "publishedDate": "2008.4",
+      "isbn": "9784395012084",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000009389619",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T18:39:01+09:00",
+      "recognized": {
+        "title": "復刻版 代謝建築論 か・かた・かたち",
+        "author": "菊竹清訓"
+      }
+    },
+    {
+      "id": "9784062157728",
+      "title": "ヘヴン",
+      "authors": [
+        "川上未映子"
+      ],
+      "publisher": "講談社",
+      "publishedDate": "2009.9",
+      "isbn": "9784062157728",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000010555420",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T18:42:44+09:00",
+      "recognized": {
+        "title": "ヘヴン",
+        "author": "川上未映子"
+      }
+    },
+    {
+      "id": "9784887061866",
+      "title": "Atmospherics",
+      "authors": [
+        "青木淳, 1956-",
+        "ギャラリー間"
+      ],
+      "publisher": "TOTO出版",
+      "publishedDate": "2000.3",
+      "isbn": "9784887061866",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000002969021",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T19:10:36+09:00",
+      "recognized": {
+        "title": "Atmospherics",
+        "author": "青木淳"
+      }
     }
   ]
 }
