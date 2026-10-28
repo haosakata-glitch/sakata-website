@@ -10823,6 +10823,457 @@
           "score": 0.244
         }
       ]
+    },
+    {
+      "id": "t-8e6066b1a1",
+      "title": "今さら聞けないお金の超基本 : 節約・貯蓄・投資の前に ビジュアル版 (大人のリテラシー) : 改訂新版",
+      "authors": [
+        "坂本綾子",
+        "泉美智子, 1958-"
+      ],
+      "publisher": "京都ライトハウス情報製作センター",
+      "publishedDate": "2026.5",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I034789712",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.949,
+      "addedAt": "2026-10-28T16:28:48+09:00",
+      "recognized": {
+        "title": "今さら聞けない お金の超基本",
+        "author": "坂本綾子 著 / 泉美智子 監修"
+      }
+    },
+    {
+      "id": "t-83fe1c4d80",
+      "title": "10+1 No.29 特集 新・東京の地誌学 New Tokyo Topography for Discovering the Cities",
+      "authors": [],
+      "publisher": "INAX出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「愛鳩の友 : leading pigeon magazine in Japan : ピジョン・スポーツ・マガジン 10(1) (通号 106)-10(6) (通号 111) 19650100-19650600」（愛鳩の友社）です",
+      "matchScore": 0.134,
+      "addedAt": "2026-10-28T16:31:10+09:00",
+      "recognized": {
+        "title": "10+1 No.29 特集 新・東京の地誌学 New Tokyo Topography for Discovering the Cities",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "愛鳩の友 : leading pigeon magazine in Japan : ピジョン・スポーツ・マガジン 10(1) (通号 106)-10(6) (通号 111) 19650100-19650600",
+          "authors": [
+            "愛鳩の友社"
+          ],
+          "publisher": "愛鳩の友社",
+          "isbn": "",
+          "score": 0.134
+        },
+        {
+          "title": "アーガマ 10(1) (通号 86)-10(3) (通号 88) 19871200-19880200",
+          "authors": [
+            "阿含宗出版社"
+          ],
+          "publisher": "阿含宗出版社",
+          "isbn": "",
+          "score": 0.098
+        },
+        {
+          "title": "アート・トップ 10(1) (通号 50)-10(3) (通号 52) 19790200-19790600",
+          "authors": [
+            "芸術新聞社"
+          ],
+          "publisher": "芸術新聞社",
+          "isbn": "",
+          "score": 0.096
+        }
+      ]
+    },
+    {
+      "id": "t-1eb2111f95",
+      "title": "見えがくれする都市 : 江戸から東京へ",
+      "authors": [
+        "槙文彦, 1928-2024"
+      ],
+      "publisher": "鹿島出版会",
+      "publishedDate": "1980.6",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001461145",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.814,
+      "addedAt": "2026-10-28T16:46:35+09:00",
+      "recognized": {
+        "title": "見えがくれする都市",
+        "author": "槇文彦他"
+      }
+    },
+    {
+      "id": "t-9a5d1b5339",
+      "title": "日本建築の空間",
+      "authors": [
+        "井上充夫, 1918-2002"
+      ],
+      "publisher": "鹿島研究所出版会",
+      "publishedDate": "1969",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000001280303",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:46:52+09:00",
+      "recognized": {
+        "title": "日本建築の空間",
+        "author": "井上充夫"
+      }
+    },
+    {
+      "id": "t-3e3472728f",
+      "title": "OURS TEXT 001 未来の住人のために",
+      "authors": [],
+      "publisher": "",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「愛内里菜live tour 2003\"A.I.R\"」（愛内里菜）です",
+      "matchScore": 0.231,
+      "addedAt": "2026-10-28T16:47:26+09:00",
+      "recognized": {
+        "title": "OURS TEXT 001 未来の住人のために",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "愛内里菜live tour 2003\"A.I.R\"",
+          "authors": [
+            "愛内里菜"
+          ],
+          "publisher": "B-VISION",
+          "isbn": "",
+          "score": 0.231
+        },
+        {
+          "title": "EARTH : 図鑑地球科学の世界 : THE SECRETS OF OUR PLANET REVEALED",
+          "authors": [
+            "スミソニアンインスティテューション",
+            "三河内岳, 1971-"
+          ],
+          "publisher": "東京書籍",
+          "isbn": "9784487816545",
+          "score": 0.148
+        },
+        {
+          "title": "アーカイヴ Live : バウハウス",
+          "authors": [],
+          "publisher": "トイズファクトリィレコード",
+          "isbn": "",
+          "score": 0.053
+        }
+      ]
+    },
+    {
+      "id": "9784835563503",
+      "title": "現代喫茶養生記 : お茶一杯の口腔ケア",
+      "authors": [
+        "高津正利, 1956-"
+      ],
+      "publisher": "文芸社",
+      "publishedDate": "2004.4",
+      "isbn": "9784835563503",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000007302834",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:47:58+09:00",
+      "recognized": {
+        "title": "現代喫茶養生記 お茶一杯の口腔ケア",
+        "author": "高津正利"
+      }
+    },
+    {
+      "id": "9784909355171",
+      "title": "庭 : のびやかな建築の思考",
+      "authors": [
+        "竹山聖, 1954-",
+        "京都大学"
+      ],
+      "publisher": "エイアンドエフ",
+      "publishedDate": "2020.6",
+      "isbn": "9784909355171",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I030431491",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:50:29+09:00",
+      "recognized": {
+        "title": "庭 のびやかな建築の思考",
+        "author": "竹山聖＋京都大学竹山研究室 編"
+      }
+    },
+    {
+      "id": "t-1c904269c8",
+      "title": "10+1 No.21 特集 トーキョー・リサイクル計画",
+      "authors": [],
+      "publisher": "INAX出版",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「愛育 10(1)」（母子愛育会）です",
+      "matchScore": 0.2,
+      "addedAt": "2026-10-28T16:52:54+09:00",
+      "recognized": {
+        "title": "10+1 No.21 特集 トーキョー・リサイクル計画",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "愛育 10(1)",
+          "authors": [
+            "母子愛育会"
+          ],
+          "publisher": "恩賜財団母子愛育会",
+          "isbn": "",
+          "score": 0.2
+        },
+        {
+          "title": "アール 10(1)-10(4) 20040100-20040400",
+          "authors": [
+            "主婦と生活社"
+          ],
+          "publisher": "主婦と生活社",
+          "isbn": "",
+          "score": 0.191
+        },
+        {
+          "title": "アーガマ 10(1) (通号 86)-10(3) (通号 88) 19871200-19880200",
+          "authors": [
+            "阿含宗出版社"
+          ],
+          "publisher": "阿含宗出版社",
+          "isbn": "",
+          "score": 0.161
+        }
+      ]
+    },
+    {
+      "id": "9784403250132",
+      "title": "現代演劇101物語",
+      "authors": [
+        "岩淵達治, 1927-2013"
+      ],
+      "publisher": "新書館",
+      "publishedDate": "1996.4",
+      "isbn": "9784403250132",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I000002575096",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.844,
+      "addedAt": "2026-10-28T16:54:17+09:00",
+      "recognized": {
+        "title": "現代演劇101物語",
+        "author": "若桑達治 編"
+      }
+    },
+    {
+      "id": "9784120043215",
+      "title": "魔法飛行",
+      "authors": [
+        "川上未映子"
+      ],
+      "publisher": "中央公論新社",
+      "publishedDate": "2012.2",
+      "isbn": "9784120043215",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I023368793",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-28T16:55:32+09:00",
+      "recognized": {
+        "title": "魔法飛行",
+        "author": "川上未映子"
+      }
+    },
+    {
+      "id": "t-909be92979",
+      "title": "建築の前夜 前川國男文集",
+      "authors": [
+        "前川國男"
+      ],
+      "publisher": "西立書房",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "author",
+      "reason": "書名は近いのですが、著者が一致しません。読み取り: 前川國男 / 候補: 前川国男, 1905-1986",
+      "matchScore": 0.781,
+      "addedAt": "2026-10-28T16:57:06+09:00",
+      "recognized": {
+        "title": "建築の前夜 前川國男文集",
+        "author": "前川國男"
+      },
+      "candidates": [
+        {
+          "title": "建築の前夜 : 前川国男文集",
+          "authors": [
+            "前川国男, 1905-1986"
+          ],
+          "publisher": "而立書房",
+          "isbn": "9784880592206",
+          "score": 0.781
+        }
+      ]
+    },
+    {
+      "id": "t-66f1d8d3ec",
+      "title": "現代思想 2020年3月臨時増刊号 総特集 磯崎新",
+      "authors": [],
+      "publisher": "青土社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「愛と暴力の現代思想」（矢部史郎, 1971-、山の手緑, 1970-）です",
+      "matchScore": 0.267,
+      "addedAt": "2026-10-28T16:57:44+09:00",
+      "recognized": {
+        "title": "現代思想 2020年3月臨時増刊号 総特集 磯崎新",
+        "author": ""
+      },
+      "candidates": [
+        {
+          "title": "愛と暴力の現代思想",
+          "authors": [
+            "矢部史郎, 1971-",
+            "山の手緑, 1970-"
+          ],
+          "publisher": "青土社",
+          "isbn": "9784791762637",
+          "score": 0.267
+        },
+        {
+          "title": "アナロジーの罠 : フランス現代思想批判",
+          "authors": [
+            "Bouveresse, Jacques, 1940-",
+            "宮代康丈, 1974-"
+          ],
+          "publisher": "新書館",
+          "isbn": "9784403230967",
+          "score": 0.19
+        },
+        {
+          "title": "亚洲认识 : 中国与日本近现代思想史学研究",
+          "authors": [
+            "盛邦和"
+          ],
+          "publisher": "上海人民出版社",
+          "isbn": "9787208158108",
+          "score": 0.14
+        }
+      ]
+    },
+    {
+      "id": "t-31d8968eb3",
+      "title": "凹凸を楽しむ 東京「スリバチ」地形散歩",
+      "authors": [
+        "皆川典久"
+      ],
+      "publisher": "洋泉社",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "infoLink": "",
+      "source": "recognized",
+      "status": "needs_review",
+      "reasonCode": "title",
+      "reason": "書名が一致しません。最有力の候補は「東京「スリバチ」地形散歩 : 凹凸を楽しむ」（皆川典久, 1963-）です",
+      "matchScore": 0.754,
+      "addedAt": "2026-10-28T17:13:21+09:00",
+      "recognized": {
+        "title": "凹凸を楽しむ 東京「スリバチ」地形散歩",
+        "author": "皆川典久"
+      },
+      "candidates": [
+        {
+          "title": "東京「スリバチ」地形散歩 : 凹凸を楽しむ",
+          "authors": [
+            "皆川典久, 1963-"
+          ],
+          "publisher": "洋泉社",
+          "isbn": "9784862488237",
+          "score": 0.754
+        },
+        {
+          "title": "東京「スリバチ」地形散歩 : 凹凸を楽しむ 2",
+          "authors": [
+            "皆川典久, 1963-"
+          ],
+          "publisher": "洋泉社",
+          "isbn": "9784800302304",
+          "score": 0.74
+        },
+        {
+          "title": "東京「スリバチ」地形散歩 : 凹凸を楽しむ",
+          "authors": [
+            "皆川典久, 1963-"
+          ],
+          "publisher": "宝島社",
+          "isbn": "9784299014467",
+          "score": 0.724
+        }
+      ]
+    },
+    {
+      "id": "9784781623092",
+      "title": "大人が知っておきたい図解教養としての美術史",
+      "authors": [
+        "ナカムラクニオ, 1971-"
+      ],
+      "publisher": "イースト・プレス",
+      "publishedDate": "2024.4",
+      "isbn": "9784781623092",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "https://ndlsearch.ndl.go.jp/books/R100000002-I033422456",
+      "source": "ndl",
+      "status": "matched",
+      "matchScore": 0.962,
+      "addedAt": "2026-10-28T17:19:42+09:00",
+      "recognized": {
+        "title": "教養としての美術史",
+        "author": "ナカムラクニオ"
+      }
     }
   ]
 }
