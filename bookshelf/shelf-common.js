@@ -220,6 +220,104 @@
     });
   }
 
+  // 分類の一覧（bookshelf/categories.json）。読めなくても本棚は表示できるよう、失敗したら「分類なし」として扱う。
+  //   fields / kinds: 分野と種類の名前（表示の並び順の目安）
+  //   publisherAliases: 出版社の表記ゆれ・レーベル名 → まとめる名前
+  //   books: 本のID → { field, kind }（title は人が読むためのメモで、画面では使わない）
+  function emptyCategories() {
+    return { fields: [], kinds: [], publisherAliases: {}, books: {} };
+  }
+
+  function loadCategories() {
+    return getJson("bookshelf/categories.json").then(function (data) {
+      var cats = emptyCategories();
+      if (data && typeof data === "object") {
+        cats.fields = Array.isArray(data.fields) ? data.fields.filter(function (x) { return typeof x === "string"; }) : [];
+        cats.kinds = Array.isArray(data.kinds) ? data.kinds.filter(function (x) { return typeof x === "string"; }) : [];
+        if (data.publisherAliases && typeof data.publisherAliases === "object") { cats.publisherAliases = data.publisherAliases; }
+        if (data.books && typeof data.books === "object") { cats.books = data.books; }
+      }
+      return cats;
+    }).catch(function (error) {
+      console.error(error);
+      return emptyCategories();
+    });
+  }
+
+  function keyOf(value) {
+    return String(value == null ? "" : value).normalize("NFKC").toLowerCase().replace(/[\s　]+/g, "");
+  }
+
+  // 出版社の名前。表記ゆれ（新潮文庫→新潮社 など）は publisherAliases でまとめる。出版社が空なら ""。
+  function publisherLabel(book, cats) {
+    var name = String((book && book.publisher) || "").trim();
+    if (!name) { return ""; }
+    var aliases = (cats && cats.publisherAliases) || {};
+    var key = keyOf(name);
+    for (var from in aliases) {
+      if (Object.prototype.hasOwnProperty.call(aliases, from) && keyOf(from) === key && typeof aliases[from] === "string") {
+        return aliases[from];
+      }
+    }
+    return name;
+  }
+
+  var OTHER_LABEL = "Other";
+  var UNSORTED_LABEL = "未分類";
+
+  // 本を分ける。mode: "all" | "field" | "kind" | "publisher"
+  // 戻り値: [{ key, label, books, tail }]（tail が true のグループは、並びの最後に置く Other・未分類）
+  // 出版社は、1冊しかない出版社をまとめて Other にする。1冊かどうかは universe（検索で絞る前の全体）で数えるので、
+  // 検索で絞っても Other の中身は変わらない。
+  function groupBooks(list, mode, cats, universe) {
+    cats = cats || emptyCategories();
+    universe = universe || list;
+    var labelOf;
+    var order = [];
+    if (mode === "field" || mode === "kind") {
+      var attr = mode;
+      order = mode === "field" ? cats.fields : cats.kinds;
+      labelOf = function (book) {
+        var entry = Object.prototype.hasOwnProperty.call(cats.books, book.id) ? cats.books[book.id] : null;
+        var value = entry && typeof entry[attr] === "string" ? entry[attr] : "";
+        return value || UNSORTED_LABEL;
+      };
+    } else if (mode === "publisher") {
+      var counts = {};
+      universe.forEach(function (book) {
+        var name = publisherLabel(book, cats);
+        if (name) { counts[name] = (counts[name] || 0) + 1; }
+      });
+      labelOf = function (book) {
+        var name = publisherLabel(book, cats);
+        return name && counts[name] > 1 ? name : OTHER_LABEL;
+      };
+    } else {
+      return [{ key: "all", label: "ALL", books: list.slice(), tail: false }];
+    }
+
+    var byLabel = {};
+    var groups = [];
+    list.forEach(function (book) {
+      var label = labelOf(book);
+      if (!Object.prototype.hasOwnProperty.call(byLabel, label)) {
+        byLabel[label] = { key: "g" + groups.length, label: label, books: [], tail: label === OTHER_LABEL || label === UNSORTED_LABEL || label === "その他" };
+        groups.push(byLabel[label]);
+      }
+      byLabel[label].books.push(book);
+    });
+    // 冊数の多い順（同数なら、分野・種類は名簿の順、出版社は五十音順）。Other・未分類・その他は最後。
+    groups.sort(function (a, b) {
+      if (a.tail !== b.tail) { return a.tail ? 1 : -1; }
+      if (b.books.length !== a.books.length) { return b.books.length - a.books.length; }
+      var ia = order.indexOf(a.label), ib = order.indexOf(b.label);
+      if (ia !== -1 || ib !== -1) { return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib); }
+      return a.label.localeCompare(b.label, "ja");
+    });
+    groups.forEach(function (group, index) { group.key = "g" + index; });
+    return groups;
+  }
+
   function isListed(book) {
     return book && book.status !== "needs_review" && book.status !== "ignored";
   }
@@ -257,6 +355,9 @@
     coverFor: coverFor,
     loadBooks: loadBooks,
     loadNotes: loadNotes,
+    loadCategories: loadCategories,
+    publisherLabel: publisherLabel,
+    groupBooks: groupBooks,
     noteTarget: noteTarget,
     isListed: isListed
   };

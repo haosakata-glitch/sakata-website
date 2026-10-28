@@ -209,6 +209,177 @@
     line-height: 1.7;
   }
 
+  /* Total + grouping */
+
+  .total {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    margin: 6px 0 22px;
+  }
+
+  .total-num {
+    font-size: clamp(56px, 12vw, 104px);
+    font-weight: 200;
+    line-height: .9;
+    letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .total-unit {
+    margin-left: 6px;
+    font-size: clamp(16px, 3vw, 26px);
+    font-weight: 300;
+    letter-spacing: .04em;
+  }
+
+  .total-sub {
+    color: var(--secondary);
+    font-size: 10.5px;
+    letter-spacing: .06em;
+    line-height: 1.7;
+  }
+
+  .group-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    margin: 0 0 22px;
+  }
+
+  .group-tabs button {
+    padding: 4px 0;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    background: transparent;
+    color: rgba(34, 34, 34, .48);
+    font: inherit;
+    font-size: 11px;
+    letter-spacing: .1em;
+    cursor: pointer;
+  }
+
+  .group-tabs button[aria-pressed="true"] {
+    color: var(--text);
+    border-bottom-color: var(--text);
+  }
+
+  .group-tabs button:focus-visible,
+  .pile-row:focus-visible {
+    outline: 1px solid var(--text);
+    outline-offset: 4px;
+  }
+
+  /* 積み上げ: 1冊 = 1つの四角。切り替えるたびに、上から落ちて下から積み上がる */
+
+  .pile {
+    max-width: 760px;
+    margin: 0 0 40px;
+  }
+
+  .pile-row {
+    display: grid;
+    grid-template-columns: minmax(0, 9em) minmax(0, 1fr) 2.6em;
+    column-gap: 12px;
+    align-items: end;
+    width: 100%;
+    margin: 0 0 12px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 11px;
+    letter-spacing: .06em;
+    line-height: 1.4;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .pile-row.is-static {
+    cursor: default;
+  }
+
+  .pile-name {
+    overflow-wrap: anywhere;
+  }
+
+  .pile-n {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pile-blocks {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 2px;
+  }
+
+  .pile-blocks i {
+    width: 8px;
+    height: 8px;
+    background: var(--text);
+    opacity: var(--o, .8);
+  }
+
+  .pile.animate .pile-blocks i {
+    animation: drop .6s cubic-bezier(.2, .8, .3, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  @keyframes drop {
+    0% { transform: translateY(-26px); opacity: 0; }
+    55% { opacity: var(--o, .8); }
+    78% { transform: translateY(1.5px); }
+    100% { transform: none; opacity: var(--o, .8); }
+  }
+
+  .pile-row:not(.is-static):hover .pile-name {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .group {
+    margin: 0 0 46px;
+    scroll-margin-top: 76px;
+  }
+
+  .group-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 0 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(34, 34, 34, .18);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: .08em;
+  }
+
+  .group-n {
+    color: rgba(34, 34, 34, .5);
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .groups.reveal .group {
+    animation: rise .6s ease-out both;
+    animation-delay: calc(var(--i, 0) * 70ms + 300ms);
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pile.animate .pile-blocks i,
+    .groups.reveal .group {
+      animation: none;
+    }
+  }
+
   /* Shelf */
 
   .shelf {
@@ -384,6 +555,11 @@
       width: 110px;
     }
 
+    .pile-row {
+      grid-template-columns: minmax(0, 7.5em) minmax(0, 1fr) 2.4em;
+      column-gap: 10px;
+    }
+
     footer {
       padding: 0 12px 30px;
     }
@@ -420,6 +596,18 @@
 
   <div class="shelf-label"><span>BOOKS</span><span class="shelf-count" id="count"></span></div>
 
+  <section class="total" aria-label="蔵書の冊数">
+    <div class="total-num"><span id="total-num">0</span><span class="total-unit">冊</span></div>
+    <div class="total-sub" id="total-sub"></div>
+  </section>
+
+  <div class="group-tabs" role="group" aria-label="分け方">
+    <button type="button" data-mode="all" aria-pressed="true">ALL</button>
+    <button type="button" data-mode="field" aria-pressed="false">分野</button>
+    <button type="button" data-mode="kind" aria-pressed="false">種類</button>
+    <button type="button" data-mode="publisher" aria-pressed="false">出版社</button>
+  </div>
+
   <div class="shelf-tools" aria-label="蔵書の検索と並び替え">
     <label class="search-box"><span class="visually-hidden">キーワード検索</span><input id="search" type="search" placeholder="SEARCH BOOKS" autocomplete="off"></label>
     <label class="sort-box"><span class="visually-hidden">並び替え</span>
@@ -432,9 +620,12 @@
     </label>
   </div>
 
+  <div class="pile" id="pile" aria-label="冊数の積み上げ"></div>
+
+
   <p class="note" id="review-note" hidden>要確認の本も含めて表示しています。自動で書誌を確定できなかったものには「要確認」の印がつきます。</p>
   <p class="empty" id="empty" hidden>該当する本はありません。</p>
-  <section class="shelf" id="shelf" aria-live="polite"></section>
+  <div class="groups" id="groups" aria-live="polite"></div>
 
   <p class="crosslinks bottom" aria-label="アーカイブへ"><a href="archive.html">← ARCHIVE</a><a href="archive.html?category=BOOK">BOOK →</a></p>
 
@@ -453,14 +644,27 @@
   var params = new URLSearchParams(window.location.search);
   var showReview = params.get("review") === "1";
 
-  var shelf = document.getElementById("shelf");
+  var MODES = ["all", "field", "kind", "publisher"];
+  var mode = MODES.indexOf(params.get("group")) !== -1 ? params.get("group") : "all";
+
+  var groupsEl = document.getElementById("groups");
+  var pileEl = document.getElementById("pile");
+  var totalNumEl = document.getElementById("total-num");
+  var totalSubEl = document.getElementById("total-sub");
   var countEl = document.getElementById("count");
   var emptyEl = document.getElementById("empty");
   var searchEl = document.getElementById("search");
   var sortEl = document.getElementById("sort");
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".group-tabs button"));
+
+  var reduceMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
   var books = [];
   var notes = {};
+  var cats = null;
+  var cardCache = {};
+  var animateNext = true;  // 分け方を切り替えたとき・最初に開いたときだけ、積み上がる動きをつける（検索の入力中は動かさない）
+  var countFrame = 0;
 
   function norm(value) {
     return String(value == null ? "" : value).normalize("NFKC").toLowerCase().replace(/[\s　]+/g, "");
@@ -526,6 +730,128 @@
     return card;
   }
 
+  // 一覧の組み替えのたびに作り直さないよう、本ごとのカードは1度だけ作って使い回す（書影の読み込みもやり直さない）。
+  function cardOf(book) {
+    var key = String(book.id || book.title);
+    if (!cardCache[key]) {
+      cardCache[key] = cardFor(book);
+    }
+    return cardCache[key];
+  }
+
+  // 冊数の数字。切り替えたときは 0 から数え上がる。
+  function setTotal(n, animate) {
+    cancelAnimationFrame(countFrame);
+    if (!animate || reduceMotion || n === 0) {
+      totalNumEl.textContent = String(n);
+      return;
+    }
+    var startedAt = null;
+    var duration = 800;
+    function step(now) {
+      if (startedAt === null) { startedAt = now; }
+      var progress = Math.min(1, (now - startedAt) / duration);
+      totalNumEl.textContent = String(Math.round(n * (1 - Math.pow(1 - progress, 3))));
+      if (progress < 1) { countFrame = requestAnimationFrame(step); }
+    }
+    totalNumEl.textContent = "0";
+    countFrame = requestAnimationFrame(step);
+  }
+
+  function modeNote(groups) {
+    if (mode === "field") { return groups.length + " 分野"; }
+    if (mode === "kind") { return groups.length + " 種類"; }
+    if (mode === "publisher") {
+      var named = groups.filter(function (group) { return group.label !== "Other"; }).length;
+      return named + " 社 ＋ Other（1冊だけの出版社）";
+    }
+    return "蔵書の総数";
+  }
+
+  function renderTotals(shownCount, poolCount, groups) {
+    setTotal(shownCount, animateNext);
+    var notes_ = [];
+    if (searchEl.value.trim()) {
+      notes_.push("「" + searchEl.value.trim() + "」に当てはまる本（全 " + poolCount + " 冊中）");
+    }
+    notes_.push(modeNote(groups));
+    totalSubEl.textContent = notes_.join(" ・ ");
+    countEl.textContent = (searchEl.value.trim() ? shownCount + " / " + poolCount : poolCount) + " BOOKS";
+  }
+
+  // 1冊 = 1つの四角。グループごとに、下の段から積み上がる。
+  function renderPile(groups) {
+    pileEl.textContent = "";
+    pileEl.classList.toggle("animate", animateNext && !reduceMotion);
+    var seq = 0;
+    groups.forEach(function (group) {
+      var isStatic = mode === "all";
+      var row = document.createElement(isStatic ? "div" : "button");
+      row.className = isStatic ? "pile-row is-static" : "pile-row";
+      if (!isStatic) {
+        row.type = "button";
+        row.addEventListener("click", function () {
+          var target = document.getElementById(group.key);
+          if (target) { target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); }
+        });
+      }
+
+      var name = document.createElement("span");
+      name.className = "pile-name";
+      name.textContent = isStatic ? "ALL" : group.label;
+      row.appendChild(name);
+
+      var blocks = document.createElement("span");
+      blocks.className = "pile-blocks";
+      blocks.setAttribute("aria-hidden", "true");
+      for (var i = 0; i < group.books.length; i++, seq++) {
+        var block = document.createElement("i");
+        block.style.setProperty("--d", Math.min(seq * 3, 1500) + "ms");
+        block.style.setProperty("--o", (0.55 + ((seq * 37) % 10) / 10 * 0.4).toFixed(2));
+        blocks.appendChild(block);
+      }
+      row.appendChild(blocks);
+
+      var n = document.createElement("span");
+      n.className = "pile-n";
+      n.textContent = String(group.books.length);
+      row.appendChild(n);
+      pileEl.appendChild(row);
+    });
+  }
+
+  function renderGroups(groups) {
+    groupsEl.textContent = "";
+    groupsEl.classList.toggle("reveal", animateNext && !reduceMotion && mode !== "all");
+    groups.forEach(function (group, index) {
+      var grid = document.createElement("div");
+      grid.className = "shelf";
+      group.books.forEach(function (book) {
+        grid.appendChild(cardOf(book));
+      });
+      if (mode === "all") {
+        groupsEl.appendChild(grid);
+        return;
+      }
+      var section = document.createElement("section");
+      section.className = "group";
+      section.id = group.key;
+      section.style.setProperty("--i", String(Math.min(index, 8)));
+      var head = document.createElement("h2");
+      head.className = "group-head";
+      var name = document.createElement("span");
+      name.textContent = group.label;
+      var n = document.createElement("span");
+      n.className = "group-n";
+      n.textContent = group.books.length + " 冊";
+      head.appendChild(name);
+      head.appendChild(n);
+      section.appendChild(head);
+      section.appendChild(grid);
+      groupsEl.appendChild(section);
+    });
+  }
+
   function render() {
     var query = norm(searchEl.value);
     var sorter = sorters[sortEl.value] || sorters.added;
@@ -540,24 +866,51 @@
       return !query || haystack(book).indexOf(query) !== -1;
     }).sort(sorter);
 
-    shelf.textContent = "";
-    shown.forEach(function (book) {
-      shelf.appendChild(cardFor(book));
-    });
-
+    var groups = shown.length ? Shelf.groupBooks(shown, mode, cats, pool) : [];
+    renderTotals(shown.length, pool.length, groups);
+    renderPile(groups);
+    renderGroups(groups);
     emptyEl.hidden = shown.length > 0;
-    countEl.textContent = query ? shown.length + " / " + pool.length + " BOOKS" : pool.length + " BOOKS";
+    animateNext = false;
   }
+
+  function setMode(next) {
+    mode = next;
+    tabs.forEach(function (tab) {
+      tab.setAttribute("aria-pressed", tab.getAttribute("data-mode") === mode ? "true" : "false");
+    });
+    try {
+      var url = new URL(window.location.href);
+      if (mode === "all") { url.searchParams.delete("group"); } else { url.searchParams.set("group", mode); }
+      window.history.replaceState(null, "", url);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      var next = tab.getAttribute("data-mode");
+      if (next === mode || MODES.indexOf(next) === -1) { return; }
+      setMode(next);
+      animateNext = true;
+      render();
+    });
+  });
 
   searchEl.addEventListener("input", render);
   sortEl.addEventListener("change", render);
   document.getElementById("review-note").hidden = !showReview;
+  tabs.forEach(function (tab) {
+    tab.setAttribute("aria-pressed", tab.getAttribute("data-mode") === mode ? "true" : "false");
+  });
 
-  // 感想の一覧が読めなくても、本棚は表示する（その場合は、どの本も押せない）
-  Promise.all([Shelf.loadBooks(), Shelf.loadNotes()])
+  // 感想・分類の一覧が読めなくても、本棚は表示する（感想が読めなければどの本も押せず、分類が読めなければ「未分類」になる）
+  Promise.all([Shelf.loadBooks(), Shelf.loadNotes(), Shelf.loadCategories()])
     .then(function (result) {
       books = result[0];
       notes = result[1];
+      cats = result[2];
       render();
     })
     .catch(function (error) {
