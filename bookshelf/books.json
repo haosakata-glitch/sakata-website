@@ -14050,6 +14050,48 @@
         "title": "50（フィフティ）・ピープル",
         "author": "チョン・セラン、斎藤真理子"
       }
+    },
+    {
+      "id": "t-1cae162675",
+      "title": "20世紀の現代建築を検証する",
+      "authors": [
+        "磯崎新、鈴木博之"
+      ],
+      "publisher": "GA",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-29T17:29:50+09:00",
+      "recognized": {
+        "title": "20世紀の現代建築を検証する",
+        "author": "磯崎新、鈴木博之"
+      }
+    },
+    {
+      "id": "t-5acf4b12c7",
+      "title": "失敗の社会学 親密性と責任をめぐる試論",
+      "authors": [
+        "中森弘樹"
+      ],
+      "publisher": "慶應義塾大学出版会",
+      "publishedDate": "",
+      "isbn": "",
+      "cover": null,
+      "coverUrl": null,
+      "infoLink": "",
+      "source": "manual",
+      "status": "matched",
+      "matchScore": 1.0,
+      "addedAt": "2026-10-29T17:29:50+09:00",
+      "recognized": {
+        "title": "失敗の社会学 親密性と責任をめぐる試論",
+        "author": "中森弘樹"
+      }
     }
   ]
 }
